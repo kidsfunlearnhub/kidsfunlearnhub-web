@@ -131,13 +131,25 @@ body {
 .animals {
   background: #ff9800;
 }
-
+.insects {
+  background: #00ff00;
+}
 .flowers {
   background: #bb00ff;
 }
 
 .birds {
   background:#97e156;
+}
+
+.vegetables {
+  background:#af1d29;
+}
+.vehicles {
+  background:#510b6b;
+}
+.fruits {
+  background:#ba0b8e;
 }
 .content {
     padding: 30px;
