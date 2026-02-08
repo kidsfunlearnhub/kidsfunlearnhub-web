@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Kids Body Learning</title>
+
+<link rel="stylesheet" href="bodyparts.css">
+</head>
+
+<body>
+
+<h1>👶 Learn Body Parts</h1>
+
+<div class="viewer">
+
+  <!-- rotating body -->
+  <div class="body-container">
+    <img src="images/bodyparts/body.png" class="body-img">
+
+    <!-- hotspots -->
+    <div class="hotspot" style="top:8%;left:45%;" 
+         data-name="Head" data-img="images/head.png"></div>
+
+    <div class="hotspot" style="top:40%;left:25%;" 
+         data-name="Hand" data-img="images/hand.png"></div>
+
+    <div class="hotspot" style="top:70%;left:45%;" 
+         data-name="Leg" data-img="images/leg.png"></div>
+
+  </div>
+
+</div>
+
+<!-- popup -->
+<div id="popup" class="popup hidden">
+  <div class="popup-content">
+    <span id="closeBtn">✖</span>
+    <img id="popupImg">
+    <h2 id="popupText"></h2>
+  </div>
+</div>
+
+<script src="bodyparts.js"></script>
+
+</body>
+</html>
