@@ -37,7 +37,16 @@ speak(name);
 celebrate();
 });
 });
+// temporary
+document.querySelector(".body-container").onclick = e => {
+  const rect = e.currentTarget.getBoundingClientRect();
 
+  const x = ((e.clientX - rect.left)/rect.width*100).toFixed(1);
+  const y = ((e.clientY - rect.top)/rect.height*100).toFixed(1);
+
+  console.log(`top:${y}%, left:${x}%`);
+};
+// ======
 closeBtn.onclick = ()=>{
 popup.classList.add("hidden");
 speechSynthesis.cancel();
