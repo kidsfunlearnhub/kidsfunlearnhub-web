@@ -1,0 +1,79 @@
+body {
+      margin:0;
+        font-family: Comic Sans MS, cursive;
+          background: linear-gradient(#b3faff,#ffd6ec);
+            text-align:center;
+            }
+
+            h1 {
+              font-size: clamp(24px,4vw,48px);
+              }
+
+              #bucket {
+                position: fixed;
+                  top: 10px;
+                    right: 10px;
+                      font-size: 26px;
+                        background: white;
+                          padding: 10px 20px;
+                            border-radius: 30px;
+                              box-shadow:0 4px 10px rgba(0,0,0,.2);
+                              }
+
+                              #bucket.overflow {
+                                animation: glow 1s infinite alternate;
+                                }
+
+                                @keyframes glow {
+                                  from { box-shadow:0 0 10px gold; }
+                                    to { box-shadow:0 0 25px orange; }
+                                    }
+
+                                    #gameGrid {
+                                      display:grid;
+                                        grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+                                          gap:20px;
+                                            padding:30px;
+                                              max-width:800px;
+                                                margin:auto;
+                                                }
+
+                                                .card {
+                                                  background:white;
+                                                    border-radius:20px;
+                                                      padding:10px;
+                                                        cursor:pointer;
+                                                          transition:.2s;
+                                                          }
+
+                                                          .card:hover {
+                                                            transform:scale(1.05);
+                                                            }
+
+                                                            .card img {
+                                                              width:100%;
+                                                                height:120px;
+                                                                  object-fit:contain;
+                                                                  }
+
+                                                                  #popup {
+                                                                    position:fixed;
+                                                                      inset:0;
+                                                                        background:rgba(0,0,0,.5);
+                                                                          display:flex;
+                                                                            justify-content:center;
+                                                                              align-items:center;
+                                                                              }
+
+                                                                              .hidden { display:none; }
+
+                                                                              .popupBox {
+                                                                                background:white;
+                                                                                  padding:20px;
+                                                                                    border-radius:20px;
+                                                                                      width:300px;
+                                                                                      }
+
+                                                                                      .popupBox img {
+                                                                                        width:100%;
+                                                                                        }
