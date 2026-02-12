@@ -6,8 +6,8 @@ body {
 }
 
 .title {
-  font-size: clamp(1rem, 3vw, 3rem);
-  color: #c23989;
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: #ff4081;
   margin: 20px;
 }
 @media (max-width: 600px) {
@@ -16,7 +16,7 @@ body {
   }
 
   .title {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 }
 
@@ -32,6 +32,11 @@ body {
 }
 
 
+/* .title {
+    font-size: 2.5rem;
+    color: #ff4081;
+    margin: 20px;
+} */
 
 /* Safe content area */
 .page-wrapper {
@@ -45,18 +50,53 @@ body {
 /* RESPONSIVE CARD GRID */
 .container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 30px;
   margin-top: 40px;
   justify-items: center;
 }
 
+/* .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+} */
 
 
+/* .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  padding: 20px;
+  max-width: 1400px;
+  margin: auto;
+} */
+
+
+/* .container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 40px;
+    margin-left: 150px;
+    margin-right: 150px;
+} */
+
+/* .card {
+    width: 260px;
+    height: 220px;
+    border-radius: 25px;
+    text-decoration: none;
+    color: white;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+} */
 .card {
   width: 100%;
-  max-width: 500px;
-  height: 310px;
+  max-width: 260px;
+  height: 220px;
   border-radius: 25px;
   text-decoration: none;
   color: white;
@@ -68,25 +108,54 @@ body {
     transform: scale(1.08);
 }
 
-.englishhub {
+.abcwithimage {
     background: #ea33ad;
 }
 
-.hindihub {
-    background: #4caf50;
-}
-
-.marathihub {
+.abc {
     background: #ff5252;
 }
 
+.numbers {
+    background: #4caf50;
+}
 
-.activityhub {
+.hindi {
+    background: #9452ff;
+}
+
+.shapes {
     background: #2196f3;
 }
 
+.animals {
+  background: #ff9800;
+}
+.insects {
+  background: #00ff00;
+}
+.flowers {
+  background: #bb00ff;
+}
+
+.birds {
+  background:#97e156;
+}
+
+.vegetables {
+  background:#af1d29;
+}
+.vehicles {
+  background:#510b6b;
+}
+.fruits {
+  background:#ba0b8e;
+}
+.foods {
+  background:#1a8490;
+}
 .content {
-    padding: 40px;
+    padding: 30px;
 }
 
 .big-text {
@@ -94,14 +163,6 @@ body {
     font-weight: bold;
     display: block;
 }
-
-.small-text {
-    font-size: 2rem;
-    color: #0b0c0c;
-    font-weight: bold;
-    display: block;
-}
-
 
 p {
     font-size: 1.3rem;
@@ -119,7 +180,7 @@ p {
 }
 
 .bouncing {
-    animation: bounce 0.9s infinite;
+    animation: bounce 0.8s infinite;
 }
 
 @keyframes bounce {
@@ -128,6 +189,32 @@ p {
     100% { transform: translateY(0); }
 }
 
+/* Shapes */
+.shape {
+    display: inline-block;
+    margin: 10px;
+}
+
+.circle {
+    width: 40px;
+    height: 40px;
+    background: yellow;
+    border-radius: 50%;
+}
+
+.square {
+    width: 40px;
+    height: 40px;
+    background: orange;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 40px solid pink;
+}
 
 /* for floating bubble with ABC */
 #bubble-container {
@@ -158,10 +245,17 @@ p {
     animation: floatUp linear forwards;
 }
 
-
+/* Alphabet bubbles */
+/* .alpha {
+    left: 1px;
+} */
 .alpha { left: 0; }
 
 
+/* Number bubbles */
+/* .number {
+    right: 1px;
+} */
 .number { right: 0; }
 
 @keyframes floatUp {
@@ -218,6 +312,23 @@ p {
   font-size: 14px;
 }
 
+/* .cursor-picker {
+  margin: 30px auto;
+  width: 280px;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+} */
+
+/* .cursor-picker {
+  margin: 30px auto;
+  width: min(90%, 400px);
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
 
 .cursor-picker h3 {
   margin-bottom: 10px;
