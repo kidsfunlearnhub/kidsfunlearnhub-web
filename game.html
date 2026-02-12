@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Animal Star Game</title>
+<link rel="stylesheet" href="game.css">
+</head>
+
+<body>
+
+<h1 id="instruction">Tap the Animal</h1>
+
+<!-- Bucket -->
+<div id="bucket">
+  ⭐ <span id="starCount">0</span>
+    <div id="level">Level 1</div>
+    </div>
+
+    <!-- Reward badge -->
+    <div id="reward" class="hidden">🏆 Reward Unlocked!</div>
+
+    <!-- Grid -->
+    <div id="gameGrid"></div>
+
+    <!-- Popup -->
+    <div id="popup" class="hidden">
+      <div class="popupBox">
+          <img id="popupImg">
+              <h2 id="popupText"></h2>
+                  <button onclick="closePopup()">Continue</button>
+                    </div>
+                    </div>
+
+                    <!-- Confetti canvas -->
+                    <canvas id="confetti"></canvas>
+
+                    <script src="game.js"></script>
+                    </body>
+                    </html>
