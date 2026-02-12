@@ -2,36 +2,32 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Animal Tap Game</title>
-
 <link rel="stylesheet" href="game.css">
 </head>
 
 <body>
 
-<h2 id="instruction">Tap the CAT 🐱</h2>
+<h1 id="instruction">Tap the Animal</h1>
 
-<!-- Bucket -->
+<!-- Star bucket -->
 <div id="bucket">
-⭐ <span id="stars">0</span>
-</div>
+  ⭐ <span id="starCount">0</span>
+  </div>
 
-<!-- Game Grid -->
-<div id="gameGrid"></div>
+  <!-- Game grid -->
+  <div id="gameGrid"></div>
 
-<!-- Popup -->
-<div id="popup">
-  <div class="popupBox">
-      <h2>🎉 Correct!</h2>
-          <p>You found the CAT!</p>
-              <button onclick="closePopup()">Continue</button>
-                </div>
-                </div>
+  <!-- Popup -->
+  <div id="popup" class="hidden">
+    <div class="popupBox">
+        <img id="popupImg">
+            <h2 id="popupText"></h2>
+                <button onclick="closePopup()">Continue</button>
+                  </div>
+                  </div>
 
-                <!-- Confetti -->
-                <canvas id="confetti"></canvas>
-
-                <script src="game.js"></script>
-                </body>
-                </html>
+                  <script src="game.js"></script>
+                  </body>
+                  </html>

@@ -1,104 +1,91 @@
-const animals = ["🐱","🐶","🐵","🐰","🦊","🐻","🐯","🐸"];
-const target = "🐱";
+const animals = [
+    "cat","dog","lion","tiger","cow","horse","goat","bear",
+    "zebra","giraffe","rabbit","fox","deer","camel","wolf",
+    "panda","rhino","hippo","cheetah","buffalo","donkey",
+    "pig","sheep","yak","otter","squirrel","leopard",
+    "monkey","elephant"
+    ];
 
-let stars = 0;
+    let targetAnimal = "";
+    let stars = 0;
+    const maxStars = 100;
 
-const grid = document.getElementById("gameGrid");
-const starText = document.getElementById("stars");
+    const grid = document.getElementById("gameGrid");
+    const instruction = document.getElementById("instruction");
+    const starCount = document.getElementById("starCount");
+    const bucket = document.getElementById("bucket");
 
-const correctSound = new Audio("https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b3f1b.mp3");
-const wrongSound = new Audio("https://cdn.pixabay.com/audio/2022/03/10/audio_c1b63b0c52.mp3");
+    function speak(text){
+      const u = new SpeechSynthesisUtterance(text);
+        speechSynthesis.speak(u);
+        }
 
-function shuffle(arr){
-return arr.sort(()=>Math.random()-0.5);
-}
+        function playSound(name){
+          const audio = new Audio(`sounds/${name}.mp3`);
+            audio.play();
+            }
 
-function newRound(){
-grid.innerHTML="";
-let set = shuffle([...animals]).slice(0,4);
+            function randomAnimals(){
+              const shuffled = animals.sort(()=>0.5-Math.random());
+                return shuffled.slice(0,4);
+                }
 
-if(!set.includes(target)){
-set[0]=target;
-}
+                function newRound(){
+                  grid.innerHTML = "";
+                    const set = randomAnimals();
+                      targetAnimal = set[Math.floor(Math.random()*4)];
 
-shuffle(set);
+                        instruction.innerText = `Tap the ${targetAnimal.toUpperCase()}`;
 
-set.forEach(animal=>{
-let card=document.createElement("div");
-card.className="card";
-card.textContent=animal;
+                          set.forEach(animal=>{
+                              const card = document.createElement("div");
+                                  card.className = "card";
 
-card.onclick=()=>tapAnimal(animal);
+                                      card.innerHTML = `
+                                            <img src="images/${animal}.png">
+                                                  <p>${animal}</p>
+                                                      `;
 
-grid.appendChild(card);
-});
-}
+                                                          card.onclick = ()=>handleClick(animal);
 
-function tapAnimal(animal){
+                                                              grid.appendChild(card);
+                                                                });
+                                                                }
 
-if(animal===target){
+                                                                function handleClick(animal){
 
-correctSound.play();
-stars+=10;
-starText.textContent=stars;
+                                                                  if(animal === targetAnimal){
 
-showPopup();
-confettiBurst();
+                                                                      stars += 10;
+                                                                          starCount.innerText = stars;
 
-}else{
-wrongSound.play();
-}
-}
+                                                                              speak(animal);
+                                                                                  playSound("star");
 
-function showPopup(){
-document.getElementById("popup").classList.add("show");
-}
+                                                                                      showPopup(animal);
 
-function closePopup(){
-document.getElementById("popup").classList.remove("show");
-newRound();
-}
+                                                                                          if(stars >= maxStars){
+                                                                                                bucket.classList.add("overflow");
+                                                                                                    }
 
-/* confetti */
+                                                                                                      } else {
+                                                                                                          playSound("oh");
+                                                                                                            }
+                                                                                                            }
 
-const canvas=document.getElementById("confetti");
-const ctx=canvas.getContext("2d");
+                                                                                                            function showPopup(animal){
+                                                                                                              const popup = document.getElementById("popup");
+                                                                                                                document.getElementById("popupImg").src = `images/${animal}.png`;
+                                                                                                                  document.getElementById("popupText").innerText = animal.toUpperCase();
 
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
+                                                                                                                    popup.classList.remove("hidden");
 
-let pieces=[];
+                                                                                                                      speak(animal);
+                                                                                                                      }
 
-function confettiBurst(){
+                                                                                                                      function closePopup(){
+                                                                                                                        document.getElementById("popup").classList.add("hidden");
+                                                                                                                          newRound();
+                                                                                                                          }
 
-pieces=[];
-
-for(let i=0;i<80;i++){
-pieces.push({
-x:Math.random()*canvas.width,
-y:-10,
-r:Math.random()*6+4,
-d:Math.random()*40
-});
-}
-
-animateConfetti();
-}
-
-function animateConfetti(){
-
-ctx.clearRect(0,0,canvas.width,canvas.height);
-
-pieces.forEach(p=>{
-ctx.beginPath();
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-ctx.fillStyle=`hsl(${Math.random()*360},100%,50%)`;
-ctx.fill();
-
-p.y+=5;
-});
-
-requestAnimationFrame(animateConfetti);
-}
-
-newRound();
+                                                                                                                          newRound();

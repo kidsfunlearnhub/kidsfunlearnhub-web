@@ -1,108 +1,79 @@
-body{
-    margin:0;
-    font-family:Arial;
-    background:#f0fbff;
-    text-align:center;
-    overflow-x:hidden;
-    }
+body {
+      margin:0;
+        font-family: Comic Sans MS, cursive;
+          background: linear-gradient(#b3faff,#ffd6ec);
+            text-align:center;
+            }
 
-    h2{
-    margin:15px;
-    }
+            h1 {
+              font-size: clamp(24px,4vw,48px);
+              }
 
-    /* bucket */
+              #bucket {
+                position: fixed;
+                  top: 10px;
+                    right: 10px;
+                      font-size: 26px;
+                        background: white;
+                          padding: 10px 20px;
+                            border-radius: 30px;
+                              box-shadow:0 4px 10px rgba(0,0,0,.2);
+                              }
 
-    #bucket{
-    position:fixed;
-    top:10px;
-    right:10px;
-    background:gold;
-    padding:10px 18px;
-    border-radius:20px;
-    font-size:22px;
-    font-weight:bold;
-    box-shadow:0 0 10px rgba(0,0,0,0.3);
-    z-index:5;
-    animation:pulse 1.5s infinite;
-    }
+                              #bucket.overflow {
+                                animation: glow 1s infinite alternate;
+                                }
 
-    @keyframes pulse{
-    0%{transform:scale(1)}
-    50%{transform:scale(1.08)}
-    100%{transform:scale(1)}
-    }
+                                @keyframes glow {
+                                  from { box-shadow:0 0 10px gold; }
+                                    to { box-shadow:0 0 25px orange; }
+                                    }
 
-    /* grid */
+                                    #gameGrid {
+                                      display:grid;
+                                        grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+                                          gap:20px;
+                                            padding:30px;
+                                              max-width:800px;
+                                                margin:auto;
+                                                }
 
-    #gameGrid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:20px;
-    padding:20px;
-    max-width:500px;
-    margin:auto;
-    position:relative;
-    z-index:1;
-    }
+                                                .card {
+                                                  background:white;
+                                                    border-radius:20px;
+                                                      padding:10px;
+                                                        cursor:pointer;
+                                                          transition:.2s;
+                                                          }
 
-    .card{
-    font-size:80px;
-    background:white;
-    border-radius:15px;
-    padding:20px;
-    cursor:pointer;
-    transition:transform .2s;
-    }
+                                                          .card:hover {
+                                                            transform:scale(1.05);
+                                                            }
 
-    .card:active{
-    transform:scale(.9);
-    }
+                                                            .card img {
+                                                              width:100%;
+                                                                height:120px;
+                                                                  object-fit:contain;
+                                                                  }
 
-    /* popup */
+                                                                  #popup {
+                                                                    position:fixed;
+                                                                      inset:0;
+                                                                        background:rgba(0,0,0,.5);
+                                                                          display:flex;
+                                                                            justify-content:center;
+                                                                              align-items:center;
+                                                                              }
 
-    #popup{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.6);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:1000;
-    pointer-events:none;
-    }
+                                                                              .hidden { display:none; }
 
-    #popup.show{
-    display:flex;
-    pointer-events:auto;
-    }
+                                                                              .popupBox {
+                                                                                background:white;
+                                                                                  padding:20px;
+                                                                                    border-radius:20px;
+                                                                                      width:300px;
+                                                                                      }
 
-    .popupBox{
-    background:white;
-    padding:30px;
-    border-radius:20px;
-    animation:pop .3s ease;
-    }
-
-    @keyframes pop{
-    from{transform:scale(.5)}
-    to{transform:scale(1)}
-    }
-
-    button{
-    padding:10px 20px;
-    font-size:18px;
-    border:none;
-    border-radius:10px;
-    background:#4CAF50;
-    color:white;
-    cursor:pointer;
-    }
-
-    /* confetti */
-
-    #confetti{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:999;
-    }
+                                                                                      .popupBox img {
+                                                                                        width:100%;
+                                                                                        }
