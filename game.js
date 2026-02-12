@@ -1,140 +1,104 @@
-const animals=[
-    "cat","dog","lion","tiger","cow","horse","goat","bear",
-    "zebra","giraffe","rabbit","fox","deer","camel","wolf",
-    "panda","rhino","hippo","cheetah","buffalo","donkey",
-    "pig","sheep","yak","otter","squirrel","leopard",
-    "monkey","elephant"
-    ];
+const animals = ["🐱","🐶","🐵","🐰","🦊","🐻","🐯","🐸"];
+const target = "🐱";
 
-    let targetAnimal="";
-    let stars=0;
-    let level=1;
+let stars = 0;
 
-    const grid=document.getElementById("gameGrid");
-    const instruction=document.getElementById("instruction");
-    const starCount=document.getElementById("starCount");
-    const bucket=document.getElementById("bucket");
-    const levelText=document.getElementById("level");
+const grid = document.getElementById("gameGrid");
+const starText = document.getElementById("stars");
 
-    function speak(text){
-    speechSynthesis.speak(new SpeechSynthesisUtterance(text));
-    }
+const correctSound = new Audio("https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b3f1b.mp3");
+const wrongSound = new Audio("https://cdn.pixabay.com/audio/2022/03/10/audio_c1b63b0c52.mp3");
 
-    function playSound(name){
-    new Audio(`sounds/${name}.mp3`).play();
-    }
+function shuffle(arr){
+return arr.sort(()=>Math.random()-0.5);
+}
 
-    function randomAnimals(){
-    return [...animals].sort(()=>0.5-Math.random()).slice(0,4);
-    }
+function newRound(){
+grid.innerHTML="";
+let set = shuffle([...animals]).slice(0,4);
 
-    function newRound(){
-    grid.innerHTML="";
-    const set=randomAnimals();
-    targetAnimal=set[Math.floor(Math.random()*4)];
+if(!set.includes(target)){
+set[0]=target;
+}
 
-    instruction.innerText=`Tap the ${targetAnimal.toUpperCase()}`;
+shuffle(set);
 
-    set.forEach(animal=>{
-    const card=document.createElement("div");
-    card.className="card";
+set.forEach(animal=>{
+let card=document.createElement("div");
+card.className="card";
+card.textContent=animal;
 
-    card.innerHTML=`
-    <img src="images/${animal}.png">
-    <p>${animal}</p>
-    `;
+card.onclick=()=>tapAnimal(animal);
 
-    card.onclick=()=>handleClick(animal);
+grid.appendChild(card);
+});
+}
 
-    grid.appendChild(card);
-    });
-    }
+function tapAnimal(animal){
 
-    function handleClick(animal){
+if(animal===target){
 
-    if(animal===targetAnimal){
+correctSound.play();
+stars+=10;
+starText.textContent=stars;
 
-    stars+=10;
-    starCount.innerText=stars;
+showPopup();
+confettiBurst();
 
-    playSound(animal);
-    speak(animal);
+}else{
+wrongSound.play();
+}
+}
 
-    showPopup(animal);
-    celebrate();
+function showPopup(){
+document.getElementById("popup").classList.add("show");
+}
 
-    if(stars%50===0){
-    level++;
-    levelText.innerText=`Level ${level}`;
-    unlockReward();
-    }
+function closePopup(){
+document.getElementById("popup").classList.remove("show");
+newRound();
+}
 
-    if(stars>=100) bucket.classList.add("glow");
+/* confetti */
 
-    }else{
-    playSound("oh");
-    }
-    }
+const canvas=document.getElementById("confetti");
+const ctx=canvas.getContext("2d");
 
-    function showPopup(animal){
-    document.getElementById("popupImg").src=`images/${animal}.png`;
-    document.getElementById("popupText").innerText=animal.toUpperCase();
-    document.getElementById("popup").classList.remove("hidden");
-    }
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
 
-    function closePopup(){
-    document.getElementById("popup").classList.add("hidden");
-    newRound();
-    }
+let pieces=[];
 
-    function unlockReward(){
-    const reward=document.getElementById("reward");
-    reward.classList.remove("hidden");
-    playSound("reward");
+function confettiBurst(){
 
-    setTimeout(()=>reward.classList.add("hidden"),2500);
-    }
+pieces=[];
 
-    /* CONFETTI SYSTEM */
+for(let i=0;i<80;i++){
+pieces.push({
+x:Math.random()*canvas.width,
+y:-10,
+r:Math.random()*6+4,
+d:Math.random()*40
+});
+}
 
-    const canvas=document.getElementById("confetti");
-    const ctx=canvas.getContext("2d");
+animateConfetti();
+}
 
-    canvas.width=innerWidth;
-    canvas.height=innerHeight;
+function animateConfetti(){
 
-    let confetti=[];
+ctx.clearRect(0,0,canvas.width,canvas.height);
 
-    function celebrate(){
-    for(let i=0;i<80;i++){
-    confetti.push({
-    x:Math.random()*canvas.width,
-    y:-10,
-    r:Math.random()*6+4,
-    d:Math.random()*50,
-    color:`hsl(${Math.random()*360},100%,50%)`
-    });
-    }
-    }
+pieces.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle=`hsl(${Math.random()*360},100%,50%)`;
+ctx.fill();
 
-    function drawConfetti(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
+p.y+=5;
+});
 
-    confetti.forEach((c,i)=>{
-    ctx.beginPath();
-    ctx.arc(c.x,c.y,c.r,0,Math.PI*2);
-    ctx.fillStyle=c.color;
-    ctx.fill();
+requestAnimationFrame(animateConfetti);
+}
 
-    c.y+=4;
-    c.x+=Math.sin(c.d);
-
-    if(c.y>canvas.height) confetti.splice(i,1);
-    });
-
-    requestAnimationFrame(drawConfetti);
-    }
-
-    drawConfetti();
-
-    newRound();
+newRound();

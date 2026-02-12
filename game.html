@@ -2,39 +2,36 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Animal Star Game</title>
-<link rel="stylesheet" href="game.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animal Tap Game</title>
+
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1 id="instruction">Tap the Animal</h1>
+<h2 id="instruction">Tap the CAT 🐱</h2>
 
 <!-- Bucket -->
 <div id="bucket">
-  ⭐ <span id="starCount">0</span>
-    <div id="level">Level 1</div>
-    </div>
+⭐ <span id="stars">0</span>
+</div>
 
-    <!-- Reward badge -->
-    <div id="reward" class="hidden">🏆 Reward Unlocked!</div>
+<!-- Game Grid -->
+<div id="gameGrid"></div>
 
-    <!-- Grid -->
-    <div id="gameGrid"></div>
+<!-- Popup -->
+<div id="popup">
+  <div class="popupBox">
+      <h2>🎉 Correct!</h2>
+          <p>You found the CAT!</p>
+              <button onclick="closePopup()">Continue</button>
+                </div>
+                </div>
 
-    <!-- Popup -->
-    <div id="popup" class="hidden">
-      <div class="popupBox">
-          <img id="popupImg">
-              <h2 id="popupText"></h2>
-                  <button onclick="closePopup()">Continue</button>
-                    </div>
-                    </div>
+                <!-- Confetti -->
+                <canvas id="confetti"></canvas>
 
-                    <!-- Confetti canvas -->
-                    <canvas id="confetti"></canvas>
-
-                    <script src="game.js"></script>
-                    </body>
-                    </html>
+                <script src="script.js"></script>
+                </body>
+                </html>
