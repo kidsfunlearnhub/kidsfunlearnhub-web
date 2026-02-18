@@ -1,9 +1,12 @@
+JS
 // Simple click sound effect (can be expanded later)
 document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
         console.log("Kids clicked a learning card!");
     });
 });
+
+
 // for bubbles with abc--Start
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -127,3 +130,158 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 // cursor option local storage end-- 
+
+/* Start-pagination with 6 cards per page  */
+// ===== CARD PAGINATION =====
+
+// const cards = document.querySelectorAll("#cardContainer .card");
+
+// const cardsPerPage = 6;
+// let currentPage = 0;
+
+// const totalPages = Math.ceil(cards.length / cardsPerPage);
+
+// const prevBtn = document.getElementById("prevBtn");
+// const nextBtn = document.getElementById("nextBtn");
+// const pageInfo = document.getElementById("pageInfo");
+
+// function showPage(page){
+
+// cards.forEach((card, index)=>{
+
+// card.style.display =
+// (index >= page * cardsPerPage &&
+//  index < (page+1) * cardsPerPage)
+// ? "block" : "none";
+
+// });
+
+// pageInfo.textContent = `Page ${page+1} / ${totalPages}`;
+
+// prevBtn.disabled = page === 0;
+// nextBtn.disabled = page === totalPages-1;
+
+// }
+
+// prevBtn.onclick = ()=>{
+// if(currentPage > 0){
+// currentPage--;
+// showPage(currentPage);
+// }
+// };
+
+// nextBtn.onclick = ()=>{
+// if(currentPage < totalPages-1){
+// currentPage++;
+// showPage(currentPage);
+// }
+// };
+
+// // initial load
+// showPage(currentPage);
+
+// ===== FIXED CARD PAGINATION =====
+
+// ===== WORKING CARD PAGINATION =====
+
+window.addEventListener("load", () => {
+
+  const container = document.getElementById("cardContainer");
+  const cards = Array.from(container.children);
+
+  const cardsPerPage = 6;
+  let currentPage = 0;
+
+  const totalPages = Math.ceil(cards.length / cardsPerPage);
+
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const pageInfo = document.getElementById("pageInfo");
+
+  function showPage(page) {
+
+    cards.forEach(card => card.style.display = "none");
+
+    const start = page * cardsPerPage;
+    const end = start + cardsPerPage;
+
+    for (let i = start; i < end && i < cards.length; i++) {
+      cards[i].style.display = "flex";
+    }
+
+    pageInfo.textContent = `Page ${page + 1} / ${totalPages}`;
+
+    prevBtn.disabled = page === 0;
+    nextBtn.disabled = page === totalPages - 1;
+  }
+
+  prevBtn.addEventListener("click", () => {
+    if (currentPage > 0) {
+      currentPage--;
+      showPage(currentPage);
+    }
+  });
+
+  nextBtn.addEventListener("click", () => {
+    if (currentPage < totalPages - 1) {
+      currentPage++;
+      showPage(currentPage);
+    }
+  });
+
+  showPage(currentPage);
+});
+
+
+// document.addEventListener("DOMContentLoaded", () => {
+
+//   const cards = Array.from(document.querySelectorAll("#cardContainer .card"));
+//   const cardsPerPage = 6;
+
+//   let currentPage = 0;
+//   const totalPages = Math.ceil(cards.length / cardsPerPage);
+
+//   const prevBtn = document.getElementById("prevBtn");
+//   const nextBtn = document.getElementById("nextBtn");
+//   const pageInfo = document.getElementById("pageInfo");
+
+//   function showPage(page) {
+
+//     // hide all cards
+//     cards.forEach(card => card.style.display = "none");
+
+//     // show only required cards
+//     const start = page * cardsPerPage;
+//     const end = start + cardsPerPage;
+
+//     cards.slice(start, end).forEach(card => {
+//       card.style.display = "flex";
+//     });
+
+//     pageInfo.textContent = `Page ${page + 1} / ${totalPages}`;
+
+//     prevBtn.disabled = page === 0;
+//     nextBtn.disabled = page === totalPages - 1;
+//   }
+
+//   prevBtn.onclick = () => {
+//     if (currentPage > 0) {
+//       currentPage--;
+//       showPage(currentPage);
+//     }
+//   };
+
+//   nextBtn.onclick = () => {
+//     if (currentPage < totalPages - 1) {
+//       currentPage++;
+//       showPage(currentPage);
+//     }
+//   };
+
+//   showPage(currentPage);
+// });
+
+
+/* End-pagination with 6 cards per page  */
+
+

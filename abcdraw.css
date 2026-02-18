@@ -1,0 +1,56 @@
+body{
+margin:0;
+font-family:Comic Sans MS;
+background:#eaf7ff;
+text-align:center;
+}
+
+h2{
+color:#ff5c8a;
+margin:10px;
+}
+
+.notebook{
+position:relative;
+width:95vw;
+height:70vh;
+margin:auto;
+background:white;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 8px 20px rgba(0,0,0,.2);
+}
+
+/* notebook lines */
+
+.notebook::before{
+content:"";
+position:absolute;
+inset:0;
+background:
+repeating-linear-gradient(
+to bottom,
+#bfe5ff 0,
+#bfe5ff 2px,
+transparent 2px,
+transparent 60px
+);
+pointer-events:none;
+}
+
+canvas{
+position:absolute;
+inset:0;
+}
+
+#pencil{
+position:absolute;
+font-size:32px;
+pointer-events:none;
+}
+
+#confetti{
+position:fixed;
+inset:0;
+pointer-events:none;
+}

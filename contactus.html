@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contact Us</title>
+
+<style>
+
+body{
+margin:0;
+font-family: Arial, sans-serif;
+background:#f5fbff;
+color:#333;
+line-height:1.6;
+}
+
+header{
+background:#4CAF50;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:20px;
+background:white;
+border-radius: 12px;
+box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+h2{
+color:#4CAF50;
+margin-top:25px;
+}
+
+/* form styling */
+
+form{
+margin-top:20px;
+}
+
+label{
+display:block;
+margin-top:15px;
+font-weight:bold;
+}
+
+input, textarea{
+width:100%;
+padding:12px;
+margin-top:5px;
+border-radius:8px;
+border:1px solid #ccc;
+font-size:16px;
+box-sizing:border-box;
+}
+
+textarea{
+resize:vertical;
+min-height:120px;
+}
+
+button{
+margin-top:20px;
+padding:12px;
+font-size:18px;
+background:#4CAF50;
+color:white;
+border:none;
+border-radius:10px;
+cursor:pointer;
+transition:.2s;
+}
+
+button:hover{
+background:#45a049;
+}
+
+/* info box */
+
+.info{
+background:#e8f5e9;
+padding:15px;
+border-radius:10px;
+margin-top:20px;
+}
+
+footer{
+text-align:center;
+padding:15px;
+background:#333;
+color:white;
+margin-top:40px;
+}
+
+a{
+color:#4CAF50;
+text-decoration:none;
+}
+
+a:hover{
+text-decoration:underline;
+}
+
+/* mobile friendliness */
+
+@media(max-width:600px){
+.container{
+padding:15px;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Contact Us</h1>
+<p>We love hearing from parents and learners!</p>
+</header>
+
+<div class="container">
+
+<p>
+Have feedback, suggestions, or questions about our kids learning activities?  
+We’re happy to help! Parents are encouraged to reach out anytime.
+</p>
+
+<div class="info">
+<strong>Parent Support:</strong><br>
+• Worksheet requests<br>
+• Feedback & suggestions<br>
+• Technical issues<br>
+• Learning ideas
+</div>
+
+<h2>Send Us a Message</h2>
+
+<form onsubmit="handleSubmit(event)">
+
+<label>Your Name</label>
+<input type="text" placeholder="Parent / Guardian name" required>
+
+<label>Email Address</label>
+<input type="email" placeholder="your@email.com" required>
+
+<label>Message</label>
+<textarea placeholder="Write your message here..." required></textarea>
+
+<button type="submit">Send Message</button>
+
+</form>
+
+<p id="successMsg" style="display:none; color:green; margin-top:15px;">
+✅ Thank you! Your message has been noted.
+</p>
+
+<h2>Safety Note</h2>
+
+<p>
+For child safety, please do not share personal information about children in messages.  
+All communication should be handled by a parent or guardian.
+</p>
+
+<p>
+Return to <a href="index.html">Home Page</a>
+</p>
+
+</div>
+
+<footer>
+© 2026 Kids Fun Learning — Safe Learning for Every Child
+</footer>
+
+<script>
+
+function handleSubmit(event){
+event.preventDefault();
+document.getElementById("successMsg").style.display="block";
+event.target.reset();
+}
+
+</script>
+
+</body>
+</html>
