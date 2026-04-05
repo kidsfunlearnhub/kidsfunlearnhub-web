@@ -29,25 +29,42 @@ body {
   min-height: 520px;
 }
 
-/* mobile layout */
-@media (max-width: 700px) {
-  .page-wrapper {
-    padding: 0 15px;
-  }
-  .container {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px; /* Tighter gap for mobile */
-  }
-}
-
 @media (min-width: 1800px) {
   body { font-size: 1.4rem; }
 }
 
-/* CARD UPGRADES FOR MOBILE */
+/* 📱 MOBILE LAYOUT (SINGLE COLUMN) */
+@media (max-width: 700px) {
+  .page-wrapper {
+    padding: 0 15px;
+  }
+  
+  .container {
+    /* Forces 1 giant column instead of 2 */
+    grid-template-columns: 1fr; 
+    gap: 20px; 
+  }
+
+  /* Make the cards slightly taller to hold the bigger text */
+  .card {
+    min-height: 220px; 
+  }
+
+  /* Force emojis and big text to be HUGE on mobile */
+  .card .big-text {
+    font-size: 3.5rem !important; 
+  }
+
+  /* Make the description text under the emojis larger too */
+  .card p {
+    font-size: 1.6rem !important; 
+  }
+}
+
+/* CARD UPGRADES */
 .card {
   width: 100%;
-  min-height: 180px; /* Allows it to grow if text needs more space */
+  min-height: 180px; 
   height: auto; 
   border-radius: 25px;
   text-decoration: none;
@@ -63,26 +80,23 @@ body {
     transform: scale(1.08);
 }
 
-/* content padding reduced for mobile */
 .content {
     padding: 15px;
     width: 100%;
     box-sizing: border-box;
 }
 
-/* Responsive Fonts! */
 .big-text {
-    font-size: clamp(1.5rem, 4vw, 3rem); /* Shrinks dynamically on phones */
+    font-size: clamp(1.5rem, 4vw, 3rem); 
     font-weight: bold;
     display: block;
     line-height: 1.2;
 }
 
 p {
-    font-size: clamp(1rem, 2.5vw, 1.3rem); /* Shrinks dynamically */
+    font-size: clamp(1rem, 2.5vw, 1.3rem); 
     margin-top: 10px;
 }
-
 
 /* Pagination Nav */
 .card-nav {

@@ -61,8 +61,9 @@ window.onload = function() {
     // 4. SMART PAGINATION: Only paginate cards that are NOT hidden
     const activeCards = allCards.filter(card => !card.classList.contains('hidden-by-lang'));
     
-    // Set 8 cards per page as requested
-    const cardsPerPage = 8;
+    // SMART DEVICE CHECK: 5 cards per page on phone, 8 per page on computer!
+    const cardsPerPage = window.innerWidth <= 700 ? 5 : 8;
+    
     let currentPage = 0;
     const totalPages = Math.ceil(activeCards.length / cardsPerPage);
 
