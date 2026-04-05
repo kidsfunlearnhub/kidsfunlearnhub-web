@@ -19,7 +19,8 @@ const hubDictionary = {
     "desc-foods": { en: "Learn Food", hi: "भोजन के नाम सीखें", mr: "अन्नाची नावे शिका" },
     "desc-game": { en: "Identify correct Animal", hi: "सही जानवर को पहचानें", mr: "योग्य प्राणी ओळखा" },
     "nav-prev": { en: "⬅ Previous", hi: "⬅ पिछला", mr: "⬅ मागील" },
-    "nav-next": { en: "Next ➡", hi: "अगला ➡", mr: "पुढील ➡" }
+    "nav-next": { en: "Next ➡", hi: "अगला ➡", mr: "पुढील ➡" },
+    "nav-home": { en: "🏠 Home", hi: "🏠 होम", mr: "🏠 मुख्यपृष्ठ" } // NEW: Home Button Translation
 };
 
 window.onload = function() {
@@ -41,7 +42,6 @@ window.onload = function() {
     
     // 3. Mark cards to be hidden based on language
     allCards.forEach(card => {
-        // Reset custom hide class
         card.classList.remove('hidden-by-lang');
         
         const isEnglishAbc = card.classList.contains('abcwithimage') || card.classList.contains('abc') || card.classList.contains('abcdraw');
@@ -72,14 +72,11 @@ window.onload = function() {
     const pageInfo = document.getElementById("pageInfo");
 
     function showPage(page) {
-        // First, firmly hide ALL cards
         allCards.forEach(card => card.style.display = "none");
 
-        // Calculate limits for the ACTIVE array
         const start = page * cardsPerPage;
         const end = start + cardsPerPage;
 
-        // Display only the active cards for this specific page
         for (let i = start; i < end && i < activeCards.length; i++) {
             activeCards[i].style.display = "flex";
         }

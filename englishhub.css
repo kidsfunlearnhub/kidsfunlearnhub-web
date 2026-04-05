@@ -40,22 +40,18 @@ body {
   }
   
   .container {
-    /* Forces 1 giant column instead of 2 */
     grid-template-columns: 1fr; 
     gap: 20px; 
   }
 
-  /* Make the cards slightly taller to hold the bigger text */
   .card {
     min-height: 220px; 
   }
 
-  /* Force emojis and big text to be HUGE on mobile */
   .card .big-text {
     font-size: 3.5rem !important; 
   }
 
-  /* Make the description text under the emojis larger too */
   .card p {
     font-size: 1.6rem !important; 
   }
@@ -104,7 +100,7 @@ p {
   justify-content: center;
   align-items: center;
   gap: 15px;
-  margin: 30px 0;
+  margin: 30px 0 10px 0;
   flex-wrap: wrap;
 }
 
@@ -121,6 +117,31 @@ p {
 .card-nav button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* NEW: Home Button Layout */
+.home-nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 40px; 
+}
+
+.home-btn {
+  padding: 12px 32px;
+  font-size: 1.2rem;
+  border-radius: 40px;
+  background: #2196f3;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  transition: transform 0.2s, background 0.2s;
+}
+
+.home-btn:hover {
+  background: #1976d2;
+  transform: scale(1.1); 
 }
 
 /* COLORS */
