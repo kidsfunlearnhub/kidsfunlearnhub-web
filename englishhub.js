@@ -1,4 +1,4 @@
-// 1. The Translation Dictionary for the Hub Page
+// The Translation Dictionary
 const hubDictionary = {
     "nav-parent": { en: "👨‍👩‍👧 Parent Corner", hi: "👨‍👩‍👧 पेरेंट कॉर्नर", mr: "👨‍👩‍👧 पालक कोपरा" },
     "main-title": { en: "🎉 Fun Learning for Kids 🎉", hi: "🎉 बच्चों के लिए मजेदार शिक्षा 🎉", mr: "🎉 मुलांसाठी मजेशीर शिक्षण 🎉" },
@@ -22,12 +22,10 @@ const hubDictionary = {
     "nav-next": { en: "Next ➡", hi: "अगला ➡", mr: "पुढील ➡" }
 };
 
-// 2. This code runs immediately when the page loads
-window.addEventListener('DOMContentLoaded', () => {
-    // Read the language clicked on the home page (default to English if empty)
+window.onload = function() {
+    // 1. Language Setup
     let currentLang = localStorage.getItem('mySecretLanguage') || 'en';
 
-    // Loop through the dictionary and change the text on the screen!
     for (let currentId in hubDictionary) {
         let elementToChange = document.getElementById(currentId);
         if (elementToChange) {
@@ -35,124 +33,171 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ==========================================
-    // NEW CODE: HIDE & SHOW CARDS BY LANGUAGE
-    // ==========================================
+    // 2. Identify all cards
+    const container = document.getElementById("cardContainer");
+    if (!container) return; // safety check
+    
+    const allCards = Array.from(container.children);
+    
+    // 3. Mark cards to be hidden based on language
+    allCards.forEach(card => {
+        // Reset custom hide class
+        card.classList.remove('hidden-by-lang');
+        
+        const isEnglishAbc = card.classList.contains('abcwithimage') || card.classList.contains('abc') || card.classList.contains('abcdraw');
+        const isHindiCard = card.classList.contains('hindi');
 
-    // 1. Grab the specific cards from the page using their classes
-    const cardAbcImage = document.querySelector('.abcwithimage');
-    const cardAbc = document.querySelector('.abc');
-    const cardAbcDraw = document.querySelector('.abcdraw');
-    const cardHindi = document.querySelector('.hindi');
-
-    // 2. Hide or show them based on the chosen language
-    if (currentLang === 'en') {
-        // ENGLISH: Show ABC cards, Hide Hindi card
-        if(cardAbcImage) cardAbcImage.style.display = ''; 
-        if(cardAbc) cardAbc.style.display = '';
-        if(cardAbcDraw) cardAbcDraw.style.display = '';
-        if(cardHindi) cardHindi.style.display = 'none'; // Hides the Hindi card
-    } 
-    else if (currentLang === 'hi') {
-        // HINDI: Hide ABC cards, Show Hindi card
-        if(cardAbcImage) cardAbcImage.style.display = 'none'; // Hides the card
-        if(cardAbc) cardAbc.style.display = 'none';
-        if(cardAbcDraw) cardAbcDraw.style.display = 'none';
-        if(cardHindi) cardHindi.style.display = ''; 
-    } 
-    else if (currentLang === 'mr') {
-        // MARATHI: Hide both ABC cards and Hindi card
-        if(cardAbcImage) cardAbcImage.style.display = 'none';
-        if(cardAbc) cardAbc.style.display = 'none';
-        if(cardAbcDraw) cardAbcDraw.style.display = 'none';
-        if(cardHindi) cardHindi.style.display = 'none';
-    }
-});
-
-JS
-// Simple click sound effect (can be expanded later)
-document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => {
-        console.log("Kids clicked a learning card!");
+        if (currentLang === 'hi') {
+            if (isEnglishAbc) card.classList.add('hidden-by-lang');
+        } 
+        else if (currentLang === 'mr') {
+            if (isEnglishAbc || isHindiCard) card.classList.add('hidden-by-lang');
+        }
+        else { // English
+            if (isHindiCard) card.classList.add('hidden-by-lang');
+        }
     });
-});
 
+    // 4. SMART PAGINATION: Only paginate cards that are NOT hidden
+    const activeCards = allCards.filter(card => !card.classList.contains('hidden-by-lang'));
+    
+    // Set 8 cards per page as requested
+    const cardsPerPage = 8;
+    let currentPage = 0;
+    const totalPages = Math.ceil(activeCards.length / cardsPerPage);
 
-// for bubbles with abc--Start
-document.addEventListener("DOMContentLoaded", () => {
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const pageInfo = document.getElementById("pageInfo");
 
-    const container = document.getElementById("bubble-container");
+    function showPage(page) {
+        // First, firmly hide ALL cards
+        allCards.forEach(card => card.style.display = "none");
 
-    const alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-    const numbers = Array.from({ length: 20 }, (_, i) => i + 1);
+        // Calculate limits for the ACTIVE array
+        const start = page * cardsPerPage;
+        const end = start + cardsPerPage;
 
-    const alphaColors = [
-        "#ffcc80", "#ffab91", "#e6ee9c", "#b2dfdb", "#c5cae9"
-    ];
+        // Display only the active cards for this specific page
+        for (let i = start; i < end && i < activeCards.length; i++) {
+            activeCards[i].style.display = "flex";
+        }
 
-    const numberColors = [
-        "#bbdefb", "#c8e6c9", "#ffcdd2", "#d1c4e9", "#ffe082"
-    ];
-
-    function createAlphaBubble() {
-        const bubble = document.createElement("div");
-        bubble.className = "bubble alpha";
-
-        const letter = alphabets[Math.floor(Math.random() * alphabets.length)];
-        bubble.innerText = letter;
-        bubble.style.background =
-            alphaColors[Math.floor(Math.random() * alphaColors.length)];
-
-        bubble.style.left = Math.random() * 120 + "px";
-        bubble.style.animationDuration = (14 + Math.random() * 6) + "s";
-
-        bubble.onclick = () => popBubble(bubble, `sounds/${letter.toLowerCase()}.mp3`);
-        container.appendChild(bubble);
-        autoRemove(bubble);
+        if (pageInfo) pageInfo.textContent = `Page ${page + 1} / ${totalPages}`;
+        if (prevBtn) prevBtn.disabled = page === 0;
+        if (nextBtn) nextBtn.disabled = page >= totalPages - 1;
     }
 
-    function createNumberBubble() {
-        const bubble = document.createElement("div");
-        bubble.className = "bubble number";
-
-        const num = numbers[Math.floor(Math.random() * numbers.length)];
-        bubble.innerText = num;
-        bubble.style.background =
-            numberColors[Math.floor(Math.random() * numberColors.length)];
-
-        bubble.style.right = Math.random() * 120 + "px";
-        bubble.style.animationDuration = (14 + Math.random() * 6) + "s";
-
-        bubble.onclick = () => popBubble(bubble, `sounds/${num}.mp3`);
-        container.appendChild(bubble);
-        autoRemove(bubble);
+    if (prevBtn) {
+        prevBtn.addEventListener("click", () => {
+            if (currentPage > 0) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        });
     }
 
-    function popBubble(bubble, soundFile) {
-        bubble.classList.add("burst");
-        new Audio(soundFile).play().catch(() => {});
-        setTimeout(() => bubble.remove(), 300);
+    if (nextBtn) {
+        nextBtn.addEventListener("click", () => {
+            if (currentPage < totalPages - 1) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        });
     }
 
-    function autoRemove(bubble) {
-        setTimeout(() => {
-            if (bubble.parentNode) bubble.remove();
-        }, 18000);
+    // Load first page
+    showPage(currentPage);
+
+
+    // ==========================================
+    // EXTRA FEATURES (Cursors, Bubbles, Music)
+    // ==========================================
+    
+    // Click sound effect
+    document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('click', () => {
+            console.log("Kids clicked a learning card!");
+        });
+    });
+
+    // Cursor Logic
+    const select = document.getElementById("cursorSelect");
+    const savedCursor = localStorage.getItem("kidsCursor");
+    if (savedCursor) {
+        document.documentElement.style.cursor = savedCursor;
+        if(select) select.value = savedCursor.split("/").pop().replace('"', '');
     }
 
-    // A–Z from left
-    setInterval(createAlphaBubble, 1800);
+    if(select) {
+        select.addEventListener("change", () => {
+            if (!select.value) {
+                document.documentElement.style.cursor = "auto";
+                localStorage.removeItem("kidsCursor");
+                return;
+            }
+            const cursorValue = `url("images/cursors/${select.value}") 16 16, auto`;
+            document.documentElement.style.cursor = cursorValue;
+            localStorage.setItem("kidsCursor", cursorValue);
+        });
+    }
 
-    // 1–20 from right
-    setInterval(createNumberBubble, 2200);
-});
-// for bubbles with abc--End
+    // Bubbles Logic
+    const bubbleContainer = document.getElementById("bubble-container");
+    if(bubbleContainer) {
+        const alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+        const numbers = Array.from({ length: 20 }, (_, i) => i + 1);
+        const alphaColors = ["#ffcc80", "#ffab91", "#e6ee9c", "#b2dfdb", "#c5cae9"];
+        const numberColors = ["#bbdefb", "#c8e6c9", "#ffcdd2", "#d1c4e9", "#ffe082"];
 
-// Background Music- start
+        function createAlphaBubble() {
+            const bubble = document.createElement("div");
+            bubble.className = "bubble alpha";
+            const letter = alphabets[Math.floor(Math.random() * alphabets.length)];
+            bubble.innerText = letter;
+            bubble.style.background = alphaColors[Math.floor(Math.random() * alphaColors.length)];
+            bubble.style.left = Math.random() * 120 + "px";
+            bubble.style.animationDuration = (14 + Math.random() * 6) + "s";
+            bubble.onclick = () => popBubble(bubble, `sounds/${letter.toLowerCase()}.mp3`);
+            bubbleContainer.appendChild(bubble);
+            autoRemove(bubble);
+        }
+
+        function createNumberBubble() {
+            const bubble = document.createElement("div");
+            bubble.className = "bubble number";
+            const num = numbers[Math.floor(Math.random() * numbers.length)];
+            bubble.innerText = num;
+            bubble.style.background = numberColors[Math.floor(Math.random() * numberColors.length)];
+            bubble.style.right = Math.random() * 120 + "px";
+            bubble.style.animationDuration = (14 + Math.random() * 6) + "s";
+            bubble.onclick = () => popBubble(bubble, `sounds/${num}.mp3`);
+            bubbleContainer.appendChild(bubble);
+            autoRemove(bubble);
+        }
+
+        function popBubble(bubble, soundFile) {
+            bubble.classList.add("burst");
+            new Audio(soundFile).play().catch(() => {});
+            setTimeout(() => bubble.remove(), 300);
+        }
+
+        function autoRemove(bubble) {
+            setTimeout(() => {
+                if (bubble.parentNode) bubble.remove();
+            }, 18000);
+        }
+
+        setInterval(createAlphaBubble, 1800);
+        setInterval(createNumberBubble, 2200);
+    }
+};
+
+// Background Music Logic
 let bgMusicStarted = false;
 const bgMusic = new Audio("sounds/bg-music.mp3");
 bgMusic.loop = true;
-bgMusic.volume = 0.05; // VERY soft
+bgMusic.volume = 0.05; 
 
 document.addEventListener("click", () => {
     if (!bgMusicStarted) {
@@ -160,199 +205,3 @@ document.addEventListener("click", () => {
         bgMusicStarted = true;
     }
 });
-//background music -End
-
-//cursor option--start
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  const select = document.getElementById("cursorSelect");
-
-  const savedCursor = localStorage.getItem("kidsCursor");
-  if (savedCursor) {
-    document.documentElement.style.cursor = savedCursor;
-    select.value = savedCursor.split("/").pop().replace('"', '');
-  }
-
-  select.addEventListener("change", () => {
-
-    if (!select.value) {
-      document.documentElement.style.cursor = "auto";
-      localStorage.removeItem("kidsCursor");
-      return;
-    }
-
-    const cursorValue =
-      `url("images/cursors/${select.value}") 16 16, auto`;
-
-    document.documentElement.style.cursor = cursorValue;
-    localStorage.setItem("kidsCursor", cursorValue);
-  });
-
-});
-
-//cursor option--end
-
-// cursor option local storage start-- add this code on every .js file
-document.addEventListener("DOMContentLoaded", () => {
-    const savedCursor = localStorage.getItem("kidsCursor");
-    if (savedCursor) {
-        document.documentElement.style.cursor = savedCursor;
-    }
-});
-// cursor option local storage end-- 
-
-/* Start-pagination with 6 cards per page  */
-// ===== CARD PAGINATION =====
-
-// const cards = document.querySelectorAll("#cardContainer .card");
-
-// const cardsPerPage = 6;
-// let currentPage = 0;
-
-// const totalPages = Math.ceil(cards.length / cardsPerPage);
-
-// const prevBtn = document.getElementById("prevBtn");
-// const nextBtn = document.getElementById("nextBtn");
-// const pageInfo = document.getElementById("pageInfo");
-
-// function showPage(page){
-
-// cards.forEach((card, index)=>{
-
-// card.style.display =
-// (index >= page * cardsPerPage &&
-//  index < (page+1) * cardsPerPage)
-// ? "block" : "none";
-
-// });
-
-// pageInfo.textContent = `Page ${page+1} / ${totalPages}`;
-
-// prevBtn.disabled = page === 0;
-// nextBtn.disabled = page === totalPages-1;
-
-// }
-
-// prevBtn.onclick = ()=>{
-// if(currentPage > 0){
-// currentPage--;
-// showPage(currentPage);
-// }
-// };
-
-// nextBtn.onclick = ()=>{
-// if(currentPage < totalPages-1){
-// currentPage++;
-// showPage(currentPage);
-// }
-// };
-
-// // initial load
-// showPage(currentPage);
-
-// ===== FIXED CARD PAGINATION =====
-
-// ===== WORKING CARD PAGINATION =====
-
-window.addEventListener("load", () => {
-
-  const container = document.getElementById("cardContainer");
-  const cards = Array.from(container.children);
-
-  const cardsPerPage = 6;
-  let currentPage = 0;
-
-  const totalPages = Math.ceil(cards.length / cardsPerPage);
-
-  const prevBtn = document.getElementById("prevBtn");
-  const nextBtn = document.getElementById("nextBtn");
-  const pageInfo = document.getElementById("pageInfo");
-
-  function showPage(page) {
-
-    cards.forEach(card => card.style.display = "none");
-
-    const start = page * cardsPerPage;
-    const end = start + cardsPerPage;
-
-    for (let i = start; i < end && i < cards.length; i++) {
-      cards[i].style.display = "flex";
-    }
-
-    pageInfo.textContent = `Page ${page + 1} / ${totalPages}`;
-
-    prevBtn.disabled = page === 0;
-    nextBtn.disabled = page === totalPages - 1;
-  }
-
-  prevBtn.addEventListener("click", () => {
-    if (currentPage > 0) {
-      currentPage--;
-      showPage(currentPage);
-    }
-  });
-
-  nextBtn.addEventListener("click", () => {
-    if (currentPage < totalPages - 1) {
-      currentPage++;
-      showPage(currentPage);
-    }
-  });
-
-  showPage(currentPage);
-});
-
-
-// document.addEventListener("DOMContentLoaded", () => {
-
-//   const cards = Array.from(document.querySelectorAll("#cardContainer .card"));
-//   const cardsPerPage = 6;
-
-//   let currentPage = 0;
-//   const totalPages = Math.ceil(cards.length / cardsPerPage);
-
-//   const prevBtn = document.getElementById("prevBtn");
-//   const nextBtn = document.getElementById("nextBtn");
-//   const pageInfo = document.getElementById("pageInfo");
-
-//   function showPage(page) {
-
-//     // hide all cards
-//     cards.forEach(card => card.style.display = "none");
-
-//     // show only required cards
-//     const start = page * cardsPerPage;
-//     const end = start + cardsPerPage;
-
-//     cards.slice(start, end).forEach(card => {
-//       card.style.display = "flex";
-//     });
-
-//     pageInfo.textContent = `Page ${page + 1} / ${totalPages}`;
-
-//     prevBtn.disabled = page === 0;
-//     nextBtn.disabled = page === totalPages - 1;
-//   }
-
-//   prevBtn.onclick = () => {
-//     if (currentPage > 0) {
-//       currentPage--;
-//       showPage(currentPage);
-//     }
-//   };
-
-//   nextBtn.onclick = () => {
-//     if (currentPage < totalPages - 1) {
-//       currentPage++;
-//       showPage(currentPage);
-//     }
-//   };
-
-//   showPage(currentPage);
-// });
-
-
-/* End-pagination with 6 cards per page  */
-
-
