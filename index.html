@@ -14,7 +14,6 @@ content="Fun ABC and numbers learning games for toddlers and kids with images an
 
 <body>
 
-<!-- Cursor dropdown (top-left) -->
 <div class="cursor-dropdown">
   <select id="cursorSelect">
     <option value="">Default Cursor</option>
@@ -23,65 +22,62 @@ content="Fun ABC and numbers learning games for toddlers and kids with images an
   </select>
 </div>
 
-<!-- Parent Corner -->
 <a href="parent.html" class="parent-corner bubble-btn">
   👨‍👩‍👧 Parent Corner
 </a>
 
-
-
-
 <h1 class="title">🎉 Welcome to Kids Fun-Learn Hub 🎉</h1>
 <h2>Where Fun Meets Learning</h2>
 
-<!-- Safe wrapper prevents bubble overlap -->
 <div class="page-wrapper">
 
   <div class="container">
 
-    
-    <!-- NEW EnglishHub card -->
-    <a href="englishhub.html" class="card englishhub">
+    <a href="javascript:void(0)" onclick="goToHub('en')" class="card englishhub">
       <div class="content">
         <span class="big-text bouncing">Kids ENGLISH Hub</span>
         <span class="small-text dancing">Learn English</span>
-        <!-- <p>Learn English</p> -->
       </div>
     </a>
-    <!-- NEW HindiHub card -->
-    <a href="hindihub.html" class="card hindihub">
+    
+    <a href="javascript:void(0)" onclick="goToHub('hi')" class="card hindihub">
       <div class="content">
         <span class="big-text bouncing">Kids हिंदी भाषा Hub</span> 
         <span class="small-text dancing">हिंदी सीखें</span>
-        <!-- <p>हिंदी सीखें</p> -->
       </div>
     </a>
 
-    <!-- NEW Marathihub card -->
-    <a href="marathihub.html" class="card marathihub">
+    <a href="javascript:void(0)" onclick="goToHub('mr')" class="card marathihub">
       <div class="content">
         <span class="big-text bouncing">Kids मराठी भाषा Hub</span> 
         <span class="small-text dancing">मराठी शिका</span>
-        <!-- <p>मराठी शिका</p> -->
       </div>
     </a>
 
-    <!-- NEW Activity card -->
     <a href="activityhub.html" class="card activityhub">
       <div class="content">
         <span class="big-text bouncing">Kids ACTIVITY Hub</span> 
         <span class="small-text dancing">Learn Activity</span>
-        <!-- <p>Learn Shapes</p> -->
       </div>
     </a>
+    
   </div>
 
 </div>
 
-<!-- bubbles -->
 <div id="bubble-container"></div>
 
 <script src="script.js"></script>
+
+<script>
+  function goToHub(languageCode) {
+      // 1. Save the chosen language to the browser's memory
+      localStorage.setItem('mySecretLanguage', languageCode);
+      
+      // 2. Send the user to the universal hub page
+      window.location.href = 'englishhub.html';
+  }
+</script>
 
 <footer class="footer">
   <a href="aboutus.html">About Us</a> |
@@ -93,5 +89,4 @@ content="Fun ABC and numbers learning games for toddlers and kids with images an
 </footer>
 
 </body>
-
 </html>

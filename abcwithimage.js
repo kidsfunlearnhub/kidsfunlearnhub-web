@@ -19,7 +19,7 @@ letters.forEach(letter => {
 
   // preload image
   const img = new Image();
-  img.src = `images/abcwithimages/${letter}.png`;
+  img.src = `images/abcwithimages/${letter}.webp`;
   imageCache[letter] = img;
 
   // preload sound

@@ -1,3 +1,74 @@
+// 1. The Translation Dictionary for the Hub Page
+const hubDictionary = {
+    "nav-parent": { en: "👨‍👩‍👧 Parent Corner", hi: "👨‍👩‍👧 पेरेंट कॉर्नर", mr: "👨‍👩‍👧 पालक कोपरा" },
+    "main-title": { en: "🎉 Fun Learning for Kids 🎉", hi: "🎉 बच्चों के लिए मजेदार शिक्षा 🎉", mr: "🎉 मुलांसाठी मजेशीर शिक्षण 🎉" },
+    "desc-abc-img": { en: "Learn Alphabets with Images", hi: "चित्रों के साथ अक्षर सीखें", mr: "चित्रांसह मुळाक्षरे शिका" },
+    "desc-abc": { en: "Learn Alphabets", hi: "अक्षर सीखें", mr: "मुळाक्षरे शिका" },
+    "desc-abc-write": { en: "Learn Alphabets Writing", hi: "अक्षर लिखना सीखें", mr: "मुळाक्षरे लिहायला शिका" },
+    "desc-numbers": { en: "Learn Numbers", hi: "नंबर सीखें", mr: "अंक शिका" },
+    "desc-body": { en: "Learn Body Parts", hi: "शरीर के अंग सीखें", mr: "शरीराचे अवयव शिका" },
+    "desc-hindi": { en: "Learn Hindi Alphabet", hi: "हिंदी वर्णमाला सीखें", mr: "हिंदी मुळाक्षरे शिका" },
+    "desc-shapes": { en: "Learn Shapes", hi: "आकार सीखें", mr: "आकार शिका" },
+    "desc-animals": { en: "Learn Animals", hi: "जानवरों के नाम सीखें", mr: "प्राण्यांची नावे शिका" },
+    "desc-insects": { en: "Learn Insects", hi: "कीड़ों के नाम सीखें", mr: "कीटकांची नावे शिका" },
+    "desc-flowers": { en: "Learn Flowers", hi: "फूलों के नाम सीखें", mr: "फुलांची नावे शिका" },
+    "desc-birds": { en: "Learn Birds", hi: "पक्षियों के नाम सीखें", mr: "पक्ष्यांची नावे शिका" },
+    "desc-veg": { en: "Learn Vegetables", hi: "सब्जियों के नाम सीखें", mr: "भाज्यांची नावे शिका" },
+    "desc-vehicles": { en: "Learn Vehicles", hi: "वाहनों के नाम सीखें", mr: "वाहनांची नावे शिका" },
+    "desc-fruits": { en: "Learn Fruits", hi: "फलों के नाम सीखें", mr: "फळांची नावे शिका" },
+    "desc-foods": { en: "Learn Food", hi: "भोजन के नाम सीखें", mr: "अन्नाची नावे शिका" },
+    "desc-game": { en: "Identify correct Animal", hi: "सही जानवर को पहचानें", mr: "योग्य प्राणी ओळखा" },
+    "nav-prev": { en: "⬅ Previous", hi: "⬅ पिछला", mr: "⬅ मागील" },
+    "nav-next": { en: "Next ➡", hi: "अगला ➡", mr: "पुढील ➡" }
+};
+
+// 2. This code runs immediately when the page loads
+window.addEventListener('DOMContentLoaded', () => {
+    // Read the language clicked on the home page (default to English if empty)
+    let currentLang = localStorage.getItem('mySecretLanguage') || 'en';
+
+    // Loop through the dictionary and change the text on the screen!
+    for (let currentId in hubDictionary) {
+        let elementToChange = document.getElementById(currentId);
+        if (elementToChange) {
+            elementToChange.innerText = hubDictionary[currentId][currentLang];
+        }
+    }
+
+    // ==========================================
+    // NEW CODE: HIDE & SHOW CARDS BY LANGUAGE
+    // ==========================================
+
+    // 1. Grab the specific cards from the page using their classes
+    const cardAbcImage = document.querySelector('.abcwithimage');
+    const cardAbc = document.querySelector('.abc');
+    const cardAbcDraw = document.querySelector('.abcdraw');
+    const cardHindi = document.querySelector('.hindi');
+
+    // 2. Hide or show them based on the chosen language
+    if (currentLang === 'en') {
+        // ENGLISH: Show ABC cards, Hide Hindi card
+        if(cardAbcImage) cardAbcImage.style.display = ''; 
+        if(cardAbc) cardAbc.style.display = '';
+        if(cardAbcDraw) cardAbcDraw.style.display = '';
+        if(cardHindi) cardHindi.style.display = 'none'; // Hides the Hindi card
+    } 
+    else if (currentLang === 'hi') {
+        // HINDI: Hide ABC cards, Show Hindi card
+        if(cardAbcImage) cardAbcImage.style.display = 'none'; // Hides the card
+        if(cardAbc) cardAbc.style.display = 'none';
+        if(cardAbcDraw) cardAbcDraw.style.display = 'none';
+        if(cardHindi) cardHindi.style.display = ''; 
+    } 
+    else if (currentLang === 'mr') {
+        // MARATHI: Hide both ABC cards and Hindi card
+        if(cardAbcImage) cardAbcImage.style.display = 'none';
+        if(cardAbc) cardAbc.style.display = 'none';
+        if(cardAbcDraw) cardAbcDraw.style.display = 'none';
+        if(cardHindi) cardHindi.style.display = 'none';
+    }
+});
+
 JS
 // Simple click sound effect (can be expanded later)
 document.querySelectorAll('.card').forEach(card => {

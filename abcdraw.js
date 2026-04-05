@@ -1,203 +1,209 @@
-const canvas=document.getElementById("canvas");
-const ctx=canvas.getContext("2d");
-const pencil=document.getElementById("pencil");
-const title=document.getElementById("title");
+const board = document.getElementById("board");
+const title = document.getElementById("title");
+const popup = document.getElementById("popup");
+const starsDiv = document.getElementById("stars");
 
-function resize(){
-canvas.width=canvas.offsetWidth;
-canvas.height=canvas.offsetHeight;
-}
-resize();
-addEventListener("resize",resize);
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
-ctx.lineWidth=4;
-ctx.lineCap="round";
-ctx.strokeStyle="#ff5c8a";
+let level = 0;
+let target;
+let remaining = 0;
 
-const letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-let index=0;
+const wrongSound = new Audio("sounds/ohoh.mp3");
+const correctSound = new Audio("sounds/hey.mp3");
 
-const cellW=80;
-const cellH=80;
 
-function speak(t){
-const msg=new SpeechSynthesisUtterance(t);
-msg.pitch=1.8;
-speechSynthesis.cancel();
-speechSynthesis.speak(msg);
-}
+// ============================
+// GLOBAL CONFETTI CONTROL
+// ============================
 
-function writeSound(){
-const ac=new (window.AudioContext||window.webkitAudioContext)();
-const o=ac.createOscillator();
-const g=ac.createGain();
-o.connect(g);
-g.connect(ac.destination);
-o.frequency.value=600;
-o.start();
-g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+.15);
-}
+let confettiRunning = false;
+let confettiTimeout;
 
-/* ---------- HUMAN STYLE STROKES ---------- */
 
-function strokesFor(letter,x,y){
+// ============================
+// START LEVEL
+// ============================
 
-const s=50;
+function startLevel() {
 
-switch(letter){
+  // hard reset everything
+  stopConfetti();
 
-case "A":
-return [
-[[x,y+s],[x+s/2,y],[x+s,y+s]],
-[[x+s*0.25,y+s*0.6],[x+s*0.75,y+s*0.6]]
-];
+  board.innerHTML = "";
+  starsDiv.innerHTML = "";
+  popup.classList.add("hidden");
 
-case "B":
-return [
-[[x,y],[x,y+s]],
-[[x,y],[x+s*0.6,y+s*0.25],[x,y+s*0.5]],
-[[x,y+s*0.5],[x+s*0.6,y+s*0.75],[x,y+s]]
-];
+  target = letters[level];
+  title.textContent = `Tap all "${target}"`;
 
-default:
-/* fallback simple line */
-return [
-[[x,y],[x+s,y+s]]
-];
-}
-}
+  remaining = 0;
 
-/* ---------- ANIMATE STROKE ---------- */
+  const total = 36;
 
-function animateStroke(points,done){
+  for (let i = 0; i < total; i++) {
 
-let i=0;
-ctx.beginPath();
-ctx.moveTo(points[0][0],points[0][1]);
+    const circle = document.createElement("div");
+    circle.className = "circle";
 
-function step(){
+    let letter;
 
-if(i>=points.length-1){
-done();
-return;
+    if (Math.random() < 0.25) {
+      letter = target;
+      remaining++;
+    } else {
+      letter = letters[Math.floor(Math.random() * 26)];
+    }
+
+    circle.textContent = letter;
+    circle.onclick = () => tap(circle, letter);
+
+    board.appendChild(circle);
+  }
+
+  // safety fallback
+  if (remaining === 0) {
+    const c = board.firstChild;
+    c.textContent = target;
+    c.onclick = () => tap(c, target);
+    remaining = 1;
+  }
 }
 
-const [x1,y1]=points[i];
-const [x2,y2]=points[i+1];
 
-let t=0;
+// ============================
+// TAP HANDLER
+// ============================
 
-function seg(){
+function tap(circle, letter) {
 
-const x=x1+(x2-x1)*t;
-const y=y1+(y2-y1)*t;
+  if (circle.classList.contains("correct")) return;
 
-ctx.lineTo(x,y);
-ctx.stroke();
+  if (letter === target) {
 
-pencil.style.left=x+"px";
-pencil.style.top=y+"px";
+    correctSound.currentTime = 0;
+    correctSound.play();
 
-writeSound();
+    circle.classList.add("correct");
 
-t+=0.1;
+    remaining--;
 
-if(t<=1){
-requestAnimationFrame(seg);
-}else{
-i++;
-step();
-}
-}
+    if (remaining === 0) win();
 
-seg();
-}
+  } else {
 
-step();
-}
+    wrongSound.currentTime = 0;
+    wrongSound.play();
 
-/* ---------- WRITE LETTER ---------- */
+    circle.classList.add("wrong");
+    circle.textContent = "✖";
 
-function writeLetter(){
-
-if(index>=letters.length){
-celebrate();
-return;
+    setTimeout(() => {
+      circle.classList.remove("wrong");
+      circle.textContent = letter;
+    }, 1000);
+  }
 }
 
-const letter=letters[index];
-speak("This is "+letter);
 
-const col=index%10;
-const row=Math.floor(index/10);
+// ============================
+// WIN
+// ============================
 
-const baseX=20+col*cellW;
-const baseY=40+row*cellH;
+function win() {
 
-const strokes=strokesFor(letter,baseX,baseY);
+  if (confettiRunning) return;
 
-let s=0;
+  popup.classList.remove("hidden");
 
-function nextStroke(){
+  confetti();
 
-if(s>=strokes.length){
-index++;
-title.innerText=index<letters.length?
-"Tap to write "+letters[index]:
-"Great job!";
-return;
+  // stars animation
+  let i = 0;
+  const starTimer = setInterval(() => {
+
+    const star = document.createElement("span");
+    star.className = "star";
+    star.textContent = "★";
+    starsDiv.appendChild(star);
+
+    i++;
+    if (i === 5) clearInterval(starTimer);
+
+  }, 300);
+
+  popup.onclick = () => {
+
+    popup.onclick = null; // prevent double click bug
+
+    stopConfetti();
+
+    level++;
+    if (level >= letters.length) level = 0;
+
+    startLevel();
+  };
 }
 
-animateStroke(strokes[s],()=>{
-s++;
-nextStroke();
-});
+
+// ============================
+// CONFETTI
+// ============================
+
+function confetti() {
+
+  confettiRunning = true;
+
+  for (let i = 0; i < 80; i++) {
+
+    const c = document.createElement("div");
+
+    c.style.position = "fixed";
+    c.style.width = "8px";
+    c.style.height = "8px";
+    c.style.background = `hsl(${Math.random()*360},100%,50%)`;
+    c.style.left = Math.random()*100 + "vw";
+    c.style.top = "-10px";
+    c.style.pointerEvents = "none";
+
+    document.body.appendChild(c);
+
+    const anim = c.animate([
+      { transform: "translateY(0)" },
+      { transform: "translateY(100vh)" }
+    ], {
+      duration: 1500 + Math.random()*1000,
+      easing: "linear"
+    });
+
+    anim.onfinish = () => c.remove();
+  }
+
+  // auto stop safety
+  confettiTimeout = setTimeout(stopConfetti, 2500);
 }
 
-nextStroke();
+
+// ============================
+// STOP CONFETTI (HARD RESET)
+// ============================
+
+function stopConfetti() {
+
+  confettiRunning = false;
+
+  clearTimeout(confettiTimeout);
+
+  document.querySelectorAll("body > div").forEach(el => {
+    if (el.style?.position === "fixed") {
+      el.remove();
+    }
+  });
 }
 
-/* tap */
 
-canvas.onclick=writeLetter;
+// ============================
+// INIT
+// ============================
 
-/* ---------- CONFETTI ---------- */
-
-const c=document.getElementById("confetti");
-const cx=c.getContext("2d");
-
-function resizeC(){
-c.width=innerWidth;
-c.height=innerHeight;
-}
-resizeC();
-addEventListener("resize",resizeC);
-
-let confetti=[];
-
-function celebrate(){
-
-for(let i=0;i<200;i++){
-confetti.push({
-x:Math.random()*c.width,
-y:-20,
-d:Math.random()*5+2,
-c:`hsl(${Math.random()*360},100%,50%)`
-});
-}
-
-animateConfetti();
-}
-
-function animateConfetti(){
-
-cx.clearRect(0,0,c.width,c.height);
-
-confetti.forEach(p=>{
-cx.fillStyle=p.c;
-cx.fillRect(p.x,p.y,6,6);
-p.y+=p.d;
-});
-
-requestAnimationFrame(animateConfetti);
-}
+startLevel();

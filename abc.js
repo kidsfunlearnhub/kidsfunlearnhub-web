@@ -1,174 +1,165 @@
+window.onload = function() {
 
-const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-const words = {
-  A: { en: "Apple", hi: "सेब", mr: "सफरचंद", img: "images/apple.png", sound: "sounds/a.mp3" },
-  B: { en: "Ball", hi: "गेंद", mr: "चेंडू", img: "images/ball.png", sound: "sounds/b.mp3" }
-};
+    /////////////////////////////////////////////////
+    // 1. LANGUAGE DICTIONARY & SETUP
+    /////////////////////////////////////////////////
 
-const container = document.getElementById("letters");
+    let currentLang = localStorage.getItem('mySecretLanguage') || 'en';
 
-letters.forEach(l => {
-  const div = document.createElement("div");
-  div.className = "letter";
-  div.innerText = l;
-  div.onclick = () => show(l);
-  container.appendChild(div);
-});
+    const uiDictionary = {
+        "page-title": { en: "🔤 Learn ABC", hi: "🔤 एबीसी (ABC) सीखें", mr: "🔤 एबीसी (ABC) शिका" },
+        "nextBtn": { en: "➡ Next Letters", hi: "➡ अगले अक्षर", mr: "➡ पुढील अक्षरे" }
+    };
 
-function show(letter) {
-  const lang = document.getElementById("lang").value;
-  const data = words[letter];
-  if (!data) return;
+    // Dictionary for A-Z (Includes English, Hindi, and Marathi translations for the words)
+    const abcDict = {
+        "a": { en: "A for Apple", hi: "A - सेब", mr: "A - सफरचंद" },
+        "b": { en: "B for Ball", hi: "B - गेंद", mr: "B - चेंडू" },
+        "c": { en: "C for Cat", hi: "C - बिल्ली", mr: "C - मांजर" },
+        "d": { en: "D for Dog", hi: "D - कुत्ता", mr: "D - कुत्रा" },
+        "e": { en: "E for Elephant", hi: "E - हाथी", mr: "E - हत्ती" },
+        "f": { en: "F for Fish", hi: "F - मछली", mr: "F - मासा" },
+        "g": { en: "G for Grapes", hi: "G - अंगूर", mr: "G - द्राक्षे" },
+        "h": { en: "H for Horse", hi: "H - घोड़ा", mr: "H - घोडा" },
+        "i": { en: "I for Ice Cream", hi: "I - आइसक्रीम", mr: "I - आईस्क्रीम" },
+        "j": { en: "J for Jug", hi: "J - जग", mr: "J - जग" },
+        "k": { en: "K for Kite", hi: "K - पतंग", mr: "K - पतंग" },
+        "l": { en: "L for Lion", hi: "L - शेर", mr: "L - सिंह" },
+        "m": { en: "M for Monkey", hi: "M - बंदर", mr: "M - माकड" },
+        "n": { en: "N for Nest", hi: "N - घोंसला", mr: "N - घरटे" },
+        "o": { en: "O for Orange", hi: "O - संतरा", mr: "O - संत्री" },
+        "p": { en: "P for Parrot", hi: "P - तोता", mr: "P - पोपट" },
+        "q": { en: "Q for Queen", hi: "Q - रानी", mr: "Q - राणी" },
+        "r": { en: "R for Rabbit", hi: "R - खरगोश", mr: "R - ससा" },
+        "s": { en: "S for Sun", hi: "S - सूरज", mr: "S - सूर्य" },
+        "t": { en: "T for Tiger", hi: "T - बाघ", mr: "T - वाघ" },
+        "u": { en: "U for Umbrella", hi: "U - छाता", mr: "U - छत्री" },
+        "v": { en: "V for Van", hi: "V - वैन", mr: "V - व्हॅन" },
+        "w": { en: "W for Watch", hi: "W - घड़ी", mr: "W - घड्याळ" },
+        "x": { en: "X for X-ray", hi: "X - एक्स-रे", mr: "X - एक्स-रे" },
+        "y": { en: "Y for Yak", hi: "Y - याक", mr: "Y - याक" },
+        "z": { en: "Z for Zebra", hi: "Z - ज़ेबरा", mr: "Z - झेब्रा" }
+    };
 
-  document.getElementById("popupImg").src = data.img;
-  document.getElementById("popupText").innerText = `${letter} for ${data[lang]}`;
-  document.getElementById("popup").style.display = "block";
+    const letters = Object.keys(abcDict);
+    const PAGE_SIZE = 13; // Exactly half the alphabet per page!
+    let currentPage = 0;
 
-  new Audio(data.sound).play();
-}
+    /////////////////////////////////////////////////
+    // ELEMENTS & TRANSLATING UI
+    /////////////////////////////////////////////////
 
-// random Color--Start
-document.addEventListener("DOMContentLoaded", () => {
-    const letters = document.querySelectorAll(".letter");
+    const grid = document.getElementById("abcGrid");
+    const popup = document.getElementById("popup");
+    const popupImgLetter = document.getElementById("popupImgLetter");
+    const popupImgWord = document.getElementById("popupImgWord");
+    const popupName = document.getElementById("popupName");
+    const nextBtn = document.getElementById("nextBtn");
 
-    letters.forEach(letter => {
-        applyRandomGradient(letter);
+    const titleElement = document.getElementById("page-title");
+    if (titleElement) titleElement.innerText = uiDictionary["page-title"][currentLang];
+    if (nextBtn) nextBtn.innerText = uiDictionary["nextBtn"][currentLang];
 
-        letter.addEventListener("click", () => {
-            applyFixedColor(letter);
-        });
+    /////////////////////////////////////////////////
+    // 🚀 ULTRA-FAST PRELOAD CACHE (DOUBLE IMAGES)
+    /////////////////////////////////////////////////
+
+    const imageCacheLetters = {};
+    const imageCacheWords = {};
+    const soundCache = {};
+
+    letters.forEach(name => {
+      // 1. Preload the 3D Letter Image
+      const imgLetter = new Image();
+      imgLetter.src = `images/abc/letters/${name}.webp`;
+      imageCacheLetters[name] = imgLetter;
+
+      // 2. Preload the Associated Word Image (e.g. Apple)
+      const imgWord = new Image();
+      imgWord.src = `images/abc/words/${name}.webp`; 
+      imageCacheWords[name] = imgWord;
+
+      // 3. Preload the Sound ("A for Apple")
+      const audio = new Audio();
+      audio.src = `sounds/${currentLang}/abc/${name}.mp3`;
+      audio.preload = "auto";
+      soundCache[name] = audio;
     });
-});
 
-/* RANDOM GRADIENT */
-function applyRandomGradient(el) {
-    const color1 = randomBrightColor();
-    const color2 = randomBrightColor();
-    el.style.background = `linear-gradient(135deg, ${color1}, ${color2})`;
-    el.style.color = "#fff";
-}
+    /////////////////////////////////////////////////
+    // BUILD PAGE GRID
+    /////////////////////////////////////////////////
 
+    function loadPage() {
+      if (!grid) return;
+      grid.innerHTML = "";
 
-/* ONE SPECIFIC COLOR ON CLICK */
+      const start = currentPage * PAGE_SIZE;
+      const end = start + PAGE_SIZE;
 
-function applyFixedColor(el) {
-    el.style.background = "#2e2a2a";   // fixed color
-    el.style.color = "#fff";
+      letters.slice(start, end).forEach(name => {
+        const card = document.createElement("div");
+        card.className = "card";
 
-    // glow pulse
-    el.style.boxShadow = "0 0 25px rgba(233, 33, 169, 0.85)";
-    setTimeout(() => {
-        el.style.boxShadow = "";
-    }, 400);
-}
-/* BRIGHT BUT NICE COLORS */
+        // Main grid just shows the 3D letter and the Capital Letter text
+        card.innerHTML = `
+          <img src="${imageCacheLetters[name].src}" alt="${name}">
+          <p>${name.toUpperCase()}</p>
+        `;
 
-function randomBrightColor() {
-    const hue = Math.floor(Math.random() * 360);
-    const saturation = 85;   // strong color
-    const lightness = 40;    // lower = darker
-    return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
-}
-
-// random color-END
-
-// Background Music- start
-let bgMusicStarted = false;
-const bgMusic = new Audio("sounds/bg-music.mp3");
-bgMusic.loop = true;
-bgMusic.volume = 0.05; // VERY soft
-
-document.addEventListener("click", () => {
-    if (!bgMusicStarted) {
-        bgMusic.play().catch(() => {});
-        bgMusicStarted = true;
+        card.onclick = () => showLetter(name);
+        grid.appendChild(card);
+      });
     }
-});
-//background music -End
 
+    /////////////////////////////////////////////////
+    // NEXT BUTTON
+    /////////////////////////////////////////////////
 
-// cursor option start-- add this code on every .js file
-document.addEventListener("DOMContentLoaded", () => {
-    const savedCursor = localStorage.getItem("kidsCursor");
-    if (savedCursor) {
-        document.documentElement.style.cursor = savedCursor;
+    if (nextBtn) {
+        nextBtn.onclick = () => {
+          currentPage++;
+          if (currentPage * PAGE_SIZE >= letters.length) {
+            currentPage = 0;
+          }
+          loadPage();
+        };
     }
-});
-// cursor option end-- 
 
+    /////////////////////////////////////////////////
+    // POPUP DISPLAY (TWO IMAGES)
+    /////////////////////////////////////////////////
 
+    function showLetter(name) {
+      if (popupImgLetter) popupImgLetter.src = imageCacheLetters[name].src;
+      if (popupImgWord) popupImgWord.src = imageCacheWords[name].src;
+      if (popupName) popupName.textContent = abcDict[name][currentLang];
+      if (popup) popup.classList.remove("hidden");
 
-// // ===== DATA =====
-// const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+      const sound = soundCache[name];
+      sound.currentTime = 0;
+      sound.play().catch(e => console.log("Sound play error: ", e));
 
-// const words = {
-//   A: { en: "Apple", hi: "सेब", mr: "सफरचंद", img: "images/apple.png", sound: "sounds/a.mp3" },
-//   B: { en: "Ball",  hi: "गेंद", mr: "चेंडू",  img: "images/ball.png",  sound: "sounds/b.mp3" }
-// };
+      launchConfetti();
+    }
 
-// // ===== INIT =====
-// document.addEventListener("DOMContentLoaded", () => {
+    if (popup) {
+        popup.onclick = () => popup.classList.add("hidden");
+    }
 
-//   const container = document.getElementById("letters");
+    /////////////////////////////////////////////////
+    // CONFETTI
+    /////////////////////////////////////////////////
 
-//   letters.forEach(l => {
-//     const div = document.createElement("div");
-//     div.textContent = l;
+    function launchConfetti() {
+      if (typeof confetti === "function") {
+        confetti({ particleCount: 120, spread: 100, origin: { y: 0.6 } });
+      }
+    }
 
-//     // ⭐ IMPORTANT for cursor + styles
-//     div.classList.add("letter", "clickable");
+    /////////////////////////////////////////////////
+    // INIT
+    /////////////////////////////////////////////////
 
-//     // apply random gradient initially
-//     applyRandomGradient(div);
-
-//     // click behaviour
-//     div.addEventListener("click", () => {
-//       show(l);
-//       applyFixedColor(div);
-//     });
-
-//     container.appendChild(div);
-//   });
-
-//   // restore cursor choice
-//   const savedCursor = localStorage.getItem("kidsCursor");
-//   if (savedCursor) {
-//     document.documentElement.style.cursor = savedCursor;
-//   }
-// });
-
-// // ===== SHOW POPUP =====
-// function show(letter) {
-//   const lang = document.getElementById("lang").value;
-//   const data = words[letter];
-//   if (!data) return;
-
-//   document.getElementById("popupImg").src = data.img;
-//   document.getElementById("popupText").innerText =
-//     `${letter} for ${data[lang]}`;
-
-//   document.getElementById("popup").style.display = "block";
-//   new Audio(data.sound).play();
-// }
-
-// // ===== COLORS =====
-// function applyRandomGradient(el) {
-//   const color1 = randomBrightColor();
-//   const color2 = randomBrightColor();
-//   el.style.background = `linear-gradient(135deg, ${color1}, ${color2})`;
-//   el.style.color = "#fff";
-// }
-
-// function applyFixedColor(el) {
-//   el.style.background = "#2e2a2a";
-//   el.style.color = "#fff";
-
-//   // glow pulse
-//   el.style.boxShadow = "0 0 25px rgba(233, 33, 169, 0.85)";
-//   setTimeout(() => el.style.boxShadow = "", 400);
-// }
-
-// function randomBrightColor() {
-//   const hue = Math.floor(Math.random() * 360);
-//   return `hsl(${hue}, 85%, 40%)`;
-// }
+    loadPage();
+};

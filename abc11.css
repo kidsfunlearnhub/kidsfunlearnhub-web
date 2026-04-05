@@ -1,0 +1,40 @@
+body {
+    text-align: center;
+    font-family: Comic Sans MS;
+    /* background: #fff3e0; */
+    background: linear-gradient(to right, #b3ffff, #fcb69f);
+    
+  }
+  
+  .letters {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 15px;
+    padding: 20px;
+  }
+  
+  .letter {
+    font-size: 2.5rem;
+    background: #ff7043;
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    animation: pop 1s infinite alternate;
+  }
+  
+  @keyframes pop {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+  }
+  
+  .popup {
+    display: none;
+  }
+  
+  .popup img {
+    width: 150px;
+  }
+  
+  /* random color */
+  

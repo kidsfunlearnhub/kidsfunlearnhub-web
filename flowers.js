@@ -1,138 +1,164 @@
-/////////////////////////////////////////////////
-// FLOWER DATA (30 animals → 2 pages)
-/////////////////////////////////////////////////
+// This tells the script to WAIT until the HTML is fully loaded on the screen
+window.onload = function() {
 
-const flowers = [
-  "rose","tulip","sunflower","lotus","daisy",
-"lily","orchid","marigold","jasmine","hibiscus",
-"lavender","peony","daffodil","cherryblossom","poppy",
+    /////////////////////////////////////////////////
+    // 1. LANGUAGE DICTIONARY & SETUP
+    /////////////////////////////////////////////////
 
-"magnolia","bluebell","gardenia","carnation","iris",
-"zinnia","begonia","camellia","petunia","azalea",
-"geranium","snapdragon","cosmos","anemone","buttercup"
+    // Read the language clicked on the home page (default to English if empty)
+    let currentLang = localStorage.getItem('mySecretLanguage') || 'en';
 
-];
+    // Dictionary for the Page Title and Next Button
+    const uiDictionary = {
+        "page-title": { en: "🌹 Learn Flowers", hi: "🌹 फूल सीखें", mr: "🌹 फुले शिका" },
+        "nextBtn": { en: "➡ Next Flowers", hi: "➡ अगले फूल", mr: "➡ पुढील फुले" }
+    };
 
-const PAGE_SIZE = 15;
-let currentPage = 0;
+    // Dictionary for all 30 flowers
+    const flowerDict = {
+        "rose": { en: "Rose", hi: "गुलाब", mr: "गुलाब" },
+        "tulip": { en: "Tulip", hi: "ट्यूलिप", mr: "ट्यूलिप" },
+        "sunflower": { en: "Sunflower", hi: "सूरजमुखी", mr: "सूर्यफूल" },
+        "lotus": { en: "Lotus", hi: "कमल", mr: "कमळ" },
+        "daisy": { en: "Daisy", hi: "गुलबहार", mr: "डेझी" },
+        "lily": { en: "Lily", hi: "कुमुदिनी", mr: "लिली" },
+        "orchid": { en: "Orchid", hi: "ऑर्किड", mr: "ऑर्किड" },
+        "marigold": { en: "Marigold", hi: "गेंदा", mr: "झेंडू" },
+        "jasmine": { en: "Jasmine", hi: "चमेली", mr: "मोगरा" },
+        "hibiscus": { en: "Hibiscus", hi: "गुड़हल", mr: "जास्वंद" },
+        "lavender": { en: "Lavender", hi: "लैवेंडर", mr: "लॅव्हेंडर" },
+        "peony": { en: "Peony", hi: "पियोनी", mr: "पिओनी" },
+        "daffodil": { en: "Daffodil", hi: "डैफोडिल", mr: "डॅफोडिल" },
+        "cherryblossom": { en: "Cherry Blossom", hi: "चेरी ब्लॉसम", mr: "चेरी ब्लॉसम" },
+        "poppy": { en: "Poppy", hi: "खसखस", mr: "खसखस फूल" },
+        "magnolia": { en: "Magnolia", hi: "चंपा", mr: "मॅग्नोलिया" },
+        "bluebell": { en: "Bluebell", hi: "ब्लूबेल", mr: "ब्लूबेल" },
+        "gardenia": { en: "Gardenia", hi: "गार्डेनिया", mr: "गार्डेनिया" },
+        "carnation": { en: "Carnation", hi: "कार्नेशन", mr: "कार्नेशन" },
+        "iris": { en: "Iris", hi: "आइरिस", mr: "आयरिस" },
+        "zinnia": { en: "Zinnia", hi: "ज़िनिया", mr: "झिनिया" },
+        "begonia": { en: "Begonia", hi: "बेगोनिया", mr: "बेगोनिया" },
+        "camellia": { en: "Camellia", hi: "कैमेलिया", mr: "कॅमेलिया" },
+        "petunia": { en: "Petunia", hi: "पेटूनिया", mr: "पिटुनिया" },
+        "azalea": { en: "Azalea", hi: "अज़ेलिया", mr: "अझेलिया" },
+        "geranium": { en: "Geranium", hi: "जेरेनियम", mr: "जेरेनियम" },
+        "snapdragon": { en: "Snapdragon", hi: "स्नैपड्रैगन", mr: "स्नॅपड्रॅगन" },
+        "cosmos": { en: "Cosmos", hi: "कॉसमॉस", mr: "कॉसमॉस" },
+        "anemone": { en: "Anemone", hi: "एनीमोन", mr: "अॅनिमोन" },
+        "buttercup": { en: "Buttercup", hi: "बटरकप", mr: "बटरकप" }
+    };
 
-/////////////////////////////////////////////////
-// ELEMENTS
-/////////////////////////////////////////////////
+    const flowers = Object.keys(flowerDict);
+    const PAGE_SIZE = 15;
+    let currentPage = 0;
 
-const grid = document.getElementById("flowerGrid");
-const popup = document.getElementById("popup");
-const popupImg = document.getElementById("popupImg");
-const popupName = document.getElementById("popupName");
-const nextBtn = document.getElementById("nextBtn");
+    /////////////////////////////////////////////////
+    // ELEMENTS & TRANSLATING UI
+    /////////////////////////////////////////////////
 
-/////////////////////////////////////////////////
-// 🚀 ULTRA-FAST PRELOAD CACHE
-/////////////////////////////////////////////////
+    const grid = document.getElementById("flowerGrid");
+    const popup = document.getElementById("popup");
+    const popupImg = document.getElementById("popupImg");
+    const popupName = document.getElementById("popupName");
+    const nextBtn = document.getElementById("nextBtn");
 
-const imageCache = {};
-const soundCache = {};
+    // Safely update the title and button text
+    const titleElement = document.getElementById("page-title");
+    if (titleElement) titleElement.innerText = uiDictionary["page-title"][currentLang];
+    if (nextBtn) nextBtn.innerText = uiDictionary["nextBtn"][currentLang];
 
-flowers.forEach(name => {
+    /////////////////////////////////////////////////
+    // 🚀 ULTRA-FAST PRELOAD CACHE
+    /////////////////////////////////////////////////
 
-  // preload image
-  const img = new Image();
-  img.src = `images/flowers/${name}.png`;
-  imageCache[name] = img;
+    const imageCache = {};
+    const soundCache = {};
 
-  // preload sound
-  const audio = new Audio();
-  audio.src = `sounds/flowers/${name}.mp3`;
-  audio.preload = "auto";
-  soundCache[name] = audio;
+    flowers.forEach(name => {
+      const img = new Image();
+      img.src = `images/flowers/${name}.webp`;
+      imageCache[name] = img;
 
-});
-
-/////////////////////////////////////////////////
-// BUILD PAGE GRID
-/////////////////////////////////////////////////
-
-function loadPage() {
-
-  grid.innerHTML = "";
-
-  const start = currentPage * PAGE_SIZE;
-  const end = start + PAGE_SIZE;
-
-  flowers.slice(start, end).forEach(name => {
-
-    const card = document.createElement("div");
-    card.className = "card";
-
-    card.innerHTML = `
-      <img src="${imageCache[name].src}">
-      <p>${capitalize(name)}</p>
-    `;
-
-    card.onclick = () => showFlower(name);
-
-    grid.appendChild(card);
-  });
-}
-
-/////////////////////////////////////////////////
-// NEXT BUTTON
-/////////////////////////////////////////////////
-
-nextBtn.onclick = () => {
-
-  currentPage++;
-
-  if (currentPage * PAGE_SIZE >= flowers.length)
-    currentPage = 0;
-
-  loadPage();
-};
-
-/////////////////////////////////////////////////
-// POPUP DISPLAY
-/////////////////////////////////////////////////
-
-function showFlower(name) {
-
-  popupImg.src = imageCache[name].src;
-  popupName.textContent = capitalize(name);
-
-  popup.classList.remove("hidden");
-
-  const sound = soundCache[name];
-  sound.currentTime = 0;
-  sound.play();
-
-  launchConfetti();
-}
-
-popup.onclick = () => popup.classList.add("hidden");
-
-/////////////////////////////////////////////////
-// CONFETTI
-/////////////////////////////////////////////////
-
-function launchConfetti() {
-  if (typeof confetti === "function") {
-    confetti({
-      particleCount: 120,
-      spread: 100,
-      origin: { y: 0.6 }
+      const audio = new Audio();
+      audio.src = `sounds/${currentLang}/flowers/${name}.mp3`;
+      audio.preload = "auto";
+      soundCache[name] = audio;
     });
-  }
-}
 
-/////////////////////////////////////////////////
-// HELPER
-/////////////////////////////////////////////////
+    /////////////////////////////////////////////////
+    // BUILD PAGE GRID
+    /////////////////////////////////////////////////
 
-function capitalize(word) {
-  return word.charAt(0).toUpperCase() + word.slice(1);
-}
+    function loadPage() {
+      if (!grid) return; // Extra safety check
+      grid.innerHTML = "";
 
-/////////////////////////////////////////////////
-// INIT
-/////////////////////////////////////////////////
+      const start = currentPage * PAGE_SIZE;
+      const end = start + PAGE_SIZE;
 
-loadPage();
+      flowers.slice(start, end).forEach(name => {
+        const card = document.createElement("div");
+        card.className = "card";
+
+        const translatedName = flowerDict[name][currentLang];
+
+        card.innerHTML = `
+          <img src="${imageCache[name].src}" alt="${name}">
+          <p>${translatedName}</p>
+        `;
+
+        card.onclick = () => showFlower(name);
+        grid.appendChild(card);
+      });
+    }
+
+    /////////////////////////////////////////////////
+    // NEXT BUTTON
+    /////////////////////////////////////////////////
+
+    if (nextBtn) {
+        nextBtn.onclick = () => {
+          currentPage++;
+          if (currentPage * PAGE_SIZE >= flowers.length) {
+            currentPage = 0;
+          }
+          loadPage();
+        };
+    }
+
+    /////////////////////////////////////////////////
+    // POPUP DISPLAY
+    /////////////////////////////////////////////////
+
+    function showFlower(name) {
+      if (popupImg) popupImg.src = imageCache[name].src;
+      if (popupName) popupName.textContent = flowerDict[name][currentLang];
+      if (popup) popup.classList.remove("hidden");
+
+      const sound = soundCache[name];
+      sound.currentTime = 0;
+      sound.play().catch(e => console.log("Sound play error: ", e));
+
+      launchConfetti();
+    }
+
+    if (popup) {
+        popup.onclick = () => popup.classList.add("hidden");
+    }
+
+    /////////////////////////////////////////////////
+    // CONFETTI
+    /////////////////////////////////////////////////
+
+    function launchConfetti() {
+      if (typeof confetti === "function") {
+        confetti({ particleCount: 120, spread: 100, origin: { y: 0.6 } });
+      }
+    }
+
+    /////////////////////////////////////////////////
+    // INIT
+    /////////////////////////////////////////////////
+
+    loadPage();
+};

@@ -1,40 +1,110 @@
 body {
-    text-align: center;
-    font-family: Comic Sans MS;
-    /* background: #fff3e0; */
-    background: linear-gradient(to right, #b3ffff, #fcb69f);
-    
-  }
-  
-  .letters {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 15px;
-    padding: 20px;
-  }
-  
-  .letter {
-    font-size: 2.5rem;
-    background: #ff7043;
-    color: white;
-    padding: 20px;
-    border-radius: 15px;
-    cursor: pointer;
-    animation: pop 1s infinite alternate;
-  }
-  
-  @keyframes pop {
-    from { transform: scale(1); }
-    to { transform: scale(1.1); }
-  }
-  
-  .popup {
-    display: none;
-  }
-  
-  .popup img {
-    width: 150px;
-  }
-  
-  /* random color */
-  
+  margin: 0;
+  font-family: Comic Sans MS, sans-serif;
+  text-align: center;
+  background: linear-gradient(to right, #b3ffff, #fcb69f);
+}
+
+h1 {
+  font-size: clamp(28px, 4vw, 64px);
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* CARD */
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain; /* Changed to contain so 3D letters don't get cut off */
+  border-radius: 12px;
+}
+
+.card p {
+  font-size: clamp(24px, 3vw, 40px);
+  font-weight: bold;
+  margin: 10px 0 0 0;
+}
+
+/* NEXT BUTTON */
+#nextBtn {
+  font-size: clamp(20px, 2vw, 36px);
+  padding: 14px 32px;
+  border-radius: 40px;
+  border: none;
+  background: #ff5722;
+  color: white;
+  cursor: pointer;
+  margin: 10px 0 30px;
+}
+
+#nextBtn:hover {
+  background: #e64a19;
+}
+
+/* POPUP */
+.popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.hidden {
+  display: none;
+}
+
+.popup-card {
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  animation: pop 0.25s ease;
+  max-width: 90vw;
+}
+
+/* NEW: Layout for showing Letter + Apple together */
+.popup-images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.popup-images img {
+  width: min(200px, 40vw);
+  height: min(200px, 40vw);
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.popup-card h2 {
+  font-size: clamp(28px, 4vw, 50px);
+  margin-top: 15px;
+  margin-bottom: 0;
+}
+
+@keyframes pop {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
