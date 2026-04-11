@@ -2,26 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Learn ABC</title>
-  <link rel="stylesheet" href="abc.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Big & Small Letters</title>
+  <link rel="stylesheet" href="abc11.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
-<h1>🔤 Learn Alphabets</h1>
+  <h1 id="page-title">🔠 Big & Small Letters</h1>
 
-<!-- <select id="lang">
-  <option value="en">English</option>
-  <option value="hi">हिंदी</option>
-  <option value="mr">मराठी</option>
-</select> -->
+  <div class="grid-container" id="lettersGrid"></div>
 
-<div class="letters clickable" id="letters"></div>
+  <div id="abcOverlay" class="hidden">
+    <div id="abcPopupCard">
+      
+      <div class="letter-buddies">
+         <span id="bigLetter">A</span>
+         <span id="smallLetter">a</span>
+      </div>
 
-<div class="popup" id="popup">
-  <img id="popupImg">
-  <p id="popupText"></p>
-</div>
+      <h2 id="popupText"></h2>
+      <p class="close-hint" id="close-hint">Tap anywhere to close</p>
+    </div>
+  </div>
 
-<script src="abc.js"></script>
+  <script src="abc11.js"></script>
 </body>
 </html>

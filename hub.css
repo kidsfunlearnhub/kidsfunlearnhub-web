@@ -145,13 +145,30 @@ p {
 }
 
 /* COLORS */
-.abcwithimage { background: #ea33ad; }
 .abc { background: #ff5252; }
-.abcdraw { background: #e2ff52; }
-.numbers { background: #4caf50; }
+.abctrace { background: #ea33ad; }
+.numbers { background: #ff5252; }
+.numberstrace { background: #ff5252; }
+
 .hindi { background: #9452ff; }
+.hinditrace { background: #9452ff; }
+.hindinumbers { background: #9452ff; }
+.hindinumberstrace { background: #9452ff; }
+
+.marathi { background: #9452ff; }
+.marathitrace { background: #9452ff; }
+.marathinumbers { background: #9452ff; }
+.marathinumberstrace { background: #9452ff; }
+
+.abcdraw { background: #e2ff52; }
+
+
 .shapes { background: #2196f3; }
+.shapestrace { background: #2196f3; }
+.colors { background: #d66ae6; }
 .animals { background: #ff9800; }
+.seaanimals { background: #4caf50; }
+
 .insects { background: #00ff00; }
 .flowers { background: #bb00ff; }
 .birds { background:#97e156; }

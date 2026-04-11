@@ -1,0 +1,81 @@
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background-color: #f7f9fc;
+    text-align: center;
+    margin: 0; padding: 20px;
+}
+
+
+.lang-btn {
+    padding: 10px 20px; margin: 5px; border-radius: 20px;
+    border: none; cursor: pointer; font-weight: bold;
+    background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.lang-btn.active { background: #ff5722; color: white; }
+.section-title { margin-top: 40px; color: #444; text-transform: uppercase; }
+
+.color-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px; max-width: 1000px; margin: 0 auto; padding: 20px;
+}
+
+.card {
+    background: white; border-radius: 15px; padding: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.card:hover { transform: scale(1.05); }
+
+.swatch-circle {
+    width: 80px; height: 80px; border-radius: 50%;
+    margin: 0 auto 10px; border: 4px solid #eee;
+}
+
+/* Popup Styles */
+#popup {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8); display: flex; 
+    justify-content: center; align-items: center; z-index: 100;
+}
+
+.hidden { display: none !important; }
+
+.popup-content {
+    background: white; padding: 30px; border-radius: 20px;
+    text-align: center; max-width: 90%;
+}
+
+.popup-images { display: flex; gap: 20px; justify-content: center; align-items: center; margin-bottom: 20px; }
+
+.color-box { width: 120px; height: 120px; border-radius: 15px; }
+
+#popupObjImg { max-width: 150px; height: auto; border-radius: 10px; }
+
+#popupName { font-size: 2rem; color: #333; }
+
+/* Mobile Optimization */
+@media (max-width: 480px) {
+    .popup-images {
+        flex-direction: column; /* Stacks the color box and image on top of each other */
+        gap: 10px;
+    }
+    
+    .color-box {
+        width: 100px;
+        height: 100px;
+    }
+
+    #popupObjImg {
+        max-width: 120px;
+    }
+
+    #popupName {
+        font-size: 1.5rem; /* Slightly smaller text for mobile */
+    }
+    
+    .card {
+        padding: 10px; /* Gives a bit more breathing room on the main screen */
+    }
+}

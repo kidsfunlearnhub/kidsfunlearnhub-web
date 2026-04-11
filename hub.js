@@ -2,21 +2,36 @@
 const hubDictionary = {
     "nav-parent": { en: "👨‍👩‍👧 Parent Corner", hi: "👨‍👩‍👧 पेरेंट कॉर्नर", mr: "👨‍👩‍👧 पालक कोपरा" },
     "main-title": { en: "🎉 Fun Learning for Kids 🎉", hi: "🎉 बच्चों के लिए मजेदार शिक्षा 🎉", mr: "🎉 मुलांसाठी मजेशीर शिक्षण 🎉" },
-    "desc-abc-img": { en: "Learn Alphabets with Images", hi: "चित्रों के साथ अक्षर सीखें", mr: "चित्रांसह मुळाक्षरे शिका" },
-    "desc-abc": { en: "Learn Alphabets", hi: "अक्षर सीखें", mr: "मुळाक्षरे शिका" },
-    "desc-abc-write": { en: "Learn Alphabets Writing", hi: "अक्षर लिखना सीखें", mr: "मुळाक्षरे लिहायला शिका" },
+    "desc-abc": { en: "Learn Alphabets with Images", hi: "चित्रों के साथ अक्षर सीखें", mr: "चित्रांसह मुळाक्षरे शिका" },
+    "desc-abc-trace": { en: "Learn Alphabets Tracing", hi: "अक्षर ट्रेसिंग सीखें", mr: "मुळाक्षरे ट्रेसिंग शिका" },
     "desc-numbers": { en: "Learn Numbers", hi: "नंबर सीखें", mr: "अंक शिका" },
-    "desc-body": { en: "Learn Body Parts", hi: "शरीर के अंग सीखें", mr: "शरीराचे अवयव शिका" },
+    "desc-numbers-trace": { en: "Learn Numbers Tracing", hi: "नंबर ट्रेसिंग सीखें", mr: "अंक ट्रेसिंग शिका" },
+    "desc-abc-write": { en: "Learn Alphabets Writing", hi: "अक्षर लिखना सीखें", mr: "मुळाक्षरे लिहायला शिका" },
+    
     "desc-hindi": { en: "Learn Hindi Alphabet", hi: "हिंदी वर्णमाला सीखें", mr: "हिंदी मुळाक्षरे शिका" },
+    "desc-hindi-trace": { en: "Learn Hindi Alphabet Tracing", hi: "हिंदी अ आ इ ट्रेसिंग सीखें", mr: "हिंदी मुळाक्षरे ट्रेसिंग शिका" },
+    "desc-hindi-numbers": { en: "Learn Hindi Numbers", hi: "हिंदी नंबर सीखें", mr: "हिंदी अंक शिका" },
+    "desc-hindi-numberstrace": { en: "Learn Hindi Numbers Tracing", hi: "हिंदी नंबर ट्रेसिंग सीखें", mr: "हिंदी अंक ट्रेसिंग शिका" },
+
+    "desc-marathi": { en: "Learn Marathi Alphabet", hi: "मराठी वर्णमाला सीखें", mr: "मराठी मुळाक्षरे शिका" },
+    "desc-marathi-trace": { en: "Learn Marathi Alphabet Tracing", hi: "मराठी अ आ इ ट्रेसिंग सीखें", mr: "मराठी मुळाक्षरे ट्रेसिंग शिका" },
+    "desc-marathi-numbers": { en: "Learn Marathi Numbers", hi: "मराठी नंबर सीखें", mr: "मराठी अंक शिका" },
+    "desc-marathi-numberstrace": { en: "Learn Marathi Numbers Tracing", hi: "मराठी नंबर ट्रेसिंग सीखें", mr: "मराठी अंक ट्रेसिंग शिका" },
+
     "desc-shapes": { en: "Learn Shapes", hi: "आकार सीखें", mr: "आकार शिका" },
+    "desc-shapes-trace": { en: "Learn Shapes Tracing", hi: "आकार ट्रेसिंग सीखें", mr: "आकार ट्रेसिंग शिका" },
+    
+    "desc-colors": { en: "Learn Colors", hi: "रंग सीखें", mr: "रंग शिका" },
+    "desc-body": { en: "Learn Body Parts", hi: "शरीर के अंग सीखें", mr: "शरीराचे अवयव शिका" },
     "desc-animals": { en: "Learn Animals", hi: "जानवरों के नाम सीखें", mr: "प्राण्यांची नावे शिका" },
-    "desc-insects": { en: "Learn Insects", hi: "कीड़ों के नाम सीखें", mr: "कीटकांची नावे शिका" },
-    "desc-flowers": { en: "Learn Flowers", hi: "फूलों के नाम सीखें", mr: "फुलांची नावे शिका" },
+    "desc-seaanimals": { en: "Learn Shapes", hi: "आकार सीखें", mr: "आकार शिका" },
     "desc-birds": { en: "Learn Birds", hi: "पक्षियों के नाम सीखें", mr: "पक्ष्यांची नावे शिका" },
-    "desc-veg": { en: "Learn Vegetables", hi: "सब्जियों के नाम सीखें", mr: "भाज्यांची नावे शिका" },
-    "desc-vehicles": { en: "Learn Vehicles", hi: "वाहनों के नाम सीखें", mr: "वाहनांची नावे शिका" },
+    "desc-insects": { en: "Learn Insects", hi: "कीड़ों के नाम सीखें", mr: "कीटकांची नावे शिका" },
     "desc-fruits": { en: "Learn Fruits", hi: "फलों के नाम सीखें", mr: "फळांची नावे शिका" },
+    "desc-veg": { en: "Learn Vegetables", hi: "सब्जियों के नाम सीखें", mr: "भाज्यांची नावे शिका" },
     "desc-foods": { en: "Learn Food", hi: "भोजन के नाम सीखें", mr: "अन्नाची नावे शिका" },
+    "desc-flowers": { en: "Learn Flowers", hi: "फूलों के नाम सीखें", mr: "फुलांची नावे शिका" },
+    "desc-vehicles": { en: "Learn Vehicles", hi: "वाहनों के नाम सीखें", mr: "वाहनांची नावे शिका" },
     "desc-game": { en: "Identify correct Animal", hi: "सही जानवर को पहचानें", mr: "योग्य प्राणी ओळखा" },
     "nav-prev": { en: "⬅ Previous", hi: "⬅ पिछला", mr: "⬅ मागील" },
     "nav-next": { en: "Next ➡", hi: "अगला ➡", mr: "पुढील ➡" },
@@ -44,17 +59,18 @@ window.onload = function() {
     allCards.forEach(card => {
         card.classList.remove('hidden-by-lang');
         
-        const isEnglishAbc = card.classList.contains('abcwithimage') || card.classList.contains('abc') || card.classList.contains('abcdraw');
-        const isHindiCard = card.classList.contains('hindi');
+        const isEnglishAbc = card.classList.contains('abc') || card.classList.contains('abc11') ||card.classList.contains('abctrace') || card.classList.contains('numberstrace');
+        const isHindiCard = card.classList.contains('hindi') || card.classList.contains('hinditrace') || card.classList.contains('hindinumbers') || card.classList.contains('hindinumberstrace');
+        const isMarathiCard = card.classList.contains('marathi') || card.classList.contains('marathitrace') || card.classList.contains('marathinumbers') || card.classList.contains('marathinumberstrace');
 
         if (currentLang === 'hi') {
-            if (isEnglishAbc) card.classList.add('hidden-by-lang');
+            if (isEnglishAbc|| isMarathiCard) card.classList.add('hidden-by-lang');
         } 
         else if (currentLang === 'mr') {
             if (isEnglishAbc || isHindiCard) card.classList.add('hidden-by-lang');
         }
         else { // English
-            if (isHindiCard) card.classList.add('hidden-by-lang');
+            if (isHindiCard || isMarathiCard) card.classList.add('hidden-by-lang');
         }
     });
 
