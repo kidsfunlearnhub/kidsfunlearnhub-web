@@ -1,19 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Learn Shapes</title>
-  <link rel="stylesheet" href="shapes.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Shapes</title>
+    <link rel="stylesheet" href="shapes.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
-<h1>🔺 Tap the Correct Shape</h1>
-<h2 id="question"></h2>
+    <h1 id="page-title">🟢 Learn Shapes</h1>
 
-<div class="shapes">
-  <div class="circle" onclick="check('circle')"></div>
-  <div class="square" onclick="check('square')"></div>
-</div>
+    <div id="shapesGrid" class="grid"></div>
 
-<script src="shapes.js"></script>
+    <div class="bottom-action-area">
+        <button id="traceBtn" onclick="window.location.href='shapestrace.html'">✏️ Practice Tracing!</button>
+    </div>
+
+    <div id="popup" class="popup hidden">
+        <div class="popup-card">
+            <div class="popup-images">
+                <img id="popupImgShape" alt="Basic Shape">
+                <img id="popupImgObject" alt="Real World Object">
+            </div>
+            <h2 id="popupName"></h2>
+        </div>
+    </div>
+
+    <script src="shapes.js"></script>
 </body>
 </html>

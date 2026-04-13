@@ -104,7 +104,7 @@ async function openCard(cardElement, itemData) {
     
     // Play letter sound
     if (currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; }
-    currentAudio = new Audio(`sounds/${itemData.audioFile}`);
+    currentAudio = new Audio(`sounds/en/abc/${itemData.audioFile}`);
     currentAudio.play().catch(e => console.log("Letter sound missing"));
 
     // Reset lines to completely hidden before drawing

@@ -4,7 +4,12 @@ const hubDictionary = {
     "main-title": { en: "🎉 Fun Learning for Kids 🎉", hi: "🎉 बच्चों के लिए मजेदार शिक्षा 🎉", mr: "🎉 मुलांसाठी मजेशीर शिक्षण 🎉" },
     "desc-abc": { en: "Learn Alphabets with Images", hi: "चित्रों के साथ अक्षर सीखें", mr: "चित्रांसह मुळाक्षरे शिका" },
     "desc-abc-trace": { en: "Learn Alphabets Tracing", hi: "अक्षर ट्रेसिंग सीखें", mr: "मुळाक्षरे ट्रेसिंग शिका" },
+    "bounce-numbers": { en: "1 2 3", hi: "१ २ ३", mr: "१ २ ३" },
     "desc-numbers": { en: "Learn Numbers", hi: "नंबर सीखें", mr: "अंक शिका" },
+    
+    "bounce-count-numbers": { en: "Count 1 2 3", hi: "गिनती १ २ ३", mr: "मोजणे १ २ ३" },
+    "desc-count-numbers": { en: "Learn Numbers Counting", hi: "नंबर गिनती सीखें", mr: "अंक मोजणे शिका" },
+
     "desc-numbers-trace": { en: "Learn Numbers Tracing", hi: "नंबर ट्रेसिंग सीखें", mr: "अंक ट्रेसिंग शिका" },
     "desc-abc-write": { en: "Learn Alphabets Writing", hi: "अक्षर लिखना सीखें", mr: "मुळाक्षरे लिहायला शिका" },
     
@@ -56,23 +61,58 @@ window.onload = function() {
     const allCards = Array.from(container.children);
     
     // 3. Mark cards to be hidden based on language
-    allCards.forEach(card => {
-        card.classList.remove('hidden-by-lang');
+    // allCards.forEach(card => {
+    //     card.classList.remove('hidden-by-lang');
         
-        const isEnglishAbc = card.classList.contains('abc') || card.classList.contains('abc11') ||card.classList.contains('abctrace') || card.classList.contains('numberstrace');
-        const isHindiCard = card.classList.contains('hindi') || card.classList.contains('hinditrace') || card.classList.contains('hindinumbers') || card.classList.contains('hindinumberstrace');
-        const isMarathiCard = card.classList.contains('marathi') || card.classList.contains('marathitrace') || card.classList.contains('marathinumbers') || card.classList.contains('marathinumberstrace');
+    //     const isEnglishAbc = card.classList.contains('abc') || card.classList.contains('abc11') ||card.classList.contains('abctrace') || card.classList.contains('numberstrace');
+    //     const isHindiCard = card.classList.contains('varnmala') || card.classList.contains('hinditrace') || card.classList.contains('hindinumbers') || card.classList.contains('hindinumberstrace');
+    //     const isMarathiCard = card.classList.contains('varnmala') || card.classList.contains('marathitrace') || card.classList.contains('marathinumbers') || card.classList.contains('marathinumberstrace');
 
-        if (currentLang === 'hi') {
-            if (isEnglishAbc|| isMarathiCard) card.classList.add('hidden-by-lang');
-        } 
-        else if (currentLang === 'mr') {
-            if (isEnglishAbc || isHindiCard) card.classList.add('hidden-by-lang');
+    //     if (currentLang === 'hi') {
+    //         if (isEnglishAbc|| isMarathiCard) card.classList.add('hidden-by-lang');
+    //     } 
+    //     else if (currentLang === 'mr') {
+    //         if (isEnglishAbc || isHindiCard) card.classList.add('hidden-by-lang');
+    //     }
+    //     else { // English
+    //         if (isHindiCard || isMarathiCard) card.classList.add('hidden-by-lang');
+    //     }
+    // });
+
+    allCards.forEach(card => {
+    // 1. Reset all cards to visible first
+    card.classList.remove('hidden-by-lang');
+    
+    // 2. Separate them into clean, non-overlapping categories
+    const isEnglishOnly = card.classList.contains('abc') || card.classList.contains('abcbigsmall') || card.classList.contains('abctrace') || card.classList.contains('numberstrace');
+    
+    const isHindiOnly = card.classList.contains('hinditrace') || card.classList.contains('hindinumbers') || card.classList.contains('hindinumberstrace');
+    
+    const isMarathiOnly = card.classList.contains('marathitrace') || card.classList.contains('marathinumbers') || card.classList.contains('marathinumberstrace');
+    
+    // 3. Create a shared category for cards that show in both Hindi and Marathi
+    const isSharedHiMr = card.classList.contains('varnmala');
+
+    // 4. Apply the hiding logic
+    if (currentLang === 'hi') {
+        // In Hindi mode: Hide English-only and Marathi-only
+        if (isEnglishOnly || isMarathiOnly) {
+            card.classList.add('hidden-by-lang');
         }
-        else { // English
-            if (isHindiCard || isMarathiCard) card.classList.add('hidden-by-lang');
+    } 
+    else if (currentLang === 'mr') {
+        // In Marathi mode: Hide English-only and Hindi-only
+        if (isEnglishOnly || isHindiOnly) {
+            card.classList.add('hidden-by-lang');
         }
-    });
+    }
+    else { 
+        // In English mode: Hide all Hindi, Marathi, and Shared cards
+        if (isHindiOnly || isMarathiOnly || isSharedHiMr) {
+            card.classList.add('hidden-by-lang');
+        }
+    }
+});
 
     // 4. SMART PAGINATION: Only paginate cards that are NOT hidden
     const activeCards = allCards.filter(card => !card.classList.contains('hidden-by-lang'));

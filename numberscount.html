@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn Numbers</title>
+  <link rel="stylesheet" href="numberscount.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+  <h1 id="page-title">🔢 Learn Numbers</h1>
+
+  <div class="grid-container" id="numbersGrid"></div>
+
+  <div class="pagination-container">
+      <button id="btnPrev" class="page-btn" style="display: none;">⬅️ 1 to 20</button>
+      <button id="btnNext" class="page-btn">21 to 40 ➡️</button>
+  </div>
+
+  <div id="counterOverlay" class="hidden">
+    <div id="counterSquare">
+      <div id="counterCircle">
+        <span id="counterValue">0</span>
+      </div>
+      <div id="imageContainer"></div>
+      
+      <h2 id="popupName"></h2> 
+      
+      <p id="close-hint" class="close-hint">Tap anywhere to close</p>
+    </div>
+  </div>
+
+  <script src="numberscount.js"></script>
+
+</body>
+</html>

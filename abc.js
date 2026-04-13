@@ -104,7 +104,7 @@ window.onload = function() {
         // Main grid just shows the 3D letter and the Capital Letter text
         card.innerHTML = `
           <img src="${imageCacheLetters[name].src}" alt="${name}">
-          <p>${name.toUpperCase()}</p>
+          <p>${name.toLowerCase()}</p>
         `;
 
         card.onclick = () => showLetter(name);

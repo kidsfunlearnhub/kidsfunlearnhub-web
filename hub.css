@@ -146,18 +146,18 @@ p {
 
 /* COLORS */
 .abc { background: #ff5252; }
+.abcbigsmall { background: #9452ff; }
 .abctrace { background: #ea33ad; }
-.numbers { background: #ff5252; }
-.numberstrace { background: #ff5252; }
+.numbers { background: #1acf6b; }
+.numberscount { background: #ff5252; }
+.numberstrace { background: #6287eb; }
 
-.hindi { background: #9452ff; }
+.varnmala { background: #9452ff; }
 .hinditrace { background: #9452ff; }
-.hindinumbers { background: #9452ff; }
 .hindinumberstrace { background: #9452ff; }
 
 .marathi { background: #9452ff; }
 .marathitrace { background: #9452ff; }
-.marathinumbers { background: #9452ff; }
 .marathinumberstrace { background: #9452ff; }
 
 .abcdraw { background: #e2ff52; }
