@@ -150,7 +150,6 @@ window.onload = function() {
             // Disable clicking during the "Great Job" phase
             feedback.onclick = null; 
 
-            // --> FIX: Added zIndex: 9999 so it bursts over the white screen
             if (typeof confetti === "function") {
                 confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 }, zIndex: 9999 });
             }
@@ -164,16 +163,36 @@ window.onload = function() {
                 feedbackImg.classList.remove("hidden"); 
 
                 let animalNameAudio = new Audio(`sounds/${currentLang}/animals/${targetAnimalKey}.mp3`);
-                animalNameAudio.play().catch(e => console.log("Audio not found"));
+                
+                // --- THE NEW LOGIC ---
+                let hasAdvanced = false;
+                let autoTimer;
 
-                // --> FIX: Wait half a second, then let the user click anywhere to continue
+                const advanceToNext = () => {
+                    if (hasAdvanced) return; 
+                    hasAdvanced = true;
+                    clearTimeout(autoTimer); // Cancel the timer
+                    animalNameAudio.pause(); // Stop the audio if they clicked early
+                    feedback.onclick = null; 
+                    feedback.classList.add("hidden");
+                    startNewRound();
+                };
+
+                // Add a tiny delay before allowing clicks so they don't accidentally double tap
                 setTimeout(() => {
-                    feedback.onclick = () => {
-                        feedback.classList.add("hidden");
-                        feedback.onclick = null; // Clean up the click listener
-                        startNewRound();
+                    feedback.onclick = advanceToNext;
+                }, 500);
+
+                // Play the sound, THEN start the 1 second timer
+                animalNameAudio.play().then(() => {
+                    animalNameAudio.onended = () => {
+                        // Audio is finished! Now wait 1 second and advance.
+                        autoTimer = setTimeout(advanceToNext, 1600); 
                     };
-                }, 500); 
+                }).catch(e => {
+                    // Fallback if the audio file is missing
+                    autoTimer = setTimeout(advanceToNext, 2000);
+                });
             };
 
             greatJobAudio.play().then(() => {
