@@ -32,7 +32,6 @@ body {
 #game-title {
     font-size: clamp(22px, 3.5vh, 34px);
     margin: 0;
-    margin-left: 220px; /* <-- Add this line! Change the number to push it more or less */
     color: #ff5722;
     text-align: left;
 }
