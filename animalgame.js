@@ -102,7 +102,6 @@ window.onload = function() {
         };
     }
 
-    // --- CHANGED THIS LINE TO TARGET THE WHOLE BOX ---
     document.getElementById("promptBox").addEventListener("click", playCustomAudio);
 
     // 4. CORE GAME LOGIC
@@ -147,9 +146,13 @@ window.onload = function() {
             feedbackText.className = "correct-text";
             feedbackImg.classList.add("hidden"); 
             feedback.classList.remove("hidden");
+            
+            // Disable clicking during the "Great Job" phase
+            feedback.onclick = null; 
 
+            // --> FIX: Added zIndex: 9999 so it bursts over the white screen
             if (typeof confetti === "function") {
-                confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
+                confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 }, zIndex: 9999 });
             }
 
             let greatJobAudio = new Audio(`sounds/${currentLang}/great_job.mp3`);
@@ -161,20 +164,16 @@ window.onload = function() {
                 feedbackImg.classList.remove("hidden"); 
 
                 let animalNameAudio = new Audio(`sounds/${currentLang}/animals/${targetAnimalKey}.mp3`);
-                
-                animalNameAudio.play().then(() => {
-                    animalNameAudio.onended = () => {
-                        setTimeout(() => {
-                            feedback.classList.add("hidden");
-                            startNewRound();
-                        }, 1000); 
-                    };
-                }).catch(() => {
-                    setTimeout(() => {
+                animalNameAudio.play().catch(e => console.log("Audio not found"));
+
+                // --> FIX: Wait half a second, then let the user click anywhere to continue
+                setTimeout(() => {
+                    feedback.onclick = () => {
                         feedback.classList.add("hidden");
+                        feedback.onclick = null; // Clean up the click listener
                         startNewRound();
-                    }, 2000);
-                });
+                    };
+                }, 500); 
             };
 
             greatJobAudio.play().then(() => {
@@ -190,6 +189,7 @@ window.onload = function() {
             feedbackText.className = "wrong-text";
             feedbackImg.classList.add("hidden"); 
             feedback.classList.remove("hidden");
+            feedback.onclick = null;
 
             let tryAgainAudio = new Audio(`sounds/${currentLang}/try_again.mp3`);
             tryAgainAudio.play().catch(e => console.log("Try again audio not found"));

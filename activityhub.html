@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KidsFunLearnHub - Activity Hub</title>
+    <link rel="stylesheet" href="activityhub.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <div class="hub-container">
+        <header class="hub-header">
+            <h1>✨ KidsFunLearnHub Activities ✨</h1>
+            <p>Pick an adventure and let's play!</p>
+        </header>
+
+        <div class="activity-grid">
+            
+            <a href="animalgame.html" class="activity-card color-orange">
+                <div class="card-icon">🦁</div>
+                <h2>Find the Animal</h2>
+                <p>Play Now!</p>
+                <div class="play-btn">▶</div>
+            </a>
+
+            <div class="activity-card locked color-blue coming-soon">
+                <div class="locked-badge">🔒 Soon</div>
+                <div class="card-icon">🦜</div>
+                <h2>Guess the Bird</h2>
+                <p>New adventure coming!</p>
+            </div>
+
+            <div class="activity-card locked color-pink coming-soon">
+                <div class="locked-badge">🔒 Soon</div>
+                <div class="card-icon">🌸</div>
+                <h2>Pick the Flower</h2>
+                <p>New adventure coming!</p>
+            </div>
+
+            <div class="activity-card locked color-green coming-soon">
+                <div class="locked-badge">🔒 Soon</div>
+                <div class="card-icon">🔢</div>
+                <h2>Number Ninja</h2>
+                <p>New adventure coming!</p>
+            </div>
+
+        </div>
+
+        <div class="bottom-actions">
+            <a href="index.html" class="back-home-btn">🏠 Back to Home</a>
+        </div>
+    </div>
+
+    <div id="comingSoonPopup" class="popup-overlay hidden">
+        <div class="popup-content">
+            <h2>We are building this! 🛠️</h2>
+            <p>This game is resting right now. Check back later!</p>
+            <button id="closePopupBtn">Okay!</button>
+        </div>
+    </div>
+
+    <script src="activityhub.js"></script>
+</body>
+</html>
