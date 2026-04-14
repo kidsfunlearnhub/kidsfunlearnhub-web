@@ -1,33 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Animal Tap Game</title>
-<link rel="stylesheet" href="game.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find The Animal Game</title>
+    <link rel="stylesheet" href="game.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
-
 <body>
 
-<h1 id="instruction">Tap the Animal</h1>
+    <div class="game-container">
+        <div class="top-bar">
+            <h1 id="game-title">🐾 Find The Animal!</h1>
+            
+            <div class="language-selector">
+                <button class="lang-btn active" data-lang="en">English</button>
+                <button class="lang-btn" data-lang="hi">हिंदी</button>
+                <button class="lang-btn" data-lang="mr">मराठी</button>
+            </div>
+        </div>
 
-<!-- Star bucket -->
-<div id="bucket">
-  ⭐ <span id="starCount">0</span>
-  </div>
+        <div class="score-board">
+            <span id="score-label">Score:</span> 
+            <span id="score">0</span>
+        </div>
 
-  <!-- Game grid -->
-  <div id="gameGrid"></div>
+        <div id="promptBox" class="prompt-box">
+            <div class="speaker-icon">🔊</div>
+            <div>
+                <h2 id="instruction">Where is the...</h2>
+                <div id="target-animal-name" class="target-text">???</div>
+            </div>
+        </div>
 
-  <!-- Popup -->
-  <div id="popup" class="hidden">
-    <div class="popupBox">
-        <img id="popupImg">
-            <h2 id="popupText"></h2>
-                <button onclick="closePopup()">Continue</button>
-                  </div>
-                  </div>
+        <div id="gameGrid" class="grid">
+            </div>
 
-                  <script src="game.js"></script>
-                  </body>
-                  </html>
+        <div class="bottom-actions">
+            <button id="backBtn" class="action-btn">⬅ Back to Activity Hub</button>
+        </div>
+    </div>
+
+    <div id="feedback" class="feedback-overlay hidden">
+        <div class="feedback-content">
+            <img id="feedback-img" src="" alt="Animal" class="hidden">
+            <h2 id="feedback-text"></h2>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

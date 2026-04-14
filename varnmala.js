@@ -62,7 +62,7 @@ window.onload = function() {
         "h": { char: "ह", hi: "ह - हाथी", mr: "ह - हत्ती" },
         "ksh": { char: "क्ष", hi: "क्ष - क्षत्रिय", mr: "क्ष - क्षत्रिय" },
         "tr": { char: "त्र", hi: "त्र - त्रिशूल", mr: "त्र - त्रिशूळ" },
-        "gy": { char: "ज्ञ", hi: "ज्ञ - ज्ञानी", mr: "ज्ञ - ज्ञानेश्वर" }
+        "gy": { char: "ज्ञ", hi: "ज्ञ - ज्ञानी", mr: "ज्ञ - ज्ञानी" }
     };
 
     // Combine both dictionaries so the popup can find everything easily
@@ -93,7 +93,7 @@ window.onload = function() {
       imageCacheLetters[name] = imgLetter;
 
       const imgWord = new Image();
-      imgWord.src = `images/varnamala/words/${name}.webp`; 
+      imgWord.src = `images/varnamala/words/${currentLang}/${name}.webp`; 
       imageCacheWords[name] = imgWord;
 
       const audio = new Audio();
@@ -116,9 +116,12 @@ window.onload = function() {
         // Main grid shows the Letter Image and the actual Devanagari character
         card.innerHTML = `
           <img src="${imageCacheLetters[name].src}" alt="${name}">
-          <p>${activeDict[name].char}</p>
         `;
 
+        // card.innerHTML = `
+        //   <img src="${imageCacheLetters[name].src}" alt="${name}">
+        //   <p>${activeDict[name].char}</p>
+        // `;
         card.onclick = () => showLetter(name);
         grid.appendChild(card);
       });

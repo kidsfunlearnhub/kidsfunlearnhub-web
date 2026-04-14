@@ -1,91 +1,212 @@
-const animals = [
-    "cat","dog","lion","tiger","cow","horse","goat","bear",
-    "zebra","giraffe","rabbit","fox","deer","camel","wolf",
-    "panda","rhino","hippo","cheetah","buffalo","donkey",
-    "pig","sheep","yak","otter","squirrel","leopard",
-    "monkey","elephant"
-    ];
+window.onload = function() {
+    // 1. STATE & LOCALIZATION SETUP
+    let currentLang = 'en'; 
+    let score = 0;
+    let targetAnimalKey = "";
+    let isPlaying = false;
+    let isAudioPlaying = false; 
 
-    let targetAnimal = "";
-    let stars = 0;
-    const maxStars = 100;
+    const uiDict = {
+        "game-title": { en: "🐾 Find The Animal!", hi: "🐾 जानवर खोजें!", mr: "🐾 प्राणी शोधा!" },
+        "score-label": { en: "Score:", hi: "स्कोर:", mr: "गुण:" },
+        "instruction": { en: "Where is the...", hi: "कहाँ है...", mr: "कुठे आहे..." },
+        "backBtn": { en: "⬅ Back to Activity Hub", hi: "⬅ वापस जाएँ", mr: "⬅ मागे जा" },
+        "correct": { en: "Great Job! 🎉", hi: "बहुत अच्छे! 🎉", mr: "खूप छान! 🎉" },
+        "wrong": { en: "Try Again! ❌", hi: "फिर से कोशिश करें! ❌", mr: "पुन्हा प्रयत्न करा! ❌" }
+    };
 
-    const grid = document.getElementById("gameGrid");
-    const instruction = document.getElementById("instruction");
-    const starCount = document.getElementById("starCount");
-    const bucket = document.getElementById("bucket");
+    const animalDict = {
+        "dog": { en: "Dog", hi: "कुत्ता", mr: "कुत्रा" },
+        "cat": { en: "Cat", hi: "बिल्ली", mr: "मांजर" },
+        "lion": { en: "Lion", hi: "शेर", mr: "सिंह" },
+        "tiger": { en: "Tiger", hi: "बाघ", mr: "वाघ" },
+        "elephant": { en: "Elephant", hi: "हाथी", mr: "हत्ती" },
+        "monkey": { en: "Monkey", hi: "बंदर", mr: "माकड" },
+        "cow": { en: "Cow", hi: "गाय", mr: "गाय" },
+        "horse": { en: "Horse", hi: "घोड़ा", mr: "घोडा" },
+        "goat": { en: "Goat", hi: "बकरी", mr: "शेळी" },
+        "bear": { en: "Bear", hi: "भालू", mr: "अस्वल" },
+        "zebra": { en: "Zebra", hi: "ज़ेबरा", mr: "झेब्रा" },
+        "giraffe": { en: "Giraffe", hi: "जिराफ़", mr: "जिराफ" },
+        "rabbit": { en: "Rabbit", hi: "खरगोश", mr: "ससा" },
+        "fox": { en: "Fox", hi: "लोमड़ी", mr: "कोल्हा" },
+        "deer": { en: "Deer", hi: "हिरण", mr: "हरीण" },
+        "camel": { en: "Camel", hi: "ऊंट", mr: "उंट" },
+        "wolf": { en: "Wolf", hi: "भेड़िया", mr: "लांडगा" },
+        "kangaroo": { en: "Kangaroo", hi: "कंगारू", mr: "कांगारू" },
+        "panda": { en: "Panda", hi: "पांडा", mr: "पांडा" },
+        "rhino": { en: "Rhino", hi: "गैंडा", mr: "गेंडा" },
+        "hippo": { en: "Hippo", hi: "दरियाई घोड़ा", mr: "पाणघोडा" },
+        "cheetah": { en: "Cheetah", hi: "चीता", mr: "चित्ता" },
+        "buffalo": { en: "Buffalo", hi: "भैंस", mr: "म्हैस" },
+        "donkey": { en: "Donkey", hi: "गधा", mr: "गाढव" },
+        "pig": { en: "Pig", hi: "सूअर", mr: "डुक्कर" },
+        "sheep": { en: "Sheep", hi: "भेड़", mr: "मेंढी" },
+        "yak": { en: "Yak", hi: "याक", mr: "याक" },
+        "otter": { en: "Otter", hi: "ऊदबिलाव", mr: "पाणमांजर" },
+        "squirrel": { en: "Squirrel", hi: "गिलहरी", mr: "खारूताई" },
+        "leopard": { en: "Leopard", hi: "तेंदुआ", mr: "बिबट्या" }
+    };
 
-    function speak(text){
-      const u = new SpeechSynthesisUtterance(text);
-        speechSynthesis.speak(u);
+    const allAnimals = Object.keys(animalDict);
+
+    // 2. UI & LANGUAGE HANDLING
+    function updateLanguage(lang) {
+        currentLang = lang;
+        
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if(btn.dataset.lang === lang) btn.classList.add('active');
+        });
+
+        document.getElementById("game-title").innerText = uiDict["game-title"][currentLang];
+        document.getElementById("score-label").innerText = uiDict["score-label"][currentLang];
+        document.getElementById("instruction").innerText = uiDict["instruction"][currentLang];
+        document.getElementById("backBtn").innerText = uiDict["backBtn"][currentLang];
+        
+        if (targetAnimalKey) {
+            document.getElementById("target-animal-name").innerText = animalDict[targetAnimalKey][currentLang];
+        }
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            updateLanguage(e.target.dataset.lang);
+            playCustomAudio(); 
+        });
+    });
+
+    // 3. SEQUENTIAL AUDIO PLAYBACK (The Question)
+    function playCustomAudio() {
+        if (isAudioPlaying || !targetAnimalKey) return; 
+        isAudioPlaying = true;
+
+        let part1, part2;
+
+        if (currentLang === 'en') {
+            part1 = new Audio(`sounds/en/where_is_the.mp3`);
+            part2 = new Audio(`sounds/en/animals/${targetAnimalKey}.mp3`);
+        } else if (currentLang === 'hi') {
+            part1 = new Audio(`sounds/hi/animals/${targetAnimalKey}.mp3`);
+            part2 = new Audio(`sounds/hi/kahan_hai.mp3`);
+        } else if (currentLang === 'mr') {
+            part1 = new Audio(`sounds/mr/animals/${targetAnimalKey}.mp3`);
+            part2 = new Audio(`sounds/mr/kuthe_aahe.mp3`);
         }
 
-        function playSound(name){
-          const audio = new Audio(`sounds/${name}.mp3`);
-            audio.play();
+        part1.play().catch(e => isAudioPlaying = false);
+
+        part1.onended = () => {
+            part2.play().catch(e => isAudioPlaying = false);
+            part2.onended = () => { isAudioPlaying = false; };
+        };
+    }
+
+    // --- CHANGED THIS LINE TO TARGET THE WHOLE BOX ---
+    document.getElementById("promptBox").addEventListener("click", playCustomAudio);
+
+    // 4. CORE GAME LOGIC
+    function startNewRound() {
+        isPlaying = true;
+        const grid = document.getElementById("gameGrid");
+        grid.innerHTML = "";
+        
+        let shuffled = [...allAnimals].sort(() => 0.5 - Math.random());
+        let currentOptions = shuffled.slice(0, 4);
+        
+        targetAnimalKey = currentOptions[Math.floor(Math.random() * currentOptions.length)];
+        document.getElementById("target-animal-name").innerText = animalDict[targetAnimalKey][currentLang];
+
+        setTimeout(playCustomAudio, 500);
+
+        currentOptions.forEach(animalKey => {
+            const card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `<img src="images/animals/${animalKey}.webp" alt="${animalKey}">`;
+            card.onclick = () => handleGuess(animalKey, card);
+            grid.appendChild(card);
+        });
+    }
+
+    // 5. HANDLING THE GUESS & REWARD SEQUENCE
+    function handleGuess(guessedKey, cardElement) {
+        if (!isPlaying) return;
+
+        const feedback = document.getElementById("feedback");
+        const feedbackText = document.getElementById("feedback-text");
+        const feedbackImg = document.getElementById("feedback-img");
+
+        if (guessedKey === targetAnimalKey) {
+            // --- CORRECT GUESS SEQUENCE ---
+            isPlaying = false;
+            score += 10;
+            document.getElementById("score").innerText = score;
+            
+            // Phase 1: "Great Job!"
+            feedbackText.innerText = uiDict["correct"][currentLang];
+            feedbackText.className = "correct-text";
+            feedbackImg.classList.add("hidden"); 
+            feedback.classList.remove("hidden");
+
+            if (typeof confetti === "function") {
+                confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
             }
 
-            function randomAnimals(){
-              const shuffled = animals.sort(()=>0.5-Math.random());
-                return shuffled.slice(0,4);
-                }
+            let greatJobAudio = new Audio(`sounds/${currentLang}/great_job.mp3`);
+            
+            // Phase 2: Show Animal Name + Image + Sound
+            const triggerPhaseTwo = () => {
+                feedbackText.innerText = animalDict[targetAnimalKey][currentLang];
+                feedbackImg.src = `images/animals/${targetAnimalKey}.webp`;
+                feedbackImg.classList.remove("hidden"); 
 
-                function newRound(){
-                  grid.innerHTML = "";
-                    const set = randomAnimals();
-                      targetAnimal = set[Math.floor(Math.random()*4)];
+                let animalNameAudio = new Audio(`sounds/${currentLang}/animals/${targetAnimalKey}.mp3`);
+                
+                animalNameAudio.play().then(() => {
+                    animalNameAudio.onended = () => {
+                        setTimeout(() => {
+                            feedback.classList.add("hidden");
+                            startNewRound();
+                        }, 1000); 
+                    };
+                }).catch(() => {
+                    setTimeout(() => {
+                        feedback.classList.add("hidden");
+                        startNewRound();
+                    }, 2000);
+                });
+            };
 
-                        instruction.innerText = `Tap the ${targetAnimal.toUpperCase()}`;
+            greatJobAudio.play().then(() => {
+                greatJobAudio.onended = triggerPhaseTwo;
+            }).catch(() => {
+                setTimeout(triggerPhaseTwo, 1500); 
+            });
 
-                          set.forEach(animal=>{
-                              const card = document.createElement("div");
-                                  card.className = "card";
+        } else {
+            // --- WRONG GUESS SEQUENCE ---
+            cardElement.classList.add("shake");
+            feedbackText.innerText = uiDict["wrong"][currentLang];
+            feedbackText.className = "wrong-text";
+            feedbackImg.classList.add("hidden"); 
+            feedback.classList.remove("hidden");
 
-                                      card.innerHTML = `
-                                            <img src="images/${animal}.png">
-                                                  <p>${animal}</p>
-                                                      `;
+            let tryAgainAudio = new Audio(`sounds/${currentLang}/try_again.mp3`);
+            tryAgainAudio.play().catch(e => console.log("Try again audio not found"));
 
-                                                          card.onclick = ()=>handleClick(animal);
+            setTimeout(() => {
+                feedback.classList.add("hidden");
+                cardElement.classList.remove("shake");
+            }, 1200);
+        }
+    }
 
-                                                              grid.appendChild(card);
-                                                                });
-                                                                }
+    // 6. BACK BUTTON ACTION
+    document.getElementById("backBtn").addEventListener("click", () => {
+        window.location.href = "index.html"; 
+    });
 
-                                                                function handleClick(animal){
-
-                                                                  if(animal === targetAnimal){
-
-                                                                      stars += 10;
-                                                                          starCount.innerText = stars;
-
-                                                                              speak(animal);
-                                                                                  playSound("star");
-
-                                                                                      showPopup(animal);
-
-                                                                                          if(stars >= maxStars){
-                                                                                                bucket.classList.add("overflow");
-                                                                                                    }
-
-                                                                                                      } else {
-                                                                                                          playSound("oh");
-                                                                                                            }
-                                                                                                            }
-
-                                                                                                            function showPopup(animal){
-                                                                                                              const popup = document.getElementById("popup");
-                                                                                                                document.getElementById("popupImg").src = `images/${animal}.png`;
-                                                                                                                  document.getElementById("popupText").innerText = animal.toUpperCase();
-
-                                                                                                                    popup.classList.remove("hidden");
-
-                                                                                                                      speak(animal);
-                                                                                                                      }
-
-                                                                                                                      function closePopup(){
-                                                                                                                        document.getElementById("popup").classList.add("hidden");
-                                                                                                                          newRound();
-                                                                                                                          }
-
-                                                                                                                          newRound();
+    // Initialize
+    updateLanguage(currentLang);
+    startNewRound();
+};
