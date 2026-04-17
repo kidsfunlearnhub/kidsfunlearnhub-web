@@ -1,10 +1,15 @@
 window.onload = function() {
-    // 1. STATE & LOCALIZATION SETUP
-    let currentLang = 'en'; 
-    let score = 0;
+    // 1. STATE & LOCALIZATION SETUP (Now with sessionStorage!)
+    let currentLang = sessionStorage.getItem('findAnimalLang') || 'en'; 
+    let score = parseInt(sessionStorage.getItem('findAnimalScore')) || 0;
+    
     let targetAnimalKey = "";
     let isPlaying = false;
     let isAudioPlaying = false; 
+
+    // Tracker for pageviews
+    let roundsPlayedThisSession = 0; 
+    const ROUNDS_BEFORE_RELOAD = 5; // Refreshes page after 5 rounds
 
     const uiDict = {
         "game-title": { en: "🐾 Find The Animal!", hi: "🐾 जानवर खोजें!", mr: "🐾 प्राणी शोधा!" },
@@ -12,7 +17,8 @@ window.onload = function() {
         "instruction": { en: "Where is the...", hi: "कहाँ है...", mr: "कुठे आहे..." },
         "backBtn": { en: "⬅ Back to Activity Hub", hi: "⬅ वापस जाएँ", mr: "⬅ मागे जा" },
         "correct": { en: "Great Job! 🎉", hi: "बहुत अच्छे! 🎉", mr: "खूप छान! 🎉" },
-        "wrong": { en: "Try Again! ❌", hi: "फिर से कोशिश करें! ❌", mr: "पुन्हा प्रयत्न करा! ❌" }
+        "wrong": { en: "Try Again! ❌", hi: "फिर से कोशिश करें! ❌", mr: "पुन्हा प्रयत्न करा! ❌" },
+        "total-score": { en: "Total Score: ", hi: "कुल स्कोर: ", mr: "एकूण गुण: " }
     };
 
     const animalDict = {
@@ -50,9 +56,13 @@ window.onload = function() {
 
     const allAnimals = Object.keys(animalDict);
 
+    // Initial Score Display
+    document.getElementById("score").innerText = score;
+
     // 2. UI & LANGUAGE HANDLING
     function updateLanguage(lang) {
         currentLang = lang;
+        sessionStorage.setItem('findAnimalLang', lang); // Save choice
         
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.classList.remove('active');
@@ -134,6 +144,7 @@ window.onload = function() {
         const feedback = document.getElementById("feedback");
         const feedbackText = document.getElementById("feedback-text");
         const feedbackImg = document.getElementById("feedback-img");
+        const feedbackScore = document.getElementById("feedback-score");
 
         if (guessedKey === targetAnimalKey) {
             // --- CORRECT GUESS SEQUENCE ---
@@ -141,13 +152,16 @@ window.onload = function() {
             score += 10;
             document.getElementById("score").innerText = score;
             
+            // Setup Score Text for the pop-up
+            feedbackScore.innerText = uiDict["total-score"][currentLang] + score;
+            feedbackScore.classList.remove("hidden");
+
             // Phase 1: "Great Job!"
             feedbackText.innerText = uiDict["correct"][currentLang];
             feedbackText.className = "correct-text";
             feedbackImg.classList.add("hidden"); 
             feedback.classList.remove("hidden");
             
-            // Disable clicking during the "Great Job" phase
             feedback.onclick = null; 
 
             if (typeof confetti === "function") {
@@ -164,33 +178,39 @@ window.onload = function() {
 
                 let animalNameAudio = new Audio(`sounds/${currentLang}/animals/${targetAnimalKey}.mp3`);
                 
-                // --- THE NEW LOGIC ---
+                // --- RELOAD LOGIC ADDED HERE ---
                 let hasAdvanced = false;
                 let autoTimer;
 
                 const advanceToNext = () => {
                     if (hasAdvanced) return; 
                     hasAdvanced = true;
-                    clearTimeout(autoTimer); // Cancel the timer
-                    animalNameAudio.pause(); // Stop the audio if they clicked early
+                    clearTimeout(autoTimer); 
+                    animalNameAudio.pause(); 
                     feedback.onclick = null; 
                     feedback.classList.add("hidden");
-                    startNewRound();
+                    
+                    roundsPlayedThisSession++; // Increment tracker
+                    
+                    // Check if it's time to force a pageview
+                    if (roundsPlayedThisSession >= ROUNDS_BEFORE_RELOAD) {
+                        sessionStorage.setItem('findAnimalScore', score);
+                        sessionStorage.setItem('findAnimalLang', currentLang);
+                        window.location.reload();
+                    } else {
+                        startNewRound();
+                    }
                 };
 
-                // Add a tiny delay before allowing clicks so they don't accidentally double tap
                 setTimeout(() => {
                     feedback.onclick = advanceToNext;
                 }, 500);
 
-                // Play the sound, THEN start the 1 second timer
                 animalNameAudio.play().then(() => {
                     animalNameAudio.onended = () => {
-                        // Audio is finished! Now wait 1 second and advance.
                         autoTimer = setTimeout(advanceToNext, 1600); 
                     };
                 }).catch(e => {
-                    // Fallback if the audio file is missing
                     autoTimer = setTimeout(advanceToNext, 2000);
                 });
             };
@@ -207,6 +227,7 @@ window.onload = function() {
             feedbackText.innerText = uiDict["wrong"][currentLang];
             feedbackText.className = "wrong-text";
             feedbackImg.classList.add("hidden"); 
+            feedbackScore.classList.add("hidden"); // Hide score for wrong guess
             feedback.classList.remove("hidden");
             feedback.onclick = null;
 
@@ -222,6 +243,7 @@ window.onload = function() {
 
     // 6. BACK BUTTON ACTION
     document.getElementById("backBtn").addEventListener("click", () => {
+        sessionStorage.removeItem('findAnimalScore'); // Clear score on exit
         window.location.href = "index.html"; 
     });
 

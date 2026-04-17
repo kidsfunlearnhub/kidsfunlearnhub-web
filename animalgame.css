@@ -19,13 +19,13 @@ body {
     max-width: 700px;
 }
 
-/* --- NEW HEADER ROW --- */
+/* --- HEADER ROW --- */
 .header-row {
     display: flex;
-    justify-content: space-between; /* Pushes title to left, score to right */
+    justify-content: space-between; 
     align-items: center;
     margin-bottom: clamp(5px, 1vh, 10px);
-    flex-wrap: wrap; /* Keeps it safe on tiny phones */
+    flex-wrap: wrap; 
     gap: 10px;
 }
 
@@ -103,16 +103,8 @@ body {
 }
 
 @keyframes slowPulse {
-    0% {
-        background: #fff3e0;
-        border-color: #ffb74d;
-        box-shadow: 0 4px 10px rgba(255, 152, 0, 0.1);
-    }
-    100% {
-        background: #ffe0b2;
-        border-color: #ff5722;
-        box-shadow: 0 12px 25px rgba(255, 87, 34, 0.4);
-    }
+    0% { background: #fff3e0; border-color: #ffb74d; box-shadow: 0 4px 10px rgba(255, 152, 0, 0.1); }
+    100% { background: #ffe0b2; border-color: #ff5722; box-shadow: 0 12px 25px rgba(255, 87, 34, 0.4); }
 }
 
 .speaker-icon {
@@ -166,7 +158,6 @@ body {
 
 .card img {
     width: 100%;
-    /* Beautifully sized images for both laptop and mobile */
     height: clamp(120px, 22vh, 180px);
     object-fit: contain; 
     border-radius: 15px;
@@ -174,9 +165,7 @@ body {
 }
 
 /* --- ACTIONS AT BOTTOM --- */
-.bottom-actions { 
-    margin-top: clamp(10px, 1vh, 15px); 
-}
+.bottom-actions { margin-top: clamp(10px, 1vh, 15px); }
 
 .action-btn {
     background: #9c27b0;
@@ -246,6 +235,16 @@ body {
 
 .correct-text { color: #4caf50; }
 .wrong-text { color: #f44336; }
+
+/* NEW: Styling for the pop-up score */
+.score-text {
+    font-size: clamp(28px, 6vw, 45px);
+    color: #ff9800;
+    margin: -10px 0 10px 0;
+    font-weight: bold;
+    text-shadow: 2px 2px 0px #ffe0b2;
+    animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
 
 @keyframes popIn {
     0% { transform: scale(0.1); opacity: 0; }

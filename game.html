@@ -27,6 +27,22 @@
             </div>
         </div>
 
+        <div class="progress-container">
+            <div class="progress-track" id="progress-track">
+                
+                <div class="line-track-overlay">
+                    <div class="progress-line-base"></div> <div class="progress-line-fill" id="progress-line"></div> </div>
+
+                <div class="dots-container" id="dots-container"></div>
+                
+                <div class="monkey-track-overlay">
+                    <div id="monkey" class="monkey-icon">🐒</div>
+                </div>
+                
+                <div class="banana-icon">🍌</div>
+            </div>
+        </div>
+
         <div id="promptBox" class="prompt-box">
             <div class="speaker-icon">🔊</div>
             <div>
@@ -52,6 +68,7 @@
     <div id="feedback" class="feedback-overlay hidden">
         <div class="feedback-content">
             <h2 id="feedback-text" class="correct-text">Great Job! 🎉</h2>
+            <h3 id="feedback-score" class="score-text"></h3>
             <div style="font-size: 80px; animation: popIn 0.5s;">⭐</div>
         </div>
     </div>
