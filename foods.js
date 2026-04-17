@@ -76,7 +76,7 @@ window.onload = function() {
 
     foods.forEach(name => {
       const img = new Image();
-      img.src = `images/foods/${name}.png`; // Kept .png as you had it!
+      img.src = `images/foods/${name}.webp`; // Kept .png as you had it!
       imageCache[name] = img;
 
       const audio = new Audio();
