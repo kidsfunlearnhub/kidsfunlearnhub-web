@@ -3,59 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KidsFunLearnHub - Activity Hub</title>
+    
+    <title>KidsFunLearnHub - Interactive Learning Activities for Kids</title>
+    <meta name="title" content="KidsFunLearnHub - Interactive Learning Activities for Kids">
+    <meta name="description" content="Explore engaging, interactive learning activities for toddlers and kids. Play Finding games, Shadow Matching, Puzzles, and Tapping games to learn animals, alphabets, and more!">
+    <meta name="keywords" content="kids learning games, toddler activities, shadow match, find the animal, alphabet tapping game, preschool education, KidsFunLearnHub">
+    <meta name="author" content="KidsFunLearnHub">
+
+    <link rel="canonical" href="https://kidsfunlearnhub.com/activityhub.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kidsfunlearnhub.com/activityhub.html">
+    <meta property="og:title" content="Kids Learning Activities | KidsFunLearnHub">
+    <meta property="og:description" content="Explore fun educational games! Shadow matching, finding games, and more.">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "KidsFunLearnHub Activity Directory",
+      "url": "https://kidsfunlearnhub.com/activityhub.html",
+      "description": "A comprehensive directory of educational games including Finding, Shadow Matching, Image Joining, and Tapping activities for early childhood development.",
+      "hasPart": [
+        { "@type": "WebPage", "name": "Finding Games", "url": "https://kidsfunlearnhub.com/activityhub.html#finding" },
+        { "@type": "WebPage", "name": "Shadow Matching Games", "url": "https://kidsfunlearnhub.com/activityhub.html#shadow" },
+        { "@type": "WebPage", "name": "Joining Image Games", "url": "https://kidsfunlearnhub.com/activityhub.html#joining" },
+        { "@type": "WebPage", "name": "Tapping Games", "url": "https://kidsfunlearnhub.com/activityhub.html#tapping" }
+      ]
+    }
+    </script>
+
     <link rel="stylesheet" href="activityhub.css">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
 </head>
 <body>
 
-    <div class="hub-container">
+    <main class="hub-container">
+        
         <header class="hub-header">
             <h1>✨ KidsFunLearnHub Activities ✨</h1>
-            <p>Pick an adventure and let's play!</p>
+            <nav class="breadcrumb-nav" id="breadcrumb" aria-label="Breadcrumb">
+                </nav>
         </header>
 
-        <div class="activity-grid">
-            
-            <a href="animalgame.html" class="activity-card color-orange">
-                <div class="card-icon">🦁</div>
-                <h2>Find the Animal</h2>
-                <p>Play Now!</p>
-                <div class="play-btn">▶</div>
-            </a>
+        <section class="activity-grid" id="activity-grid" aria-label="Activity Categories">
+            </section>
 
-            <div class="activity-card locked color-blue coming-soon">
-                <div class="locked-badge">🔒 Soon</div>
-                <div class="card-icon">🦜</div>
-                <h2>Guess the Bird</h2>
-                <p>New adventure coming!</p>
-            </div>
+        <nav class="bottom-actions">
+            <button id="backBtn" class="back-home-btn" aria-label="Go Back">🏠 Back to Home</button>
+        </nav>
+    </main>
 
-            <div class="activity-card locked color-pink coming-soon">
-                <div class="locked-badge">🔒 Soon</div>
-                <div class="card-icon">🌸</div>
-                <h2>Pick the Flower</h2>
-                <p>New adventure coming!</p>
-            </div>
+    <section class="seo-description-container">
+        <h2>Explore Our Educational Game Categories</h2>
+        <p>KidsFunLearnHub provides a structured, ad-free environment for children to develop cognitive, motor, and language skills. Choose from our core learning categories:</p>
+        <ul>
+            <li><strong>Finding Games:</strong> Boost visual recognition and vocabulary by finding Animals, Birds, Vehicles, and more.</li>
+            <li><strong>Shadow Matching:</strong> Enhance shape recognition and spatial awareness.</li>
+            <li><strong>Joining Images:</strong> Classic puzzle mechanics for logic and problem-solving.</li>
+            <li><strong>Tapping Games:</strong> Fast-paced reflex games to master Alphabets and Numbers.</li>
+        </ul>
+    </section>
 
-            <div class="activity-card locked color-green coming-soon">
-                <div class="locked-badge">🔒 Soon</div>
-                <div class="card-icon">🔢</div>
-                <h2>Number Ninja</h2>
-                <p>New adventure coming!</p>
-            </div>
-
-        </div>
-
-        <div class="bottom-actions">
-            <a href="index.html" class="back-home-btn">🏠 Back to Home</a>
-        </div>
-    </div>
-
-    <div id="comingSoonPopup" class="popup-overlay hidden">
+    <div id="comingSoonPopup" class="popup-overlay hidden" role="alertdialog" aria-modal="true">
         <div class="popup-content">
             <h2>We are building this! 🛠️</h2>
-            <p>This game is resting right now. Check back later!</p>
+            <p>This adventure is resting right now. Check back later!</p>
             <button id="closePopupBtn">Okay!</button>
         </div>
     </div>
