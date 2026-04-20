@@ -3,51 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find The Animal Game</title>
+    
+    <title>Find The Animal Game | KidsFunLearnHub</title>
+    <meta name="title" content="Find The Animal Game | KidsFunLearnHub">
+    <meta name="description" content="Play the free Find The Animal game on KidsFunLearnHub! A fun, interactive listening and visual recognition game for toddlers and preschoolers to learn animal names.">
+    <meta name="keywords" content="find the animal, kids educational game, toddler animal games, animal recognition, preschool activities, KidsFunLearnHub, learn animals">
+    <meta name="author" content="KidsFunLearnHub">
+    
+    <link rel="canonical" href="https://kidsfunlearnhub.com/animalgame.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kidsfunlearnhub.com/animalgame.html">
+    <meta property="og:title" content="Find The Animal Game | KidsFunLearnHub">
+    <meta property="og:description" content="A fun, interactive visual recognition game for toddlers to learn animal names in English, Hindi, and Marathi. Play for free!">
+    <meta property="og:image" content="https://kidsfunlearnhub.com/images/find-animal-preview.jpg"> 
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalApplication",
+      "name": "Find The Animal",
+      "url": "https://kidsfunlearnhub.com/animalgame.html",
+      "description": "An interactive educational game where children listen to prompts and find the correct colorful animal, improving vocabulary, listening skills, and visual recognition in multiple languages.",
+      "applicationCategory": "EducationalGame",
+      "operatingSystem": "Any",
+      "educationalUse": "Interactive Learning",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student",
+        "audienceType": "toddlers and preschoolers"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "KidsFunLearnHub",
+        "url": "https://kidsfunlearnhub.com"
+      }
+    }
+    </script>
+
     <link rel="stylesheet" href="animalgame.css">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
 </head>
 <body>
 
-    <div class="game-container">
+    <main class="game-container">
         
-        <div class="header-row">
+        <header class="header-row">
             <h1 id="game-title">🐾 Find The Animal!</h1>
-            <div class="score-board">
+            <div class="score-board" aria-live="polite">
                 <span id="score-label">Score:</span> 
                 <span id="score">0</span>
             </div>
-        </div>
+        </header>
 
-        <div class="language-container">
+        <nav class="language-container" aria-label="Language Selection">
             <div class="language-selector">
-                <button class="lang-btn active" data-lang="en">English</button>
-                <button class="lang-btn" data-lang="hi">हिंदी</button>
-                <button class="lang-btn" data-lang="mr">मराठी</button>
+                <button class="lang-btn active" data-lang="en" aria-label="Switch to English">English</button>
+                <button class="lang-btn" data-lang="hi" aria-label="Switch to Hindi">हिंदी</button>
+                <button class="lang-btn" data-lang="mr" aria-label="Switch to Marathi">मराठी</button>
             </div>
-        </div>
+        </nav>
 
-        <div id="promptBox" class="prompt-box">
-            <div class="speaker-icon">🔊</div>
+        <section class="progress-container" aria-hidden="true">
+            <div class="progress-track" id="progress-track">
+                <div class="line-track-overlay">
+                    <div class="progress-line-base"></div> 
+                    <div class="progress-line-fill" id="progress-line"></div> 
+                </div>
+                <div class="dots-container" id="dots-container"></div>
+                
+                <div class="runner-track-overlay">
+                    <div id="runner-icon" class="runner-icon">
+                        <span id="runner-emoji" class="face-right">🐒</span>
+                    </div>
+                </div>
+                
+                <div id="target-icon" class="target-icon">🍌</div>
+            </div>
+        </section>
+
+        <section id="promptBox" class="prompt-box" role="button" tabindex="0" aria-label="Play instruction audio">
+            <div class="speaker-icon" aria-hidden="true">🔊</div>
             <div>
                 <h2 id="instruction">Where is the...</h2>
                 <div id="target-animal-name" class="target-text">???</div>
             </div>
-        </div>
+        </section>
 
-        <div id="gameGrid" class="grid">
-            </div>
+        <section id="gameGrid" class="grid" role="list" aria-label="Animal Options">
+        </section>
 
-        <div class="bottom-actions">
-            <button id="backBtn" class="action-btn">⬅ Back to Activity Hub</button>
-        </div>
-    </div>
+        <nav class="bottom-actions">
+            <button id="backBtn" class="action-btn" aria-label="Go back to Activity Hub">⬅ Back to Activity Hub</button>
+        </nav>
+    </main>
 
-    <div id="feedback" class="feedback-overlay hidden">
+    <section class="seo-description-container">
+        <h2>About The Find The Animal Game</h2>
+        <p>Welcome to <strong>KidsFunLearnHub's Find The Animal</strong>! This free educational activity is designed specifically for toddlers, preschoolers, and early learners. By listening to the audio prompts and selecting the correct colorful animal from the grid, children actively build their vocabulary and recognition skills.</p>
+        <p><strong>Learning Outcomes:</strong> Auditory processing, visual recognition, vocabulary building, and hand-eye coordination. Fully voiced and available in English, Hindi, and Marathi to support multilingual early childhood education!</p>
+    </section>
+
+    <div id="feedback" class="feedback-overlay hidden" role="alert">
         <div class="feedback-content">
             <img id="feedback-img" src="" alt="Animal" class="hidden">
             <h2 id="feedback-text"></h2>
             <h3 id="feedback-score" class="score-text"></h3>
+            <div style="font-size: 80px; animation: popIn 0.5s;">⭐</div>
         </div>
     </div>
 

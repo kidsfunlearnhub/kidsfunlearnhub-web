@@ -1,4 +1,17 @@
 window.onload = function() {
+    // --- THEME ROTATION SETUP ---
+    const themes = [
+        { runner: '🐒', target: '🍌' }, 
+        { runner: '🐇', target: '🥕' }, 
+        { runner: '🐸', target: '🏞️' }  
+    ];
+    
+    let themeIndex = parseInt(sessionStorage.getItem('shadowThemeIndex')) || 0;
+    const currentTheme = themes[themeIndex];
+
+    document.getElementById("runner-emoji").innerText = currentTheme.runner;
+    document.getElementById("target-icon").innerText = currentTheme.target;
+
     // 1. STATE & LOCALIZATION SETUP
     let currentLang = sessionStorage.getItem('shadowGameLang') || 'en'; 
     let score = parseInt(sessionStorage.getItem('shadowGameScore')) || 0;
@@ -43,7 +56,8 @@ window.onload = function() {
         "instruction": { en: "Match the animals to their shadows!", hi: "जानवरों को उनकी परछाई से मिलाएँ!", mr: "प्राण्यांना त्यांच्या सावलीशी जुळवा!" },
         "backBtn": { en: "⬅ Back to Activity Hub", hi: "⬅ वापस जाएँ", mr: "⬅ मागे जा" },
         "correct": { en: "Great Job! 🎉", hi: "बहुत अच्छे! 🎉", mr: "खूप छान! 🎉" },
-        "total-score": { en: "Total Score: ", hi: "कुल स्कोर: ", mr: "एकूण गुण: " }
+        "total-score": { en: "Total Score: ", hi: "कुल स्कोर: ", mr: "एकूण गुण: " },
+        "page-title": { en: "Animal Shadow Match Game | KidsFunLearnHub", hi: "पशु छाया मिलान खेल | KidsFunLearnHub", mr: "प्राणी सावली जुळवा खेळ | KidsFunLearnHub" }
     };
 
     const animalDict = {
@@ -86,7 +100,6 @@ window.onload = function() {
     function initProgressTrack() {
         const dotsContainer = document.getElementById("dots-container");
         dotsContainer.innerHTML = "";
-        
         for(let i = 0; i <= TOTAL_MATCHES_PER_LEVEL; i++) {
             let dot = document.createElement("div");
             dot.className = "path-dot";
@@ -94,35 +107,33 @@ window.onload = function() {
         }
     }
 
-    // --- UPDATED: MOVE MONKEY & DRAW LINE ---
+    // --- MOVE CHARACTER & DRAW LINE ---
     function updateProgressTrack(isJumping = false) {
-        const monkey = document.getElementById("monkey");
-        const progressLine = document.getElementById("progress-line"); // The new line element
+        const runner = document.getElementById("runner-icon");
+        const progressLine = document.getElementById("progress-line"); 
         
         let currentTotalMatches = (roundsPlayedThisSession * MATCHES_PER_ROUND) + matchesFound;
-        
-        // Convert to percentage (0% to 100%)
         let percentage = (currentTotalMatches / TOTAL_MATCHES_PER_LEVEL) * 100;
         if (percentage > 100) percentage = 100;
         
-        // Move the monkey
-        monkey.style.left = percentage + "%";
-        
-        // NEW: Extend the colored line to match the monkey's position perfectly
+        runner.style.left = percentage + "%";
         progressLine.style.width = percentage + "%";
 
         if (isJumping) {
             playJumpSound();
-            monkey.classList.remove("jump-animation");
-            void monkey.offsetWidth; // Force browser repaint
-            monkey.classList.add("jump-animation");
+            runner.classList.remove("jump-animation");
+            void runner.offsetWidth; 
+            runner.classList.add("jump-animation");
         }
     }
 
-    // 2. UI & LANGUAGE HANDLING
+    // 2. UI & LANGUAGE HANDLING (SEO Friendly)
     function updateLanguage(lang) {
         currentLang = lang;
         sessionStorage.setItem('shadowGameLang', lang); 
+        
+        // Dynamically update the page title for SEO and Tabs
+        document.title = uiDict["page-title"][currentLang];
         
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.classList.remove('active');
@@ -163,7 +174,11 @@ window.onload = function() {
             const card = document.createElement("div");
             card.className = "match-card animal-card";
             card.dataset.animal = animalKey;
-            card.innerHTML = `<img src="images/animals/${animalKey}.webp" alt="${animalKey}">`;
+            card.setAttribute("role", "button");
+            card.setAttribute("tabindex", "0");
+            // SEO/Accessibility: Dynamic Alt text
+            card.setAttribute("aria-label", "Select " + animalDict[animalKey]['en']);
+            card.innerHTML = `<img src="images/animals/${animalKey}.webp" alt="${animalDict[animalKey]['en']}">`;
             
             card.addEventListener("click", () => handleAnimalClick(card));
             leftColumn.appendChild(card);
@@ -175,7 +190,11 @@ window.onload = function() {
             const card = document.createElement("div");
             card.className = "match-card shadow-card";
             card.dataset.match = animalKey;
-            card.innerHTML = `<img src="images/animals/${animalKey}.webp" alt="${animalKey} Shadow" class="shadow-img">`;
+            card.setAttribute("role", "button");
+            card.setAttribute("tabindex", "0");
+            // SEO/Accessibility: Dynamic Alt text
+            card.setAttribute("aria-label", "Match with " + animalDict[animalKey]['en'] + " shadow");
+            card.innerHTML = `<img src="images/animals/${animalKey}.webp" alt="${animalDict[animalKey]['en']} Silhouette" class="shadow-img">`;
             
             card.addEventListener("click", () => handleShadowClick(card));
             rightColumn.appendChild(card);
@@ -215,7 +234,7 @@ window.onload = function() {
             document.getElementById("score").innerText = score;
             matchesFound++;
 
-            updateProgressTrack(true); // Jump and draw line!
+            updateProgressTrack(true); 
 
             let matchAudio = new Audio(`sounds/${currentLang}/animals/${selectedAnimalKey}.mp3`);
             matchAudio.play().catch(e => console.log("Audio not found"));
@@ -296,6 +315,10 @@ window.onload = function() {
             if (roundsPlayedThisSession >= ROUNDS_BEFORE_RELOAD) {
                 sessionStorage.setItem('shadowGameScore', score);
                 sessionStorage.setItem('shadowGameLang', currentLang);
+                
+                let nextThemeIndex = (themeIndex + 1) % themes.length;
+                sessionStorage.setItem('shadowThemeIndex', nextThemeIndex);
+                
                 window.location.reload();
             } else {
                 startNewRound();
@@ -306,6 +329,7 @@ window.onload = function() {
     // 7. BACK BUTTON
     document.getElementById("backBtn").addEventListener("click", () => {
         sessionStorage.removeItem('shadowGameScore'); 
+        sessionStorage.removeItem('shadowThemeIndex'); 
         window.location.href = "index.html"; 
     });
 

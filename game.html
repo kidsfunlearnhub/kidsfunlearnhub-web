@@ -3,69 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shadow Match Game</title>
+    
+    <title>Animal Shadow Match Game | KidsFunLearnHub</title>
+    <meta name="title" content="Animal Shadow Match Game | KidsFunLearnHub">
+    <meta name="description" content="Play the free Animal Shadow Match game on KidsFunLearnHub! A fun, interactive puzzle for toddlers and preschoolers to improve cognitive and fine motor skills.">
+    <meta name="keywords" content="shadow match game, kids educational game, toddler puzzles, animal recognition, preschool activities, KidsFunLearnHub, learn animals">
+    <meta name="author" content="KidsFunLearnHub">
+    
+    <link rel="canonical" href="https://kidsfunlearnhub.com/shadowgame.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kidsfunlearnhub.com/shadowgame.html">
+    <meta property="og:title" content="Animal Shadow Match Game | KidsFunLearnHub">
+    <meta property="og:description" content="A fun, interactive puzzle for toddlers to improve cognitive and fine motor skills. Play for free!">
+    <meta property="og:image" content="https://kidsfunlearnhub.com/images/shadow-game-preview.jpg"> <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalApplication",
+      "name": "Animal Shadow Match",
+      "url": "https://kidsfunlearnhub.com/shadowgame.html",
+      "description": "An interactive educational puzzle where children match colorful animals to their shadows, improving memory, cognitive development, and fine motor skills.",
+      "applicationCategory": "EducationalGame",
+      "operatingSystem": "Any",
+      "educationalUse": "Interactive Learning",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student",
+        "audienceType": "toddlers and preschoolers"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "KidsFunLearnHub",
+        "url": "https://kidsfunlearnhub.com"
+      }
+    }
+    </script>
+
     <link rel="stylesheet" href="game.css">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
 </head>
 <body>
 
-    <div class="game-container">
+    <main class="game-container">
         
-        <div class="header-row">
+        <header class="header-row">
             <h1 id="game-title">🐾 Shadow Match!</h1>
-            <div class="score-board">
+            <div class="score-board" aria-live="polite">
                 <span id="score-label">Score:</span> 
                 <span id="score">0</span>
             </div>
-        </div>
+        </header>
 
-        <div class="language-container">
+        <nav class="language-container" aria-label="Language Selection">
             <div class="language-selector">
-                <button class="lang-btn active" data-lang="en">English</button>
-                <button class="lang-btn" data-lang="hi">हिंदी</button>
-                <button class="lang-btn" data-lang="mr">मराठी</button>
+                <button class="lang-btn active" data-lang="en" aria-label="Switch to English">English</button>
+                <button class="lang-btn" data-lang="hi" aria-label="Switch to Hindi">हिंदी</button>
+                <button class="lang-btn" data-lang="mr" aria-label="Switch to Marathi">मराठी</button>
             </div>
-        </div>
+        </nav>
 
-        <div class="progress-container">
+        <section class="progress-container" aria-hidden="true">
             <div class="progress-track" id="progress-track">
-                
                 <div class="line-track-overlay">
-                    <div class="progress-line-base"></div> <div class="progress-line-fill" id="progress-line"></div> </div>
-
-                <div class="dots-container" id="dots-container"></div>
-                
-                <div class="monkey-track-overlay">
-                    <div id="monkey" class="monkey-icon">🐒</div>
+                    <div class="progress-line-base"></div> 
+                    <div class="progress-line-fill" id="progress-line"></div> 
                 </div>
-                
-                <div class="banana-icon">🍌</div>
+                <div class="dots-container" id="dots-container"></div>
+                <div class="runner-track-overlay">
+                    <div id="runner-icon" class="runner-icon">
+                        <span id="runner-emoji" class="face-right">🐒</span>
+                    </div>
+                </div>
+                <div id="target-icon" class="target-icon">🍌</div>
             </div>
-        </div>
+        </section>
 
-        <div id="promptBox" class="prompt-box">
-            <div class="speaker-icon">🔊</div>
+        <section id="promptBox" class="prompt-box" role="button" tabindex="0" aria-label="Play instruction audio">
+            <div class="speaker-icon" aria-hidden="true">🔊</div>
             <div>
                 <h2 id="instruction">Match the animals to their shadows!</h2>
             </div>
-        </div>
+        </section>
 
-        <div class="match-game-wrapper" id="match-container">
-            <svg id="line-canvas"></svg>
+        <section class="match-game-wrapper" id="match-container" aria-label="Interactive Matching Game Area">
+            <svg id="line-canvas" aria-hidden="true"></svg>
 
-            <div class="column" id="left-column">
-                </div>
+            <div class="column" id="left-column" role="list" aria-label="Animals"></div>
+            <div class="column" id="right-column" role="list" aria-label="Shadows"></div>
+        </section>
 
-            <div class="column" id="right-column">
-                </div>
-        </div>
+        <nav class="bottom-actions">
+            <button id="backBtn" class="action-btn" aria-label="Go back to Activity Hub">⬅ Back to Activity Hub</button>
+        </nav>
+    </main>
 
-        <div class="bottom-actions">
-            <button id="backBtn" class="action-btn">⬅ Back to Activity Hub</button>
-        </div>
-    </div>
+    <section class="seo-description-container">
+        <h2>About The Shadow Match Game</h2>
+        <p>Welcome to <strong>KidsFunLearnHub's Animal Shadow Match</strong>! This free educational puzzle is designed specifically for toddlers, preschoolers, and early learners. By connecting colorful animals to their corresponding silhouettes, children actively develop essential cognitive abilities.</p>
+        <p><strong>Learning Outcomes:</strong> Visual discrimination, fine motor skills, animal recognition, and problem-solving. Available in English, Hindi, and Marathi to support bilingual education!</p>
+    </section>
 
-    <div id="feedback" class="feedback-overlay hidden">
+    <div id="feedback" class="feedback-overlay hidden" role="alert">
         <div class="feedback-content">
             <h2 id="feedback-text" class="correct-text">Great Job! 🎉</h2>
             <h3 id="feedback-score" class="score-text"></h3>

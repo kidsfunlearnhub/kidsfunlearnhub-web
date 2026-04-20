@@ -1,5 +1,19 @@
 window.onload = function() {
-    // 1. STATE & LOCALIZATION SETUP (Now with sessionStorage!)
+    // --- THEME ROTATION SETUP ---
+    const themes = [
+        { runner: '🐒', target: '🍌' }, 
+        { runner: '🐇', target: '🥕' }, 
+        { runner: '🐸', target: '🏞️' }  
+    ];
+    
+    let themeIndex = parseInt(sessionStorage.getItem('findAnimalThemeIndex')) || 0;
+    const currentTheme = themes[themeIndex];
+
+    // Inject the correct emojis into the HTML
+    document.getElementById("runner-emoji").innerText = currentTheme.runner;
+    document.getElementById("target-icon").innerText = currentTheme.target;
+
+    // 1. STATE & LOCALIZATION SETUP
     let currentLang = sessionStorage.getItem('findAnimalLang') || 'en'; 
     let score = parseInt(sessionStorage.getItem('findAnimalScore')) || 0;
     
@@ -9,7 +23,32 @@ window.onload = function() {
 
     // Tracker for pageviews
     let roundsPlayedThisSession = 0; 
-    const ROUNDS_BEFORE_RELOAD = 5; // Refreshes page after 5 rounds
+    const ROUNDS_BEFORE_RELOAD = 5; 
+
+    // --- SOUND SYNTHESIZER ---
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function playJumpSound() {
+        if (!audioCtx) audioCtx = new AudioContext();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        const osc = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.15);
+        
+        gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
+        
+        osc.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.15);
+    }
 
     const uiDict = {
         "game-title": { en: "🐾 Find The Animal!", hi: "🐾 जानवर खोजें!", mr: "🐾 प्राणी शोधा!" },
@@ -18,7 +57,8 @@ window.onload = function() {
         "backBtn": { en: "⬅ Back to Activity Hub", hi: "⬅ वापस जाएँ", mr: "⬅ मागे जा" },
         "correct": { en: "Great Job! 🎉", hi: "बहुत अच्छे! 🎉", mr: "खूप छान! 🎉" },
         "wrong": { en: "Try Again! ❌", hi: "फिर से कोशिश करें! ❌", mr: "पुन्हा प्रयत्न करा! ❌" },
-        "total-score": { en: "Total Score: ", hi: "कुल स्कोर: ", mr: "एकूण गुण: " }
+        "total-score": { en: "Total Score: ", hi: "कुल स्कोर: ", mr: "एकूण गुण: " },
+        "page-title": { en: "Find The Animal Game | KidsFunLearnHub", hi: "जानवर खोजें खेल | KidsFunLearnHub", mr: "प्राणी शोधा खेळ | KidsFunLearnHub" }
     };
 
     const animalDict = {
@@ -55,14 +95,46 @@ window.onload = function() {
     };
 
     const allAnimals = Object.keys(animalDict);
-
-    // Initial Score Display
     document.getElementById("score").innerText = score;
+
+    // --- GENERATE DOTS ---
+    function initProgressTrack() {
+        const dotsContainer = document.getElementById("dots-container");
+        dotsContainer.innerHTML = "";
+        
+        // Find Animal is 1 match per round. So 5 total steps to reach the end.
+        for(let i = 0; i <= ROUNDS_BEFORE_RELOAD; i++) {
+            let dot = document.createElement("div");
+            dot.className = "path-dot";
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    // --- MOVE CHARACTER & DRAW LINE ---
+    function updateProgressTrack(isJumping = false, step = 0) {
+        const runner = document.getElementById("runner-icon");
+        const progressLine = document.getElementById("progress-line"); 
+        
+        let percentage = (step / ROUNDS_BEFORE_RELOAD) * 100;
+        if (percentage > 100) percentage = 100;
+        
+        runner.style.left = percentage + "%";
+        progressLine.style.width = percentage + "%";
+
+        if (isJumping) {
+            playJumpSound();
+            runner.classList.remove("jump-animation");
+            void runner.offsetWidth; 
+            runner.classList.add("jump-animation");
+        }
+    }
 
     // 2. UI & LANGUAGE HANDLING
     function updateLanguage(lang) {
         currentLang = lang;
-        sessionStorage.setItem('findAnimalLang', lang); // Save choice
+        sessionStorage.setItem('findAnimalLang', lang); 
+        
+        document.title = uiDict["page-title"][currentLang];
         
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.classList.remove('active');
@@ -86,7 +158,7 @@ window.onload = function() {
         });
     });
 
-    // 3. SEQUENTIAL AUDIO PLAYBACK (The Question)
+    // 3. SEQUENTIAL AUDIO PLAYBACK
     function playCustomAudio() {
         if (isAudioPlaying || !targetAnimalKey) return; 
         isAudioPlaying = true;
@@ -117,6 +189,10 @@ window.onload = function() {
     // 4. CORE GAME LOGIC
     function startNewRound() {
         isPlaying = true;
+        
+        // Ensure character is positioned at current rounds played
+        updateProgressTrack(false, roundsPlayedThisSession);
+
         const grid = document.getElementById("gameGrid");
         grid.innerHTML = "";
         
@@ -131,7 +207,10 @@ window.onload = function() {
         currentOptions.forEach(animalKey => {
             const card = document.createElement("div");
             card.className = "card";
-            card.innerHTML = `<img src="images/animals/${animalKey}.webp" alt="${animalKey}">`;
+            card.setAttribute("role", "button");
+            card.setAttribute("tabindex", "0");
+            card.setAttribute("aria-label", "Select " + animalDict[animalKey]['en']);
+            card.innerHTML = `<img src="images/animals/${animalKey}.webp" alt="${animalDict[animalKey]['en']}">`;
             card.onclick = () => handleGuess(animalKey, card);
             grid.appendChild(card);
         });
@@ -152,74 +231,80 @@ window.onload = function() {
             score += 10;
             document.getElementById("score").innerText = score;
             
-            // Setup Score Text for the pop-up
-            feedbackScore.innerText = uiDict["total-score"][currentLang] + score;
-            feedbackScore.classList.remove("hidden");
+            // 1. Hop character immediately! 
+            updateProgressTrack(true, roundsPlayedThisSession + 1);
 
-            // Phase 1: "Great Job!"
-            feedbackText.innerText = uiDict["correct"][currentLang];
-            feedbackText.className = "correct-text";
-            feedbackImg.classList.add("hidden"); 
-            feedback.classList.remove("hidden");
-            
-            feedback.onclick = null; 
+            // 2. NEW: Wait 800ms to let the jump finish before showing the big celebration screen
+            setTimeout(() => {
+                feedbackScore.innerText = uiDict["total-score"][currentLang] + score;
+                feedbackScore.classList.remove("hidden");
 
-            if (typeof confetti === "function") {
-                confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 }, zIndex: 9999 });
-            }
-
-            let greatJobAudio = new Audio(`sounds/${currentLang}/great_job.mp3`);
-            
-            // Phase 2: Show Animal Name + Image + Sound
-            const triggerPhaseTwo = () => {
-                feedbackText.innerText = animalDict[targetAnimalKey][currentLang];
-                feedbackImg.src = `images/animals/${targetAnimalKey}.webp`;
-                feedbackImg.classList.remove("hidden"); 
-
-                let animalNameAudio = new Audio(`sounds/${currentLang}/animals/${targetAnimalKey}.mp3`);
+                feedbackText.innerText = uiDict["correct"][currentLang];
+                feedbackText.className = "correct-text";
+                feedbackImg.classList.add("hidden"); 
+                feedback.classList.remove("hidden");
                 
-                // --- RELOAD LOGIC ADDED HERE ---
-                let hasAdvanced = false;
-                let autoTimer;
+                feedback.onclick = null; 
 
-                const advanceToNext = () => {
-                    if (hasAdvanced) return; 
-                    hasAdvanced = true;
-                    clearTimeout(autoTimer); 
-                    animalNameAudio.pause(); 
-                    feedback.onclick = null; 
-                    feedback.classList.add("hidden");
+                if (typeof confetti === "function") {
+                    confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 }, zIndex: 9999 });
+                }
+
+                let greatJobAudio = new Audio(`sounds/${currentLang}/great_job.mp3`);
+                
+                const triggerPhaseTwo = () => {
+                    feedbackText.innerText = animalDict[targetAnimalKey][currentLang];
+                    feedbackImg.src = `images/animals/${targetAnimalKey}.webp`;
+                    feedbackImg.classList.remove("hidden"); 
+
+                    let animalNameAudio = new Audio(`sounds/${currentLang}/animals/${targetAnimalKey}.mp3`);
                     
-                    roundsPlayedThisSession++; // Increment tracker
-                    
-                    // Check if it's time to force a pageview
-                    if (roundsPlayedThisSession >= ROUNDS_BEFORE_RELOAD) {
-                        sessionStorage.setItem('findAnimalScore', score);
-                        sessionStorage.setItem('findAnimalLang', currentLang);
-                        window.location.reload();
-                    } else {
-                        startNewRound();
-                    }
+                    let hasAdvanced = false;
+                    let autoTimer;
+
+                    const advanceToNext = () => {
+                        if (hasAdvanced) return; 
+                        hasAdvanced = true;
+                        clearTimeout(autoTimer); 
+                        animalNameAudio.pause(); 
+                        feedback.onclick = null; 
+                        feedback.classList.add("hidden");
+                        
+                        roundsPlayedThisSession++; 
+                        
+                        if (roundsPlayedThisSession >= ROUNDS_BEFORE_RELOAD) {
+                            sessionStorage.setItem('findAnimalScore', score);
+                            sessionStorage.setItem('findAnimalLang', currentLang);
+                            
+                            let nextThemeIndex = (themeIndex + 1) % themes.length;
+                            sessionStorage.setItem('findAnimalThemeIndex', nextThemeIndex);
+                            
+                            window.location.reload();
+                        } else {
+                            startNewRound();
+                        }
+                    };
+
+                    setTimeout(() => {
+                        feedback.onclick = advanceToNext;
+                    }, 500);
+
+                    animalNameAudio.play().then(() => {
+                        animalNameAudio.onended = () => {
+                            autoTimer = setTimeout(advanceToNext, 1600); 
+                        };
+                    }).catch(e => {
+                        autoTimer = setTimeout(advanceToNext, 2000);
+                    });
                 };
 
-                setTimeout(() => {
-                    feedback.onclick = advanceToNext;
-                }, 500);
-
-                animalNameAudio.play().then(() => {
-                    animalNameAudio.onended = () => {
-                        autoTimer = setTimeout(advanceToNext, 1600); 
-                    };
-                }).catch(e => {
-                    autoTimer = setTimeout(advanceToNext, 2000);
+                greatJobAudio.play().then(() => {
+                    greatJobAudio.onended = triggerPhaseTwo;
+                }).catch(() => {
+                    setTimeout(triggerPhaseTwo, 1500); 
                 });
-            };
 
-            greatJobAudio.play().then(() => {
-                greatJobAudio.onended = triggerPhaseTwo;
-            }).catch(() => {
-                setTimeout(triggerPhaseTwo, 1500); 
-            });
+            }, 800); // <-- This is the magic delay!
 
         } else {
             // --- WRONG GUESS SEQUENCE ---
@@ -227,7 +312,7 @@ window.onload = function() {
             feedbackText.innerText = uiDict["wrong"][currentLang];
             feedbackText.className = "wrong-text";
             feedbackImg.classList.add("hidden"); 
-            feedbackScore.classList.add("hidden"); // Hide score for wrong guess
+            feedbackScore.classList.add("hidden"); 
             feedback.classList.remove("hidden");
             feedback.onclick = null;
 
@@ -243,11 +328,13 @@ window.onload = function() {
 
     // 6. BACK BUTTON ACTION
     document.getElementById("backBtn").addEventListener("click", () => {
-        sessionStorage.removeItem('findAnimalScore'); // Clear score on exit
+        sessionStorage.removeItem('findAnimalScore'); 
+        sessionStorage.removeItem('findAnimalThemeIndex');
         window.location.href = "index.html"; 
     });
 
     // Initialize
+    initProgressTrack();
     updateLanguage(currentLang);
     startNewRound();
 };
