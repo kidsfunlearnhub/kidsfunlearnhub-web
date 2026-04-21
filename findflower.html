@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Find The Flower Game | KidsFunLearnHub</title>
+    <meta name="title" content="Find The Flower Game | KidsFunLearnHub">
+    <meta name="description" content="Play the free Find The Flower game on KidsFunLearnHub! An interactive listening and visual recognition game for kids to learn flower and plant names.">
+    <meta name="keywords" content="find the flower, kids educational game, toddler flower games, nature recognition, preschool activities, KidsFunLearnHub">
+    <meta name="author" content="KidsFunLearnHub">
+    
+    <link rel="canonical" href="https://kidsfunlearnhub.com/findflower.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kidsfunlearnhub.com/findflower.html">
+    <meta property="og:title" content="Find The Flower Game | KidsFunLearnHub">
+    <meta property="og:description" content="A fun, interactive visual recognition game for toddlers to learn flower names in English, Hindi, and Marathi.">
+    <meta property="og:image" content="https://kidsfunlearnhub.com/images/find-flower-preview.jpg"> 
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalApplication",
+      "name": "Find The Flower",
+      "url": "https://kidsfunlearnhub.com/findflower.html",
+      "description": "An interactive educational game where children listen to prompts and find the correct flower, improving vocabulary and visual recognition.",
+      "applicationCategory": "EducationalGame",
+      "operatingSystem": "Any",
+      "educationalUse": "Interactive Learning",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student",
+        "audienceType": "toddlers and preschoolers"
+      },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@type": "Organization", "name": "KidsFunLearnHub", "url": "https://kidsfunlearnhub.com" }
+    }
+    </script>
+
+    <link rel="stylesheet" href="findflower.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+</head>
+<body>
+
+    <main class="game-container">
+        
+        <header class="header-row">
+            <h1 id="game-title">🌹 Find The Flower!</h1>
+            <div class="score-board" aria-live="polite">
+                <span id="score-label">Score:</span> 
+                <span id="score">0</span>
+            </div>
+        </header>
+
+        <nav class="language-container" aria-label="Language Selection">
+            <div class="language-selector">
+                <button class="lang-btn active" data-lang="en" aria-label="Switch to English">English</button>
+                <button class="lang-btn" data-lang="hi" aria-label="Switch to Hindi">हिंदी</button>
+                <button class="lang-btn" data-lang="mr" aria-label="Switch to Marathi">मराठी</button>
+            </div>
+        </nav>
+
+        <section class="progress-container" aria-hidden="true">
+            <div class="progress-track" id="progress-track">
+                <div class="line-track-overlay">
+                    <div class="progress-line-base"></div> 
+                    <div class="progress-line-fill" id="progress-line"></div> 
+                </div>
+                <div class="dots-container" id="dots-container"></div>
+                <div class="runner-track-overlay">
+                    <div id="runner-icon" class="runner-icon">
+                        <span id="runner-emoji" class="face-right">🐒</span>
+                    </div>
+                </div>
+                <div id="target-icon" class="target-icon">🍌</div>
+            </div>
+        </section>
+
+        <section id="promptBox" class="prompt-box" role="button" tabindex="0" aria-label="Play instruction audio">
+            <div class="speaker-icon" aria-hidden="true">🔊</div>
+            <div>
+                <h2 id="instruction">Where is the...</h2>
+                <div id="target-flower-name" class="target-text">???</div>
+            </div>
+        </section>
+
+        <section id="gameGrid" class="grid" role="list" aria-label="Flower Options"></section>
+
+        <nav class="bottom-actions">
+            <button id="backBtn" class="action-btn" aria-label="Go back to Activity Hub">⬅ Back to Activity Hub</button>
+        </nav>
+    </main>
+
+    <section class="seo-description-container">
+        <h2>About The Find The Flower Activity</h2>
+        <p>Welcome to <strong>KidsFunLearnHub's Find The Flower</strong>! This free educational activity builds children's vocabulary and recognition skills by having them listen to audio prompts and select the correct beautiful flower.</p>
+        <p><strong>Learning Outcomes:</strong> Auditory processing, visual recognition, and nature vocabulary. Available in English, Hindi, and Marathi!</p>
+    </section>
+
+    <div id="feedback" class="feedback-overlay hidden" role="alert">
+        <div class="feedback-content">
+            <img id="feedback-img" src="" alt="Flower" class="hidden">
+            <h2 id="feedback-text"></h2>
+            <h3 id="feedback-score" class="score-text"></h3>
+            <div style="font-size: 80px; animation: popIn 0.5s;">⭐</div>
+        </div>
+    </div>
+
+    <script src="findflower.js"></script>
+</body>
+</html>

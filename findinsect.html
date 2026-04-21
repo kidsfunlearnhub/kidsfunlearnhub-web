@@ -4,27 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Find The Animal Game | KidsFunLearnHub</title>
-    <meta name="title" content="Find The Animal Game | KidsFunLearnHub">
-    <meta name="description" content="Play the free Find The Animal game on KidsFunLearnHub! A fun, interactive listening and visual recognition game for toddlers and preschoolers to learn animal names.">
-    <meta name="keywords" content="find the animal, kids educational game, toddler animal games, animal recognition, preschool activities, KidsFunLearnHub, learn animals">
+    <title>Find The Insect Game | KidsFunLearnHub</title>
+    <meta name="title" content="Find The Insect Game | KidsFunLearnHub">
+    <meta name="description" content="Play the free Find The Insect game on KidsFunLearnHub! An interactive listening and visual recognition game for kids to learn bug and insect names.">
+    <meta name="keywords" content="find the insect, kids educational game, toddler bug games, insect recognition, preschool activities, KidsFunLearnHub">
     <meta name="author" content="KidsFunLearnHub">
     
-    <link rel="canonical" href="https://kidsfunlearnhub.com/animalgame.html">
+    <link rel="canonical" href="https://kidsfunlearnhub.com/findinsect.html">
 
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kidsfunlearnhub.com/animalgame.html">
-    <meta property="og:title" content="Find The Animal Game | KidsFunLearnHub">
-    <meta property="og:description" content="A fun, interactive visual recognition game for toddlers to learn animal names in English, Hindi, and Marathi. Play for free!">
-    <meta property="og:image" content="https://kidsfunlearnhub.com/images/find-animal-preview.jpg"> 
+    <meta property="og:url" content="https://kidsfunlearnhub.com/findinsect.html">
+    <meta property="og:title" content="Find The Insect Game | KidsFunLearnHub">
+    <meta property="og:description" content="A fun, interactive visual recognition game for toddlers to learn insect names in English, Hindi, and Marathi.">
+    <meta property="og:image" content="https://kidsfunlearnhub.com/images/find-insect-preview.jpg"> 
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "EducationalApplication",
-      "name": "Find The Animal",
-      "url": "https://kidsfunlearnhub.com/animalgame.html",
-      "description": "An interactive educational game where children listen to prompts and find the correct colorful animal, improving vocabulary, listening skills, and visual recognition in multiple languages.",
+      "name": "Find The Insect",
+      "url": "https://kidsfunlearnhub.com/findinsect.html",
+      "description": "An interactive educational game where children listen to prompts and find the correct insect, improving vocabulary and visual recognition.",
       "applicationCategory": "EducationalGame",
       "operatingSystem": "Any",
       "educationalUse": "Interactive Learning",
@@ -33,20 +33,12 @@
         "educationalRole": "student",
         "audienceType": "toddlers and preschoolers"
       },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "KidsFunLearnHub",
-        "url": "https://kidsfunlearnhub.com"
-      }
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@type": "Organization", "name": "KidsFunLearnHub", "url": "https://kidsfunlearnhub.com" }
     }
     </script>
 
-    <link rel="stylesheet" href="animalgame.css">
+    <link rel="stylesheet" href="findinsect.css">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
 </head>
 <body>
@@ -54,7 +46,7 @@
     <main class="game-container">
         
         <header class="header-row">
-            <h1 id="game-title">🐾 Find The Animal!</h1>
+            <h1 id="game-title">🪰 Find The Insect!</h1>
             <div class="score-board" aria-live="polite">
                 <span id="score-label">Score:</span> 
                 <span id="score">0</span>
@@ -76,13 +68,11 @@
                     <div class="progress-line-fill" id="progress-line"></div> 
                 </div>
                 <div class="dots-container" id="dots-container"></div>
-                
                 <div class="runner-track-overlay">
                     <div id="runner-icon" class="runner-icon">
                         <span id="runner-emoji" class="face-right">🐒</span>
                     </div>
                 </div>
-                
                 <div id="target-icon" class="target-icon">🍌</div>
             </div>
         </section>
@@ -91,12 +81,11 @@
             <div class="speaker-icon" aria-hidden="true">🔊</div>
             <div>
                 <h2 id="instruction">Where is the...</h2>
-                <div id="target-animal-name" class="target-text">???</div>
+                <div id="target-insect-name" class="target-text">???</div>
             </div>
         </section>
 
-        <section id="gameGrid" class="grid" role="list" aria-label="Animal Options">
-        </section>
+        <section id="gameGrid" class="grid" role="list" aria-label="Insect Options"></section>
 
         <nav class="bottom-actions">
             <button id="backBtn" class="action-btn" aria-label="Go back to Activity Hub">⬅ Back to Activity Hub</button>
@@ -104,20 +93,20 @@
     </main>
 
     <section class="seo-description-container">
-        <h2>About The Find The Animal Game</h2>
-        <p>Welcome to <strong>KidsFunLearnHub's Find The Animal</strong>! This free educational activity is designed specifically for toddlers, preschoolers, and early learners. By listening to the audio prompts and selecting the correct colorful animal from the grid, children actively build their vocabulary and recognition skills.</p>
-        <p><strong>Learning Outcomes:</strong> Auditory processing, visual recognition, vocabulary building, and hand-eye coordination. Fully voiced and available in English, Hindi, and Marathi to support multilingual early childhood education!</p>
+        <h2>About The Find The Insect Activity</h2>
+        <p>Welcome to <strong>KidsFunLearnHub's Find The Insect</strong>! This free educational activity builds children's vocabulary and recognition skills by having them listen to audio prompts and select the correct bug, butterfly, or insect.</p>
+        <p><strong>Learning Outcomes:</strong> Auditory processing, visual recognition, and hand-eye coordination. Available in English, Hindi, and Marathi!</p>
     </section>
 
     <div id="feedback" class="feedback-overlay hidden" role="alert">
         <div class="feedback-content">
-            <img id="feedback-img" src="" alt="Animal" class="hidden">
+            <img id="feedback-img" src="" alt="Insect" class="hidden">
             <h2 id="feedback-text"></h2>
             <h3 id="feedback-score" class="score-text"></h3>
             <div style="font-size: 80px; animation: popIn 0.5s;">⭐</div>
         </div>
     </div>
 
-    <script src="animalgame.js"></script>
+    <script src="findinsect.js"></script>
 </body>
 </html>

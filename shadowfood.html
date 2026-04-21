@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Food Shadow Match Game | KidsFunLearnHub</title>
+    <meta name="title" content="Food Shadow Match Game | KidsFunLearnHub">
+    <meta name="description" content="Play the free Food Shadow Match puzzle on KidsFunLearnHub! A fun educational game for kids to improve cognitive skills and learn food names.">
+    <meta name="keywords" content="food shadow match, kids food game, learn foods, toddler puzzles, preschool activities, KidsFunLearnHub">
+    <meta name="author" content="KidsFunLearnHub">
+    
+    <link rel="canonical" href="https://kidsfunlearnhub.com/shadowfood.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kidsfunlearnhub.com/shadowfood.html">
+    <meta property="og:title" content="Food Shadow Match Game | KidsFunLearnHub">
+    <meta property="og:description" content="A fun interactive puzzle for kids to improve visual recognition by matching delicious foods to their shadows. Play for free!">
+    <meta property="og:image" content="https://kidsfunlearnhub.com/images/shadow-food-preview.jpg"> 
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalApplication",
+      "name": "Food Shadow Match",
+      "url": "https://kidsfunlearnhub.com/shadowfood.html",
+      "description": "An educational puzzle where children match colorful foods to their silhouettes, improving memory and fine motor skills.",
+      "applicationCategory": "EducationalGame",
+      "operatingSystem": "Any",
+      "educationalUse": "Interactive Learning",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student",
+        "audienceType": "toddlers and preschoolers"
+      },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@type": "Organization", "name": "KidsFunLearnHub", "url": "https://kidsfunlearnhub.com" }
+    }
+    </script>
+
+    <link rel="stylesheet" href="shadowfood.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+</head>
+<body>
+
+    <main class="game-container">
+        
+        <header class="header-row">
+            <h1 id="game-title">🍛 Food Shadow Match!</h1>
+            <div class="score-board" aria-live="polite">
+                <span id="score-label">Score:</span> 
+                <span id="score">0</span>
+            </div>
+        </header>
+
+        <nav class="language-container" aria-label="Language Selection">
+            <div class="language-selector">
+                <button class="lang-btn active" data-lang="en" aria-label="Switch to English">English</button>
+                <button class="lang-btn" data-lang="hi" aria-label="Switch to Hindi">हिंदी</button>
+                <button class="lang-btn" data-lang="mr" aria-label="Switch to Marathi">मराठी</button>
+            </div>
+        </nav>
+
+        <section class="progress-container" aria-hidden="true">
+            <div class="progress-track" id="progress-track">
+                <div class="line-track-overlay">
+                    <div class="progress-line-base"></div> 
+                    <div class="progress-line-fill" id="progress-line"></div> 
+                </div>
+                <div class="dots-container" id="dots-container"></div>
+                <div class="runner-track-overlay">
+                    <div id="runner-icon" class="runner-icon">
+                        <span id="runner-emoji" class="face-right">🐒</span>
+                    </div>
+                </div>
+                <div id="target-icon" class="target-icon">🍌</div>
+            </div>
+        </section>
+
+        <section id="promptBox" class="prompt-box" role="button" tabindex="0" aria-label="Play instruction audio">
+            <div class="speaker-icon" aria-hidden="true">🔊</div>
+            <div>
+                <h2 id="instruction">Match the foods to their shadows!</h2>
+            </div>
+        </section>
+
+        <section class="match-game-wrapper" id="match-container" aria-label="Interactive Matching Game Area">
+            <svg id="line-canvas" aria-hidden="true"></svg>
+            <div class="column" id="left-column" role="list" aria-label="Foods"></div>
+            <div class="column" id="right-column" role="list" aria-label="Shadows"></div>
+        </section>
+
+        <nav class="bottom-actions">
+            <button id="backBtn" class="action-btn" aria-label="Go back to Activity Hub">⬅ Back to Activity Hub</button>
+        </nav>
+    </main>
+
+    <section class="seo-description-container">
+        <h2>About The Food Shadow Match Activity</h2>
+        <p>Welcome to <strong>KidsFunLearnHub's Food Shadow Match</strong>! This free educational puzzle helps children develop visual discrimination and fine motor skills by connecting colorful Indian foods and dishes to their silhouettes.</p>
+        <p><strong>Learning Outcomes:</strong> Shape recognition, logic, food vocabulary, and hand-eye coordination. Available in English, Hindi, and Marathi!</p>
+    </section>
+
+    <div id="feedback" class="feedback-overlay hidden" role="alert">
+        <div class="feedback-content">
+            <h2 id="feedback-text" class="correct-text">Great Job! 🎉</h2>
+            <h3 id="feedback-score" class="score-text"></h3>
+            <div style="font-size: 80px; animation: popIn 0.5s;">⭐</div>
+        </div>
+    </div>
+
+    <script src="shadowfood.js"></script>
+</body>
+</html>

@@ -35,7 +35,7 @@ window.onload = function() {
 
     // Map existing live URLs (Everything else gets "Coming Soon")
     const liveUrls = {
-        "finding_animals": "animalgame.html",
+        "finding_animals": "findanimal.html",
         "finding_birds": "findbird.html",
         "finding_insects": "findinsect.html",
         "finding_fruits": "findfruit.html",
@@ -44,7 +44,7 @@ window.onload = function() {
         "finding_flowers": "findflower.html",
         "finding_vehicles": "findvehicle.html",
         "finding_colours": "findcolour.html",
-        "finding_bodyparts": "findbodypart.html",
+        "finding_bodyparts": "findbodyparts.html",
         "finding_shapes": "findshape.html",
         "shadow_animals": "shadowgame.html",
         "shadow_birds": "shadowbird.html",
@@ -55,7 +55,7 @@ window.onload = function() {
         "shadow_flowers": "shadowflower.html",
         "shadow_vehicles": "shadowvehicle.html",
         "shadow_colours": "shadowcolour.html",
-        "shadow_bodyparts": "shadowbodypart.html",
+        "shadow_bodyparts": "shadowbodyparts.html",
         "shadow_shapes": "shadowshape.html",
         "joining_animals": "joinanimal.html",
         "joining_birds": "joinbird.html",
