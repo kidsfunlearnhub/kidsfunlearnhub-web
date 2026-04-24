@@ -4,27 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Bird Picture Puzzle Game | KidsFunLearnHub</title>
-    <meta name="title" content="Bird Picture Puzzle Game | KidsFunLearnHub">
-    <meta name="description" content="Play the free Bird Picture Puzzle on KidsFunLearnHub! A fun educational logic game for kids to improve problem-solving and visual recognition.">
-    <meta name="keywords" content="bird puzzle game, kids jigsaw puzzle, learn birds, toddler logic games, preschool activities, KidsFunLearnHub">
+    <title>Find The Shape Game | KidsFunLearnHub</title>
+    <meta name="title" content="Find The Shape Game | KidsFunLearnHub">
+    <meta name="description" content="Play the free Find The Shape game on KidsFunLearnHub! An interactive listening and visual recognition game for kids to learn geometry.">
+    <meta name="keywords" content="find the shape, kids educational game, toddler shape games, shape recognition, preschool activities, KidsFunLearnHub">
     <meta name="author" content="KidsFunLearnHub">
     
-    <link rel="canonical" href="https://kidsfunlearnhub.com/puzzlebird.html">
+    <link rel="canonical" href="https://kidsfunlearnhub.com/findshape.html">
 
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kidsfunlearnhub.com/puzzlebird.html">
-    <meta property="og:title" content="Bird Picture Puzzle Game | KidsFunLearnHub">
-    <meta property="og:description" content="A fun interactive puzzle for kids to improve visual recognition by joining pieces to complete the bird picture. Play for free!">
-    <meta property="og:image" content="https://kidsfunlearnhub.com/images/puzzle-bird-preview.jpg"> 
+    <meta property="og:url" content="https://kidsfunlearnhub.com/findshape.html">
+    <meta property="og:title" content="Find The Shape Game | KidsFunLearnHub">
+    <meta property="og:description" content="A fun, interactive visual recognition game for toddlers to learn shapes in English, Hindi, and Marathi.">
+    <meta property="og:image" content="https://kidsfunlearnhub.com/images/find-shape-preview.jpg"> 
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "EducationalApplication",
-      "name": "Bird Picture Puzzle",
-      "url": "https://kidsfunlearnhub.com/puzzlebird.html",
-      "description": "An educational puzzle where children join scattered pieces to complete a colorful bird picture, improving spatial awareness.",
+      "name": "Find The Shape",
+      "url": "https://kidsfunlearnhub.com/findshape.html",
+      "description": "An interactive educational game where children listen to prompts and find the correct shape, improving vocabulary and visual recognition.",
       "applicationCategory": "EducationalGame",
       "operatingSystem": "Any",
       "educationalUse": "Interactive Learning",
@@ -38,7 +38,7 @@
     }
     </script>
 
-    <link rel="stylesheet" href="puzzlebird.css">
+    <link rel="stylesheet" href="findshape.css">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
 </head>
 <body>
@@ -46,7 +46,7 @@
     <main class="game-container">
         
         <header class="header-row">
-            <h1 id="game-title">🦚 Bird Picture Puzzle!</h1>
+            <h1 id="game-title">🟢 Find The Shape!</h1>
             <div class="score-board" aria-live="polite">
                 <span id="score-label">Score:</span> 
                 <span id="score">0</span>
@@ -80,19 +80,12 @@
         <section id="promptBox" class="prompt-box" role="button" tabindex="0" aria-label="Play instruction audio">
             <div class="speaker-icon" aria-hidden="true">🔊</div>
             <div>
-                <h2 id="instruction">Complete the picture!</h2>
+                <h2 id="instruction">Where is the...</h2>
+                <div id="target-shape-name" class="target-text">???</div>
             </div>
         </section>
 
-        <section class="puzzle-wrapper" aria-label="Interactive Puzzle Area">
-            <div class="puzzle-board-container">
-                <div id="puzzle-board" class="puzzle-board">
-                    </div>
-            </div>
-            
-            <div id="pieces-tray" class="pieces-tray" aria-label="Puzzle Pieces">
-                </div>
-        </section>
+        <section id="gameGrid" class="grid" role="list" aria-label="Shape Options"></section>
 
         <nav class="bottom-actions">
             <button id="backBtn" class="action-btn" aria-label="Go back to Activity Hub">⬅ Back to Activity Hub</button>
@@ -100,19 +93,20 @@
     </main>
 
     <section class="seo-description-container">
-        <h2>About The Bird Picture Puzzle Activity</h2>
-        <p>Welcome to <strong>KidsFunLearnHub's Bird Picture Puzzle</strong>! This free educational activity helps children develop spatial awareness, problem-solving logic, and fine motor skills by connecting pieces to reveal a beautiful bird.</p>
-        <p><strong>Learning Outcomes:</strong> Pattern recognition, logic, bird vocabulary, and hand-eye coordination. Available in English, Hindi, and Marathi!</p>
+        <h2>About The Find The Shape Activity</h2>
+        <p>Welcome to <strong>KidsFunLearnHub's Find The Shape</strong>! This free educational activity builds children's vocabulary and recognition skills by having them listen to audio prompts and select the correct geometric shape.</p>
+        <p><strong>Learning Outcomes:</strong> Auditory processing, visual recognition, geometry, and hand-eye coordination. Available in English, Hindi, and Marathi!</p>
     </section>
 
     <div id="feedback" class="feedback-overlay hidden" role="alert">
         <div class="feedback-content">
-            <h2 id="feedback-text" class="correct-text">Great Job! 🎉</h2>
+            <img id="feedback-img" src="" alt="Shape" class="hidden">
+            <h2 id="feedback-text"></h2>
             <h3 id="feedback-score" class="score-text"></h3>
             <div style="font-size: 80px; animation: popIn 0.5s;">⭐</div>
         </div>
     </div>
 
-    <script src="puzzlebird.js"></script>
+    <script src="findshape.js"></script>
 </body>
 </html>

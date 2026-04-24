@@ -5,18 +5,18 @@ window.onload = function() {
         { runner: '🐸', target: '🏞️' }  
     ];
     
-    let themeIndex = parseInt(sessionStorage.getItem('puzzleBirdThemeIndex')) || 0;
+    let themeIndex = parseInt(sessionStorage.getItem('puzzleVehicleThemeIndex')) || 0;
     const currentTheme = themes[themeIndex];
 
     document.getElementById("runner-emoji").innerText = currentTheme.runner;
     document.getElementById("target-icon").innerText = currentTheme.target;
 
-    let currentLang = sessionStorage.getItem('puzzleBirdLang') || 'en'; 
-    let score = parseInt(sessionStorage.getItem('puzzleBirdScore')) || 0;
+    let currentLang = sessionStorage.getItem('puzzleVehicleLang') || 'en'; 
+    let score = parseInt(sessionStorage.getItem('puzzleVehicleScore')) || 0;
     
     let selectedPieceCard = null; 
     let piecesPlaced = 0; 
-    let currentTargetBird = "";
+    let currentTargetVehicle = "";
     
     let roundsPlayedThisSession = 0; 
     const ROUNDS_BEFORE_RELOAD = 5; 
@@ -44,49 +44,49 @@ window.onload = function() {
     }
 
     const uiDict = {
-        "game-title": { en: "🦚 Bird Picture Puzzle!", hi: "🦚 पक्षी चित्र पहेली!", mr: "🦚 पक्षी चित्र कोडे!" },
+        "game-title": { en: "🚌 Vehicle Picture Puzzle!", hi: "🚌 वाहन चित्र पहेली!", mr: "🚌 वाहन चित्र कोडे!" },
         "score-label": { en: "Score:", hi: "स्कोर:", mr: "गुण:" },
         "instruction": { en: "Complete the picture!", hi: "चित्र पूरा करें!", mr: "चित्र पूर्ण करा!" },
         "backBtn": { en: "⬅ Back to Activity Hub", hi: "⬅ वापस जाएँ", mr: "⬅ मागे जा" },
         "correct": { en: "Great Job! 🎉", hi: "बहुत अच्छे! 🎉", mr: "खूप छान! 🎉" },
         "total-score": { en: "Total Score: ", hi: "कुल स्कोर: ", mr: "एकूण गुण: " },
-        "page-title": { en: "Bird Picture Puzzle Game | KidsFunLearnHub", hi: "पक्षी चित्र पहेली खेल | KidsFunLearnHub", mr: "पक्षी चित्र कोडे खेळ | KidsFunLearnHub" }
+        "page-title": { en: "Vehicle Picture Puzzle Game | KidsFunLearnHub", hi: "वाहन चित्र पहेली खेल | KidsFunLearnHub", mr: "वाहन चित्र कोडे खेळ | KidsFunLearnHub" }
     };
 
-    const birdDict = {
-        "peacock": { en: "Peacock", hi: "मोर", mr: "मोर" },
-        "sparrow": { en: "Sparrow", hi: "गौरैया", mr: "चिमणी" },
-        "crow": { en: "Crow", hi: "कौवा", mr: "कावळा" },
-        "parrot": { en: "Parrot", hi: "तोता", mr: "पोपट" },
-        "pigeon": { en: "Pigeon", hi: "कबूतर", mr: "कबूतर" },
-        "myna": { en: "Myna", hi: "मैना", mr: "मैना" },
-        "kingfisher": { en: "Kingfisher", hi: "किंगफिशर", mr: "खंड्या" },
-        "bulbul": { en: "Bulbul", hi: "बुलबुल", mr: "बुलबुल" },
-        "koel": { en: "Koel", hi: "कोयल", mr: "कोकिळा" },
-        "eagle": { en: "Eagle", hi: "गरुड़", mr: "गरुड" },
-        "owl": { en: "Owl", hi: "उल्लू", mr: "घुबड" },
-        "vulture": { en: "Vulture", hi: "गिद्ध", mr: "गिधाड" },
-        "crane": { en: "Crane", hi: "सारस", mr: "क्रौंच" },
-        "heron": { en: "Heron", hi: "बगुला", mr: "बगळा" },
-        "stork": { en: "Stork", hi: "स्टॉर्क", mr: "करकोचा" },
-        "duck": { en: "Duck", hi: "बत्तख", mr: "बदक" },
-        "goose": { en: "Goose", hi: "हंस", mr: "हंस" },
-        "quail": { en: "Quail", hi: "बटेर", mr: "लावा" },
-        "lapwing": { en: "Lapwing", hi: "टिटहरी", mr: "टिटवी" },
-        "woodpecker": { en: "Woodpecker", hi: "कठफोड़वा", mr: "सुतारपक्षी" },
-        "sunbird": { en: "Sunbird", hi: "शकरखोरा", mr: "शिंजीर" },
-        "hornbill": { en: "Hornbill", hi: "धनेश", mr: "धनेश" },
-        "kite": { en: "Kite", hi: "चील", mr: "घार" },
-        "falcon": { en: "Falcon", hi: "बाज", mr: "ससाणा" },
-        "weaverbird": { en: "Weaverbird", hi: "बया", mr: "सुगरण" },
-        "drongo": { en: "Drongo", hi: "भुजंगा", mr: "कोतवाल" },
-        "barbet": { en: "Barbet", hi: "बसंत बौरी", mr: "तांबट" },
-        "roller": { en: "Roller", hi: "नीलकंठ", mr: "नीलकंठ" },
-        "flamingo": { en: "Flamingo", hi: "राजहंस", mr: "रोहित पक्षी" },
-        "ibis": { en: "Ibis", hi: "इबिस", mr: "शराटी" }
+    const vehicleDict = {
+        "car": { en: "Car", hi: "कार", mr: "कार" },
+        "bus": { en: "Bus", hi: "बस", mr: "बस" },
+        "auto rickshaw": { en: "Auto Rickshaw", hi: "ऑटो रिक्शा", mr: "ऑटो रिक्षा" },
+        "motorcycle": { en: "Motorcycle", hi: "मोटरसाइकिल", mr: "मोटारसायकल" },
+        "bicycle": { en: "Bicycle", hi: "साइकिल", mr: "सायकल" },
+        "scooter": { en: "Scooter", hi: "स्कूटर", mr: "स्कूटर" },
+        "truck": { en: "Truck", hi: "ट्रक", mr: "ट्रक" },
+        "tractor": { en: "Tractor", hi: "ट्रैक्टर", mr: "ट्रॅक्टर" },
+        "train": { en: "Train", hi: "रेलगाड़ी", mr: "रेल्वे" },
+        "metro": { en: "Metro", hi: "मेट्रो", mr: "मेट्रो" },
+        "ambulance": { en: "Ambulance", hi: "एम्बुलेंस", mr: "रुग्णवाहिका" },
+        "fire engine": { en: "Fire Engine", hi: "दमकल", mr: "अग्निशमन दल" },
+        "police jeep": { en: "Police Jeep", hi: "पुलिस जीप", mr: "पोलीस जीप" },
+        "school bus": { en: "School Bus", hi: "स्कूल बस", mr: "स्कूल बस" },
+        "van": { en: "Van", hi: "वैन", mr: "व्हॅन" },
+        "tempo": { en: "Tempo", hi: "टेम्पो", mr: "टेम्पो" },
+        "delivery truck": { en: "Delivery Truck", hi: "डिलीवरी ट्रक", mr: "मालवाहू ट्रक" },
+        "taxi": { en: "Taxi", hi: "टैक्सी", mr: "टॅक्सी" },
+        "rickshaw": { en: "Rickshaw", hi: "रिक्शा", mr: "रिक्षा" },
+        "bulldozer": { en: "Bulldozer", hi: "बुलडोजर", mr: "बुलडोझर" },
+        "crane": { en: "Crane", hi: "क्रेन", mr: "क्रेन" },
+        "excavator": { en: "Excavator", hi: "उत्खनन मशीन", mr: "एक्साव्हेटर" },
+        "boat": { en: "Boat", hi: "नाव", mr: "बोट" },
+        "ferry": { en: "Ferry", hi: "नौका", mr: "फेरी" },
+        "ship": { en: "Ship", hi: "पानी का जहाज", mr: "जहाज" },
+        "helicopter": { en: "Helicopter", hi: "हेलीकॉप्टर", mr: "हेलिकॉप्टर" },
+        "airplane": { en: "Airplane", hi: "हवाई जहाज", mr: "विमान" },
+        "garbage truck": { en: "Garbage Truck", hi: "कचरा ट्रक", mr: "कचऱ्याचा ट्रक" },
+        "cement mixer": { en: "Cement Mixer", hi: "सीमेंट मिक्सर", mr: "सिमेंट मिक्सर" },
+        "tow truck": { en: "Tow Truck", hi: "टो ट्रक", mr: "टोइंग ट्रक" }
     };
 
-    const allBirds = Object.keys(birdDict);
+    const allVehicles = Object.keys(vehicleDict);
     document.getElementById("score").innerText = score;
 
     function initProgressTrack() {
@@ -119,7 +119,7 @@ window.onload = function() {
 
     function updateLanguage(lang) {
         currentLang = lang;
-        sessionStorage.setItem('puzzleBirdLang', lang); 
+        sessionStorage.setItem('puzzleVehicleLang', lang); 
         document.title = uiDict["page-title"][currentLang];
         
         document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -153,9 +153,9 @@ window.onload = function() {
         board.innerHTML = "";
         tray.innerHTML = "";
         
-        // 1. Pick a random bird
-        currentTargetBird = allBirds[Math.floor(Math.random() * allBirds.length)];
-        const imgUrl = `images/birds/${currentTargetBird}.webp`;
+        // 1. Pick a random vehicle
+        currentTargetVehicle = allVehicles[Math.floor(Math.random() * allVehicles.length)];
+        const imgUrl = `images/vehicles/${currentTargetVehicle}.webp`;
 
         // 2. Setup the Board
         board.style.backgroundImage = `url('${imgUrl}')`;
@@ -169,7 +169,6 @@ window.onload = function() {
         }
 
         // 3. Setup the Pieces
-        // Create array of indices 0,1,2,3 and shuffle it
         let pieceIndices = [0, 1, 2, 3].sort(() => 0.5 - Math.random());
         
         pieceIndices.forEach(idx => {
@@ -193,7 +192,6 @@ window.onload = function() {
             selectedPieceCard.classList.remove("selected");
         }
         
-        // If clicking the same piece, just deselect it
         if (selectedPieceCard === piece) {
             selectedPieceCard = null;
             return;
@@ -204,40 +202,30 @@ window.onload = function() {
     }
 
     function handleSlotClick(slot) {
-        // If the slot is already filled, ignore
         if (slot.children.length > 0) return;
-
-        // If no piece is selected, ignore
         if (!selectedPieceCard) return;
 
         const targetSlotIndex = slot.dataset.index;
         const selectedPieceIndex = selectedPieceCard.dataset.piece;
 
         if (targetSlotIndex === selectedPieceIndex) {
-            // Match Correct!
             selectedPieceCard.classList.remove("selected");
             selectedPieceCard.classList.add("placed");
             
-            // Move piece to board slot physically in DOM
             slot.appendChild(selectedPieceCard);
-            slot.style.border = "none"; // Hide dashed border when filled
+            slot.style.border = "none";
             
             score += 10;
             document.getElementById("score").innerText = score;
             piecesPlaced++;
 
             updateProgressTrack(true); 
-
-            // Clear selection
             selectedPieceCard = null; 
 
             if (piecesPlaced === 4) {
-                // Remove the fading overlay by hiding the ::after content via CSS class if needed, 
-                // but placing all pieces covers it anyway.
                 setTimeout(showRoundComplete, 600);
             }
         } else {
-            // Wrong slot
             selectedPieceCard.classList.add("shake");
             let tryAgainAudio = new Audio(`sounds/${currentLang}/try_again.mp3`);
             tryAgainAudio.play().catch(e => console.log("Audio not found"));
@@ -257,11 +245,9 @@ window.onload = function() {
             confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 }, zIndex: 9999 });
         }
 
-        // Play the bird's specific audio to reinforce learning
-        let birdAudio = new Audio(`sounds/${currentLang}/birds/${currentTargetBird}.mp3`);
+        let vehicleAudio = new Audio(`sounds/${currentLang}/vehicles/${currentTargetVehicle}.mp3`);
         
-        // Try playing specific audio, fallback to "great_job" if missing
-        birdAudio.play().catch(e => {
+        vehicleAudio.play().catch(e => {
             let greatJobAudio = new Audio(`sounds/${currentLang}/great_job.mp3`);
             greatJobAudio.play().catch(err => console.log("Audio not found"));
         });
@@ -271,10 +257,10 @@ window.onload = function() {
             roundsPlayedThisSession++; 
             
             if (roundsPlayedThisSession >= ROUNDS_BEFORE_RELOAD) {
-                sessionStorage.setItem('puzzleBirdScore', score);
-                sessionStorage.setItem('puzzleBirdLang', currentLang);
+                sessionStorage.setItem('puzzleVehicleScore', score);
+                sessionStorage.setItem('puzzleVehicleLang', currentLang);
                 let nextThemeIndex = (themeIndex + 1) % themes.length;
-                sessionStorage.setItem('puzzleBirdThemeIndex', nextThemeIndex);
+                sessionStorage.setItem('puzzleVehicleThemeIndex', nextThemeIndex);
                 window.location.reload();
             } else {
                 startNewRound();
@@ -283,8 +269,8 @@ window.onload = function() {
     }
 
     document.getElementById("backBtn").addEventListener("click", () => {
-        sessionStorage.removeItem('puzzleBirdScore'); 
-        sessionStorage.removeItem('puzzleBirdThemeIndex'); 
+        sessionStorage.removeItem('puzzleVehicleScore'); 
+        sessionStorage.removeItem('puzzleVehicleThemeIndex'); 
         window.location.href = "index.html"; 
     });
 

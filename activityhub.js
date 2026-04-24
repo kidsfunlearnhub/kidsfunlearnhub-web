@@ -57,17 +57,17 @@ window.onload = function() {
         "shadow_colours": "shadowcolour.html",
         "shadow_bodyparts": "shadowbodyparts.html",
         "shadow_shapes": "shadowshape.html",
-        "joining_animals": "joinanimal.html",
-        "joining_birds": "joinbird.html",
-        "joining_insects": "joininsect.html",
-        "joining_fruits": "joinfruit.html",
-        "joining_vegetables": "joinvegetable.html",
-        "joining_foods": "joinfood.html",
-        "joining_flowers": "joinflower.html",
-        "joining_vehicles": "joinvehicle.html",
-        "joining_colours": "joincolour.html",
-        "joining_bodyparts": "joinbodypart.html",
-        "joining_shapes": "joinshape.html"
+        "joining_animals": "puzzleanimal.html",
+        "joining_birds": "puzzlebird.html",
+        "joining_insects": "puzzleinsect.html",
+        "joining_fruits": "puzzlefruit.html",
+        "joining_vegetables": "puzzlevegetable.html",
+        "joining_foods": "puzzlefood.html",
+        "joining_flowers": "puzzleflower.html",
+        "joining_vehicles": "puzzlevehicle.html",
+        "joining_colours": "puzzlecolour.html",
+        "joining_bodyparts": "puzzlebodypart.html",
+        "joining_shapes": "puzzleshape.html"
 
     };
 
