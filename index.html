@@ -1,92 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Advanced SEO Meta Tags -->
+    <title>Fun Learning Games for Kids | KidsFunLearnHub</title>
+    <meta name="title" content="Fun Learning Games for Kids | KidsFunLearnHub">
+    <meta name="description" content="Interactive ABC, numbers, and language learning games for toddlers and kids. Fun educational activities in English, Hindi, and Marathi!">
+    <meta name="keywords" content="kids learning, toddler games, abc games, learn hindi for kids, learn marathi for kids, educational games, KidsFunLearnHub">
+    <meta name="author" content="KidsFunLearnHub">
+    
+    <link rel="canonical" href="https://kidsfunlearnhub.com/index.html">
 
-<meta name="description"
-content="Fun ABC and numbers learning games for toddlers and kids with images and sound.">
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kidsfunlearnhub.com/index.html">
+    <meta property="og:title" content="Kids Fun-Learn Hub | Educational Games">
+    <meta property="og:description" content="Discover fun interactive puzzles and language games for kids. Play and learn in English, Hindi, and Marathi!">
+    <meta property="og:image" content="https://kidsfunlearnhub.com/images/home-preview.jpg"> 
 
-<title>Fun Learning for Kids</title>
+    <!-- Schema.org JSON-LD for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "KidsFunLearnHub",
+      "url": "https://kidsfunlearnhub.com",
+      "description": "Fun ABC, numbers, and interactive learning games for toddlers and preschoolers in multiple languages.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "KidsFunLearnHub",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://kidsfunlearnhub.com/images/logo.png"
+        }
+      }
+    }
+    </script>
 
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="cursor-dropdown">
-  <select id="cursorSelect">
-    <option value="">Default Cursor</option>
-    <option value="dinosaur.png">🦖 Dinosaur</option>
-    <option value="star.png">⭐ Star</option>
-  </select>
-</div>
+    <!-- Cursor Selector -->
+    <div class="cursor-dropdown" aria-label="Select Custom Cursor">
+        <select id="cursorSelect">
+            <option value="">Default Cursor</option>
+            <option value="dinosaur.png">🦖 Dinosaur</option>
+            <option value="star.png">⭐ Star</option>
+        </select>
+    </div>
 
-<a href="parent.html" class="parent-corner bubble-btn">
-  👨‍👩‍👧 Parent Corner
-</a>
-
-<h1 class="title">🎉 Welcome to Kids Fun-Learn Hub 🎉</h1>
-<h2>Where Fun Meets Learning</h2>
-
-<div class="page-wrapper">
-
-  <div class="container">
-
-    <a href="javascript:void(0)" onclick="goToHub('en')" class="card englishhub">
-      <div class="content">
-        <span class="big-text bouncing">Kids ENGLISH Hub</span>
-        <span class="small-text dancing">Learn English</span>
-      </div>
-    </a>
-    
-    <a href="javascript:void(0)" onclick="goToHub('hi')" class="card hindihub">
-      <div class="content">
-        <span class="big-text bouncing">Kids हिंदी भाषा Hub</span> 
-        <span class="small-text dancing">हिंदी सीखें</span>
-      </div>
+    <!-- Floating Bubble Button for Parent Corner -->
+    <a href="parent.html" class="parent-corner bubble-btn" aria-label="Go to Parent Corner">
+        👨‍👩‍👧 Parent Corner
     </a>
 
-    <a href="javascript:void(0)" onclick="goToHub('mr')" class="card marathihub">
-      <div class="content">
-        <span class="big-text bouncing">Kids मराठी भाषा Hub</span> 
-        <span class="small-text dancing">मराठी शिका</span>
-      </div>
-    </a>
+    <header>
+        <h1 class="title">🎉 Welcome to Kids Fun-Learn Hub 🎉</h1>
+        <h2 class="subtitle">Where Fun Meets Learning</h2>
+    </header>
 
-    <a href="activityhub.html" class="card activityhub">
-      <div class="content">
-        <span class="big-text bouncing">Kids ACTIVITY Hub</span> 
-        <span class="small-text dancing">Learn Activity</span>
-      </div>
-    </a>
-    
-  </div>
+    <!-- TOP AD ZONE: Kept compact and near the top -->
+    <div class="ad-container">
+        <div class="ad-space">
+            <span>[AdSense Top Banner Area]</span>
+        </div>
+    </div>
 
-</div>
+    <!-- MAIN GAME CONTENT: Brought up higher for immediate visibility -->
+    <main class="page-wrapper">
+        <div class="container" role="list">
 
-<div id="bubble-container"></div>
+            <a href="javascript:void(0)" onclick="goToHub('en')" class="card englishhub" role="listitem">
+                <div class="content">
+                    <span class="big-text bouncing">Kids ENGLISH Hub</span>
+                    <span class="small-text dancing">Learn English</span>
+                </div>
+            </a>
+            
+            <a href="javascript:void(0)" onclick="goToHub('hi')" class="card hindihub" role="listitem">
+                <div class="content">
+                    <span class="big-text bouncing">Kids हिंदी भाषा Hub</span> 
+                    <span class="small-text dancing">हिंदी सीखें</span>
+                </div>
+            </a>
 
-<script src="script.js"></script>
+            <a href="javascript:void(0)" onclick="goToHub('mr')" class="card marathihub" role="listitem">
+                <div class="content">
+                    <span class="big-text bouncing">Kids मराठी भाषा Hub</span> 
+                    <span class="small-text dancing">मराठी शिका</span>
+                </div>
+            </a>
 
-<script>
-  function goToHub(languageCode) {
-      // 1. Save the chosen language to the browser's memory
-      localStorage.setItem('mySecretLanguage', languageCode);
-      
-      // 2. Send the user to the universal hub page
-      window.location.href = 'hub.html?v=6';
-  }
-</script>
+            <a href="activityhub.html" class="card activityhub" role="listitem">
+                <div class="content">
+                    <span class="big-text bouncing">Kids ACTIVITY Hub</span> 
+                    <span class="small-text dancing">Learn Activity</span>
+                </div>
+            </a>
 
-<footer class="footer">
-  <a href="aboutus.html">About Us</a> |
-  <a href="aboutus1.html">About Us</a> |
-  <a href="termsandconditions.html">Terms & Conditions</a> |
-  <a href="privacy.html">Privacy Policy</a> |
-  <a href="disclaimer.html">Disclaimer</a> |
-  <a href="contactus.html">Contact Us</a>
-</footer>
+            <a href="parent.html" class="card parent-card" role="listitem">
+                <div class="content">
+                    <span class="big-text bouncing">👨‍👩‍👧 Parent Corner</span> 
+                    <span class="small-text dancing">Resources & Worksheets</span>
+                </div>
+            </a>
+            
+        </div>
+    </main>
+
+    <!-- SEO Friendly Introduction: Moved below the cards! -->
+    <section class="seo-intro-box">
+        <p>Welcome to <strong>KidsFunLearnHub</strong>, a safe and interactive digital playground where toddlers and preschoolers can discover the joy of education! Explore our colorful activities designed to help your child master the alphabet, recognize numbers, and build foundational vocabulary in English, Hindi, and Marathi.</p>
+    </section>
+
+    <!-- BOTTOM AD ZONE -->
+    <div class="ad-container">
+        <div class="ad-space">
+            <span>[AdSense Bottom Banner Area]</span>
+        </div>
+    </div>
+
+    <!-- Floating Bubbles Container -->
+    <div id="bubble-container" aria-hidden="true"></div>
+
+    <script src="script.js"></script>
+
+    <script>
+        function goToHub(languageCode) {
+            localStorage.setItem('mySecretLanguage', languageCode);
+            window.location.href = 'hub.html?v=6';
+        }
+    </script>
+
+    <footer class="footer">
+        <nav aria-label="Footer Navigation">
+            <a href="aboutus.html">About Us</a> |
+            <a href="termsandconditions.html">Terms & Conditions</a> |
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="disclaimer.html">Disclaimer</a> |
+            <a href="contactus.html">Contact Us</a>
+        </nav>
+        <p class="copyright">© 2026 KidsFunLearnHub. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>

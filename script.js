@@ -1,129 +1,93 @@
-// Simple click sound effect (can be expanded later)
-document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => {
-        console.log("Kids clicked a learning card!");
+"use strict";
+
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // --- 1. Card Click Effects ---
+    document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('click', () => {
+            console.log("Learning card clicked!");
+        });
     });
-});
-// for bubbles with abc--Start
-document.addEventListener("DOMContentLoaded", () => {
 
+    // --- 2. Floating Bubbles Logic (Now purely decorative visual background) ---
     const container = document.getElementById("bubble-container");
+    if (container) {
+        const alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+        const numbers = Array.from({ length: 20 }, (_, i) => i + 1);
 
-    const alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-    const numbers = Array.from({ length: 20 }, (_, i) => i + 1);
+        const alphaColors = ["#ffcc80", "#ffab91", "#e6ee9c", "#b2dfdb", "#c5cae9"];
+        const numberColors = ["#bbdefb", "#c8e6c9", "#ffcdd2", "#d1c4e9", "#ffe082"];
 
-    const alphaColors = [
-        "#ffcc80", "#ffab91", "#e6ee9c", "#b2dfdb", "#c5cae9"
-    ];
+        const createBubble = (type, dataArray, colorArray, positionProperty) => {
+            const bubble = document.createElement("div");
+            bubble.className = `bubble ${type}`;
+            
+            const item = dataArray[Math.floor(Math.random() * dataArray.length)];
+            bubble.innerText = item;
+            bubble.style.background = colorArray[Math.floor(Math.random() * colorArray.length)];
+            
+            // Random positioning either left or right side
+            bubble.style[positionProperty] = Math.random() * 15 + "%"; 
+            bubble.style.animationDuration = (12 + Math.random() * 8) + "s";
 
-    const numberColors = [
-        "#bbdefb", "#c8e6c9", "#ffcdd2", "#d1c4e9", "#ffe082"
-    ];
+            container.appendChild(bubble);
 
-    function createAlphaBubble() {
-        const bubble = document.createElement("div");
-        bubble.className = "bubble alpha";
+            // Auto cleanup to prevent memory leaks when bubble leaves screen
+            setTimeout(() => {
+                if (bubble.parentNode) bubble.remove();
+            }, 20000); 
+        };
 
-        const letter = alphabets[Math.floor(Math.random() * alphabets.length)];
-        bubble.innerText = letter;
-        bubble.style.background =
-            alphaColors[Math.floor(Math.random() * alphaColors.length)];
-
-        bubble.style.left = Math.random() * 120 + "px";
-        bubble.style.animationDuration = (14 + Math.random() * 6) + "s";
-
-        bubble.onclick = () => popBubble(bubble, `sounds/${letter.toLowerCase()}.mp3`);
-        container.appendChild(bubble);
-        autoRemove(bubble);
+        // Create Alphabets from Left side
+        setInterval(() => createBubble("alpha", alphabets, alphaColors, "left"), 1800);
+        // Create Numbers from Right side
+        setInterval(() => createBubble("number", numbers, numberColors, "right"), 2200);
     }
 
-    function createNumberBubble() {
-        const bubble = document.createElement("div");
-        bubble.className = "bubble number";
+    // --- 3. Background Music Logic ---
+    let bgMusicStarted = false;
+    const bgMusic = new Audio("sounds/bg-music.mp3");
+    bgMusic.loop = true;
+    bgMusic.volume = 0.05; // Soft volume
 
-        const num = numbers[Math.floor(Math.random() * numbers.length)];
-        bubble.innerText = num;
-        bubble.style.background =
-            numberColors[Math.floor(Math.random() * numberColors.length)];
+    // Play on first interaction
+    document.addEventListener("click", () => {
+        if (!bgMusicStarted) {
+            bgMusic.play().then(() => {
+                bgMusicStarted = true;
+            }).catch(err => console.log("Audio play prevented by browser interaction policy"));
+        }
+    }, { once: true });
 
-        bubble.style.right = Math.random() * 120 + "px";
-        bubble.style.animationDuration = (14 + Math.random() * 6) + "s";
+    // --- 4. Cursor Selection Logic ---
+    const select = document.getElementById("cursorSelect");
+    if (select) {
+        const savedCursor = localStorage.getItem("kidsCursor");
+        
+        if (savedCursor) {
+            document.documentElement.style.cursor = savedCursor;
+            const cursorFile = savedCursor.split("/").pop().replace(/["')]/g, '').split(' ')[0];
+            select.value = cursorFile;
+        }
 
-        bubble.onclick = () => popBubble(bubble, `sounds/${num}.mp3`);
-        container.appendChild(bubble);
-        autoRemove(bubble);
-    }
+        select.addEventListener("change", () => {
+            if (!select.value) {
+                document.documentElement.style.cursor = "auto";
+                localStorage.removeItem("kidsCursor");
+                return;
+            }
 
-    function popBubble(bubble, soundFile) {
-        bubble.classList.add("burst");
-        new Audio(soundFile).play().catch(() => {});
-        setTimeout(() => bubble.remove(), 300);
-    }
-
-    function autoRemove(bubble) {
-        setTimeout(() => {
-            if (bubble.parentNode) bubble.remove();
-        }, 18000);
-    }
-
-    // A–Z from left
-    setInterval(createAlphaBubble, 1800);
-
-    // 1–20 from right
-    setInterval(createNumberBubble, 2200);
-});
-// for bubbles with abc--End
-
-// Background Music- start
-let bgMusicStarted = false;
-const bgMusic = new Audio("sounds/bg-music.mp3");
-bgMusic.loop = true;
-bgMusic.volume = 0.05; // VERY soft
-
-document.addEventListener("click", () => {
-    if (!bgMusicStarted) {
-        bgMusic.play().catch(() => {});
-        bgMusicStarted = true;
+            const cursorValue = `url("images/cursors/${select.value}") 16 16, auto`;
+            document.documentElement.style.cursor = cursorValue;
+            localStorage.setItem("kidsCursor", cursorValue);
+        });
     }
 });
-//background music -End
 
-//cursor option--start
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  const select = document.getElementById("cursorSelect");
-
-  const savedCursor = localStorage.getItem("kidsCursor");
-  if (savedCursor) {
-    document.documentElement.style.cursor = savedCursor;
-    select.value = savedCursor.split("/").pop().replace('"', '');
-  }
-
-  select.addEventListener("change", () => {
-
-    if (!select.value) {
-      document.documentElement.style.cursor = "auto";
-      localStorage.removeItem("kidsCursor");
-      return;
-    }
-
-    const cursorValue =
-      `url("images/cursors/${select.value}") 16 16, auto`;
-
-    document.documentElement.style.cursor = cursorValue;
-    localStorage.setItem("kidsCursor", cursorValue);
-  });
-
-});
-
-//cursor option--end
-
-// cursor option local storage start-- add this code on every .js file
+// --- 5. Global Cursor Enforcement (Applies to all pages linking this script) ---
 document.addEventListener("DOMContentLoaded", () => {
     const savedCursor = localStorage.getItem("kidsCursor");
     if (savedCursor) {
         document.documentElement.style.cursor = savedCursor;
     }
 });
-// cursor option local storage end-- 
