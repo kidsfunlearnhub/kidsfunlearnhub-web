@@ -1,12 +1,8 @@
-/* :root {
-    /* The "Cotton Candy Sky" soft gradient */
-    /* --bg-gradient: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); */
-    /* --font-main: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif; */
-/* }  */
-
 :root {
-    /* --bg-gradient: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); */
-    background: linear-gradient(to right, #b3ffff, #fcb69f);
+    /* The "Cotton Candy Sky" soft background gradient */
+    /* --bg-gradient: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); */
+        background: linear-gradient(to right, #b3ffff, #fcb69f);
+        /* background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); */
     --font-main: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif;
 }
 
@@ -78,20 +74,23 @@ header { margin-top: 30px; }
     gap: 25px; margin: 10px auto 30px auto; max-width: 1050px; 
 }
 
-/* === NEW: FULL COLOR CARD BASE === */
+/* === UNIVERSAL CARD BASE (Backgrounds are now injected by JS) === */
 .card {
     width: 300px; 
     height: 280px;
     flex-grow: 0; flex-shrink: 0;
     border-radius: 25px;
     text-decoration: none;
-    color: white; /* Default text to white */
+    color: white; 
     box-shadow: 0 8px 15px rgba(0,0,0,0.15);
-    border-bottom: 8px solid rgba(0,0,0,0.2); /* Creates a 3D chunky button effect */
+    border-bottom: 8px solid rgba(0,0,0,0.2); 
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     position: relative; overflow: hidden;
 }
+
+/* Fallback background just in case JS fails to load */
+.card { background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); }
 
 @media (max-width: 700px) {
     .card { width: 100%; max-width: 400px; }
@@ -106,44 +105,24 @@ header { margin-top: 30px; }
     border-bottom-width: 2px;
 }
 
-/* Add a subtle highlight to the top of all colored cards for a 3D effect */
+/* Subtle highlight to the top of all cards for a 3D effect */
 .card::after {
     content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     background: linear-gradient(rgba(255,255,255,0.25), transparent); pointer-events: none;
 }
 
-/* === FULL BACKGROUND COLORS === */
-.englishhub { background: linear-gradient(135deg, #ff66cc, #ea33ad); }
-.hindihub { background: linear-gradient(135deg, #81c784, #4caf50); }
-.marathihub { background: linear-gradient(135deg, #ff8a80, #ff5252); }
-.activityhub { background: linear-gradient(135deg, #64b5f6, #2196f3); }
-
-/* Top Borders mapped to Hub Colors */
-.englishhub { border-top: 8px solid #e91e63; }
-.hindihub { border-top: 8px solid #4caf50; }
-.marathihub { border-top: 8px solid #ff5722; }
-.activityhub { border-top: 8px solid #2196f3; }
-
-/* Colored Parent Corner with white dashed border */
-.parent-card {
-    background: linear-gradient(135deg, #ffcc80, #ff9800);
-    border: 4px dashed rgba(255, 255, 255, 0.8);
-    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.25);
-}
-.parent-card:hover { background: linear-gradient(135deg, #ffb74d, #f57c00); }
-
-/* === Translucent App Icons === */
+/* Translucent App Icons */
 .card-icon {
     font-size: 45px; 
     width: 80px; height: 80px;
     display: flex; align-items: center; justify-content: center;
     margin-bottom: 12px; border-radius: 16px; font-weight: bold;
-    background: rgba(255, 255, 255, 0.25); /* Frosted white */
+    background: rgba(255, 255, 255, 0.25); 
     border: 2px solid rgba(255, 255, 255, 0.5);
-    color: white; /* Ensure text inside is white */
+    color: white; 
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    line-height: 1; z-index: 2; /* Keeps icon above the highlight layer */
+    line-height: 1; z-index: 2; 
 }
 
 .card:hover .card-icon { 
@@ -153,45 +132,37 @@ header { margin-top: 30px; }
 
 .content { padding: 5px; width: 100%; z-index: 2; position: relative; }
 
-/* Big Text is now strictly white */
+/* Big Text */
 .big-text {
     font-size: clamp(1.6rem, 2.2vw, 2rem);
     font-weight: bold; display: block; margin-bottom: 8px;
-    color: white !important;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.15); /* Helps text pop */
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.15); 
 }
 
-/* === Solid White Pill Badges with Colored Text === */
+/* Solid White Pill Badges with dark text (Looks great on any random color!) */
 .small-text {
     font-size: clamp(1rem, 1.4vw, 1.2rem);
     font-weight: bold; display: inline-block; padding: 5px 15px; border-radius: 15px;
     background: rgba(255, 255, 255, 0.95);
     border: 2px solid white;
+    color: #444; /* Dark grey ensures it's readable */
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
-.englishhub .small-text { color: #ea33ad; }
-.hindihub .small-text { color: #4caf50; }
-.marathihub .small-text { color: #ff5252; }
-.activityhub .small-text { color: #2196f3; }
-.parent-card .small-text { color: #e65100; }
 
-/* === Solid White Play Buttons with Colored Icons === */
+/* Solid White Play Buttons with dark icons */
 .play-btn {
     width: 40px; height: 40px; display: flex; align-items: center;
     justify-content: center; font-size: 16px; border-radius: 50%;
     margin-top: 15px; transition: transform 0.2s;
-    background: white; /* Solid white background */
+    background: white; 
+    color: #444; /* Dark grey play icon */
     box-shadow: 0 4px 0 rgba(0,0,0,0.15);
     z-index: 2; position: relative;
 }
 .card:hover .play-btn { transform: scale(1.1); }
-.englishhub .play-btn { color: #ea33ad; }
-.hindihub .play-btn { color: #4caf50; }
-.marathihub .play-btn { color: #ff5252; }
-.activityhub .play-btn { color: #2196f3; }
-.parent-card .play-btn { color: #f57c00; }
 
-/* Frosted Glass for SEO Intro Box (With JUSTIFY added!) */
+/* Frosted Glass for SEO Intro Box (Justified text) */
 .seo-intro-box {
     max-width: 900px; margin: 10px auto 30px auto; padding: 20px 30px; 
     background: rgba(255, 255, 255, 0.35); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
@@ -201,7 +172,7 @@ header { margin-top: 30px; }
 }
 .seo-intro-box p { 
     margin: 0; 
-    text-align: justify; /* Justified formatting added here */
+    text-align: justify; 
 }
 
 /* Animations */
@@ -251,4 +222,3 @@ header { margin-top: 30px; }
 
 /* Cursors */
 button, a, .clickable, .letter { cursor: url("images/cursors/dinosaur_fire.png") 16 16, pointer; }
-
