@@ -1,310 +1,256 @@
+
+:root {
+    /* The "Cotton Candy Sky" background to match the index page */
+    background: linear-gradient(to right, #b3ffff, #fcb69f);
+    --font-main: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif;
+}
+
 body {
     margin: 0;
-    font-family: 'Comic Sans MS', cursive;
-    background: linear-gradient(to right, #b3ffff, #fcb69f);
+    font-family: var(--font-main);
+    background: var(--bg-gradient);
     text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+header { margin-top: 30px; }
+
+/* Mobile Screen Fix */
+@media (max-width: 600px) {
+    header { margin-top: 85px; } 
+    
+    .bubble-btn {
+        padding: 8px 12px !important;
+        font-size: 0.85rem !important;
+    }
+    .cursor-dropdown select {
+        padding: 6px 10px !important;
+        font-size: 12px !important;
+    }
 }
 
 .title {
-  font-size: clamp(2rem, 5vw, 4rem);
-  color: #ff4081;
-  margin: 20px;
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    color: #c23989;
+    margin: 5px 20px; 
+    text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.7);
 }
 
-/* Safe content area */
+/* Frosted Glass Effect for Ads */
+.ad-container {
+    width: 100%; display: flex; justify-content: center;
+    margin: 10px 0 20px 0; position: relative; z-index: 40; 
+    padding: 0 15px; box-sizing: border-box;
+}
+
+.ad-space {
+    background: rgba(255, 255, 255, 0.35); 
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border: 3px dashed rgba(255, 152, 0, 0.7); 
+    border-radius: 15px; width: 100%; max-width: 728px; min-height: 90px; 
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1); color: #555;
+    font-size: 0.9rem; font-family: sans-serif; font-weight: bold; overflow: hidden;
+}
+
 .page-wrapper {
-  max-width: 1100px;
-  margin: auto;
-  padding: 0 40px;
-  position: relative;
-  z-index: 20;
+    flex: 1; width: 100%; max-width: 1200px; margin: auto;
+    padding: 0 20px; box-sizing: border-box; position: relative; z-index: 20;
 }
 
-/* RESPONSIVE CARD GRID */
+/* Flexbox Matrix Layout */
 .container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-  margin-top: 40px;
-  min-height: 520px;
+    display: flex; flex-wrap: wrap; justify-content: center; 
+    gap: 25px; margin: 10px auto 30px auto; max-width: 1050px; 
+    min-height: 580px; 
 }
 
-@media (min-width: 1800px) {
-  body { font-size: 1.4rem; }
-}
-
-/* 📱 MOBILE LAYOUT (SINGLE COLUMN) */
-@media (max-width: 700px) {
-  .page-wrapper {
-    padding: 0 15px;
-  }
-  
-  .container {
-    grid-template-columns: 1fr; 
-    gap: 20px; 
-  }
-
-  .card {
-    min-height: 220px; 
-  }
-
-  .card .big-text {
-    font-size: 3.5rem !important; 
-  }
-
-  .card p {
-    font-size: 1.6rem !important; 
-  }
-}
-
-/* CARD UPGRADES */
+/* === UNIVERSAL CARD BASE === */
 .card {
-  width: 100%;
-  min-height: 180px; 
-  height: auto; 
-  border-radius: 25px;
-  text-decoration: none;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  transition: transform 0.3s;
+    width: 300px; 
+    height: 280px;
+    flex-grow: 0; flex-shrink: 0;
+    border-radius: 25px;
+    text-decoration: none;
+    color: white; 
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+    border-bottom: 8px solid rgba(0,0,0,0.2); 
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+}
+
+.card { background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); }
+
+@media (max-width: 700px) {
+    .card { width: 100%; max-width: 400px; }
 }
 
 .card:hover {
-    transform: scale(1.08);
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.25);
+}
+.card:active {
+    transform: translateY(2px);
+    border-bottom-width: 2px;
 }
 
-.content {
-    padding: 15px;
-    width: 100%;
-    box-sizing: border-box;
+/* 3D Top Highlight */
+.card::after {
+    content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(255,255,255,0.25), transparent); pointer-events: none;
 }
 
+/* =========================================
+   TEXT & ICON STYLES 
+   ========================================= */
+
+/* 1. App Icons: Reverted to Frosted Semi-Transparent Glass */
+.card-icon {
+    font-size: 50px; 
+    width: 85px; height: 85px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 15px; border-radius: 16px; font-weight: bold;
+    background: rgba(255, 255, 255, 0.25); /* Frosted Glass */
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: white; /* White text inside icons */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    line-height: 1; z-index: 2; 
+    animation: clickMePulse 2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.content { padding: 5px; width: 100%; z-index: 2; position: relative; }
+
+/* 2. Big Text: Solid White Pill Badge with Dark Text */
 .big-text {
-    font-size: clamp(1.5rem, 4vw, 3rem); 
-    font-weight: bold;
-    display: block;
-    line-height: 1.2;
+    font-size: clamp(1.4rem, 2vw, 1.7rem);
+    font-weight: bold; 
+    display: inline-block; 
+    margin-bottom: 8px;
+    padding: 8px 22px;
+    border-radius: 25px; 
+    /* background: rgba(255, 255, 255, 0.95);  */
+    background: #f5efb4;
+    /* background: #FFFDE7;  */
+    border: 2px solid white;
+    color: #333 !important; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    text-shadow: none; 
 }
 
-p {
-    font-size: clamp(1rem, 2.5vw, 1.3rem); 
-    margin-top: 10px;
+/* 3. Small Text: Purely floating white text */
+.small-text {
+    font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+    font-weight: bold; 
+    display: block; 
+    margin-top: 5px;
+    padding: 0; 
+    background: transparent; 
+    border: none;
+    color: white !important; 
+    box-shadow: none;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.25); 
 }
+
+/* 4. Play Buttons */
+.play-btn {
+    width: 45px; height: 45px; display: flex; align-items: center;
+    justify-content: center; font-size: 18px; border-radius: 50%;
+    margin-top: 15px;
+    background: white; 
+    color: #444; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    z-index: 2; position: relative;
+    animation: clickMePulse 2s infinite alternate-reverse cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Parent Corner Overrides */
+.parent-card {
+    background: rgba(255, 255, 255, 0.35) !important; 
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border: 3px dashed rgba(255, 152, 0, 0.8) !important;
+}
+.parent-card:hover { background: rgba(255, 255, 255, 0.55) !important; }
+.parent-card .big-text { color: #ff9800 !important; }
+.parent-card .card-icon { color: #ff9800 !important; background: rgba(255, 152, 0, 0.15) !important; border: 2px solid rgba(255, 152, 0, 0.3) !important;}
+.parent-card .small-text { color: #e65100 !important; text-shadow: none !important; }
+
+/* Custom Shapes specifically for the Shapes card icon */
+.shape { display: inline-block; margin: 2px; }
+.circle { width: 15px; height: 15px; background: #ffeb3b; border-radius: 50%; }
+.square { width: 15px; height: 15px; background: #ff9800; }
+.triangle { width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 15px solid #e91e63; }
+
+/* Frosted Glass for SEO Intro Box */
+.seo-intro-box {
+    max-width: 900px; margin: 10px auto 30px auto; padding: 20px 30px; 
+    background: rgba(255, 255, 255, 0.35); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 255, 255, 0.6); border-radius: 20px;
+    font-size: clamp(0.95rem, 1.2vw, 1.1rem); color: #222; line-height: 1.6;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1); position: relative; z-index: 30; 
+}
+.seo-intro-box p { margin: 0; text-align: justify; }
 
 /* Pagination Nav */
-.card-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  margin: 30px 0 10px 0;
-  flex-wrap: wrap;
-}
+.card-nav { display: flex; justify-content: center; align-items: center; gap: 15px; margin: 30px 0 10px 0; flex-wrap: wrap; }
+.card-nav button { padding: 10px 20px; font-size: 16px; border: none; border-radius: 40px; background: #ff9800; color: white; cursor: pointer; font-weight: bold; box-shadow: 0 4px 0 #f57c00; transition: transform 0.1s; }
+.card-nav button:active { transform: translateY(4px); box-shadow: none; }
+.card-nav button:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; transform: translateY(4px); }
 
-.card-nav button {
-  padding: 10px 16px;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  background: #4CAF50;
-  color: white;
-  cursor: pointer;
-}
-
-.card-nav button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* NEW: Home Button Layout */
-.home-nav {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-  margin-bottom: 40px; 
-}
-
-.home-btn {
-  padding: 12px 32px;
-  font-size: 1.2rem;
-  border-radius: 40px;
-  background: #2196f3;
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-  transition: transform 0.2s, background 0.2s;
-}
-
-.home-btn:hover {
-  background: #1976d2;
-  transform: scale(1.1); 
-}
-
-/* COLORS */
-.abc { background: #ff5252; }
-.abcbigsmall { background: #9452ff; }
-.abctrace { background: #ea33ad; }
-.numbers { background: #1acf6b; }
-.numberscount { background: #ff5252; }
-.numberstrace { background: #6287eb; }
-
-.varnmala { background: #9452ff; }
-.hinditrace { background: #9452ff; }
-.hindinumberstrace { background: #9452ff; }
-
-.marathi { background: #9452ff; }
-.marathitrace { background: #9452ff; }
-.marathinumberstrace { background: #9452ff; }
-
-.abcdraw { background: #e2ff52; }
-
-
-.shapes { background: #2196f3; }
-.shapestrace { background: #2196f3; }
-.colors { background: #d66ae6; }
-.animals { background: #ff9800; }
-.seaanimals { background: #4caf50; }
-
-.insects { background: #00ff00; }
-.flowers { background: #bb00ff; }
-.birds { background:#97e156; }
-.vegetables { background:#af1d29; }
-.vehicles { background:#510b6b; }
-.fruits { background:#ba0b8e; }
-.foods { background:#1a8490; }
-.game { background:#de66da; }
+/* Home Button */
+.home-nav { display: flex; justify-content: center; margin-top: 10px; margin-bottom: 40px; }
+.home-btn { padding: 12px 35px; font-size: 1.2rem; border-radius: 40px; background: #2196f3; color: white; text-decoration: none; font-weight: bold; box-shadow: 0 6px 12px rgba(0,0,0,0.2); border: 3px solid white; transition: transform 0.2s, background 0.2s; }
+.home-btn:hover { background: #1976d2; transform: scale(1.1); }
 
 /* Animations */
-.dancing { animation: dance 1s infinite alternate; }
-@keyframes dance {
-    from { transform: rotate(-5deg); }
-    to { transform: rotate(5deg); }
+.dancing { animation: dance 1.5s infinite alternate ease-in-out; }
+@keyframes dance { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }
+.bouncing { animation: bounce 2s infinite ease-in-out; }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+/* Kid-Magnet Pulse Animation */
+@keyframes clickMePulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    50% {
+        transform: scale(1.12); 
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
+    }
 }
 
-.bouncing { animation: bounce 0.8s infinite; }
-@keyframes bounce {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-    100% { transform: translateY(0); }
-}
-
-/* Shapes */
-.shape {
-    display: inline-block;
-    margin: 5px;
-}
-.circle {
-    width: clamp(25px, 4vw, 40px);
-    height: clamp(25px, 4vw, 40px);
-    background: yellow;
-    border-radius: 50%;
-}
-.square {
-    width: clamp(25px, 4vw, 40px);
-    height: clamp(25px, 4vw, 40px);
-    background: orange;
-}
-.triangle {
-    width: 0;
-    height: 0;
-    border-left: clamp(12px, 2vw, 20px) solid transparent;
-    border-right: clamp(12px, 2vw, 20px) solid transparent;
-    border-bottom: clamp(25px, 4vw, 40px) solid pink;
-}
-
-/* Bubbles */
+/* Floating Bubbles */
 #bubble-container {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 10;
+    position: fixed; bottom: 0; left: 0; width: 100%; height: 100%;
+    overflow: hidden; pointer-events: none; z-index: 10;
 }
 .bubble {
-    position: absolute;
-    bottom: -60px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.6rem;
-    font-weight: bold;
-    color: #0d47a1;
-    cursor: pointer;
-    pointer-events: auto;
-    animation: floatUp linear forwards;
+    position: absolute; bottom: -60px; width: clamp(40px, 6vw, 60px); height: clamp(40px, 6vw, 60px);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: clamp(1rem, 1.5vw, 1.5rem); font-weight: bold; color: #0d47a1; pointer-events: none; 
+    animation: floatUp linear forwards; box-shadow: inset -5px -5px 15px rgba(0,0,0,0.1), 0 5px 15px rgba(0,0,0,0.1); opacity: 0.5; 
 }
-.alpha { left: 0; }
-.number { right: 0; }
-@keyframes floatUp {
-    from { transform: translateY(0); opacity: 1; }
-    to { transform: translateY(-850px); opacity: 0; }
-}
-.burst { animation: burst 0.3s ease-out forwards; }
-@keyframes burst {
-    from { transform: scale(1); opacity: 1; }
-    to { transform: scale(2); opacity: 0; }
-}
+@keyframes floatUp { from { transform: translateY(0) scale(1); } to { transform: translateY(-110vh) scale(1.2); opacity: 0; } }
 
 /* Footer */
-.footer {
-    text-align: center;
-    padding: 15px;
-    background: #333;
-    color: white;
-    margin-top: 40px;
-    position: relative;
-    z-index: 20;
-}
-.footer a {
-    color: #ffcc00;
-    text-decoration: none;
-    margin: 0 10px;
-}
-.footer a:hover { text-decoration: underline; }
+.footer { text-align: center; padding: 20px 15px; background: #2c3e50; color: white; margin-top: 20px; position: relative; z-index: 20; }
+.footer a { color: #ffcc00; text-decoration: none; margin: 0 10px; display: inline-block; padding: 5px 0; font-size: 1rem; transition: color 0.2s; }
+.footer a:hover { color: #fff; text-decoration: underline; }
+.copyright { margin-top: 10px; font-size: 0.85rem; color: #aaa; }
 
-/* Cursor */
-.cursor-dropdown {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  z-index: 999;
-}
-.cursor-dropdown select {
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-size: 14px;
-}
-button, a, .clickable, .letter {
-  cursor: url("images/cursors/dinosaur_fire.png") 16 16, pointer;
-}
+/* Cursor Dropdown */
+.cursor-dropdown { position: fixed; top: 15px; left: 15px; z-index: 999; }
+.cursor-dropdown select { padding: 8px 15px; border-radius: 20px; border: 2px solid #00bcd4; font-size: 14px; font-weight: bold; background: white; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); outline: none; }
 
-/* Parent Btn */
-.bubble-btn {
-  position: fixed;
-  top: 12px;
-  right: 12px;
-  background: linear-gradient(135deg, #ff9800, #ff4081);
-  color: white;
-  padding: 14px 20px;
-  border-radius: 40px;
-  font-weight: bold;
-  text-decoration: none;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.3);
-  z-index: 999;
-  animation: floaty 2s infinite alternate;
-}
-@keyframes floaty {
-  from { transform: translateY(0); }
-  to { transform: translateY(-4px); }
-}
-.bubble-btn:hover { transform: scale(1.12); }
+/* Floating Parent Bubble Button */
+.bubble-btn { position: fixed; top: 15px; right: 15px; background: linear-gradient(135deg, #ff9800, #ff4081); color: white; padding: 10px 18px; border-radius: 40px; font-weight: bold; text-decoration: none; box-shadow: 0 8px 18px rgba(0,0,0,0.3); z-index: 999; animation: floaty 2.5s infinite alternate ease-in-out; border: 2px solid white; font-size: clamp(0.85rem, 1.2vw, 1rem); }
+@keyframes floaty { from { transform: translateY(0); } to { transform: translateY(-5px); } }
+.bubble-btn:hover { transform: scale(1.1); }
+
+/* Cursors */
+button, a, .clickable, .letter { cursor: url("images/cursors/dinosaur_fire.png") 16 16, pointer; }
+

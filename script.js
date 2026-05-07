@@ -104,23 +104,13 @@ document.addEventListener("DOMContentLoaded", () => {
         "linear-gradient(135deg, #1acf6b 0%, #1acf6b 100%)", /* Neon Green/Teal */
         "linear-gradient(135deg, #fee140 0%, #fee140 100%)", /* Hot Pink/Yellow */
         // "linear-gradient(135deg, #667eea 0%, #764ba2 100%)", /* Deep Purple/Indigo */
-        "linear-gradient(135deg, #ff0844 0%, #ff0844 100%)"  /* Red/Light Orange */
+        "linear-gradient(135deg, #ff0844 0%, #ff0844 100%)" /* Red/Light Orange */
+        
         
     ];
 
-    // const vividGradients = [
-    //     "linear-gradient(135deg, #7ae85e 0%, #c4459c 100%)", /* Pink/Rose */
-    //     "linear-gradient(135deg, #84fab0 0%, #472ce3 100%)", /* Mint/Cyan */
-    //     // "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)", /* Peach/Orange */
-    //     // "linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)", /* Purple/Pink */
-    //     "linear-gradient(135deg, #eb25ac 0%, #d57eeb 100%)", /* Orange/Magenta */
-    //     "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)", /* Bright Sky Blue */
-    //     "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)", /* Neon Green/Teal */
-    //     "linear-gradient(135deg, #fa709a 0%, #fee140 100%)", /* Hot Pink/Yellow */
-    //     "linear-gradient(135deg, #667eea 0%, #764ba2 100%)", /* Deep Purple/Indigo */
-    //     "linear-gradient(135deg, #ff0844 0%, #ffb199 100%)"  /* Red/Light Orange */
-        
-    // ];
+
+
     // Select all cards on the homepage
     const cards = document.querySelectorAll('.card');
 
