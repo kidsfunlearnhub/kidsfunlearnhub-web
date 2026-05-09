@@ -144,6 +144,32 @@ header { margin-top: 30px; }
 .action-btn:hover { background: #e64a19; transform: scale(1.05); }
 .action-btn:active { transform: translateY(4px); box-shadow: none; }
 
+/* Bottom Navigation Styling */
+.bottom-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0 40px 0;
+    flex-wrap: wrap; /* Ensures buttons stack on small mobile screens */
+}
+
+/* Ensure the buttons match the top style perfectly */
+.bottom-nav .home-btn {
+    min-width: 160px;
+    padding: 12px 20px;
+}
+
+@media (max-width: 500px) {
+    .bottom-nav {
+        gap: 10px;
+        padding: 0 10px;
+    }
+    .bottom-nav .home-btn {
+        width: 100%; /* Makes buttons full-width on very small phones for easier tapping */
+        max-width: 280px;
+    }
+}
+
 /* =========================================
    POPUP OVERLAY & MOBILE IMAGE FIX
    ========================================= */

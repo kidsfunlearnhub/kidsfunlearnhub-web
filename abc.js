@@ -10,7 +10,10 @@ window.onload = function() {
 
     const uiDictionary = {
         "page-title": { en: "🔠 Learn ABC", hi: "🔠 एबीसी (ABC) सीखें", mr: "🔠 एबीसी (ABC) शिका" },
-        "nextBtn": { en: "➡ Next Letters", hi: "➡ अगले अक्षर", mr: "➡ पुढील अक्षरे" }
+        "nextBtn": { en: "➡ Next Letters", hi: "➡ अगले अक्षर", mr: "➡ पुढील अक्षरे" },
+        "backBtn": { en: "⬅ Back", hi: "⬅ पीछे", mr: "⬅ मागे" },
+        "traceBtn": { en: "Learn Tracing", hi: "ट्रेसिंग सीखें", mr: "ट्रेसिंग शिका" },
+        "activitiesBtn": { en: "ABC Activities", hi: "एबीसी गतिविधियां", mr: "एबीसी ऍक्टिव्हिटीज" }
     };
 
     // Dictionary for A-Z
@@ -44,7 +47,7 @@ window.onload = function() {
     };
 
     const letters = Object.keys(abcDict);
-    const PAGE_SIZE = 14; // Exactly half the alphabet per page
+    const PAGE_SIZE = 14; 
     let currentPage = 0;
 
     /////////////////////////////////////////////////
@@ -59,9 +62,11 @@ window.onload = function() {
     const nextBtn = document.getElementById("nextBtn");
     const closePopupBtn = document.getElementById("closePopupBtn");
 
-    const titleElement = document.getElementById("page-title");
-    if (titleElement) titleElement.innerText = uiDictionary["page-title"][currentLang];
-    if (nextBtn) nextBtn.innerText = uiDictionary["nextBtn"][currentLang];
+    // Apply translations to all UI elements including new buttons
+    for (let id in uiDictionary) {
+        const el = document.getElementById(id);
+        if (el) el.innerText = uiDictionary[id][currentLang];
+    }
 
     /////////////////////////////////////////////////
     // 🚀 ULTRA-FAST PRELOAD CACHE
@@ -72,17 +77,14 @@ window.onload = function() {
     const soundCache = {};
 
     letters.forEach(name => {
-      // 1. Preload 3D Letter Image
       const imgLetter = new Image();
       imgLetter.src = `images/abc/letters/${name}.webp`;
       imageCacheLetters[name] = imgLetter;
 
-      // 2. Preload Word Image (e.g. Apple)
       const imgWord = new Image();
       imgWord.src = `images/abc/words/${name}.webp`; 
       imageCacheWords[name] = imgWord;
 
-      // 3. Preload Sound
       const audio = new Audio();
       audio.src = `sounds/${currentLang}/abc/${name}.mp3`;
       audio.preload = "auto";
@@ -106,7 +108,6 @@ window.onload = function() {
         card.setAttribute("role", "button");
         card.setAttribute("aria-label", "Learn letter " + name);
 
-        // CHANGED: The text below the image is now strictly lowercase
         card.innerHTML = `
           <img src="${imageCacheLetters[name].src}" alt="${name}">
           <p class="big-text bouncing">${name.toLowerCase()}</p>
@@ -128,8 +129,6 @@ window.onload = function() {
             currentPage = 0;
           }
           loadPage();
-          
-          // Smooth scroll to the top of the grid
           window.scrollTo({ top: 0, behavior: 'smooth' });
         };
     }
@@ -151,20 +150,12 @@ window.onload = function() {
       launchConfetti();
     }
 
-    // Close logic
     function closePopup() {
         if (popup) popup.classList.add("hidden");
     }
 
-    // CHANGED: Clicking anywhere on the popup overlay or the card itself will now close it.
-    if (popup) {
-        popup.onclick = closePopup;
-    }
-    
-    // Fallback for the close button if they happen to click exactly on it
-    if (closePopupBtn) {
-        closePopupBtn.onclick = closePopup;
-    }
+    if (popup) popup.onclick = closePopup;
+    if (closePopupBtn) closePopupBtn.onclick = closePopup;
 
     /////////////////////////////////////////////////
     // CURSOR LOGIC
