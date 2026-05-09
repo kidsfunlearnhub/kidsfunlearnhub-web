@@ -1,33 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Learn Numbers</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Advanced SEO Meta Tags -->
+    <title>Learn Numbers 1 to 40 | Counting for Kids | KidsFunLearnHub</title>
+    <meta name="title" content="Learn Numbers 1 to 40 | Counting for Kids | KidsFunLearnHub">
+    <meta name="description" content="Learn numbers and counting for kids! Fun, interactive number flashcards with images, sounds, and pronunciation for toddlers and preschoolers from 1 to 40.">
+    <meta name="keywords" content="learn numbers, counting for kids, 1 to 40, kids math games, toddler learning, KidsFunLearnHub, early education">
+    <meta name="author" content="KidsFunLearnHub">
+    
+    <link rel="canonical" href="https://kidsfunlearnhub.com/numbers.html">
 
-<link rel="stylesheet" href="numbers.css">
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kidsfunlearnhub.com/numbers.html">
+    <meta property="og:title" content="Learn Numbers 1-40 with KidsFunLearnHub">
+    <meta property="og:description" content="Interactive 3D numbers, fun counting images, and sound! The best way for kids to learn how to count.">
+    <meta property="og:image" content="https://kidsfunlearnhub.com/images/numbers-preview.jpg"> 
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Schema.org JSON-LD for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalApplication",
+      "name": "Interactive Numbers & Counting 1-40",
+      "url": "https://kidsfunlearnhub.com/numbers.html",
+      "description": "An interactive tool for toddlers to learn numbers and counting up to 40, complete with digits, object counting images, and audio pronunciation.",
+      "applicationCategory": "EducationalGame",
+      "operatingSystem": "Any",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student",
+        "audienceType": "toddlers and preschoolers"
+      },
+      "publisher": { "@type": "Organization", "name": "KidsFunLearnHub", "url": "https://kidsfunlearnhub.com" }
+    }
+    </script>
+
+    <link rel="stylesheet" href="numbers.css?v=2.1">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 
 <body>
 
-<h1 id="page-title">🔢 Learn Numbers</h1>
-
-<div id="numberGrid" class="grid"></div>
-
-<button id="nextBtn">➡ Next Numbers</button>
-
-<div id="popup" class="popup hidden">
-  <div class="popup-card">
-    <div class="popup-images">
-        <img id="popupImgDigit" alt="Number Digit">
-        <img id="popupImgObject" alt="Counting Object">
+    <!-- Cursor Selector -->
+    <div class="cursor-dropdown" aria-label="Select Custom Cursor">
+        <select id="cursorSelect">
+            <option value="">Default Cursor</option>
+            <option value="dinosaur.png">🦖 Dinosaur</option>
+            <option value="star.png">⭐ Star</option>
+        </select>
     </div>
-    <h2 id="popupName"></h2>
-  </div>
-</div>
 
-<script src="numbers.js"></script>
+    <!-- Floating Bubble Button for Parent Corner -->
+    <a href="parent.html" class="parent-corner bubble-btn" id="parentCornerBtn" aria-label="Go to Parent Corner">
+        👨‍👩‍👧 Parent Corner
+    </a>
+
+    <header>
+        <h1 class="title" id="page-title">🔢 Learn Numbers</h1>
+        
+        <!-- Breadcrumb Navigation -->
+        <nav class="home-nav">
+          <a href="index.html" class="home-btn" id="homeBtnNav">🏠 Home</a>
+          <a href="hub.html" class="home-btn" id="hubBtnNav" style="background:#ff9800; margin-left:10px;">🎮 Activity Hub</a>
+        </nav>
+    </header>
+
+    <!-- TOP AD ZONE: AdSense Safe -->
+    <div class="ad-container">
+        <div class="ad-space">
+            <span>[AdSense Top Banner Area]</span>
+        </div>
+    </div>
+
+    <!-- MAIN GRID CONTENT -->
+    <main class="page-wrapper">
+        <div id="numberGrid" class="container grid" role="list"></div>
+
+        <!-- Pagination Controls -->
+        <div class="card-nav">
+            <button id="nextBtn" class="action-btn">➡ Next Numbers</button>
+        </div>
+
+        <!-- BOTTOM NAVIGATION BUTTONS -->
+        <nav class="bottom-nav">
+            <a href="hub.html" class="home-btn" id="backBtn" style="background:#e91e63;">⬅ Back</a>
+            <a href="numberstrace.html" class="home-btn" id="traceBtn" style="background:#4caf50;">Number Tracing</a>
+            <a href="hub.html" class="home-btn" id="activitiesBtn" style="background:#9c27b0;">Numbers Activities</a>
+        </nav>
+    </main>
+
+    <!-- SEO Friendly Introduction Box -->
+    <section class="seo-intro-box">
+        <p id="seoText"></p>
+    </section>
+
+    <!-- BOTTOM AD ZONE -->
+    <div class="ad-container">
+        <div class="ad-space">
+            <span>[AdSense Bottom Banner Area]</span>
+        </div>
+    </div>
+
+    <!-- POPUP OVERLAY -->
+    <div id="popup" class="popup hidden" role="dialog" aria-modal="true">
+      <div class="popup-card">
+        <div class="popup-images">
+            <img id="popupImgDigit" alt="Number Digit">
+            <span class="plus-sign">➕</span>
+            <img id="popupImgObject" alt="Counting Objects">
+        </div>
+        <h2 id="popupName"></h2>
+        <button class="close-btn" id="closePopupBtn">Close ✖</button>
+      </div>
+    </div>
+
+    <footer class="footer">
+        <nav aria-label="Footer Navigation">
+            <a href="aboutus.html">About Us</a> |
+            <a href="termsandconditions.html">Terms & Conditions</a> |
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="disclaimer.html">Disclaimer</a> |
+            <a href="contactus.html">Contact Us</a>
+        </nav>
+        <p class="copyright">© 2026 KidsFunLearnHub. All rights reserved.</p>
+    </footer>
+
+    <script src="numbers.js?v=4.1"></script>
 </body>
 </html>

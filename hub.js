@@ -11,7 +11,7 @@ const hubDictionary = {
     "bounce-count-numbers": { en: "Count 1 2 3", hi: "गिनती १ २ ३", mr: "मोजणे १ २ ३" },
     "desc-count-numbers": { en: "Learn Counting", hi: "गिनती सीखें", mr: "मोजणे शिका" },
     "desc-numbers-trace": { en: "Numbers Tracing", hi: "नंबर ट्रेसिंग", mr: "अंक ट्रेसिंग" },
-    "desc-varnmala": { en: "Learn Hindi Alphabet", hi: "हिंदी वर्णमाला सीखें", mr: "हिंदी मुळाक्षरे शिका" },
+    "desc-varnmala": { en: "Learn Hindi Alphabet", hi: "हिंदी वर्णमाला सीखें", mr: "मराठी मुळाक्षरे शिका" },
     "desc-hindi-trace": { en: "Hindi Tracing", hi: "हिंदी ट्रेसिंग", mr: "हिंदी ट्रेसिंग" },
     "desc-hindi-numberstrace": { en: "Hindi Numbers Tracing", hi: "हिंदी नंबर ट्रेसिंग", mr: "हिंदी अंक ट्रेसिंग" },
     "desc-marathi-numberstrace": { en: "Marathi Numbers Tracing", hi: "मराठी नंबर ट्रेसिंग", mr: "मराठी अंक ट्रेसिंग" },

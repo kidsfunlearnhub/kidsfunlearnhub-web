@@ -3,28 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn Varnamala</title>
-    <link rel="stylesheet" href="varnmala.css">
+    
+    <!-- Advanced SEO Meta Tags -->
+    <title>Learn Varnamala | Hindi & Marathi Alphabet | KidsFunLearnHub</title>
+    <meta name="title" content="Learn Varnamala | Hindi & Marathi Alphabet | KidsFunLearnHub">
+    <meta name="description" content="Learn the Hindi and Marathi Varnamala (Swar and Vyanjan)! Fun, interactive alphabet flashcards with images, sounds, and pronunciation for kids.">
+    <meta name="keywords" content="learn varnamala, hindi alphabet, marathi alphabet, swar and vyanjan, kids learning, KidsFunLearnHub, devanagari">
+    <meta name="author" content="KidsFunLearnHub">
+    
+    <link rel="canonical" href="https://kidsfunlearnhub.com/varnmala.html">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kidsfunlearnhub.com/varnmala.html">
+    <meta property="og:title" content="Learn Varnamala with KidsFunLearnHub">
+    <meta property="og:description" content="Interactive Swar and Vyanjan flashcards with fun vocabulary and sounds!">
+    <meta property="og:image" content="https://kidsfunlearnhub.com/images/varnmala-preview.jpg"> 
+
+    <!-- Schema.org JSON-LD for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalApplication",
+      "name": "Interactive Varnamala Learning",
+      "url": "https://kidsfunlearnhub.com/varnmala.html",
+      "description": "An interactive tool for kids to learn the Devanagari script, divided into Swar (vowels) and Vyanjan (consonants) with audio support.",
+      "applicationCategory": "EducationalGame",
+      "operatingSystem": "Any",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student",
+        "audienceType": "toddlers and preschoolers"
+      },
+      "publisher": { "@type": "Organization", "name": "KidsFunLearnHub", "url": "https://kidsfunlearnhub.com" }
+    }
+    </script>
+
+    <link rel="stylesheet" href="varnmala.css?v=1">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
+
 <body>
 
-    <h1 id="page-title">अ Learn Varnamala</h1>
+    <!-- Cursor Selector -->
+    <div class="cursor-dropdown" aria-label="Select Custom Cursor">
+        <select id="cursorSelect">
+            <option value="">Default Cursor</option>
+            <option value="dinosaur.png">🦖 Dinosaur</option>
+            <option value="star.png">⭐ Star</option>
+        </select>
+    </div>
 
-    <div id="varnamalaGrid" class="grid"></div>
+    <!-- Floating Bubble Button for Parent Corner -->
+    <a href="parent.html" class="parent-corner bubble-btn" id="parentCornerBtn" aria-label="Go to Parent Corner">
+        👨‍👩‍👧 Parent Corner
+    </a>
 
-    <button id="toggleBtn">➡ Show Vyanjan</button>
+    <header>
+        <h1 class="title" id="page-title">अ Learn Varnamala</h1>
+        
+        <!-- Breadcrumb Navigation -->
+        <nav class="home-nav">
+          <a href="index.html" class="home-btn" id="homeBtnNav">🏠 Home</a>
+          <a href="hub.html" class="home-btn" id="hubBtnNav" style="background:#ff9800; margin-left:10px;">🎮 Activity Hub</a>
+        </nav>
+    </header>
 
-    <div id="popup" class="popup hidden">
-        <div class="popup-card">
-            <div class="popup-images">
-                <img id="popupImgLetter" alt="Varnamala Letter">
-                <img id="popupImgWord" alt="Varnamala Word">
-            </div>
-            <h2 id="popupName"></h2>
+    <!-- TOP AD ZONE: AdSense Safe -->
+    <div class="ad-container">
+        <div class="ad-space">
+            <span>[AdSense Top Banner Area]</span>
         </div>
     </div>
 
-    <script src="varnmala.js"></script>
+    <!-- MAIN GRID CONTENT -->
+    <main class="page-wrapper">
+        <div id="varnamalaGrid" class="container grid" role="list"></div>
+
+        <!-- Toggle Controls (Swar / Vyanjan) -->
+        <div class="card-nav">
+            <button id="toggleBtn" class="action-btn">➡ Show Vyanjan</button>
+        </div>
+
+        <!-- BOTTOM NAVIGATION BUTTONS -->
+        <nav class="bottom-nav">
+            <a href="hub.html" class="home-btn" id="backBtn" style="background:#e91e63;">⬅ Back</a>
+            <a href="varnmalatrace.html" class="home-btn" id="traceBtn" style="background:#4caf50;">Varnamala Tracing</a>
+            <a href="hub.html" class="home-btn" id="activitiesBtn" style="background:#9c27b0;">Varnamala Activities</a>
+        </nav>
+    </main>
+
+    <!-- SEO Friendly Introduction Box -->
+    <section class="seo-intro-box">
+        <p id="seoText"></p>
+    </section>
+
+    <!-- BOTTOM AD ZONE -->
+    <div class="ad-container">
+        <div class="ad-space">
+            <span>[AdSense Bottom Banner Area]</span>
+        </div>
+    </div>
+
+    <!-- POPUP OVERLAY -->
+    <div id="popup" class="popup hidden" role="dialog" aria-modal="true">
+      <div class="popup-card">
+        <div class="popup-images">
+            <img id="popupImgLetter" alt="Varnamala Letter">
+            <span class="plus-sign">➕</span>
+            <img id="popupImgWord" alt="Varnamala Word">
+        </div>
+        <h2 id="popupName"></h2>
+        <button class="close-btn" id="closePopupBtn">Close ✖</button>
+      </div>
+    </div>
+
+    <footer class="footer">
+        <nav aria-label="Footer Navigation">
+           <a href="aboutus.html">About Us</a> |
+            <a href="termsandconditions.html">Terms & Conditions</a> |
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="disclaimer.html">Disclaimer</a> |
+            <a href="contactus.html">Contact Us</a>
+        </nav>
+        <p class="copyright">© 2026 KidsFunLearnHub. All rights reserved.</p>
+    </footer>
+
+    <script src="varnmala.js?v=1"></script>
 </body>
 </html>

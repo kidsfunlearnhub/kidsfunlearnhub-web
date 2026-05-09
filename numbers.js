@@ -1,3 +1,5 @@
+"use strict";
+
 window.onload = function() {
 
     /////////////////////////////////////////////////
@@ -8,7 +10,19 @@ window.onload = function() {
 
     const uiDictionary = {
         "page-title": { en: "🔢 Learn Numbers", hi: "🔢 नंबर सीखें", mr: "🔢 क्रमांक शिका" },
-        "nextBtn": { en: "➡ Next Numbers", hi: "➡ अगले नंबर", mr: "➡ पुढील क्रमांक" }
+        "homeBtnNav": { en: "🏠 Home", hi: "🏠 होम", mr: "🏠 होम" },
+        "hubBtnNav": { en: "🎮 Activity Hub", hi: "🎮 एक्टिविटी हब", mr: "🎮 ऍक्टिव्हिटी हब" },
+        "parentCornerBtn": { en: "👨‍👩‍👧 Parent Corner", hi: "👨‍👩‍👧 पेरेंट कॉर्नर", mr: "👨‍👩‍👧 पेरेंट कॉर्नर" },
+        "nextBtn": { en: "➡ Next Numbers", hi: "➡ अगले नंबर", mr: "➡ पुढील क्रमांक" },
+        "backBtn": { en: "⬅ Back", hi: "⬅ पीछे", mr: "⬅ मागे" },
+        "traceBtn": { en: "Number Tracing", hi: "नंबर ट्रेसिंग", mr: "अंक ट्रेसिंग" },
+        "activitiesBtn": { en: "Numbers Activities", hi: "नंबर गतिविधियां", mr: "अंक ऍक्टिव्हिटीज" },
+        "closePopupBtn": { en: "Close ✖", hi: "बंद करें ✖", mr: "बंद करा ✖" },
+        "seoText": {
+            en: "Welcome to the <strong>KidsFunLearnHub Numbers Learning Zone</strong>! Tap on any number to see it come to life with fun counting images and sounds. This interactive activity helps toddlers connect digits to visual quantities, boosting their early math skills, counting abilities, and pronunciation.",
+            hi: "<strong>KidsFunLearnHub नंबर्स लर्निंग ज़ोन</strong> में आपका स्वागत है! मज़ेदार गिनती वाली छवियों और ध्वनियों के साथ इसे जीवंत होते देखने के लिए किसी भी नंबर पर टैप करें। यह संवादात्मक गतिविधि बच्चों को अंकों को दृश्य मात्रा से जोड़ने में मदद करती है, जिससे उनके शुरुआती गणित कौशल, गिनती की क्षमताओं और उच्चारण को बढ़ावा मिलता है।",
+            mr: "<strong>KidsFunLearnHub नंबर्स लर्निंग झोनमध्ये</strong> आपले स्वागत आहे! मजेदार मोजणीच्या प्रतिमा आणि आवाजांसह ते जिवंत होताना पाहण्यासाठी कोणत्याही क्रमांकावर टॅप करा. हा संवादात्मक क्रियाकलाप लहान मुलांना अंकांना दृश्य प्रमाणाशी जोडण्यास मदत करतो, ज्यामुळे त्यांचे सुरुवातीचे गणित कौशल्य, मोजणी क्षमता आणि उच्चार वाढतो."
+        }
     };
 
     // Dictionary for 1-40
@@ -56,7 +70,7 @@ window.onload = function() {
     };
 
     const numbers = Object.keys(numbersDict);
-    const PAGE_SIZE = 20; // Show 20 numbers per page
+    const PAGE_SIZE = 20; 
     let currentPage = 0;
 
     /////////////////////////////////////////////////
@@ -69,37 +83,46 @@ window.onload = function() {
     const popupImgObject = document.getElementById("popupImgObject");
     const popupName = document.getElementById("popupName");
     const nextBtn = document.getElementById("nextBtn");
+    const closePopupBtn = document.getElementById("closePopupBtn");
+    const traceBtn = document.getElementById("traceBtn");
 
-    const titleElement = document.getElementById("page-title");
-    if (titleElement) titleElement.innerText = uiDictionary["page-title"][currentLang];
-    if (nextBtn) nextBtn.innerText = uiDictionary["nextBtn"][currentLang];
+    // Apply text translations using innerHTML to keep bold tags
+    for (let id in uiDictionary) {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = uiDictionary[id][currentLang];
+    }
+
+    // Smart Routing for the Tracing Button
+    if (traceBtn) {
+        if (currentLang === 'hi' || currentLang === 'mr') {
+            traceBtn.href = "devnagaarinumberstrace.html";
+        } else {
+            traceBtn.href = "numberstrace.html";
+        }
+    }
 
     /////////////////////////////////////////////////
-    // 🚀 ULTRA-FAST PRELOAD CACHE (DOUBLE IMAGES)
+    // 🚀 ULTRA-FAST PRELOAD CACHE
     /////////////////////////////////////////////////
 
     const imageCacheDigits = {};
     const imageCacheObjects = {};
     const soundCache = {};
 
-    // NEW: Decide which folder to use based on the language!
     let imageFolder = 'en'; 
     if (currentLang === 'hi' || currentLang === 'mr') {
-        imageFolder = 'devanagari'; // Both Hindi and Marathi will pull from this exact same folder!
+        imageFolder = 'devanagari'; 
     }
 
     numbers.forEach(num => {
-      // 1. Preload the Number Digit Image
       const imgDigit = new Image();
       imgDigit.src = `images/numbers/digits/${imageFolder}/${num}.webp`;
       imageCacheDigits[num] = imgDigit;
 
-      // 2. Preload the Associated Counting Image (e.g. 5 apples)
       const imgObject = new Image();
       imgObject.src = `images/numbers/objects/${num}.webp`; 
       imageCacheObjects[num] = imgObject;
 
-      // 3. Preload the Sound 
       const audio = new Audio();
       audio.src = `sounds/${currentLang}/numbers/${num}.mp3`;
       audio.preload = "auto";
@@ -120,16 +143,11 @@ window.onload = function() {
       numbers.slice(start, end).forEach(num => {
         const card = document.createElement("div");
         card.className = "card";
-
-        // Main grid shows the digit image and the number text
-        // card.innerHTML = `
-        //   <img src="${imageCacheDigits[num].src}" alt="${num}">
-        //   <p>${num}</p>
-        // `;
+        card.setAttribute("role", "button");
+        card.setAttribute("aria-label", "Learn number " + num);
 
         card.innerHTML = `
           <img src="${imageCacheDigits[num].src}" alt="${num}">
-         
         `;
 
         card.onclick = () => showNumber(num);
@@ -145,10 +163,10 @@ window.onload = function() {
         nextBtn.onclick = () => {
           currentPage++;
           if (currentPage * PAGE_SIZE >= numbers.length) {
-            currentPage = 0; // Loop back to the first page (1-20)
+            currentPage = 0; 
           }
           loadPage();
-          window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll up nicely
+          window.scrollTo({ top: 0, behavior: 'smooth' }); 
         };
     }
 
@@ -169,8 +187,33 @@ window.onload = function() {
       launchConfetti();
     }
 
-    if (popup) {
-        popup.onclick = () => popup.classList.add("hidden");
+    function closePopup() {
+        if (popup) popup.classList.add("hidden");
+    }
+
+    if (popup) popup.onclick = closePopup;
+    if (closePopupBtn) closePopupBtn.onclick = closePopup;
+
+    /////////////////////////////////////////////////
+    // CURSOR LOGIC
+    /////////////////////////////////////////////////
+    const select = document.getElementById("cursorSelect");
+    const savedCursor = localStorage.getItem("kidsCursor");
+    if (savedCursor) {
+        document.documentElement.style.cursor = savedCursor;
+        if(select) select.value = savedCursor.split("/").pop().replace(/["')]/g, '').split(' ')[0];
+    }
+    if(select) {
+        select.addEventListener("change", () => {
+            if (!select.value) {
+                document.documentElement.style.cursor = "auto";
+                localStorage.removeItem("kidsCursor");
+                return;
+            }
+            const cursorValue = `url("images/cursors/${select.value}") 16 16, auto`;
+            document.documentElement.style.cursor = cursorValue;
+            localStorage.setItem("kidsCursor", cursorValue);
+        });
     }
 
     /////////////////////////////////////////////////
@@ -183,10 +226,6 @@ window.onload = function() {
       }
     }
 
-    /////////////////////////////////////////////////
     // INIT
-    /////////////////////////////////////////////////
-
     loadPage();
 };
-
