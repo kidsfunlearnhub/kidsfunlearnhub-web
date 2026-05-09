@@ -94,32 +94,50 @@ document.addEventListener("DOMContentLoaded", () => {
         if (nextBtn) nextBtn.disabled = page >= totalPages - 1;
     }
 
-    if (prevBtn) prevBtn.addEventListener("click", () => { if (currentPage > 0) { currentPage--; showPage(currentPage); } });
-    if (nextBtn) nextBtn.addEventListener("click", () => { if (currentPage < totalPages - 1) { currentPage++; showPage(currentPage); } });
+    // --- ADDED SCROLL BEHAVIOR HERE ---
+    if (prevBtn) {
+        prevBtn.addEventListener("click", () => { 
+            if (currentPage > 0) { 
+                currentPage--; 
+                showPage(currentPage); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); // Scrolls to top
+            } 
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener("click", () => { 
+            if (currentPage < totalPages - 1) { 
+                currentPage++; 
+                showPage(currentPage); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); // Scrolls to top
+            } 
+        });
+    }
 
     // Initial Load
     showPage(currentPage);
 
     // --- 3. Dynamic Random Gradients (18 Vibrant Colors!) ---
     const vividGradients = [
-        "linear-gradient(135deg, #ff5252 0%, #ff7a7a 100%)", /* Bright Red */
-        "linear-gradient(135deg, #9452ff 0%, #b080ff 100%)", /* Vivid Purple */
-        "linear-gradient(135deg, #ea33ad 0%, #ff66cc 100%)", /* Hot Pink */
-        "linear-gradient(135deg, #1acf6b 0%, #4ae58b 100%)", /* Neon Green */
-        "linear-gradient(135deg, #ff9800 0%, #ffb74d 100%)", /* Bright Orange */
-        "linear-gradient(135deg, #00c6fb 0%, #005bea 100%)", /* Ocean Blue */
-        "linear-gradient(135deg, #f6d365 0%, #f5653e 100%)", /* Sunset Gold */
-        "linear-gradient(135deg, #ff0844 0%, #ffb199 100%)", /* Cherry Red */
-        "linear-gradient(135deg, #b224ef 0%, #7579ff 100%)", /* Electric Violet */
-        "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)", /* Mint Teal */
-        "linear-gradient(135deg, #fa709a 0%, #fee140 100%)", /* Pink to Yellow */
-        "linear-gradient(135deg, #f43b47 0%, #453a94 100%)", /* Crimson to Deep Purple */
-        "linear-gradient(135deg, #0ba360 0%, #3cba92 100%)", /* Emerald Green */
-        "linear-gradient(135deg, #ea647a 0%, #fc3588 100%)", /* Bubblegum Pink */
-        "linear-gradient(135deg, #64b5f6 0%, #2196f3 100%)", /* Sky Blue */
-        "linear-gradient(135deg, #fccb90 0%, #d57eeb 100%)", /* Peach to Magenta */
-        "linear-gradient(135deg, #00f2fe 0%, #4facfe 100%)", /* Cyan to Azure */
-        "linear-gradient(135deg, #f83e44 0%, #fecfef 100%)"  /* Candy Pink */
+        "linear-gradient(135deg, #ff5252 0%, #ff7a7a 100%)",
+        "linear-gradient(135deg, #9452ff 0%, #b080ff 100%)",
+        "linear-gradient(135deg, #ea33ad 0%, #ff66cc 100%)",
+        "linear-gradient(135deg, #1acf6b 0%, #4ae58b 100%)",
+        "linear-gradient(135deg, #ff9800 0%, #ffb74d 100%)",
+        "linear-gradient(135deg, #00c6fb 0%, #005bea 100%)",
+        "linear-gradient(135deg, #f6d365 0%, #f5653e 100%)",
+        "linear-gradient(135deg, #ff0844 0%, #ffb199 100%)",
+        "linear-gradient(135deg, #b224ef 0%, #7579ff 100%)",
+        "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+        "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+        "linear-gradient(135deg, #f43b47 0%, #453a94 100%)",
+        "linear-gradient(135deg, #0ba360 0%, #3cba92 100%)",
+        "linear-gradient(135deg, #ea647a 0%, #fc3588 100%)",
+        "linear-gradient(135deg, #64b5f6 0%, #2196f3 100%)",
+        "linear-gradient(135deg, #fccb90 0%, #d57eeb 100%)",
+        "linear-gradient(135deg, #00f2fe 0%, #4facfe 100%)",
+        "linear-gradient(135deg, #f83e44 0%, #fecfef 100%)"
     ];
 
     let availableGradients = [...vividGradients];
@@ -197,4 +215,3 @@ document.addEventListener("click", () => {
         bgMusicStarted = true;
     }
 }, { once: true });
-

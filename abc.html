@@ -1,33 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Learn ABC</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Advanced SEO Meta Tags -->
+    <title>Learn ABC | English Alphabet for Kids | KidsFunLearnHub</title>
+    <meta name="title" content="Learn ABC | English Alphabet for Kids | KidsFunLearnHub">
+    <meta name="description" content="Learn the English alphabet A to Z! Fun, interactive ABC flashcards with images, sounds, and pronunciation for toddlers and preschoolers.">
+    <meta name="keywords" content="learn abc, alphabet for kids, a for apple, kids abc games, english alphabet, toddler learning, KidsFunLearnHub">
+    <meta name="author" content="KidsFunLearnHub">
+    
+    <link rel="canonical" href="https://kidsfunlearnhub.com/abc.html">
 
-<link rel="stylesheet" href="abc.css">
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kidsfunlearnhub.com/abc.html">
+    <meta property="og:title" content="Learn the ABCs with KidsFunLearnHub">
+    <meta property="og:description" content="Interactive 3D letters, fun vocabulary images, and sound! The best way for kids to learn A to Z.">
+    <meta property="og:image" content="https://kidsfunlearnhub.com/images/abc-preview.jpg"> 
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Schema.org JSON-LD for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalApplication",
+      "name": "Interactive ABC Flashcards",
+      "url": "https://kidsfunlearnhub.com/abc.html",
+      "description": "An interactive tool for toddlers to learn the English alphabet, complete with 3D letters, vocabulary images (like A for Apple), and audio pronunciation.",
+      "applicationCategory": "EducationalGame",
+      "operatingSystem": "Any",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student",
+        "audienceType": "toddlers and preschoolers"
+      },
+      "publisher": { "@type": "Organization", "name": "KidsFunLearnHub", "url": "https://kidsfunlearnhub.com" }
+    }
+    </script>
+
+    <link rel="stylesheet" href="abc.css?v=2">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 
 <body>
 
-<h1 id="page-title">🔤 Learn ABC</h1>
-
-<div id="abcGrid" class="grid"></div>
-
-<button id="nextBtn">➡ Next Letters</button>
-
-<div id="popup" class="popup hidden">
-  <div class="popup-card">
-    <div class="popup-images">
-        <img id="popupImgLetter" alt="Alphabet Letter">
-        <img id="popupImgWord" alt="Alphabet Word">
+    <!-- Cursor Selector -->
+    <div class="cursor-dropdown" aria-label="Select Custom Cursor">
+        <select id="cursorSelect">
+            <option value="">Default Cursor</option>
+            <option value="dinosaur.png">🦖 Dinosaur</option>
+            <option value="star.png">⭐ Star</option>
+        </select>
     </div>
-    <h2 id="popupName"></h2>
-  </div>
-</div>
 
-<script src="abc.js"></script>
+    <!-- Floating Bubble Button for Parent Corner -->
+    <a href="parent.html" class="parent-corner bubble-btn" aria-label="Go to Parent Corner">
+        👨‍👩‍👧 Parent Corner
+    </a>
+
+    <header>
+        <h1 class="title" id="page-title">🔠 Learn ABC</h1>
+        
+        <!-- Breadcrumb Navigation -->
+        <nav class="home-nav">
+          <a href="index.html" class="home-btn">🏠 Home</a>
+          <a href="hub.html" class="home-btn" style="background:#ff9800; margin-left:10px;">🎮 Activity Hub</a>
+        </nav>
+    </header>
+
+    <!-- TOP AD ZONE: AdSense Safe -->
+    <div class="ad-container">
+        <div class="ad-space">
+            <span>[AdSense Top Banner Area]</span>
+        </div>
+    </div>
+
+    <!-- MAIN GRID CONTENT -->
+    <main class="page-wrapper">
+        <div id="abcGrid" class="container grid" role="list"></div>
+
+        <!-- Pagination Controls -->
+        <div class="card-nav">
+            <button id="nextBtn" class="action-btn">➡ Next Letters</button>
+        </div>
+    </main>
+
+    <!-- SEO Friendly Introduction Box -->
+    <section class="seo-intro-box">
+        <p>Welcome to the <strong>KidsFunLearnHub ABC Learning Zone</strong>! Tap on any letter to see it come to life with fun images and sounds. This interactive activity helps toddlers connect letters to familiar words—like <strong>A for Apple</strong> and <strong>B for Ball</strong>—boosting their vocabulary, pronunciation, and early reading skills.</p>
+    </section>
+
+    <!-- BOTTOM AD ZONE -->
+    <div class="ad-container">
+        <div class="ad-space">
+            <span>[AdSense Bottom Banner Area]</span>
+        </div>
+    </div>
+
+    <!-- POPUP OVERLAY -->
+    <div id="popup" class="popup hidden" role="dialog" aria-modal="true">
+      <div class="popup-card">
+        <div class="popup-images">
+            <img id="popupImgLetter" alt="Alphabet Letter">
+            <span class="plus-sign">➕</span>
+            <img id="popupImgWord" alt="Alphabet Vocabulary Word">
+        </div>
+        <h2 id="popupName"></h2>
+        <button class="close-btn" id="closePopupBtn">Close ✖</button>
+      </div>
+    </div>
+
+    <footer class="footer">
+        <nav aria-label="Footer Navigation">
+            <a href="aboutus.html">About Us</a> |
+            <a href="termsandconditions.html">Terms & Conditions</a> |
+            <a href="privacy.html">Privacy Policy</a>
+        </nav>
+        <p class="copyright">© 2026 KidsFunLearnHub. All rights reserved.</p>
+    </footer>
+
+    <script src="abc.js?v=2"></script>
 </body>
 </html>

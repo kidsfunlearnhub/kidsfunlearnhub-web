@@ -1,3 +1,5 @@
+"use strict";
+
 window.onload = function() {
 
     /////////////////////////////////////////////////
@@ -7,11 +9,11 @@ window.onload = function() {
     let currentLang = localStorage.getItem('mySecretLanguage') || 'en';
 
     const uiDictionary = {
-        "page-title": { en: "🔤 Learn ABC", hi: "🔤 एबीसी (ABC) सीखें", mr: "🔤 एबीसी (ABC) शिका" },
+        "page-title": { en: "🔠 Learn ABC", hi: "🔠 एबीसी (ABC) सीखें", mr: "🔠 एबीसी (ABC) शिका" },
         "nextBtn": { en: "➡ Next Letters", hi: "➡ अगले अक्षर", mr: "➡ पुढील अक्षरे" }
     };
 
-    // Dictionary for A-Z (Includes English, Hindi, and Marathi translations for the words)
+    // Dictionary for A-Z
     const abcDict = {
         "a": { en: "A for Apple", hi: "A - सेब", mr: "A - सफरचंद" },
         "b": { en: "B for Ball", hi: "B - गेंद", mr: "B - चेंडू" },
@@ -42,7 +44,7 @@ window.onload = function() {
     };
 
     const letters = Object.keys(abcDict);
-    const PAGE_SIZE = 13; // Exactly half the alphabet per page!
+    const PAGE_SIZE = 14; // Exactly half the alphabet per page
     let currentPage = 0;
 
     /////////////////////////////////////////////////
@@ -55,13 +57,14 @@ window.onload = function() {
     const popupImgWord = document.getElementById("popupImgWord");
     const popupName = document.getElementById("popupName");
     const nextBtn = document.getElementById("nextBtn");
+    const closePopupBtn = document.getElementById("closePopupBtn");
 
     const titleElement = document.getElementById("page-title");
     if (titleElement) titleElement.innerText = uiDictionary["page-title"][currentLang];
     if (nextBtn) nextBtn.innerText = uiDictionary["nextBtn"][currentLang];
 
     /////////////////////////////////////////////////
-    // 🚀 ULTRA-FAST PRELOAD CACHE (DOUBLE IMAGES)
+    // 🚀 ULTRA-FAST PRELOAD CACHE
     /////////////////////////////////////////////////
 
     const imageCacheLetters = {};
@@ -69,17 +72,17 @@ window.onload = function() {
     const soundCache = {};
 
     letters.forEach(name => {
-      // 1. Preload the 3D Letter Image
+      // 1. Preload 3D Letter Image
       const imgLetter = new Image();
       imgLetter.src = `images/abc/letters/${name}.webp`;
       imageCacheLetters[name] = imgLetter;
 
-      // 2. Preload the Associated Word Image (e.g. Apple)
+      // 2. Preload Word Image (e.g. Apple)
       const imgWord = new Image();
       imgWord.src = `images/abc/words/${name}.webp`; 
       imageCacheWords[name] = imgWord;
 
-      // 3. Preload the Sound ("A for Apple")
+      // 3. Preload Sound
       const audio = new Audio();
       audio.src = `sounds/${currentLang}/abc/${name}.mp3`;
       audio.preload = "auto";
@@ -100,11 +103,13 @@ window.onload = function() {
       letters.slice(start, end).forEach(name => {
         const card = document.createElement("div");
         card.className = "card";
+        card.setAttribute("role", "button");
+        card.setAttribute("aria-label", "Learn letter " + name);
 
-        // Main grid just shows the 3D letter and the Capital Letter text
+        // CHANGED: The text below the image is now strictly lowercase
         card.innerHTML = `
           <img src="${imageCacheLetters[name].src}" alt="${name}">
-          <p>${name.toLowerCase()}</p>
+          <p class="big-text bouncing">${name.toLowerCase()}</p>
         `;
 
         card.onclick = () => showLetter(name);
@@ -113,7 +118,7 @@ window.onload = function() {
     }
 
     /////////////////////////////////////////////////
-    // NEXT BUTTON
+    // NEXT BUTTON & SCROLL TO TOP
     /////////////////////////////////////////////////
 
     if (nextBtn) {
@@ -123,11 +128,14 @@ window.onload = function() {
             currentPage = 0;
           }
           loadPage();
+          
+          // Smooth scroll to the top of the grid
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         };
     }
 
     /////////////////////////////////////////////////
-    // POPUP DISPLAY (TWO IMAGES)
+    // POPUP DISPLAY & ANYWHERE-CLOSE LOGIC
     /////////////////////////////////////////////////
 
     function showLetter(name) {
@@ -143,8 +151,41 @@ window.onload = function() {
       launchConfetti();
     }
 
+    // Close logic
+    function closePopup() {
+        if (popup) popup.classList.add("hidden");
+    }
+
+    // CHANGED: Clicking anywhere on the popup overlay or the card itself will now close it.
     if (popup) {
-        popup.onclick = () => popup.classList.add("hidden");
+        popup.onclick = closePopup;
+    }
+    
+    // Fallback for the close button if they happen to click exactly on it
+    if (closePopupBtn) {
+        closePopupBtn.onclick = closePopup;
+    }
+
+    /////////////////////////////////////////////////
+    // CURSOR LOGIC
+    /////////////////////////////////////////////////
+    const select = document.getElementById("cursorSelect");
+    const savedCursor = localStorage.getItem("kidsCursor");
+    if (savedCursor) {
+        document.documentElement.style.cursor = savedCursor;
+        if(select) select.value = savedCursor.split("/").pop().replace(/["')]/g, '').split(' ')[0];
+    }
+    if(select) {
+        select.addEventListener("change", () => {
+            if (!select.value) {
+                document.documentElement.style.cursor = "auto";
+                localStorage.removeItem("kidsCursor");
+                return;
+            }
+            const cursorValue = `url("images/cursors/${select.value}") 16 16, auto`;
+            document.documentElement.style.cursor = cursorValue;
+            localStorage.setItem("kidsCursor", cursorValue);
+        });
     }
 
     /////////////////////////////////////////////////
@@ -157,9 +198,6 @@ window.onload = function() {
       }
     }
 
-    /////////////////////////////////////////////////
     // INIT
-    /////////////////////////////////////////////////
-
     loadPage();
 };
