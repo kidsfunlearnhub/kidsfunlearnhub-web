@@ -3,11 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alphabet Tracing</title>
-    <link rel="stylesheet" href="abctrace.css">
+    
+    <!-- Advanced SEO Meta Tags -->
+    <title>Alphabet Tracing | Learn to Write ABC | KidsFunLearnHub</title>
+    <meta name="title" content="Alphabet Tracing | Learn to Write ABC | KidsFunLearnHub">
+    <meta name="description" content="Interactive alphabet tracing for kids! Learn how to write English letters A to Z with guided animations, pencil strokes, and sounds for toddlers.">
+    <meta name="keywords" content="alphabet tracing, learn to write abc, writing letters for kids, interactive tracing, KidsFunLearnHub, preschool writing">
+    <meta name="author" content="KidsFunLearnHub">
+    
+    <link rel="canonical" href="https://kidsfunlearnhub.com/abctrace.html">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kidsfunlearnhub.com/abctrace.html">
+    <meta property="og:title" content="Learn to Write the ABCs with KidsFunLearnHub">
+    <meta property="og:description" content="Watch the magical pencil trace the letters, then try it yourself! Fun writing practice for kids.">
+    <meta property="og:image" content="https://kidsfunlearnhub.com/images/abctrace-preview.jpg"> 
+
+    <!-- Schema.org JSON-LD for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalApplication",
+      "name": "Interactive Alphabet Tracing",
+      "url": "https://kidsfunlearnhub.com/abctrace.html",
+      "description": "An interactive writing tool that visually guides toddlers on how to write the English alphabet stroke-by-stroke.",
+      "applicationCategory": "EducationalGame",
+      "operatingSystem": "Any",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student",
+        "audienceType": "toddlers and preschoolers"
+      },
+      "publisher": { "@type": "Organization", "name": "KidsFunLearnHub", "url": "https://kidsfunlearnhub.com" }
+    }
+    </script>
+
+    <link rel="stylesheet" href="abctrace.css?v=2">
 </head>
+
 <body>
-    <div id="alphabet-grid" class="grid-container"></div>
-    <script src="abctrace.js"></script>
+
+    <!-- Cursor Selector -->
+    <div class="cursor-dropdown" aria-label="Select Custom Cursor">
+        <select id="cursorSelect">
+            <option value="">Default Cursor</option>
+            <option value="dinosaur.png">🦖 Dinosaur</option>
+            <option value="star.png">⭐ Star</option>
+        </select>
+    </div>
+
+    <!-- Floating Bubble Button for Parent Corner -->
+    <a href="parent.html" class="parent-corner bubble-btn" aria-label="Go to Parent Corner">
+        👨‍👩‍👧 Parent Corner
+    </a>
+
+    <header>
+        <h1 class="title" id="page-title">✏️ Alphabet Tracing</h1>
+        
+        <!-- Breadcrumb Navigation -->
+        <nav class="home-nav">
+          <a href="index.html" class="home-btn">🏠 Home</a>
+          <a href="hub.html" class="home-btn" style="background:#ff9800; margin-left:10px;">🎮 Activity Hub</a>
+        </nav>
+    </header>
+
+    <!-- TOP AD ZONE: AdSense Safe -->
+    <div class="ad-container">
+        <div class="ad-space">
+            <span>[AdSense Top Banner Area]</span>
+        </div>
+    </div>
+
+    <!-- MAIN GRID CONTENT -->
+    <main class="page-wrapper">
+        <div id="alphabet-grid" class="grid-container" role="list"></div>
+
+        <!-- BOTTOM NAVIGATION BUTTONS -->
+        <nav class="bottom-nav">
+            <a href="hub.html" class="home-btn" id="backBtn" style="background:#e91e63;">⬅ Back</a>
+            <a href="abc.html" class="home-btn" id="learnAbcBtn" style="background:#4caf50;">Learn ABC</a>
+            <a href="hub.html" class="home-btn" id="activitiesBtn" style="background:#9c27b0;">ABC Activities</a>
+        </nav>
+    </main>
+
+    <!-- SEO Friendly Introduction Box (MOVED TO BOTTOM) -->
+    <section class="seo-intro-box">
+        <p>Welcome to the <strong>KidsFunLearnHub Alphabet Tracing Zone</strong>! Tap on any letter to watch the magic pencil show you exactly how to write it, stroke by stroke. This helps children develop fine motor skills and memorize letter formation effortlessly.</p>
+    </section>
+
+    <!-- BOTTOM AD ZONE -->
+    <div class="ad-container">
+        <div class="ad-space">
+            <span>[AdSense Bottom Banner Area]</span>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <nav aria-label="Footer Navigation">
+            <a href="aboutus.html">About Us</a> |
+            <a href="termsandconditions.html">Terms & Conditions</a> |
+            <a href="privacy.html">Privacy Policy</a>
+        </nav>
+        <p class="copyright">© 2026 KidsFunLearnHub. All rights reserved.</p>
+    </footer>
+
+    <script src="abctrace.js?v=2"></script>
 </body>
 </html>
