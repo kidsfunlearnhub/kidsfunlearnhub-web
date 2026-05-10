@@ -11,10 +11,10 @@ const hubDictionary = {
     "bounce-count-numbers": { en: "Count 1 2 3", hi: "गिनती १ २ ३", mr: "मोजणे १ २ ३" },
     "desc-count-numbers": { en: "Learn Counting", hi: "गिनती सीखें", mr: "मोजणे शिका" },
     "desc-numbers-trace": { en: "Numbers Tracing", hi: "नंबर ट्रेसिंग", mr: "अंक ट्रेसिंग" },
-    "desc-varnmala": { en: "Learn Hindi Alphabet", hi: "हिंदी वर्णमाला सीखें", mr: "मराठी मुळाक्षरे शिका" },
-    "desc-hindi-trace": { en: "Hindi Tracing", hi: "हिंदी ट्रेसिंग", mr: "हिंदी ट्रेसिंग" },
-    "desc-hindi-numberstrace": { en: "Hindi Numbers Tracing", hi: "हिंदी नंबर ट्रेसिंग", mr: "हिंदी अंक ट्रेसिंग" },
-    "desc-marathi-numberstrace": { en: "Marathi Numbers Tracing", hi: "मराठी नंबर ट्रेसिंग", mr: "मराठी अंक ट्रेसिंग" },
+    "desc-varnmala": { en: "Learn Hindi Marathi Varnmala", hi: "हिंदी मराठी वर्णमाला सीखें", mr: "मराठी मुळाक्षरे शिका" },
+    "desc-varnmalatrace": { en: "Varnmala Tracing", hi: "वर्णमाला ट्रेसिंग", mr: "मुळाक्षरे ट्रेसिंग" },
+    "desc-devnagaarinumberstrace": { en: "Hindi Marathi Numbers Tracing", hi: "हिंदी नंबर ट्रेसिंग", mr: "मराठी अंक ट्रेसिंग" },
+    // "desc-marathi-numberstrace": { en: "Marathi Numbers Tracing", hi: "मराठी नंबर ट्रेसिंग", mr: "मराठी अंक ट्रेसिंग" },
     "desc-shapes": { en: "Learn Shapes", hi: "आकार सीखें", mr: "आकार शिका" },
     "desc-shapes-trace": { en: "Learn Shapes Tracing", hi: "आकार ट्रेसिंग सीखें", mr: "आकार ट्रेसिंग शिका" },
     "desc-colors": { en: "Learn Colors", hi: "रंग सीखें", mr: "रंग शिका" },
@@ -54,9 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
         card.classList.remove('hidden-by-lang');
         
         const isEnglishOnly = card.classList.contains('abc') || card.classList.contains('abcbigsmall') || card.classList.contains('abctrace') || card.classList.contains('numberstrace');
-        const isHindiOnly = card.classList.contains('hinditrace') || card.classList.contains('hindinumberstrace');
+        const isHindiOnly = card.classList.contains('hindinumberstrace');
         const isMarathiOnly = card.classList.contains('marathinumberstrace');
-        const isSharedHiMr = card.classList.contains('varnmala');
+        const isSharedHiMr = card.classList.contains('varnmala') || card.classList.contains('varnmalatrace') || card.classList.contains('devnagaarinumberstrace');
 
         if (currentLang === 'hi') {
             if (isEnglishOnly || isMarathiOnly) card.classList.add('hidden-by-lang');

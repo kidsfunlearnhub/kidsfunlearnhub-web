@@ -1,0 +1,119 @@
+:root {
+    /* Warm Indian Tones specifically for Varnamala */
+    --bg-gradient: linear-gradient(to right, #ffecd2, #fcb69f);
+    --font-main: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: var(--font-main);
+    background: var(--bg-gradient);
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+header { margin-top: 30px; }
+
+/* Mobile Screen Fixes */
+@media (max-width: 600px) {
+    header { margin-top: 85px; } 
+    .bubble-btn { padding: 8px 12px !important; font-size: 0.85rem !important; }
+    .cursor-dropdown select { padding: 6px 10px !important; font-size: 12px !important; }
+}
+
+.title { font-size: clamp(2.2rem, 5vw, 4rem); color: #c23989; margin: 5px 20px; text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.7); }
+
+.home-nav { display: flex; justify-content: center; margin: 15px 0 20px; flex-wrap: wrap; }
+.home-btn { padding: 10px 25px; font-size: 1.1rem; border-radius: 40px; background: #2196f3; color: white; text-decoration: none; font-weight: bold; box-shadow: 0 6px 12px rgba(0,0,0,0.2); border: 3px solid white; transition: transform 0.2s, background 0.2s; }
+.home-btn:hover { transform: scale(1.05); }
+
+.ad-container { width: 100%; display: flex; justify-content: center; margin: 10px 0 20px 0; position: relative; z-index: 40; padding: 0 15px; box-sizing: border-box; }
+.ad-space { background: rgba(255, 255, 255, 0.35); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 3px dashed rgba(255, 152, 0, 0.7); border-radius: 15px; width: 100%; max-width: 728px; min-height: 90px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px rgba(0,0,0,0.1); color: #555; font-size: 0.9rem; font-weight: bold; overflow: hidden; }
+
+.page-wrapper { flex: 1; width: 100%; max-width: 1250px; margin: auto; padding: 0 20px; box-sizing: border-box; position: relative; z-index: 20; }
+
+/* =========================================
+   FLEXBOX DYNAMIC LAYOUT (7 vs 5 Columns)
+   ========================================= */
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* PERFECTLY centers orphaned bottom rows! */
+    margin: 0 auto 30px auto;
+    transition: max-width 0.4s ease;
+}
+
+/* SWAR: 7 Columns max */
+/* Math: 7 cards * 150px + 6 gaps * 15px = 1050 + 90 = 1140px */
+.grid-container.swar-layout {
+    max-width: 1150px; 
+    gap: 15px;
+}
+
+/* VYANJAN: 5 Columns max */
+/* Math: 5 cards * 150px + 4 gaps * 25px = 750 + 100 = 850px */
+.grid-container.vyanjan-layout {
+    max-width: 860px; 
+    gap: 25px; 
+}
+
+/* CARD STYLING (Increased Size) */
+.card {
+    width: 150px; /* Increased from 130px */
+    flex-grow: 0;
+    flex-shrink: 0;
+    background: white;
+    border-radius: 25px;
+    padding: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    border-bottom: 8px solid rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15); border-bottom-color: #ff5722; }
+.card.active { transform: scale(1.5); z-index: 100; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25); border-bottom-color: #ff9800; }
+
+svg { width: 100%; height: auto; max-width: 120px; overflow: visible; }
+.guide-line { fill: none; stroke: #e0e0e0; stroke-width: 16; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 12 16; }
+.tracing-line { fill: none; stroke: #FF5722; stroke-width: 16; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Mobile Adjustments (Flexbox gracefully reduces columns automatically!) */
+@media screen and (max-width: 800px) {
+    .card { width: 120px; padding: 10px; }
+    .grid-container.swar-layout, .grid-container.vyanjan-layout { gap: 15px; }
+}
+
+.card-nav { display: flex; justify-content: center; margin: 10px 0 30px 0; }
+.action-btn { font-size: clamp(1.2rem, 2vw, 1.8rem); padding: 15px 40px; border-radius: 50px; border: 3px solid white; background: #ff5722; color: white; font-family: inherit; font-weight: bold; cursor: pointer; box-shadow: 0 6px 15px rgba(230, 74, 25, 0.4); transition: all 0.2s ease; }
+.action-btn:hover { background: #e64a19; transform: scale(1.05); }
+.action-btn:active { transform: translateY(4px); box-shadow: none; }
+
+.bottom-nav { display: flex; justify-content: center; gap: 15px; margin: 30px 0 40px 0; flex-wrap: wrap; }
+.bottom-nav .home-btn { min-width: 160px; padding: 12px 20px; }
+@media (max-width: 500px) { .bottom-nav { gap: 10px; padding: 0 10px; } .bottom-nav .home-btn { width: 100%; max-width: 280px; } }
+
+.seo-intro-box { max-width: 900px; margin: 10px auto 30px auto; padding: 20px 30px; background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 2px solid rgba(255, 255, 255, 0.6); border-radius: 20px; font-size: clamp(0.95rem, 1.2vw, 1.1rem); color: #222; line-height: 1.6; box-shadow: 0 8px 32px rgba(0,0,0,0.1); position: relative; z-index: 30; }
+.seo-intro-box p { margin: 0; text-align: justify; }
+
+.footer { text-align: center; padding: 20px 15px; background: #2c3e50; color: white; margin-top: 20px; position: relative; z-index: 20; }
+.footer a { color: #ffcc00; text-decoration: none; margin: 0 10px; display: inline-block; padding: 5px 0; font-size: 1rem; transition: color 0.2s; }
+.footer a:hover { color: #fff; text-decoration: underline; }
+.copyright { margin-top: 10px; font-size: 0.85rem; color: #aaa; }
+
+.cursor-dropdown { position: fixed; top: 15px; left: 15px; z-index: 999; }
+.cursor-dropdown select { padding: 8px 15px; border-radius: 20px; border: 2px solid #00bcd4; font-size: 14px; font-weight: bold; background: white; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); outline: none; }
+.bubble-btn { position: fixed; top: 15px; right: 15px; background: linear-gradient(135deg, #ff9800, #ff4081); color: white; padding: 10px 18px; border-radius: 40px; font-weight: bold; text-decoration: none; box-shadow: 0 8px 18px rgba(0,0,0,0.3); z-index: 999; animation: floaty 2.5s infinite alternate ease-in-out; border: 2px solid white; font-size: clamp(0.85rem, 1.2vw, 1rem); }
+@keyframes floaty { from { transform: translateY(0); } to { transform: translateY(-5px); } }
+.bubble-btn:hover { transform: scale(1.1); }
+button, a, .card { cursor: url("images/cursors/dinosaur_fire.png") 16 16, pointer; }
