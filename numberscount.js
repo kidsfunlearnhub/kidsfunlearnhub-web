@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "parentCornerBtn": { en: "👨‍👩‍👧 Parent Corner", hi: "👨‍👩‍👧 पेरेंट कॉर्नर", mr: "👨‍👩‍👧 पेरेंट कॉर्नर" },
         "btnNext": { en: "21 to 40 ➡️", hi: "२१ से ४० ➡️", mr: "२१ ते ४० ➡️" },
         "btnPrev": { en: "⬅️ 1 to 20", hi: "⬅️ १ से २०", mr: "⬅️ १ ते २०" },
-        "closeHint": { en: "Tap anywhere to close ✖", hi: "बंद करने के लिए टैप करें ✖", mr: "बंद करण्यासाठी टॅप करा ✖" },
+        "closeHint": { en: "Tap here to close ✖", hi: "बंद करने के लिए टैप करें ✖", mr: "बंद करण्यासाठी टॅप करा ✖" },
         "backBtn": { en: "⬅ Back", hi: "⬅ पीछे", mr: "⬅ मागे" },
         "learnBtn": { en: "Learn Numbers", hi: "नंबर सीखें", mr: "अंक शिका" },
         "activitiesBtn": { en: "Numbers Activities", hi: "नंबर गतिविधियां", mr: "अंक ऍक्टिव्हिटीज" },
