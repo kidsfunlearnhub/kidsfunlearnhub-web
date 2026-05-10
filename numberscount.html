@@ -1,37 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Learn Numbers</title>
-  <link rel="stylesheet" href="numberscount.css">
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Counting Numbers 1 to 40 | Interactive Counting | KidsFunLearnHub</title>
+    <meta name="title" content="Counting Numbers 1 to 40 | Interactive Counting | KidsFunLearnHub">
+    <meta name="description" content="Learn to count from 1 to 40! An interactive counting game for kids with fun animations, objects, and audio in English, Hindi, and Marathi.">
+    <meta name="keywords" content="counting numbers, 1 to 40, learn to count, kids math games, toddler counting, KidsFunLearnHub, early math">
+    <meta name="author" content="KidsFunLearnHub">
+    
+    <link rel="canonical" href="https://kidsfunlearnhub.com/numberscount.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kidsfunlearnhub.com/numberscount.html">
+    <meta property="og:title" content="Interactive Counting Game with KidsFunLearnHub">
+    <meta property="og:description" content="Watch the objects appear one by one as we count aloud! The perfect way for kids to understand quantities.">
+    <meta property="og:image" content="https://kidsfunlearnhub.com/images/numberscount-preview.jpg"> 
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalApplication",
+      "name": "Interactive Counting 1-40",
+      "url": "https://kidsfunlearnhub.com/numberscount.html",
+      "description": "An interactive tool for toddlers to visually count objects from 1 to 40, linking the numerical digit to the exact physical quantity.",
+      "applicationCategory": "EducationalGame",
+      "operatingSystem": "Any",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student",
+        "audienceType": "toddlers and preschoolers"
+      },
+      "publisher": { "@type": "Organization", "name": "KidsFunLearnHub", "url": "https://kidsfunlearnhub.com" }
+    }
+    </script>
+
+    <link rel="stylesheet" href="numberscount.css?v=1.3">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
+
 <body>
 
-  <h1 id="page-title">🔢 Learn Numbers</h1>
-
-  <div class="grid-container" id="numbersGrid"></div>
-
-  <div class="pagination-container">
-      <button id="btnPrev" class="page-btn" style="display: none;">⬅️ 1 to 20</button>
-      <button id="btnNext" class="page-btn">21 to 40 ➡️</button>
-  </div>
-
-  <div id="counterOverlay" class="hidden">
-    <div id="counterSquare">
-      <div id="counterCircle">
-        <span id="counterValue">0</span>
-      </div>
-      <div id="imageContainer"></div>
-      
-      <h2 id="popupName"></h2> 
-      
-      <p id="close-hint" class="close-hint">Tap anywhere to close</p>
+    <div class="cursor-dropdown" aria-label="Select Custom Cursor">
+        <select id="cursorSelect">
+            <option value="">Default Cursor</option>
+            <option value="dinosaur.png">🦖 Dinosaur</option>
+            <option value="star.png">⭐ Star</option>
+        </select>
     </div>
-  </div>
 
-  <script src="numberscount.js"></script>
+    <a href="parent.html" class="parent-corner bubble-btn" id="parentCornerBtn" aria-label="Go to Parent Corner">
+        👨‍👩‍👧 Parent Corner
+    </a>
 
+    <header>
+        <h1 class="title" id="page-title">🔢 Learn Numbers</h1>
+        
+        <nav class="home-nav">
+          <a href="index.html" class="home-btn" id="homeBtnNav">🏠 Home</a>
+          <a href="hub.html" class="home-btn" id="hubBtnNav" style="background:#ff9800; margin-left:10px;">🎮 Activity Hub</a>
+        </nav>
+    </header>
+
+    <div class="ad-container">
+        <div class="ad-space">
+            <span>[AdSense Top Banner Area]</span>
+        </div>
+    </div>
+
+    <main class="page-wrapper">
+        
+        <div class="grid-container" id="numbersGrid" role="list"></div>
+
+        <div class="pagination-container">
+            <button id="btnPrev" class="page-btn" style="display: none;">⬅️ 1 to 20</button>
+            <button id="btnNext" class="page-btn">21 to 40 ➡️</button>
+        </div>
+
+        <nav class="bottom-nav">
+            <a href="hub.html" class="home-btn" id="backBtn" style="background:#e91e63;">⬅ Back</a>
+            <a href="numbers.html" class="home-btn" id="learnBtn" style="background:#4caf50;">Learn Numbers</a>
+            <a href="hub.html" class="home-btn" id="activitiesBtn" style="background:#9c27b0;">Numbers Activities</a>
+        </nav>
+    </main>
+
+    <section class="seo-intro-box">
+        <p id="seoText"></p>
+    </section>
+
+    <div class="ad-container">
+        <div class="ad-space">
+            <span>[AdSense Bottom Banner Area]</span>
+        </div>
+    </div>
+
+    <div id="counterOverlay" class="hidden" role="dialog" aria-modal="true">
+        <div id="counterSquare">
+            <div id="counterCircle">
+                <span id="counterValue">0</span>
+            </div>
+            <div id="imageContainer"></div>
+            
+            <h2 id="popupName"></h2> 
+            
+            <p id="closeHint" class="close-hint">Tap anywhere to close ✖</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <nav aria-label="Footer Navigation">
+            <a href="aboutus.html">About Us</a> |
+            <a href="termsandconditions.html">Terms & Conditions</a> |
+            <a href="privacy.html">Privacy Policy</a>
+        </nav>
+        <p class="copyright">© 2026 KidsFunLearnHub. All rights reserved.</p>
+    </footer>
+
+    <script src="numberscount.js?v=1.3"></script>
 </body>
 </html>

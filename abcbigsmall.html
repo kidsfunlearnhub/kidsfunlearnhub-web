@@ -1,31 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Big & Small Letters</title>
-  <link rel="stylesheet" href="abcbigsmall.css">
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Big & Small Letters | Uppercase & Lowercase ABC | KidsFunLearnHub</title>
+    <meta name="title" content="Big & Small Letters | Uppercase & Lowercase ABC | KidsFunLearnHub">
+    <meta name="description" content="Learn uppercase and lowercase English letters! Interactive big and small ABC flashcards with fun jumping animations and sounds for kids.">
+    <meta name="keywords" content="big and small letters, uppercase and lowercase, learn abc, alphabet for kids, kids abc games, english alphabet, KidsFunLearnHub">
+    <meta name="author" content="KidsFunLearnHub">
+    
+    <link rel="canonical" href="https://kidsfunlearnhub.com/abcbigsmall.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kidsfunlearnhub.com/abcbigsmall.html">
+    <meta property="og:title" content="Learn Big & Small Letters with KidsFunLearnHub">
+    <meta property="og:description" content="Match the Capital letters with their lowercase buddies! Interactive alphabet fun for toddlers.">
+    <meta property="og:image" content="https://kidsfunlearnhub.com/images/abcbigsmall-preview.jpg"> 
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalApplication",
+      "name": "Interactive Big & Small Letters",
+      "url": "https://kidsfunlearnhub.com/abcbigsmall.html",
+      "description": "An interactive tool for toddlers to visually connect uppercase capital letters with their lowercase counterparts.",
+      "applicationCategory": "EducationalGame",
+      "operatingSystem": "Any",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student",
+        "audienceType": "toddlers and preschoolers"
+      },
+      "publisher": { "@type": "Organization", "name": "KidsFunLearnHub", "url": "https://kidsfunlearnhub.com" }
+    }
+    </script>
+
+    <link rel="stylesheet" href="abcbigsmall.css?v=1">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
+
 <body>
 
-  <h1 id="page-title">🔠 Big & Small Letters</h1>
-
-  <div class="grid-container" id="lettersGrid"></div>
-
-  <div id="abcOverlay" class="hidden">
-    <div id="abcPopupCard">
-      
-      <div class="letter-buddies">
-         <span id="bigLetter">A</span>
-         <span id="smallLetter">a</span>
-      </div>
-
-      <h2 id="popupText"></h2>
-      <p class="close-hint" id="close-hint">Tap anywhere to close</p>
+    <div class="cursor-dropdown" aria-label="Select Custom Cursor">
+        <select id="cursorSelect">
+            <option value="">Default Cursor</option>
+            <option value="dinosaur.png">🦖 Dinosaur</option>
+            <option value="star.png">⭐ Star</option>
+        </select>
     </div>
-  </div>
 
-  <script src="abcbigsmall.js"></script>
+    <a href="parent.html" class="parent-corner bubble-btn" id="parentCornerBtn" aria-label="Go to Parent Corner">
+        👨‍👩‍👧 Parent Corner
+    </a>
+
+    <header>
+        <h1 class="title" id="page-title">🔠 Big & Small Letters</h1>
+        
+        <nav class="home-nav">
+          <a href="index.html" class="home-btn" id="homeBtnNav">🏠 Home</a>
+          <a href="hub.html" class="home-btn" id="hubBtnNav" style="background:#ff9800; margin-left:10px;">🎮 Activity Hub</a>
+        </nav>
+    </header>
+
+    <div class="ad-container">
+        <div class="ad-space">
+            <span>[AdSense Top Banner Area]</span>
+        </div>
+    </div>
+
+    <main class="page-wrapper">
+        <div class="grid-container" id="lettersGrid" role="list"></div>
+
+        <nav class="bottom-nav">
+            <a href="hub.html" class="home-btn" id="backBtn" style="background:#e91e63;">⬅ Back</a>
+            <a href="abc.html" class="home-btn" id="learnBtn" style="background:#4caf50;">Learn ABC</a>
+            <a href="hub.html" class="home-btn" id="activitiesBtn" style="background:#9c27b0;">ABC Activities</a>
+        </nav>
+    </main>
+
+    <section class="seo-intro-box">
+        <p id="seoText"></p>
+    </section>
+
+    <div class="ad-container">
+        <div class="ad-space">
+            <span>[AdSense Bottom Banner Area]</span>
+        </div>
+    </div>
+
+    <div id="abcOverlay" class="hidden" role="dialog" aria-modal="true">
+        <div id="abcPopupCard">
+            <div class="letter-buddies">
+                <span id="bigLetter">A</span>
+                <span id="smallLetter">a</span>
+            </div>
+            <h2 id="popupText"></h2>
+            <p class="close-hint" id="close-hint">Tap anywhere to close</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <nav aria-label="Footer Navigation">
+            <a href="aboutus.html">About Us</a> |
+            <a href="termsandconditions.html">Terms & Conditions</a> |
+            <a href="privacy.html">Privacy Policy</a>
+        </nav>
+        <p class="copyright">© 2026 KidsFunLearnHub. All rights reserved.</p>
+    </footer>
+
+    <script src="abcbigsmall.js?v=1"></script>
 </body>
 </html>
