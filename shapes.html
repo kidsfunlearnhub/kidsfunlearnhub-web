@@ -3,30 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn Shapes</title>
-    <link rel="stylesheet" href="shapes.css">
+    
+    <title>Learn Shapes | 2D Geometry for Kids | KidsFunLearnHub</title>
+    <meta name="title" content="Learn Shapes | 2D Geometry for Kids | KidsFunLearnHub">
+    <meta name="description" content="Learn basic shapes and geometry for kids! Interactive flashcards connecting shapes like circles and squares to real-world objects with sounds and animations.">
+    <meta name="keywords" content="learn shapes, kids geometry, 2d shapes, circle square triangle, toddler learning, KidsFunLearnHub, early education">
+    <meta name="author" content="KidsFunLearnHub">
+    
+    <link rel="canonical" href="https://kidsfunlearnhub.com/shapes.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kidsfunlearnhub.com/shapes.html">
+    <meta property="og:title" content="Learn Shapes with KidsFunLearnHub">
+    <meta property="og:description" content="Interactive shapes! Tap to see how basic geometry connects to real-world objects.">
+    <meta property="og:image" content="https://kidsfunlearnhub.com/images/shapes-preview.jpg"> 
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalApplication",
+      "name": "Interactive Shapes Learning",
+      "url": "https://kidsfunlearnhub.com/shapes.html",
+      "description": "An interactive educational tool for toddlers to visually connect 2D geometric shapes to recognizable real-world objects.",
+      "applicationCategory": "EducationalGame",
+      "operatingSystem": "Any",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student",
+        "audienceType": "toddlers and preschoolers"
+      },
+      "publisher": { "@type": "Organization", "name": "KidsFunLearnHub", "url": "https://kidsfunlearnhub.com" }
+    }
+    </script>
+
+    <link rel="stylesheet" href="shapes.css?v=1">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
+
 <body>
 
-    <h1 id="page-title">🟢 Learn Shapes</h1>
-
-    <div id="shapesGrid" class="grid"></div>
-
-    <div class="bottom-action-area">
-        <button id="traceBtn" onclick="window.location.href='shapestrace.html'">✏️ Practice Tracing!</button>
+    <div class="cursor-dropdown" aria-label="Select Custom Cursor">
+        <select id="cursorSelect">
+            <option value="">Default Cursor</option>
+            <option value="dinosaur.png">🦖 Dinosaur</option>
+            <option value="star.png">⭐ Star</option>
+        </select>
     </div>
 
-    <div id="popup" class="popup hidden">
-        <div class="popup-card">
-            <div class="popup-images">
-                <img id="popupImgShape" alt="Basic Shape">
-                <img id="popupImgObject" alt="Real World Object">
-            </div>
-            <h2 id="popupName"></h2>
+    <a href="parent.html" class="parent-corner bubble-btn" id="parentCornerBtn" aria-label="Go to Parent Corner">
+        👨‍👩‍👧 Parent Corner
+    </a>
+
+    <header>
+        <h1 class="title" id="page-title">🟢 Learn Shapes</h1>
+        
+        <nav class="home-nav">
+          <a href="index.html" class="home-btn" id="homeBtnNav">🏠 Home</a>
+          <a href="hub.html" class="home-btn" id="hubBtnNav" style="background:#ff9800; margin-left:10px;">🎮 Activity Hub</a>
+        </nav>
+    </header>
+
+    <div class="ad-container">
+        <div class="ad-space">
+            <span>[AdSense Top Banner Area]</span>
         </div>
     </div>
 
-    <script src="shapes.js"></script>
+    <main class="page-wrapper">
+        <div id="shapesGrid" class="grid-container" role="list"></div>
+
+        <nav class="bottom-nav">
+            <a href="hub.html" class="home-btn" id="backBtn" style="background:#e91e63;">⬅ Back</a>
+            <a href="shapestrace.html" class="home-btn" id="traceBtn" style="background:#4caf50;">✏️ Practice Tracing!</a>
+            <a href="hub.html" class="home-btn" id="activitiesBtn" style="background:#9c27b0;">Shapes Activities</a>
+        </nav>
+    </main>
+
+    <section class="seo-intro-box">
+        <p id="seoText"></p>
+    </section>
+
+    <div class="ad-container">
+        <div class="ad-space">
+            <span>[AdSense Bottom Banner Area]</span>
+        </div>
+    </div>
+
+    <div id="popup" class="popup hidden" role="dialog" aria-modal="true">
+        <div class="popup-card">
+            <div class="popup-images">
+                <img id="popupImgShape" alt="Basic Shape">
+                <span class="plus-sign">➡</span>
+                <img id="popupImgObject" alt="Real World Object">
+            </div>
+            <h2 id="popupName"></h2>
+            <p id="closeHint" class="close-hint">Tap anywhere to close ✖</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <nav aria-label="Footer Navigation">
+             <a href="aboutus.html" id="footerAbout">About Us</a> |
+            <a href="termsandconditions.html" id="footerTerms">Terms & Conditions</a> |
+            <a href="privacy.html" id="footerPrivacy">Privacy Policy</a> |
+            <a href="disclaimer.html" id="footerDisclaimer">Disclaimer</a> |
+            <a href="contactus.html" id="footerContact">Contact Us</a>
+        </nav>
+        <p class="copyright">© 2026 KidsFunLearnHub. All rights reserved.</p>
+    </footer>
+
+    <script src="shapes.js?v=1.1"></script>
 </body>
 </html>

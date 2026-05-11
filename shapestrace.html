@@ -3,11 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shape Tracing - KidsFunLearnHub</title>
-    <link rel="stylesheet" href="shapestrace.css">
+    
+    <title>Shape Tracing | Learn to Draw Shapes | KidsFunLearnHub</title>
+    <meta name="title" content="Shape Tracing | Learn to Draw Shapes | KidsFunLearnHub">
+    <meta name="description" content="Interactive shape tracing for kids! Learn how to draw circles, squares, triangles, and more with our guided animated pencil and fun sounds.">
+    <meta name="keywords" content="shape tracing, learn to draw shapes, kids drawing games, preschool geometry, KidsFunLearnHub, circle square triangle">
+    <meta name="author" content="KidsFunLearnHub">
+    
+    <link rel="canonical" href="https://kidsfunlearnhub.com/shapestrace.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kidsfunlearnhub.com/shapestrace.html">
+    <meta property="og:title" content="Interactive Shape Tracing with KidsFunLearnHub">
+    <meta property="og:description" content="Watch the magical pencil trace the shapes, then tap to try it yourself!">
+    <meta property="og:image" content="https://kidsfunlearnhub.com/images/shapestrace-preview.jpg"> 
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalApplication",
+      "name": "Interactive Shape Tracing",
+      "url": "https://kidsfunlearnhub.com/shapestrace.html",
+      "description": "An interactive drawing tool that visually guides toddlers on how to trace and draw basic geometric shapes stroke-by-stroke.",
+      "applicationCategory": "EducationalGame",
+      "operatingSystem": "Any",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student",
+        "audienceType": "toddlers and preschoolers"
+      },
+      "publisher": { "@type": "Organization", "name": "KidsFunLearnHub", "url": "https://kidsfunlearnhub.com" }
+    }
+    </script>
+
+    <link rel="stylesheet" href="shapestrace.css?v=1">
 </head>
+
 <body>
-    <div id="shapes-grid" class="grid-container"></div>
-    <script src="shapestrace.js"></script>
+
+    <div class="cursor-dropdown" aria-label="Select Custom Cursor">
+        <select id="cursorSelect">
+            <option value="">Default Cursor</option>
+            <option value="dinosaur.png">🦖 Dinosaur</option>
+            <option value="star.png">⭐ Star</option>
+        </select>
+    </div>
+
+    <a href="parent.html" class="parent-corner bubble-btn" id="parentCornerBtn" aria-label="Go to Parent Corner">
+        👨‍👩‍👧 Parent Corner
+    </a>
+
+    <header>
+        <h1 class="title" id="page-title">✏️ Shape Tracing</h1>
+        
+        <nav class="home-nav">
+          <a href="index.html" class="home-btn" id="homeBtnNav">🏠 Home</a>
+          <a href="hub.html" class="home-btn" id="hubBtnNav" style="background:#ff9800; margin-left:10px;">🎮 Activity Hub</a>
+        </nav>
+    </header>
+
+    <div class="ad-container">
+        <div class="ad-space">
+            <span>[AdSense Top Banner Area]</span>
+        </div>
+    </div>
+
+    <main class="page-wrapper">
+        
+        <div id="shapes-grid" class="grid-container" role="list"></div>
+
+        <nav class="bottom-nav">
+            <a href="hub.html" class="home-btn" id="backBtn" style="background:#e91e63;">⬅ Back</a>
+            <a href="shapes.html" class="home-btn" id="learnBtn" style="background:#4caf50;">Learn Shapes</a>
+            <a href="hub.html" class="home-btn" id="activitiesBtn" style="background:#9c27b0;">Shapes Activities</a>
+        </nav>
+    </main>
+
+    <section class="seo-intro-box">
+        <p id="seoText"></p>
+    </section>
+
+    <div class="ad-container">
+        <div class="ad-space">
+            <span>[AdSense Bottom Banner Area]</span>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <nav aria-label="Footer Navigation">
+            <a href="aboutus.html" id="footerAbout">About Us</a> |
+            <a href="termsandconditions.html" id="footerTerms">Terms & Conditions</a> |
+            <a href="privacy.html" id="footerPrivacy">Privacy Policy</a> |
+            <a href="disclaimer.html" id="footerDisclaimer">Disclaimer</a> |
+            <a href="contactus.html" id="footerContact">Contact Us</a>
+        </nav>
+        <p class="copyright">© 2026 KidsFunLearnHub. All rights reserved.</p>
+    </footer>
+
+    <script src="shapestrace.js?v=1"></script>
 </body>
 </html>

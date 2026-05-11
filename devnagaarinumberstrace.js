@@ -21,7 +21,13 @@ window.onload = function() {
         "seoText": {
             hi: "<strong>KidsFunLearnHub देवनागरी नंबर ट्रेसिंग ज़ोन</strong> में आपका स्वागत है! देवनागरी नंबरों (१ से ४०) को स्ट्रोक दर स्ट्रोक लिखना सीखने के लिए किसी भी नंबर पर टैप करें। यह बच्चों में मोटर कौशल और गिनती की क्षमताओं को बढ़ाने में मदद करता है।",
             mr: "<strong>KidsFunLearnHub देवनागरी क्रमांक ट्रेसिंग झोनमध्ये</strong> आपले स्वागत आहे! देवनागरी क्रमांक (१ ते ४०) स्ट्रोक बाय स्ट्रोक कसे लिहायचे हे पाहण्यासाठी कोणत्याही क्रमांकावर टॅप करा. हे मुलांना मोटर कौशल्ये आणि मोजणी क्षमता वाढविण्यास मदत करते."
-        }
+        },
+        // Footer Translations
+        "footerAbout": { en: "About Us", hi: "हमारे बारे में", mr: "आमच्याबद्दल" },
+        "footerTerms": { en: "Terms & Conditions", hi: "नियम और शर्तें", mr: "नियम आणि अटी" },
+        "footerPrivacy": { en: "Privacy Policy", hi: "गोपनीयता नीति", mr: "गोपनीयता धोरण" },
+        "footerDisclaimer": { en: "Disclaimer", hi: "अस्वीकरण", mr: "अस्वीकरण" },
+        "footerContact": { en: "Contact Us", hi: "संपर्क करें", mr: "संपर्क करा" }
     };
 
     for (let id in uiDictionary) {

@@ -22,7 +22,13 @@ window.onload = function() {
             en: "Welcome to the <strong>KidsFunLearnHub Numbers Learning Zone</strong>! Tap on any number to see it come to life with fun counting images and sounds. This interactive activity helps toddlers connect digits to visual quantities, boosting their early math skills, counting abilities, and pronunciation.",
             hi: "<strong>KidsFunLearnHub नंबर्स लर्निंग ज़ोन</strong> में आपका स्वागत है! मज़ेदार गिनती वाली छवियों और ध्वनियों के साथ इसे जीवंत होते देखने के लिए किसी भी नंबर पर टैप करें। यह संवादात्मक गतिविधि बच्चों को अंकों को दृश्य मात्रा से जोड़ने में मदद करती है, जिससे उनके शुरुआती गणित कौशल, गिनती की क्षमताओं और उच्चारण को बढ़ावा मिलता है।",
             mr: "<strong>KidsFunLearnHub नंबर्स लर्निंग झोनमध्ये</strong> आपले स्वागत आहे! मजेदार मोजणीच्या प्रतिमा आणि आवाजांसह ते जिवंत होताना पाहण्यासाठी कोणत्याही क्रमांकावर टॅप करा. हा संवादात्मक क्रियाकलाप लहान मुलांना अंकांना दृश्य प्रमाणाशी जोडण्यास मदत करतो, ज्यामुळे त्यांचे सुरुवातीचे गणित कौशल्य, मोजणी क्षमता आणि उच्चार वाढतो."
-        }
+        },
+        // Footer Translations
+        "footerAbout": { en: "About Us", hi: "हमारे बारे में", mr: "आमच्याबद्दल" },
+        "footerTerms": { en: "Terms & Conditions", hi: "नियम और शर्तें", mr: "नियम आणि अटी" },
+        "footerPrivacy": { en: "Privacy Policy", hi: "गोपनीयता नीति", mr: "गोपनीयता धोरण" },
+        "footerDisclaimer": { en: "Disclaimer", hi: "अस्वीकरण", mr: "अस्वीकरण" },
+        "footerContact": { en: "Contact Us", hi: "संपर्क करें", mr: "संपर्क करा" }
     };
 
     // Dictionary for 1-40

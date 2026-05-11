@@ -1,75 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Kids Body Learning</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Learn Body Parts | Human Anatomy for Kids | KidsFunLearnHub</title>
+    <meta name="title" content="Learn Body Parts | Human Anatomy for Kids | KidsFunLearnHub">
+    <meta name="description" content="Interactive body parts learning for kids! Tap the boy to learn human anatomy like head, eyes, hands, and feet in English, Hindi, and Marathi.">
+    <meta name="keywords" content="learn body parts, kids anatomy, human body for kids, head shoulders knees and toes, toddler learning, KidsFunLearnHub, educational games">
+    <meta name="author" content="KidsFunLearnHub">
+    
+    <link rel="canonical" href="https://kidsfunlearnhub.com/bodyparts.html">
 
-<link rel="stylesheet" href="bodyparts.css">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kidsfunlearnhub.com/bodyparts.html">
+    <meta property="og:title" content="Learn Body Parts with KidsFunLearnHub">
+    <meta property="og:description" content="Tap the interactive hotspots to learn all the parts of the human body!">
+    <meta property="og:image" content="https://kidsfunlearnhub.com/images/bodyparts-preview.jpg"> 
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalApplication",
+      "name": "Interactive Body Parts Explorer",
+      "url": "https://kidsfunlearnhub.com/bodyparts.html",
+      "description": "An interactive educational tool for toddlers to visually identify and learn human body parts using clickable hotspots.",
+      "applicationCategory": "EducationalGame",
+      "operatingSystem": "Any",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student",
+        "audienceType": "toddlers and preschoolers"
+      },
+      "publisher": { "@type": "Organization", "name": "KidsFunLearnHub", "url": "https://kidsfunlearnhub.com" }
+    }
+    </script>
+
+    <link rel="stylesheet" href="bodyparts.css?v=2">
 </head>
-
 <body>
 
-<h1>👶 Learn Body Parts</h1>
+    <div class="cursor-dropdown" aria-label="Select Custom Cursor">
+        <select id="cursorSelect">
+            <option value="">Default Cursor</option>
+            <option value="dinosaur.png">🦖 Dinosaur</option>
+            <option value="star.png">⭐ Star</option>
+        </select>
+    </div>
 
-<div class="viewer">
+    <a href="parent.html" class="parent-corner bubble-btn" id="parentCornerBtn" aria-label="Go to Parent Corner">
+        👨‍👩‍👧 Parent Corner
+    </a>
 
-  <!-- rotating body -->
-  <div class="body-container">
-    <img src="images/bodyparts/body.png" class="body-img">
+    <header>
+        <h1 class="title" id="page-title">👶 Learn Body Parts</h1>
+        
+        <nav class="home-nav">
+          <a href="index.html" class="home-btn" id="homeBtnNav">🏠 Home</a>
+          <a href="hub.html" class="home-btn" id="hubBtnNav" style="background:#ff9800; margin-left:10px;">🎮 Activity Hub</a>
+        </nav>
+    </header>
 
-    <!-- hotspots -->
-    <div class="hotspot" style="top:8%;left:45%;" 
-         data-name="Head" data-img="images/head.png"></div>
+    <div class="ad-container mobile-ad">
+        <div class="ad-space">
+            <span>[Mobile Top Ad]</span>
+        </div>
+    </div>
 
-    <div class="hotspot" style="top:23.2%; left:76.3%;" 
-         data-name="Hair" data-img="images/hair.png"></div>
+    <div class="layout-wrapper">
+        
+        <aside class="desktop-ad">
+            <div class="vertical-ad-space">
+                <span>[Left Skyscraper Ad]</span>
+            </div>
+        </aside>
 
-    <div class="hotspot" style="top:33.3%; left:58.9%;" 
-         data-name="Eyes" data-img="images/eye.png"></div>
-    <div class="hotspot" style="top:33.5%; left:86.3%;" 
-         data-name="Eyes" data-img="images/eye.png"></div>
+        <main class="page-wrapper">
+            <div class="viewer">
+                <div class="body-container">
+                    <img src="images/bodyparts/body.webp" class="body-img" alt="Human Body">
 
-    <div class="hotspot" style="top:36.6%; left:74.0%;" 
-         data-name="Nose" data-img="images/nose.png"></div>     
+                    <div class="hotspot" style="top:17.7%; left:48.4%;" data-key="head" data-img="images/bodyparts/head.webp"></div>
+                    <div class="hotspot" style="top: 20.4%; left: 68.6%;" data-key="hair" data-img="images/bodyparts/hair.webp"></div>
+                    <div class="hotspot" style="top: 34.7%; left: 38.8%;" data-key="eyes" data-img="images/bodyparts/eyes.webp"></div>
+                    <div class="hotspot" style="top: 43.4%; left: 61.2%;" data-key="cheek" data-img="images/bodyparts/cheek.webp"></div>
+                    <div class="hotspot" style="top: 36.6%; left: 49.0%;" data-key="nose" data-img="images/bodyparts/nose.webp"></div>    
+                    <div class="hotspot" style="top: 42.3%; left: 49.3%;" data-key="mouth" data-img="images/bodyparts/mouth.webp"></div>    
+                    <div class="hotspot" style="top: 36.3%; left: 68.2%;" data-key="ear" data-img="images/bodyparts/ear.webp"></div>
+                    <div class="hotspot" style="top: 47.4%; left: 48.2%;" data-key="neck" data-img="images/bodyparts/neck.webp"></div>    
+                    <div class="hotspot" style="top: 56.3%; left: 49.5%;" data-key="chest" data-img="images/bodyparts/chest.webp"></div>
+                    <div class="hotspot" style="top: 65.9%; left: 49.9%;" data-key="stomach" data-img="images/bodyparts/stomach.webp"></div>
+                    <div class="hotspot" style="top: 63.3%; left: 32.2%;" data-key="hand" data-img="images/bodyparts/hand.webp"></div>
+                    <div class="hotspot" style="top: 61.4%; left: 66.3%;" data-key="hand" data-img="images/bodyparts/hand.webp"></div>
+                    <div class="hotspot" style="top: 72.9%; left: 27.3%;" data-key="fingers" data-img="images/bodyparts/fingers.webp"></div>
+                    <div class="hotspot" style="top: 72.4%; left: 72.4%;" data-key="fingers" data-img="images/bodyparts/fingers.webp"></div>
+                    <div class="hotspot" style="top: 78.2%; left: 56.9%;" data-key="knee" data-img="images/bodyparts/knee.webp"></div>
+                    <div class="hotspot" style="top: 73.6%; left: 41.6%;" data-key="thigh" data-img="images/bodyparts/thigh.webp"></div>
+                    <div class="hotspot" style="top: 88.1%; left: 56.7%;" data-key="leg" data-img="images/bodyparts/leg.webp"></div> 
+                    <div class="hotspot" style="top: 93.3%; left: 43.3%;" data-key="foot" data-img="images/bodyparts/foot.webp"></div>
+                </div>
+            </div>
 
-    <div class="hotspot" style="top:35.2%; left:40.9%;" 
-         data-name="Ear" data-img="images/ear.png"></div>
-    <div class="hotspot" style="top:35.4%; left:104%;" 
-         data-name="Ear" data-img="images/ear.png"></div>
+            <nav class="bottom-nav">
+                <a href="hub.html" class="home-btn" id="backBtn" style="background:#e91e63;">⬅ Back</a>
+                <a href="bodyparts.html" class="home-btn" id="learnBtn" style="background:#4caf50;">Learn Body Parts</a>
+                <a href="hub.html" class="home-btn" id="activitiesBtn" style="background:#9c27b0;">Body Activities</a>
+            </nav>
+        </main>
 
-    <div class="hotspot" style="top:52%; left:74.9%;" 
-         data-name="Chest" data-img="images/chest.png"></div>
+        <aside class="desktop-ad">
+            <div class="vertical-ad-space">
+                <span>[Right Skyscraper Ad]</span>
+            </div>
+        </aside>
 
-    <div class="hotspot" style="top:64.4%; left:73.4%;" 
-         data-name="Stomach" data-img="images/stomach.png"></div>
+    </div> <div class="ad-container mobile-ad">
+        <div class="ad-space">
+            <span>[Mobile Bottom Ad]</span>
+        </div>
+    </div>
 
-    <div class="hotspot" style="top:61.1%;left:47.00%;"
-         data-name="Hand" data-img="images/hand.png"></div>
+    <section class="seo-intro-box">
+        <p id="seoText"></p>
+    </section>
 
-    <div class="hotspot" style="top:61.5%;left:99.1%;"
-         data-name="Hand" data-img="images/hand.png"></div>
+    <div id="popup" class="popup hidden" role="dialog" aria-modal="true">
+        <div class="popup-content">
+            <span id="closeBtn">✖</span>
+            <img id="popupImg" alt="Part">
+            <h2 id="popupText"></h2>
+            <p id="closeHint" class="close-hint" style="color: #888; font-size: 1rem; margin-top: 15px; font-weight: bold; background: #eee; padding: 5px 15px; border-radius: 20px; display: inline-block;">Tap anywhere to close</p>
+        </div>
+    </div>
 
-    <div class="hotspot" style="top:85.4%;left:62.6%;" 
-         data-name="Leg" data-img="images/leg.png"></div>
+    <footer class="footer">
+        <nav aria-label="Footer Navigation">
+            <a href="aboutus.html" id="footerAbout">About Us</a> |
+            <a href="termsandconditions.html" id="footerTerms">Terms & Conditions</a> |
+            <a href="privacy.html" id="footerPrivacy">Privacy Policy</a> |
+            <a href="disclaimer.html" id="footerDisclaimer">Disclaimer</a> |
+            <a href="contactus.html" id="footerContact">Contact Us</a>
+        </nav>
+        <p class="copyright">© 2026 KidsFunLearnHub. All rights reserved.</p>
+    </footer>
 
-    <div class="hotspot" style="top:85.9%;left:84.9%;" 
-         data-name="Leg" data-img="images/leg.png"></div>
-
-  </div>
-
-</div>
-
-<!-- popup -->
-<div id="popup" class="popup hidden">
-  <div class="popup-content">
-    <span id="closeBtn">✖</span>
-    <img id="popupImg">
-    <h2 id="popupText"></h2>
-  </div>
-</div>
-
-<script src="bodyparts.js"></script>
-
+    <script src="bodyparts.js?v=2"></script>
 </body>
 </html>

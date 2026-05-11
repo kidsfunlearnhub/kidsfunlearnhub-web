@@ -1,121 +1,222 @@
-body{
-margin:0;
-font-family:Arial;
-background:#f0f9ff;
-text-align:center;
+:root {
+    /* "Cotton Candy Sky" background matched with Hub */
+    --bg-gradient: linear-gradient(to right, #b3ffff, #fcb69f);
+    --font-main: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif;
 }
 
-h1{
-margin:15px;
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: var(--font-main);
+    background: var(--bg-gradient);
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
 }
 
-.viewer{
-display:flex;
-justify-content:center;
-align-items:center;
-height:80vh;
+header { margin-top: 30px; }
+
+/* Mobile Screen Fixes */
+@media (max-width: 600px) {
+    header { margin-top: 85px; } 
+    .bubble-btn { padding: 8px 12px !important; font-size: 0.85rem !important; }
+    .cursor-dropdown select { padding: 6px 10px !important; font-size: 12px !important; }
 }
 
-.body-container{
-  position:relative;
-  width:250px;
-  animation:float 2.5s ease-in-out infinite;
-}
-.body-img{
-width:150%;
-}
-@keyframes float{
-  0%{ transform:translateY(0); }
-  50%{ transform:translateY(-12px); }
-  100%{ transform:translateY(0); }
+.title { font-size: clamp(2.2rem, 5vw, 4rem); color: #c23989; margin: 5px 20px; text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.7); }
+
+/* Home / Hub Nav Buttons */
+.home-nav { display: flex; justify-content: center; margin: 15px 0 20px; flex-wrap: wrap; }
+.home-btn { padding: 10px 25px; font-size: 1.1rem; border-radius: 40px; background: #2196f3; color: white; text-decoration: none; font-weight: bold; box-shadow: 0 6px 12px rgba(0,0,0,0.2); border: 3px solid white; transition: transform 0.2s, background 0.2s; }
+.home-btn:hover { transform: scale(1.05); }
+
+/* Horizontal Ad Containers (Mobile) */
+.ad-container { width: 100%; display: flex; justify-content: center; margin: 10px 0 20px 0; position: relative; z-index: 40; padding: 0 15px; box-sizing: border-box; }
+.ad-space { background: rgba(255, 255, 255, 0.35); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 3px dashed rgba(255, 152, 0, 0.7); border-radius: 15px; width: 100%; max-width: 728px; min-height: 90px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px rgba(0,0,0,0.1); color: #555; font-size: 0.9rem; font-weight: bold; overflow: hidden; }
+
+/* =========================================
+   AD RESPONSIVENESS & 3-COLUMN LAYOUT
+   ========================================= */
+
+.layout-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Keeps sidebars stuck near the top */
+    gap: 20px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 10px;
 }
 
-/* hotspots */
-
-/* .hotspot{
-position:absolute;
-width:30px;
-height:30px;
-background:#ff4d4d;
-border-radius:50%;
-cursor:pointer;
-animation:pulse 1.2s infinite;
+.page-wrapper { 
+    flex: 1; /* Pushes the ads to the side edges */
+    width: 100%; 
+    max-width: 900px; /* Safe center width */
+    position: relative; 
+    z-index: 20; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
 }
 
-.hotspot::after{
-content:"⬆";
-position:absolute;
-top:-22px;
-left:4px;
-font-size:18px;
+/* Vertical Ad Styling */
+.desktop-ad {
+    width: 160px; /* Standard skyscraper width */
+    flex-shrink: 0;
+    position: sticky; /* Makes the ad follow the user as they scroll! */
+    top: 20px; 
+    z-index: 10;
 }
 
-@keyframes pulse{
-0%{transform:scale(1);}
-50%{transform:scale(1.3);}
-100%{transform:scale(1);}
-} */
-
-.hotspot{
-  position:absolute;
-  width:30px;
-  height:30px;
-  /* background:#ff4d4d; */
-  /* background:#c2f786; */
-  border-radius:50%;
-  cursor:pointer;
-  animation:bounceGlow 1.5s infinite;
-  /* box-shadow:0 0 0 rgba(255,77,77,0.7); */
-  box-shadow:0 0 0 rgba(55, 52, 247, 0.7);
+.vertical-ad-space {
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 3px dashed rgba(33, 150, 243, 0.7); 
+    border-radius: 15px;
+    width: 100%;
+    height: 600px; /* Standard skyscraper height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    color: #555;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
 }
 
-@keyframes bounceGlow{
-  0%{ transform:scale(1);  box-shadow:0 0 0 rgba(55, 52, 247, 0.7); }
-  50%{ transform:scale(1.3); }
-  100%{ transform:scale(1); box-shadow:0 0 0 12px rgba(255,77,77,0); }
-}
-/* @keyframes bounceGlow{
-  0%{ transform:scale(1); box-shadow:0 0 0 0 rgba(255,77,77,0.7); }
-  50%{ transform:scale(1.3); }
-  100%{ transform:scale(1); box-shadow:0 0 0 15px rgba(255,77,77,0); }
-} */
-/* popup */
-
-.popup{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.6);
-display:flex;
-justify-content:center;
-align-items:center;
+/* The Vanishing Act (Media Queries) */
+@media (min-width: 901px) {
+    .mobile-ad { display: none !important; } /* Hide horizontal on PC */
 }
 
-.popup-content{
-background:white;
-padding:20px;
-border-radius:12px;
-width:90%;
-max-width:350px;
+@media (max-width: 900px) {
+    .desktop-ad { display: none !important; } /* Hide vertical on phones/tablets */
+    .mobile-ad { display: flex !important; }
+    .layout-wrapper { display: block; } /* Reverts wrapper to standard stack */
 }
 
-.popup img{
-width:100%;
+
+/* =========================================
+   BODY VIEWER & HOTSPOTS
+   ========================================= */
+.viewer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 20px;
 }
 
-#closeBtn{
-cursor:pointer;
-font-size:22px;
-float:right;
+.body-container {
+    position: relative;
+    width: 90%;
+    max-width: 280px; /* Great for phones */
+    margin: 0 auto;
+    animation: float 3s ease-in-out infinite;
 }
 
-.hidden{
-display:none;
+@media(min-width: 900px) {
+    .body-container { max-width: 470px; }
 }
 
-/* responsive */
+.body-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+}
 
-@media(min-width:700px){
-.body-container{
-width:350px;
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
 }
+
+.hotspot {
+    position: absolute;
+    width: clamp(25px, 4vw, 45px); 
+    height: clamp(25px, 4vw, 45px);
+    background: rgba(255, 255, 255, 0.3);
+    border: 3px solid #3734f7;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    animation: bounceGlow 1.5s infinite;
+    z-index: 10;
 }
+
+@keyframes bounceGlow {
+    0% { transform: translate(-50%, -50%) scale(0.9); box-shadow: 0 0 0 rgba(55, 52, 247, 0.7); }
+    50% { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 0 15px rgba(55, 52, 247, 0.9); }
+    100% { transform: translate(-50%, -50%) scale(0.9); box-shadow: 0 0 0 15px rgba(55, 52, 247, 0); }
+}
+
+/* Bottom Navigation Styling */
+.bottom-nav { display: flex; justify-content: center; gap: 15px; margin: 30px 0 40px 0; flex-wrap: wrap; width: 100%; }
+.bottom-nav .home-btn { min-width: 160px; padding: 12px 20px; }
+
+@media screen and (max-width: 600px) {
+    .bottom-nav { gap: 10px; padding: 0 10px; }
+    .bottom-nav .home-btn { width: 100%; max-width: 280px; }
+}
+
+/* =========================================
+   OVERLAY & POPUP
+   ========================================= */
+.popup {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.8);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 9999; padding: 15px;
+    cursor: pointer; /* Suggests the entire area is clickable to close */
+}
+
+.hidden { display: none !important; }
+
+.popup-content {
+    background: white; padding: clamp(15px, 5vw, 30px); border-radius: 30px;
+    width: 95%; max-width: 400px; text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3); border: 6px solid #4CAF50;
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    cursor: default; /* Keep card area default cursor */
+}
+
+@keyframes popIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+#popupImg {
+    width: 100%; max-height: 40vh; object-fit: contain;
+    border-radius: 15px; margin: 0 auto; display: block;
+}
+
+#popupText { font-size: clamp(26px, 6vw, 38px); color: #FF5722; margin-top: 15px; margin-bottom: 0; }
+
+#closeBtn {
+    float: right; font-size: 32px; cursor: pointer; color: #bbb;
+    margin-top: -15px; margin-right: -10px; transition: color 0.2s;
+}
+
+#closeBtn:hover { color: #FF5722; }
+
+/* Frosted Glass SEO Box */
+.seo-intro-box { max-width: 900px; margin: 10px auto 30px auto; padding: 20px 30px; background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 2px solid rgba(255, 255, 255, 0.6); border-radius: 20px; font-size: clamp(0.95rem, 1.2vw, 1.1rem); color: #222; line-height: 1.6; box-shadow: 0 8px 32px rgba(0,0,0,0.1); position: relative; z-index: 30; }
+.seo-intro-box p { margin: 0; text-align: justify; }
+
+/* Footer */
+.footer { text-align: center; padding: 20px 15px; background: #2c3e50; color: white; margin-top: 20px; position: relative; z-index: 20; }
+.footer a { color: #ffcc00; text-decoration: none; margin: 0 10px; display: inline-block; padding: 5px 0; font-size: 1rem; transition: color 0.2s; }
+.footer a:hover { color: #fff; text-decoration: underline; }
+.copyright { margin-top: 10px; font-size: 0.85rem; color: #aaa; }
+
+/* Cursors & Top UI */
+.cursor-dropdown { position: fixed; top: 15px; left: 15px; z-index: 999; }
+.cursor-dropdown select { padding: 8px 15px; border-radius: 20px; border: 2px solid #00bcd4; font-size: 14px; font-weight: bold; background: white; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); outline: none; }
+.bubble-btn { position: fixed; top: 15px; right: 15px; background: linear-gradient(135deg, #ff9800, #ff4081); color: white; padding: 10px 18px; border-radius: 40px; font-weight: bold; text-decoration: none; box-shadow: 0 8px 18px rgba(0,0,0,0.3); z-index: 999; animation: floaty 2.5s infinite alternate ease-in-out; border: 2px solid white; font-size: clamp(0.85rem, 1.2vw, 1rem); }
+@keyframes floaty { from { transform: translateY(0); } to { transform: translateY(-5px); } }
+.bubble-btn:hover { transform: scale(1.1); }
+button, a, .hotspot { cursor: url("images/cursors/dinosaur_fire.png") 16 16, pointer; }

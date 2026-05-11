@@ -27,7 +27,13 @@ window.onload = function() {
             en: "Welcome to the <strong>KidsFunLearnHub Varnamala Zone</strong>! Tap on any letter to see it come to life with fun vocabulary images and sounds. Explore both the Swar (vowels) and Vyanjan (consonants) to build a strong foundation in reading and pronunciation.",
             hi: "<strong>KidsFunLearnHub वर्णमाला ज़ोन</strong> में आपका स्वागत है! मज़ेदार शब्दावली छवियों और ध्वनियों के साथ इसे जीवंत होते देखने के लिए किसी भी अक्षर पर टैप करें। पढ़ने और उच्चारण में एक मजबूत नींव बनाने के लिए स्वर और व्यंजन दोनों का अन्वेषण करें।",
             mr: "<strong>KidsFunLearnHub वर्णमाला झोनमध्ये</strong> आपले स्वागत आहे! मजेदार शब्दसंग्रह प्रतिमा आणि आवाजांसह ते जिवंत होताना पाहण्यासाठी कोणत्याही अक्षरावर टॅप करा. वाचन आणि उच्चारणाचा मजबूत पाया तयार करण्यासाठी स्वर आणि व्यंजन दोन्ही एक्सप्लोर करा."
-        }
+        },
+        // Footer Translations
+        "footerAbout": { en: "About Us", hi: "हमारे बारे में", mr: "आमच्याबद्दल" },
+        "footerTerms": { en: "Terms & Conditions", hi: "नियम और शर्तें", mr: "नियम आणि अटी" },
+        "footerPrivacy": { en: "Privacy Policy", hi: "गोपनीयता नीति", mr: "गोपनीयता धोरण" },
+        "footerDisclaimer": { en: "Disclaimer", hi: "अस्वीकरण", mr: "अस्वीकरण" },
+        "footerContact": { en: "Contact Us", hi: "संपर्क करें", mr: "संपर्क करा" }
     };
 
     // 2. SWAR DICTIONARY (Vowels)

@@ -15,9 +15,13 @@ const hubDictionary = {
     "desc-varnmalatrace": { en: "Varnmala Tracing", hi: "वर्णमाला ट्रेसिंग", mr: "मुळाक्षरे ट्रेसिंग" },
     "desc-devnagaarinumberstrace": { en: "Hindi Marathi Numbers Tracing", hi: "हिंदी नंबर ट्रेसिंग", mr: "मराठी अंक ट्रेसिंग" },
     // "desc-marathi-numberstrace": { en: "Marathi Numbers Tracing", hi: "मराठी नंबर ट्रेसिंग", mr: "मराठी अंक ट्रेसिंग" },
+    "name-shapes": { en: "Shapes", hi: "आकार", mr: "आकार" },
     "desc-shapes": { en: "Learn Shapes", hi: "आकार सीखें", mr: "आकार शिका" },
+    "name-shapes-trace": { en: "Trace Shapes", hi: "आकार ट्रेसिंग", mr: "आकार ट्रेसिंग" },
     "desc-shapes-trace": { en: "Learn Shapes Tracing", hi: "आकार ट्रेसिंग सीखें", mr: "आकार ट्रेसिंग शिका" },
+    "name-colors": { en: "Colors", hi: "रंग", mr: "रंग" },
     "desc-colors": { en: "Learn Colors", hi: "रंग सीखें", mr: "रंग शिका" },
+    "name-body-parts": { en: "Body Parts", hi: "शरीर के अंग", mr: "शरीराचे अवयव" },
     "desc-body": { en: "Learn Body Parts", hi: "शरीर के अंग सीखें", mr: "शरीराचे अवयव शिका" },
     "desc-animals": { en: "Learn Animals", hi: "जानवरों के नाम सीखें", mr: "प्राण्यांची नावे शिका" },
     "desc-birds": { en: "Learn Birds", hi: "पक्षियों के नाम सीखें", mr: "पक्ष्यांची नावे शिका" },
@@ -30,7 +34,14 @@ const hubDictionary = {
     "desc-game": { en: "Identify correct Animal", hi: "सही जानवर को पहचानें", mr: "योग्य प्राणी ओळखा" },
     "nav-prev": { en: "⬅ Previous", hi: "⬅ पिछला", mr: "⬅ मागील" },
     "nav-next": { en: "Next ➡", hi: "अगला ➡", mr: "पुढील ➡" },
-    "nav-home": { en: "🏠 Home", hi: "🏠 होम", mr: "🏠 मुख्यपृष्ठ" } 
+    "nav-home": { en: "🏠 Home", hi: "🏠 होम", mr: "🏠 मुख्यपृष्ठ" },
+
+    // Footer Translations
+        "footerAbout": { en: "About Us", hi: "हमारे बारे में", mr: "आमच्याबद्दल" },
+        "footerTerms": { en: "Terms & Conditions", hi: "नियम और शर्तें", mr: "नियम आणि अटी" },
+        "footerPrivacy": { en: "Privacy Policy", hi: "गोपनीयता नीति", mr: "गोपनीयता धोरण" },
+        "footerDisclaimer": { en: "Disclaimer", hi: "अस्वीकरण", mr: "अस्वीकरण" },
+        "footerContact": { en: "Contact Us", hi: "संपर्क करें", mr: "संपर्क करा" }
 };
 
 document.addEventListener("DOMContentLoaded", () => {

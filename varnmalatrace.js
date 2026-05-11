@@ -22,7 +22,13 @@ window.onload = function() {
             en: "Welcome to the <strong>KidsFunLearnHub Varnamala Tracing Zone</strong>! Tap on any letter to watch the magic pencil show you exactly how to write the Devanagari script, stroke by stroke. This helps children develop fine motor skills and memorize letter formation.",
             hi: "<strong>KidsFunLearnHub वर्णमाला ट्रेसिंग ज़ोन</strong> में आपका स्वागत है! देवनागरी लिपि को स्ट्रोक दर स्ट्रोक लिखना सीखने के लिए किसी भी अक्षर पर टैप करें। यह बच्चों में मोटर कौशल विकसित करने और अक्षरों की बनावट को याद रखने में मदद करता है।",
             mr: "<strong>KidsFunLearnHub वर्णमाला ट्रेसिंग झोनमध्ये</strong> आपले स्वागत आहे! देवनागरी लिपी स्ट्रोक बाय स्ट्रोक कशी लिहायची हे पाहण्यासाठी कोणत्याही अक्षरावर टॅप करा. हे मुलांना मोटर कौशल्ये विकसित करण्यास आणि अक्षरांची रचना लक्षात ठेवण्यास मदत करते."
-        }
+        },
+        // Footer Translations
+        "footerAbout": { en: "About Us", hi: "हमारे बारे में", mr: "आमच्याबद्दल" },
+        "footerTerms": { en: "Terms & Conditions", hi: "नियम और शर्तें", mr: "नियम आणि अटी" },
+        "footerPrivacy": { en: "Privacy Policy", hi: "गोपनीयता नीति", mr: "गोपनीयता धोरण" },
+        "footerDisclaimer": { en: "Disclaimer", hi: "अस्वीकरण", mr: "अस्वीकरण" },
+        "footerContact": { en: "Contact Us", hi: "संपर्क करें", mr: "संपर्क करा" }
     };
 
     // Apply translations

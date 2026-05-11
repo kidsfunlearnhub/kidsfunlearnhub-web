@@ -1,14 +1,63 @@
+"use strict";
+
 window.onload = function() {
 
-    // 1. LANGUAGE SETUP
+    /////////////////////////////////////////////////
+    // 1. CURSOR LOGIC
+    /////////////////////////////////////////////////
+    const select = document.getElementById("cursorSelect");
+    const savedCursor = localStorage.getItem("kidsCursor");
+    if (savedCursor) {
+        document.documentElement.style.cursor = savedCursor;
+        if(select) select.value = savedCursor.split("/").pop().replace(/["')]/g, '').split(' ')[0];
+    }
+    if(select) {
+        select.addEventListener("change", () => {
+            if (!select.value) {
+                document.documentElement.style.cursor = "auto";
+                localStorage.removeItem("kidsCursor");
+                return;
+            }
+            const cursorValue = `url("images/cursors/${select.value}") 16 16, auto`;
+            document.documentElement.style.cursor = cursorValue;
+            localStorage.setItem("kidsCursor", cursorValue);
+        });
+    }
+
+    /////////////////////////////////////////////////
+    // 2. LANGUAGE SETUP & DICTIONARIES
+    /////////////////////////////////////////////////
     let currentLang = localStorage.getItem('mySecretLanguage') || 'en';
 
     const uiDictionary = {
         "page-title": { en: "🟢 Learn Shapes", hi: "🟢 आकार सीखें", mr: "🟢 आकार शिका" },
-        "traceBtn": { en: "✏️ Practice Tracing!", hi: "✏️ ट्रेसिंग का अभ्यास करें!", mr: "✏️ गिरवण्याचा सराव करा!" }
+        "homeBtnNav": { en: "🏠 Home", hi: "🏠 होम", mr: "🏠 होम" },
+        "hubBtnNav": { en: "🎮 Activity Hub", hi: "🎮 एक्टिविटी हब", mr: "🎮 ऍक्टिव्हिटी हब" },
+        "parentCornerBtn": { en: "👨‍👩‍👧 Parent Corner", hi: "👨‍👩‍👧 पेरेंट कॉर्नर", mr: "👨‍👩‍👧 पेरेंट कॉर्नर" },
+        "backBtn": { en: "⬅ Back", hi: "⬅ पीछे", mr: "⬅ मागे" },
+        "traceBtn": { en: "✏️ Practice Tracing!", hi: "✏️ ट्रेसिंग का अभ्यास करें!", mr: "✏️ गिरवण्याचा सराव करा!" },
+        "activitiesBtn": { en: "Shapes Activities", hi: "आकार गतिविधियां", mr: "आकार ऍक्टिव्हिटीज" },
+        "closeHint": { en: "Tap anywhere to close ✖", hi: "बंद करने के लिए टैप करें ✖", mr: "बंद करण्यासाठी टॅप करा ✖" },
+        "seoText": {
+            en: "Welcome to the <strong>KidsFunLearnHub Geometry Zone</strong>! Tap on any shape card to see how basic 2D geometry transforms into objects you see every day. This interactive visual matching activity helps toddlers build strong cognitive recognition and spatial awareness.",
+            hi: "<strong>KidsFunLearnHub ज्योमेट्री ज़ोन</strong> में आपका स्वागत है! किसी भी आकार कार्ड पर टैप करके देखें कि कैसे बुनियादी 2D ज्यामिति उन वस्तुओं में बदल जाती है जिन्हें आप हर दिन देखते हैं। यह गतिविधि बच्चों को मजबूत संज्ञानात्मक पहचान और स्थानिक जागरूकता बनाने में मदद करती है।",
+            mr: "<strong>KidsFunLearnHub भूमिती झोनमध्ये</strong> आपले स्वागत आहे! मूलभूत 2D भूमिती तुम्ही रोज पाहत असलेल्या वस्तूंमध्ये कशी बदलते हे पाहण्यासाठी कोणत्याही आकार कार्डवर टॅप करा. ही क्रियाकलाप लहान मुलांना मजबूत संज्ञानात्मक ओळख आणि अवकाशीय जागरूकता निर्माण करण्यास मदत करते."
+        },
+        // Footer Translations
+        "footerAbout": { en: "About Us", hi: "हमारे बारे में", mr: "आमच्याबद्दल" },
+        "footerTerms": { en: "Terms & Conditions", hi: "नियम और शर्तें", mr: "नियम आणि अटी" },
+        "footerPrivacy": { en: "Privacy Policy", hi: "गोपनीयता नीति", mr: "गोपनीयता धोरण" },
+        "footerDisclaimer": { en: "Disclaimer", hi: "अस्वीकरण", mr: "अस्वीकरण" },
+        "footerContact": { en: "Contact Us", hi: "संपर्क करें", mr: "संपर्क करा" }
     };
 
-    // 2. SHAPES DICTIONARY
+    // Apply translations using innerHTML to keep bold tags
+    for (let id in uiDictionary) {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = uiDictionary[id][currentLang];
+    }
+
+    // 3. SHAPES DICTIONARY
     const shapesDict = {
         "circle": { en: "Circle", hi: "वृत्त (गोल)", mr: "वर्तुळ (गोल)" },
         "square": { en: "Square", hi: "वर्ग (चौकोर)", mr: "चौरस (चौकोन)" },
@@ -24,20 +73,16 @@ window.onload = function() {
 
     const shapesList = Object.keys(shapesDict);
 
-    // 3. ELEMENTS
+    /////////////////////////////////////////////////
+    // 4. ELEMENTS & CACHE
+    /////////////////////////////////////////////////
     const grid = document.getElementById("shapesGrid");
     const popup = document.getElementById("popup");
     const popupImgShape = document.getElementById("popupImgShape");
     const popupImgObject = document.getElementById("popupImgObject");
     const popupName = document.getElementById("popupName");
-    const traceBtn = document.getElementById("traceBtn");
 
-    // Translate Title and Button
-    const titleElement = document.getElementById("page-title");
-    if (titleElement) titleElement.innerText = uiDictionary["page-title"][currentLang];
-    if (traceBtn) traceBtn.innerText = uiDictionary["traceBtn"][currentLang];
-
-    // 4. PRELOAD CACHE (DOUBLE IMAGES)
+    // Preload Images and Sounds
     const imageCacheBasic = {};
     const imageCacheObjects = {};
     const soundCache = {};
@@ -57,15 +102,19 @@ window.onload = function() {
       soundCache[name] = audio;
     });
 
-    // 5. BUILD PAGE GRID (FIXED)
+    /////////////////////////////////////////////////
+    // 5. BUILD PAGE GRID
+    /////////////////////////////////////////////////
     function loadPage() {
+      if (!grid) return;
       grid.innerHTML = "";
 
       shapesList.forEach(name => {
         const card = document.createElement("div");
         card.className = "card";
+        card.setAttribute("role", "button");
+        card.setAttribute("aria-label", `Learn about ${name}`);
 
-        // FIX: Now using shapesDict to get the correct language for the card text!
         card.innerHTML = `
           <img src="${imageCacheBasic[name].src}" alt="${name}">
           <p>${shapesDict[name][currentLang]}</p>
@@ -76,13 +125,18 @@ window.onload = function() {
       });
     }
 
-    // 6. POPUP DISPLAY
+    /////////////////////////////////////////////////
+    // 6. POPUP DISPLAY & LOGIC
+    /////////////////////////////////////////////////
     function showShape(name) {
       if (popupImgShape) popupImgShape.src = imageCacheBasic[name].src;
       if (popupImgObject) popupImgObject.src = imageCacheObjects[name].src;
       if (popupName) popupName.textContent = shapesDict[name][currentLang];
       
-      if (popup) popup.classList.remove("hidden");
+      if (popup) {
+          popup.classList.remove("hidden");
+          popup.style.display = "flex";
+      }
 
       const sound = soundCache[name];
       sound.currentTime = 0;
@@ -91,19 +145,26 @@ window.onload = function() {
       launchConfetti();
     }
 
-    // Close popup if clicking outside the card
+    function closePopup() {
+        if (popup) {
+            popup.classList.add("hidden");
+            popup.style.display = "none";
+        }
+    }
+
+    // NEW FIX: Clicking absolutely ANYWHERE on the popup overlay or card will close it!
     if (popup) {
-        popup.onclick = (e) => {
-            if(e.target === popup) {
-                popup.classList.add("hidden");
-            }
+        popup.onclick = () => {
+            closePopup();
         };
     }
 
+    /////////////////////////////////////////////////
     // 7. CONFETTI
+    /////////////////////////////////////////////////
     function launchConfetti() {
       if (typeof confetti === "function") {
-        confetti({ particleCount: 100, spread: 80, origin: { y: 0.6 } });
+        confetti({ particleCount: 120, spread: 100, origin: { y: 0.6 } });
       }
     }
 

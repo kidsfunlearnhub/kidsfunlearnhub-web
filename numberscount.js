@@ -44,7 +44,13 @@ document.addEventListener("DOMContentLoaded", () => {
             en: "Welcome to the <strong>KidsFunLearnHub Interactive Counting Zone</strong>! Tap on any number card and watch as fun, colorful objects pop onto the screen one by one as we count out loud. Connecting the visual quantity to the spoken number is the absolute best way for toddlers to build strong early math skills.",
             hi: "<strong>KidsFunLearnHub इंटरएक्टिव काउंटिंग ज़ोन</strong> में आपका स्वागत है! किसी भी नंबर कार्ड पर टैप करें और देखें कि कैसे मज़ेदार, रंग-बिरंगी वस्तुएं एक-एक करके स्क्रीन पर आती हैं और हम उन्हें जोर से गिनते हैं। दृश्य मात्रा को बोले गए नंबर से जोड़ना बच्चों में मजबूत शुरुआती गणित कौशल विकसित करने का सबसे अच्छा तरीका है।",
             mr: "<strong>KidsFunLearnHub इंटरएक्टिव्ह काउंटिंग झोनमध्ये</strong> आपले स्वागत आहे! कोणत्याही नंबर कार्डवर टॅप करा आणि पहा की मजेदार, रंगीत वस्तू एकामागून एक स्क्रीनवर येतात आणि आम्ही त्यांना मोठ्याने मोजतो. दृश्य प्रमाणाला बोलल्या जाणार्‍या संख्येशी जोडणे हा लहान मुलांसाठी सुरुवातीची गणित कौशल्ये विकसित करण्याचा सर्वोत्तम मार्ग आहे."
-        }
+        },
+        // Footer Translations
+        "footerAbout": { en: "About Us", hi: "हमारे बारे में", mr: "आमच्याबद्दल" },
+        "footerTerms": { en: "Terms & Conditions", hi: "नियम और शर्तें", mr: "नियम आणि अटी" },
+        "footerPrivacy": { en: "Privacy Policy", hi: "गोपनीयता नीति", mr: "गोपनीयता धोरण" },
+        "footerDisclaimer": { en: "Disclaimer", hi: "अस्वीकरण", mr: "अस्वीकरण" },
+        "footerContact": { en: "Contact Us", hi: "संपर्क करें", mr: "संपर्क करा" }
     };
 
     const numbersDict = {
