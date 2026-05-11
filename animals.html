@@ -8,35 +8,8 @@
     <meta name="title" content="Learn Animals | KidsFunLearnHub">
     <meta name="description" content="Interactive animal flashcards for kids! Learn the names and sounds of 30 different animals like lions, tigers, and elephants in English, Hindi, and Marathi.">
     <meta name="keywords" content="learn animals, kids animal sounds, toddler animal game, preschool vocabulary, KidsFunLearnHub, educational animal flashcards">
-    <meta name="author" content="KidsFunLearnHub">
     
-    <link rel="canonical" href="https://kidsfunlearnhub.com/animals.html">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kidsfunlearnhub.com/animals.html">
-    <meta property="og:title" content="Learn Animals with KidsFunLearnHub">
-    <meta property="og:description" content="Tap the interactive animal cards to hear their names and see them up close!">
-    <meta property="og:image" content="https://kidsfunlearnhub.com/images/animals-preview.jpg"> 
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "EducationalApplication",
-      "name": "Interactive Animal Flashcards",
-      "url": "https://kidsfunlearnhub.com/animals.html",
-      "description": "An interactive educational tool for toddlers to visually identify and learn animal names and pronunciations.",
-      "applicationCategory": "EducationalGame",
-      "operatingSystem": "Any",
-      "audience": {
-        "@type": "EducationalAudience",
-        "educationalRole": "student",
-        "audienceType": "toddlers and preschoolers"
-      },
-      "publisher": { "@type": "Organization", "name": "KidsFunLearnHub", "url": "https://kidsfunlearnhub.com" }
-    }
-    </script>
-
-    <link rel="stylesheet" href="animals.css?v=1">
+    <link rel="stylesheet" href="animals.css?v=2">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
@@ -62,12 +35,6 @@
         </nav>
     </header>
 
-    <div class="ad-container mobile-ad">
-        <div class="ad-space">
-            <span>[Mobile Top Ad]</span>
-        </div>
-    </div>
-
     <div class="layout-wrapper">
         
         <aside class="desktop-ad">
@@ -86,6 +53,12 @@
                 </div>
             </nav>
 
+            <div class="ad-container mobile-ad">
+                <div class="ad-space">
+                    <span>[Mobile Top Ad]</span>
+                </div>
+            </div>
+
             <div id="animalGrid" class="grid-container" role="list"></div>
 
             <button id="nextBtn" class="next-page-btn">➡ Next Animals</button>
@@ -94,6 +67,10 @@
                 <a href="hub.html" class="home-btn" id="backBtn" style="background:#e91e63;">⬅ Back</a>
                 <a href="hub.html" class="home-btn" id="activitiesBtn" style="background:#9c27b0;">Animal Activities</a>
             </nav>
+            
+            <section class="seo-intro-box">
+                <p id="seoText"></p>
+            </section>
         </main>
 
         <aside class="desktop-ad">
@@ -107,10 +84,6 @@
             <span>[Mobile Bottom Ad]</span>
         </div>
     </div>
-
-    <section class="seo-intro-box">
-        <p id="seoText"></p>
-    </section>
 
     <div id="popup" class="popup hidden" role="dialog" aria-modal="true">
         <div class="popup-content">
@@ -132,6 +105,6 @@
         <p class="copyright">© 2026 KidsFunLearnHub. All rights reserved.</p>
     </footer>
 
-    <script src="animals.js?v=1"></script>
+    <script src="animals.js?v=2"></script>
 </body>
 </html>
