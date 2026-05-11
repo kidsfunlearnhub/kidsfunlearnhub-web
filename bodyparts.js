@@ -25,9 +25,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /////////////////////////////////////////////////
-    // 2. LANGUAGE SETUP & DICTIONARIES
+    // 2. LANGUAGE SETUP, DICTIONARIES & BUTTONS
     /////////////////////////////////////////////////
-    let currentLang = localStorage.getItem('mySecretLanguage') || 'en';
+    
+    // Get the global language from index.html
+    let globalLang = localStorage.getItem('mySecretLanguage') || 'en';
+    
+    // Get this specific page's language, fallback to global if not clicked yet
+    let currentLang = sessionStorage.getItem('bodyPartsLang') || globalLang;
+
+    // Highlight the active language button and set up the reload logic
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        if(btn.dataset.lang === currentLang) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+        
+        btn.addEventListener('click', (e) => {
+            const selectedLang = e.target.dataset.lang;
+            if (selectedLang !== currentLang) {
+                // IMPORTANT FIX: Save only to sessionStorage so it doesn't affect the rest of the site!
+                sessionStorage.setItem('bodyPartsLang', selectedLang);
+                window.location.reload(); 
+            }
+        });
+    });
 
     const uiDictionary = {
         "page-title": { en: "👶 Learn Body Parts", hi: "👶 शरीर के अंग सीखें", mr: "👶 शरीराचे अवयव शिका" },
@@ -35,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "hubBtnNav": { en: "🎮 Activity Hub", hi: "🎮 एक्टिविटी हब", mr: "🎮 ऍक्टिव्हिटी हब" },
         "parentCornerBtn": { en: "👨‍👩‍👧 Parent Corner", hi: "👨‍👩‍👧 पेरेंट कॉर्नर", mr: "👨‍👩‍👧 पेरेंट कॉर्नर" },
         "backBtn": { en: "⬅ Back", hi: "⬅ पीछे", mr: "⬅ मागे" },
-        "learnBtn": { en: "Learn Body Parts", hi: "शरीर के अंग सीखें", mr: "शरीराचे अवयव शिका" },
+        // "learnBtn": { en: "Learn Body Parts", hi: "शरीर के अंग सीखें", mr: "शरीराचे अवयव शिका" },
         "activitiesBtn": { en: "Body Activities", hi: "शरीर गतिविधियां", mr: "शरीर ऍक्टिव्हिटीज" },
         "closeHint": { en: "Tap anywhere to close", hi: "बंद करने के लिए कहीं भी टैप करें", mr: "बंद करण्यासाठी कुठेही टॅप करा" },
         "seoText": {
@@ -151,15 +174,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (activeAudio) activeAudio.pause();
     }
 
-    // Clicking anywhere on the popup overlay closes it
     if (popup) {
         popup.onclick = () => {
             closePopup();
         };
     }
 
-    // The inner content stops propagation so users don't accidentally click through, 
-    // BUT we will also allow clicking the popup card itself to close to make it toddler-proof.
     const popupContent = document.querySelector('.popup-content');
     if (popupContent) {
         popupContent.onclick = (e) => {
@@ -167,4 +187,18 @@ document.addEventListener("DOMContentLoaded", () => {
             e.stopPropagation();
         };
     }
+
+    // 8. CLEAR SESSION STORAGE ON EXIT
+    // If the user clicks back to the hub or home, clear this page's temporary language memory
+    document.getElementById("backBtn").addEventListener("click", () => {
+        sessionStorage.removeItem('bodyPartsLang');
+    });
+    
+    document.getElementById("homeBtnNav").addEventListener("click", () => {
+        sessionStorage.removeItem('bodyPartsLang');
+    });
+
+    document.getElementById("hubBtnNav").addEventListener("click", () => {
+        sessionStorage.removeItem('bodyPartsLang');
+    });
 });

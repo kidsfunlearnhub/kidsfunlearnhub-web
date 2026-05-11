@@ -44,7 +44,7 @@ header { margin-top: 30px; }
 .layout-wrapper {
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Keeps sidebars stuck near the top */
+    align-items: flex-start;
     gap: 20px;
     width: 100%;
     max-width: 1400px;
@@ -53,9 +53,9 @@ header { margin-top: 30px; }
 }
 
 .page-wrapper { 
-    flex: 1; /* Pushes the ads to the side edges */
+    flex: 1; 
     width: 100%; 
-    max-width: 900px; /* Safe center width */
+    max-width: 900px; 
     position: relative; 
     z-index: 20; 
     display: flex; 
@@ -65,9 +65,9 @@ header { margin-top: 30px; }
 
 /* Vertical Ad Styling */
 .desktop-ad {
-    width: 160px; /* Standard skyscraper width */
+    width: 160px;
     flex-shrink: 0;
-    position: sticky; /* Makes the ad follow the user as they scroll! */
+    position: sticky; 
     top: 20px; 
     z-index: 10;
 }
@@ -79,7 +79,7 @@ header { margin-top: 30px; }
     border: 3px dashed rgba(33, 150, 243, 0.7); 
     border-radius: 15px;
     width: 100%;
-    height: 600px; /* Standard skyscraper height */
+    height: 600px; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -91,17 +91,25 @@ header { margin-top: 30px; }
     padding: 10px;
 }
 
-/* The Vanishing Act (Media Queries) */
+/* Media Queries for Ads */
 @media (min-width: 901px) {
-    .mobile-ad { display: none !important; } /* Hide horizontal on PC */
+    .mobile-ad { display: none !important; } 
 }
 
 @media (max-width: 900px) {
-    .desktop-ad { display: none !important; } /* Hide vertical on phones/tablets */
+    .desktop-ad { display: none !important; } 
     .mobile-ad { display: flex !important; }
-    .layout-wrapper { display: block; } /* Reverts wrapper to standard stack */
+    .layout-wrapper { display: block; } 
 }
 
+/* =========================================
+   LANGUAGE SELECTOR
+   ========================================= */
+.language-container { display: flex; justify-content: center; margin-bottom: clamp(15px, 3vh, 25px); width: 100%; }
+.language-selector { display: flex; gap: 10px; background: rgba(255, 255, 255, 0.8); padding: 8px 15px; border-radius: 50px; box-shadow: 0 6px 15px rgba(0,0,0,0.1); border: 2px solid white; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.lang-btn { border: none; background: transparent; padding: 10px 22px; font-size: 16px; font-family: inherit; font-weight: bold; border-radius: 40px; cursor: pointer; color: #555; transition: all 0.3s ease; }
+.lang-btn:hover { background: rgba(76, 175, 80, 0.1); color: #4caf50; }
+.lang-btn.active { background: #4caf50; color: white; box-shadow: 0 4px 10px rgba(76, 175, 80, 0.4); }
 
 /* =========================================
    BODY VIEWER & HOTSPOTS
@@ -118,7 +126,7 @@ header { margin-top: 30px; }
 .body-container {
     position: relative;
     width: 90%;
-    max-width: 280px; /* Great for phones */
+    max-width: 280px; 
     margin: 0 auto;
     animation: float 3s ease-in-out infinite;
 }
@@ -174,7 +182,7 @@ header { margin-top: 30px; }
     position: fixed; inset: 0; background: rgba(0,0,0,0.8);
     display: flex; justify-content: center; align-items: center;
     z-index: 9999; padding: 15px;
-    cursor: pointer; /* Suggests the entire area is clickable to close */
+    cursor: pointer; 
 }
 
 .hidden { display: none !important; }
@@ -184,7 +192,7 @@ header { margin-top: 30px; }
     width: 95%; max-width: 400px; text-align: center;
     box-shadow: 0 15px 40px rgba(0,0,0,0.3); border: 6px solid #4CAF50;
     animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-    cursor: default; /* Keep card area default cursor */
+    cursor: default; 
 }
 
 @keyframes popIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
