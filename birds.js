@@ -1,20 +1,79 @@
-// This tells the script to WAIT until the HTML is fully loaded on the screen
-window.onload = function() {
+"use strict";
+
+document.addEventListener("DOMContentLoaded", () => {
 
     /////////////////////////////////////////////////
-    // 1. LANGUAGE DICTIONARY & SETUP
+    // 1. CURSOR LOGIC
     /////////////////////////////////////////////////
+    const select = document.getElementById("cursorSelect");
+    const savedCursor = localStorage.getItem("kidsCursor");
+    if (savedCursor) {
+        document.documentElement.style.cursor = savedCursor;
+        if(select) select.value = savedCursor.split("/").pop().replace(/["')]/g, '').split(' ')[0];
+    }
+    if(select) {
+        select.addEventListener("change", () => {
+            if (!select.value) {
+                document.documentElement.style.cursor = "auto";
+                localStorage.removeItem("kidsCursor");
+                return;
+            }
+            const cursorValue = `url("images/cursors/${select.value}") 16 16, auto`;
+            document.documentElement.style.cursor = cursorValue;
+            localStorage.setItem("kidsCursor", cursorValue);
+        });
+    }
 
-    // Read the language clicked on the home page (default to English if empty)
-    let currentLang = localStorage.getItem('mySecretLanguage') || 'en';
+    /////////////////////////////////////////////////
+    // 2. LANGUAGE SETUP, DICTIONARIES & BUTTONS
+    /////////////////////////////////////////////////
+    
+    // Get the global language from index.html
+    let globalLang = localStorage.getItem('mySecretLanguage') || 'en';
+    
+    // Get this specific page's language, fallback to global if not clicked yet
+    let currentLang = sessionStorage.getItem('birdsPageLang') || globalLang;
 
-    // Dictionary for the Page Title and Next Button
+    // Highlight the active language button and set up the reload logic
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        if(btn.dataset.lang === currentLang) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+        
+        btn.addEventListener('click', (e) => {
+            const selectedLang = e.target.dataset.lang;
+            if (selectedLang !== currentLang) {
+                // Save only to sessionStorage so it doesn't affect the rest of the site
+                sessionStorage.setItem('birdsPageLang', selectedLang);
+                window.location.reload(); 
+            }
+        });
+    });
+
     const uiDictionary = {
         "page-title": { en: "🦚 Learn Birds", hi: "🦚 पक्षी सीखें", mr: "🦚 पक्षी शिका" },
-        "nextBtn": { en: "➡ Next Birds", hi: "➡ अगले पक्षी", mr: "➡ पुढील पक्षी" }
+        "homeBtnNav": { en: "🏠 Home", hi: "🏠 होम", mr: "🏠 होम" },
+        "hubBtnNav": { en: "🎮 Activity Hub", hi: "🎮 एक्टिविटी हब", mr: "🎮 ऍक्टिव्हिटी हब" },
+        "parentCornerBtn": { en: "👨‍👩‍👧 Parent Corner", hi: "👨‍👩‍👧 पेरेंट कॉर्नर", mr: "👨‍👩‍👧 पेरेंट कॉर्नर" },
+        "backBtn": { en: "⬅ Back", hi: "⬅ पीछे", mr: "⬅ मागे" },
+        "activitiesBtn": { en: "Bird Activities", hi: "पक्षी गतिविधियां", mr: "पक्षी ऍक्टिव्हिटीज" },
+        "nextBtn": { en: "➡ Next Birds", hi: "➡ अगले पक्षी", mr: "➡ पुढील पक्षी" },
+        "closeHint": { en: "Tap anywhere to close", hi: "बंद करने के लिए कहीं भी टैप करें", mr: "बंद करण्यासाठी कुठेही टॅप करा" },
+        "seoText": {
+            en: "Welcome to the <strong>KidsFunLearnHub Bird Sanctuary</strong>! Tap on any bird card to see a beautiful picture and hear its name. This interactive vocabulary activity helps toddlers recognize common and wild birds, improving their memory and early speech skills.",
+            hi: "<strong>KidsFunLearnHub पक्षी अभयारण्य</strong> में आपका स्वागत है! एक सुंदर तस्वीर देखने और उसका नाम सुनने के लिए किसी भी पक्षी कार्ड पर टैप करें। यह संवादात्मक शब्दावली गतिविधि बच्चों को आम और जंगली पक्षियों को पहचानने में मदद करती है, जिससे उनकी याददाश्त और प्रारंभिक भाषण कौशल में सुधार होता है।",
+            mr: "<strong>KidsFunLearnHub पक्षी अभयारण्यात</strong> आपले स्वागत आहे! एक सुंदर चित्र पाहण्यासाठी आणि त्याचे नाव ऐकण्यासाठी कोणत्याही पक्षी कार्डवर टॅप करा. ही संवादात्मक शब्दसंग्रह ऍक्टिव्हिटी लहान मुलांना सामान्य आणि जंगली पक्षी ओळखण्यास मदत करते, त्यांची स्मरणशक्ती आणि प्रारंभिक भाषण कौशल्ये सुधारते."
+        },
+        // Footer Translations
+        "footerAbout": { en: "About Us", hi: "हमारे बारे में", mr: "आमच्याबद्दल" },
+        "footerTerms": { en: "Terms & Conditions", hi: "नियम और शर्तें", mr: "नियम आणि अटी" },
+        "footerPrivacy": { en: "Privacy Policy", hi: "गोपनीयता नीति", mr: "गोपनीयता धोरण" },
+        "footerDisclaimer": { en: "Disclaimer", hi: "अस्वीकरण", mr: "अस्वीकरण" },
+        "footerContact": { en: "Contact Us", hi: "संपर्क करें", mr: "संपर्क करा" }
     };
 
-    // Dictionary for all 30 birds
     const birdDict = {
         "peacock": { en: "Peacock", hi: "मोर", mr: "मोर" },
         "sparrow": { en: "Sparrow", hi: "गौरैया", mr: "चिमणी" },
@@ -48,28 +107,24 @@ window.onload = function() {
         "ibis": { en: "Ibis", hi: "इबिस", mr: "शराटी" }
     };
 
+    // Translate UI elements on load
+    for (let id in uiDictionary) {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = uiDictionary[id][currentLang];
+    }
+
+    /////////////////////////////////////////////////
+    // 3. PAGINATION & CACHING
+    /////////////////////////////////////////////////
     const birds = Object.keys(birdDict);
     const PAGE_SIZE = 15;
     let currentPage = 0;
-
-    /////////////////////////////////////////////////
-    // ELEMENTS & TRANSLATING UI
-    /////////////////////////////////////////////////
 
     const grid = document.getElementById("birdGrid");
     const popup = document.getElementById("popup");
     const popupImg = document.getElementById("popupImg");
     const popupName = document.getElementById("popupName");
     const nextBtn = document.getElementById("nextBtn");
-
-    // Safely update the title and button text
-    const titleElement = document.getElementById("page-title");
-    if (titleElement) titleElement.innerText = uiDictionary["page-title"][currentLang];
-    if (nextBtn) nextBtn.innerText = uiDictionary["nextBtn"][currentLang];
-
-    /////////////////////////////////////////////////
-    // 🚀 ULTRA-FAST PRELOAD CACHE
-    /////////////////////////////////////////////////
 
     const imageCache = {};
     const soundCache = {};
@@ -86,11 +141,10 @@ window.onload = function() {
     });
 
     /////////////////////////////////////////////////
-    // BUILD PAGE GRID
+    // 4. BUILD PAGE GRID
     /////////////////////////////////////////////////
-
     function loadPage() {
-      if (!grid) return; // Extra safety check
+      if (!grid) return;
       grid.innerHTML = "";
 
       const start = currentPage * PAGE_SIZE;
@@ -99,22 +153,22 @@ window.onload = function() {
       birds.slice(start, end).forEach(name => {
         const card = document.createElement("div");
         card.className = "card";
+        card.setAttribute("role", "button");
 
         const translatedName = birdDict[name][currentLang];
 
         card.innerHTML = `
-          <img src="${imageCache[name].src}" alt="${name}">
+          <img src="${imageCache[name].src}" alt="${translatedName}">
           <p>${translatedName}</p>
         `;
 
         card.onclick = () => showBird(name);
         grid.appendChild(card);
       });
+      
+      // Auto-scroll slightly up when changing pages to reset view
+      window.scrollTo({ top: grid.offsetTop - 50, behavior: 'smooth' });
     }
-
-    /////////////////////////////////////////////////
-    // NEXT BUTTON
-    /////////////////////////////////////////////////
 
     if (nextBtn) {
         nextBtn.onclick = () => {
@@ -127,29 +181,54 @@ window.onload = function() {
     }
 
     /////////////////////////////////////////////////
-    // POPUP DISPLAY
+    // 5. POPUP DISPLAY & LOGIC
     /////////////////////////////////////////////////
+    let activeAudio = null;
 
     function showBird(name) {
       if (popupImg) popupImg.src = imageCache[name].src;
       if (popupName) popupName.textContent = birdDict[name][currentLang];
-      if (popup) popup.classList.remove("hidden");
+      
+      if (popup) {
+          popup.classList.remove("hidden");
+          popup.style.display = "flex";
+      }
 
-      const sound = soundCache[name];
-      sound.currentTime = 0;
-      sound.play().catch(e => console.log("Sound play error: ", e));
+      if (activeAudio) {
+          activeAudio.pause();
+          activeAudio.currentTime = 0;
+      }
+      activeAudio = soundCache[name];
+      activeAudio.currentTime = 0;
+      activeAudio.play().catch(e => console.log("Sound play error: ", e));
 
       launchConfetti();
     }
 
+    function closePopup() {
+        if (popup) {
+            popup.classList.add("hidden");
+            popup.style.display = "none";
+        }
+        if (activeAudio) activeAudio.pause();
+    }
+
+    // Toddler-proof closing
     if (popup) {
-        popup.onclick = () => popup.classList.add("hidden");
+        popup.onclick = () => { closePopup(); };
+    }
+
+    const popupContent = document.querySelector('.popup-content');
+    if (popupContent) {
+        popupContent.onclick = (e) => {
+            closePopup();
+            e.stopPropagation();
+        };
     }
 
     /////////////////////////////////////////////////
-    // CONFETTI
+    // 6. CONFETTI
     /////////////////////////////////////////////////
-
     function launchConfetti() {
       if (typeof confetti === "function") {
         confetti({ particleCount: 120, spread: 100, origin: { y: 0.6 } });
@@ -157,8 +236,14 @@ window.onload = function() {
     }
 
     /////////////////////////////////////////////////
-    // INIT
+    // 7. CLEANUP LOGIC ON EXIT
     /////////////////////////////////////////////////
+    const cleanupSession = () => sessionStorage.removeItem('birdsPageLang');
+    
+    document.getElementById("backBtn")?.addEventListener("click", cleanupSession);
+    document.getElementById("homeBtnNav")?.addEventListener("click", cleanupSession);
+    document.getElementById("hubBtnNav")?.addEventListener("click", cleanupSession);
 
+    // INIT
     loadPage();
-};
+});

@@ -1,30 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Learn Fruits</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Learn Fruits | KidsFunLearnHub</title>
+    <meta name="title" content="Learn Fruits | KidsFunLearnHub">
+    <meta name="description" content="Interactive fruit flashcards for kids! Learn the names and sounds of 30 different fruits like mangoes, apples, and bananas in English, Hindi, and Marathi.">
+    <meta name="keywords" content="learn fruits, kids fruit game, toddler fruit flashcards, preschool vocabulary, KidsFunLearnHub, educational healthy eating game">
+    <meta name="author" content="KidsFunLearnHub">
+    
+    <link rel="canonical" href="https://kidsfunlearnhub.com/fruits.html">
 
-<link rel="stylesheet" href="fruits.css">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kidsfunlearnhub.com/fruits.html">
+    <meta property="og:title" content="Learn Fruits with KidsFunLearnHub">
+    <meta property="og:description" content="Tap the interactive fruit cards to hear their names and see them up close!">
+    <meta property="og:image" content="https://kidsfunlearnhub.com/images/fruits-preview.jpg"> 
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalApplication",
+      "name": "Interactive Fruit Flashcards",
+      "url": "https://kidsfunlearnhub.com/fruits.html",
+      "description": "An interactive educational tool for toddlers to visually identify and learn fruit names and pronunciations.",
+      "applicationCategory": "EducationalGame",
+      "operatingSystem": "Any",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student",
+        "audienceType": "toddlers and preschoolers"
+      },
+      "publisher": { "@type": "Organization", "name": "KidsFunLearnHub", "url": "https://kidsfunlearnhub.com" }
+    }
+    </script>
+
+    <link rel="stylesheet" href="fruits.css?v=1">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
-
 <body>
 
-<h1 id="page-title">🍓 Learn Fruits</h1>
+    <div class="cursor-dropdown" aria-label="Select Custom Cursor">
+        <select id="cursorSelect">
+            <option value="">Default Cursor</option>
+            <option value="dinosaur.png">🦖 Dinosaur</option>
+            <option value="star.png">⭐ Star</option>
+        </select>
+    </div>
 
-<div id="fruitGrid" class="grid"></div>
+    <a href="parent.html" class="parent-corner bubble-btn" id="parentCornerBtn" aria-label="Go to Parent Corner">
+        👨‍👩‍👧 Parent Corner
+    </a>
 
-<button id="nextBtn">➡ Next Fruits</button>
+    <header>
+        <h1 class="title" id="page-title">🍓 Learn Fruits</h1>
+        
+        <nav class="home-nav">
+          <a href="index.html" class="home-btn" id="homeBtnNav">🏠 Home</a>
+          <a href="hub.html" class="home-btn" id="hubBtnNav" style="background:#ff9800; margin-left:10px;">🎮 Activity Hub</a>
+        </nav>
+    </header>
 
-<div id="popup" class="popup hidden">
-  <div class="popup-card">
-    <img id="popupImg">
-    <h2 id="popupName"></h2>
-  </div>
-</div>
+    <nav class="language-container" aria-label="Language Selection">
+        <div class="language-selector">
+            <button class="lang-btn" data-lang="en" aria-label="Switch to English">English</button>
+            <button class="lang-btn" data-lang="hi" aria-label="Switch to Hindi">हिंदी</button>
+            <button class="lang-btn" data-lang="mr" aria-label="Switch to Marathi">मराठी</button>
+        </div>
+    </nav>
 
-<script src="fruits.js"></script>
+    <div class="ad-container mobile-ad">
+        <div class="ad-space">
+            <span>[Mobile Top Ad]</span>
+        </div>
+    </div>
+
+    <div class="layout-wrapper">
+        
+        <aside class="desktop-ad">
+            <div class="vertical-ad-space">
+                <span>[Left Skyscraper Ad]</span>
+            </div>
+        </aside>
+
+        <main class="page-wrapper">
+            
+            <div id="fruitGrid" class="grid-container" role="list"></div>
+
+            <button id="nextBtn" class="next-page-btn">➡ Next Fruits</button>
+
+            <nav class="bottom-nav">
+                <a href="hub.html" class="home-btn" id="backBtn" style="background:#e91e63;">⬅ Back</a>
+                <a href="hub.html" class="home-btn" id="activitiesBtn" style="background:#9c27b0;">Fruit Activities</a>
+            </nav>
+            
+            <section class="seo-intro-box">
+                <p id="seoText"></p>
+            </section>
+        </main>
+
+        <aside class="desktop-ad">
+            <div class="vertical-ad-space">
+                <span>[Right Skyscraper Ad]</span>
+            </div>
+        </aside>
+
+    </div> <div class="ad-container mobile-ad">
+        <div class="ad-space">
+            <span>[Mobile Bottom Ad]</span>
+        </div>
+    </div>
+
+    <div id="popup" class="popup hidden" role="dialog" aria-modal="true">
+        <div class="popup-content">
+            <span id="closeBtn">✖</span>
+            <img id="popupImg" alt="Fruit">
+            <h2 id="popupName"></h2>
+            <p id="closeHint" class="close-hint" style="color: #888; font-size: 1rem; margin-top: 15px; font-weight: bold; background: #eee; padding: 5px 15px; border-radius: 20px; display: inline-block;">Tap anywhere to close</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <nav aria-label="Footer Navigation">
+            <a href="aboutus.html" id="footerAbout">About Us</a> |
+            <a href="termsandconditions.html" id="footerTerms">Terms & Conditions</a> |
+            <a href="privacy.html" id="footerPrivacy">Privacy Policy</a> |
+            <a href="disclaimer.html" id="footerDisclaimer">Disclaimer</a> |
+            <a href="contactus.html" id="footerContact">Contact Us</a>
+        </nav>
+        <p class="copyright">© 2026 KidsFunLearnHub. All rights reserved.</p>
+    </footer>
+
+    <script src="fruits.js?v=1"></script>
 </body>
 </html>
