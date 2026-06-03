@@ -83,15 +83,17 @@ header { margin-top: 15px; }
 }
 
 .card:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.2); border-bottom-color: #ff9800; }
-/* .card img { width: 100%; height: 150px; object-fit: cover; border-radius: 12px; } */
-.card img {
-    width: 100%;
-    height: 150px;
-    object-fit: contain; /* Forces the entire image to fit inside the box perfectly */
-    border-radius: 12px;
-    background-color: #ffffff; /* Adds a clean white background if the image is transparent */
-    padding: 5px; /* Adds a safe buffer so wings or legs don't touch the card borders */
+
+/* FIX: object-fit: contain ensures no insect edges (like wings/legs) are cropped! */
+.card img { 
+    width: 100%; 
+    height: 150px; 
+    object-fit: contain; 
+    border-radius: 12px; 
+    background-color: #ffffff;
+    padding: 5px;
 }
+
 .card p { font-size: clamp(1.2rem, 2vw, 1.8rem); font-weight: bold; margin: 10px 0 5px 0; color: #444; }
 
 @media (max-width: 500px) {
