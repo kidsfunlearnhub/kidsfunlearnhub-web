@@ -13,7 +13,7 @@ body {
     max-width: 1000px;
     width: 100%;
     text-align: center;
-    margin-bottom: 40px; /* Space for SEO block */
+    margin-bottom: 40px; 
 }
 
 /* Header & Breadcrumbs */
@@ -52,7 +52,6 @@ body {
 /* The Grid */
 .activity-grid {
     display: grid;
-    /* Uses auto-fit to comfortably squeeze in the 11 sub-category cards */
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 25px;
     padding: 10px;
@@ -142,8 +141,14 @@ body {
     border: 3px solid white;
 }
 
-/* Back Button */
-.bottom-actions { margin-top: 40px; }
+/* Bottom Action Buttons */
+.bottom-actions { 
+    margin-top: 40px; 
+    display: flex; 
+    justify-content: center; 
+    gap: 15px; 
+    flex-wrap: wrap; 
+}
 .back-home-btn {
     background: white;
     color: #ff5722;
@@ -159,6 +164,12 @@ body {
     cursor: pointer;
 }
 .back-home-btn:active { transform: translateY(6px); box-shadow: none; }
+
+/* New Custom Style for the Back to Learn Button */
+.return-learn-btn {
+    border-color: #9c27b0;
+    color: #9c27b0;
+}
 
 /* Coming Soon Popup Overlay */
 .popup-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; z-index: 1000; }

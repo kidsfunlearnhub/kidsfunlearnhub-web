@@ -10,7 +10,7 @@ window.onload = function() {
         { id: "tapping", name: "Tapping", icon: "👆", color: "color-pink", desc: "Tap as fast as you can!", targetVocab: "tapping" }
     ];
 
-    // Level 2: General Vocabulary (For Finding, Shadow, Joining)
+    // Level 2: General Vocabulary
     const generalSubCategories = [
         { id: "animals", name: "Animals", icon: "🦁" },
         { id: "birds", name: "Birds", icon: "🦚" },
@@ -33,7 +33,26 @@ window.onload = function() {
         { id: "hindi", name: "Hindi (अ आ इ)", icon: "अ" }
     ];
 
-    // Map existing live URLs (Everything else gets "Coming Soon")
+    // Dictionary mapping Topic IDs to their actual Learn Pages
+    const learnPageUrls = {
+        "animals": "animals.html",
+        "birds": "birds.html",
+        "insects": "insects.html",
+        "fruits": "fruits.html",
+        "vegetables": "vegetables.html",
+        "foods": "foods.html",
+        "flowers": "flowers.html",
+        "vehicles": "vehicles.html",
+        "colours": "colors.html", // Links 'colours' to your 'colors.html' file
+        "bodyparts": "bodyparts.html",
+        "shapes": "shapes.html",
+        "alphabets": "alphabets.html",
+        "small_alphabets": "small_alphabets.html",
+        "numbers": "numbers.html",
+        "hindi": "hindi.html"
+    };
+
+    // Map existing live URLs
     const liveUrls = {
         "finding_animals": "findanimal.html",
         "finding_birds": "findbird.html",
@@ -68,40 +87,33 @@ window.onload = function() {
         "joining_colours": "puzzlecolour.html",
         "joining_bodyparts": "puzzlebodypart.html",
         "joining_shapes": "puzzleshape.html"
-
     };
 
     // --- 2. STATE MANAGEMENT ---
     
-    let currentView = "main"; // 'main' or a specific category id (e.g., 'finding')
-    let currentCategoryName = "";
-
     const gridElement = document.getElementById("activity-grid");
     const breadcrumbElement = document.getElementById("breadcrumb");
-    const backBtn = document.getElementById("backBtn");
+    const bottomActionsElement = document.querySelector(".bottom-actions");
     
     const popup = document.getElementById('comingSoonPopup');
     const closeBtn = document.getElementById('closePopupBtn');
 
     // --- 3. RENDER FUNCTIONS ---
 
+    // VIEW A: Main Activity Categories
     function renderMainView() {
-        currentView = "main";
-        currentCategoryName = "";
         gridElement.innerHTML = "";
         
-        // Update Breadcrumb
         breadcrumbElement.innerHTML = `
             <span class="breadcrumb-item" onclick="window.location.href='index.html'">🏠 Home</span>
             <span class="breadcrumb-separator">/</span>
             <span class="breadcrumb-current">Activity Hub</span>
         `;
         
-        // Update Back Button
-        backBtn.innerHTML = "🏠 Back to Home";
-        backBtn.onclick = () => window.location.href = "index.html";
+        // Ensure only one back button is present
+        bottomActionsElement.innerHTML = `<button id="backBtn" class="back-home-btn" aria-label="Go Back">🏠 Back to Home</button>`;
+        document.getElementById("backBtn").onclick = () => window.location.href = "index.html";
 
-        // Build Cards
         mainCategories.forEach(cat => {
             const card = document.createElement("div");
             card.className = `activity-card ${cat.color}`;
@@ -111,12 +123,10 @@ window.onload = function() {
                 <p>${cat.desc}</p>
                 <div class="play-btn">▶</div>
             `;
-            // On click, render the sub-menu for this category
             card.onclick = () => renderSubView(cat.id, cat.name, cat.targetVocab, cat.color);
             gridElement.appendChild(card);
         });
 
-        // Trigger Confetti only on main hub load
         if (typeof confetti === "function") {
             setTimeout(() => {
                 confetti({ particleCount: 100, spread: 90, origin: { y: 0.2 }, colors: ['#ff9800', '#4caf50', '#2196f3', '#e91e63'], disableForReducedMotion: true });
@@ -124,12 +134,10 @@ window.onload = function() {
         }
     }
 
+    // VIEW B: Sub-Categories inside a Main Category
     function renderSubView(categoryId, categoryName, vocabType, colorClass) {
-        currentView = categoryId;
-        currentCategoryName = categoryName;
         gridElement.innerHTML = "";
         
-        // Update Breadcrumb
         breadcrumbElement.innerHTML = `
             <span class="breadcrumb-item" onclick="window.location.href='index.html'">🏠 Home</span>
             <span class="breadcrumb-separator">/</span>
@@ -137,22 +145,24 @@ window.onload = function() {
             <span class="breadcrumb-separator">/</span>
             <span class="breadcrumb-current">${categoryName}</span>
         `;
-        // Make the "Activity Hub" breadcrumb clickable
-        document.getElementById("bread-hub").onclick = renderMainView;
+        document.getElementById("bread-hub").onclick = () => {
+            clearUrlParams();
+            renderMainView();
+        };
 
-        // Update Back Button
-        backBtn.innerHTML = "⬅ Back to Categories";
-        backBtn.onclick = renderMainView;
+        // Ensure only one back button is present
+        bottomActionsElement.innerHTML = `<button id="backBtn" class="back-home-btn" aria-label="Go Back">⬅ Back to Categories</button>`;
+        document.getElementById("backBtn").onclick = () => {
+            clearUrlParams();
+            renderMainView();
+        };
 
-        // Select the correct sub-categories array
         const listToRender = (vocabType === "tapping") ? tappingSubCategories : generalSubCategories;
 
-        // Build Cards
         listToRender.forEach(sub => {
             const urlKey = `${categoryId}_${sub.id}`;
             const isLive = liveUrls[urlKey] !== undefined;
 
-            // Use an <a> tag for live games for better SEO crawling, Use a <div> for locked games
             const card = document.createElement(isLive ? "a" : "div");
             card.className = `activity-card ${colorClass}`;
             
@@ -181,6 +191,96 @@ window.onload = function() {
         });
     }
 
+    // VIEW C: Topic Filter View (Shows Find, Shadow, Puzzle for a specific topic like 'Animals')
+    function renderTopicView(topicId) {
+        gridElement.innerHTML = "";
+
+        // Find the topic details
+        const topicInfo = generalSubCategories.find(sub => sub.id === topicId) || tappingSubCategories.find(sub => sub.id === topicId);
+
+        if (!topicInfo) {
+            renderMainView(); // Fallback if invalid topic
+            return;
+        }
+        
+        breadcrumbElement.innerHTML = `
+            <span class="breadcrumb-item" onclick="window.location.href='index.html'">🏠 Home</span>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-item" id="bread-hub">Activity Hub</span>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">${topicInfo.name} Activities</span>
+        `;
+        document.getElementById("bread-hub").onclick = () => {
+            clearUrlParams();
+            renderMainView();
+        };
+
+        // --- NEW: INJECT TWO BUTTONS HERE ---
+        bottomActionsElement.innerHTML = ""; 
+
+        // Button 1: Back to Learn Topic (e.g. Back to Learn Animals)
+        if (learnPageUrls[topicId]) {
+            const backToLearnBtn = document.createElement("button");
+            backToLearnBtn.className = "back-home-btn return-learn-btn";
+            backToLearnBtn.innerHTML = `📚 Back to Learn ${topicInfo.name}`;
+            backToLearnBtn.onclick = () => window.location.href = learnPageUrls[topicId];
+            bottomActionsElement.appendChild(backToLearnBtn);
+        }
+
+        // Button 2: Back to Activity Hub Main Page
+        const backToHubBtn = document.createElement("button");
+        backToHubBtn.className = "back-home-btn";
+        backToHubBtn.innerHTML = "⬅ Back to Activity Hub";
+        backToHubBtn.onclick = () => {
+            clearUrlParams();
+            renderMainView();
+        };
+        bottomActionsElement.appendChild(backToHubBtn);
+        // -------------------------------------
+
+        mainCategories.forEach(mainCat => {
+            if (mainCat.targetVocab === "tapping" && !tappingSubCategories.find(s => s.id === topicId)) return;
+            if (mainCat.targetVocab === "general" && !generalSubCategories.find(s => s.id === topicId)) return;
+
+            const urlKey = `${mainCat.id}_${topicId}`;
+            const isLive = liveUrls[urlKey] !== undefined;
+
+            const card = document.createElement(isLive ? "a" : "div");
+            card.className = `activity-card ${mainCat.color}`;
+            
+            if (isLive) {
+                card.href = liveUrls[urlKey];
+            } else {
+                card.classList.add("locked", "coming-soon");
+            }
+
+            card.innerHTML = `
+                ${!isLive ? `<div class="locked-badge">🔒 Soon</div>` : ""}
+                <div class="card-icon">${mainCat.icon}</div>
+                <h2>${mainCat.name} ${topicInfo.name}</h2>
+                <p>${isLive ? 'Play Now!' : 'Building...'}</p>
+                ${isLive ? `<div class="play-btn">▶</div>` : ""}
+            `;
+
+            if (!isLive) {
+                card.onclick = (e) => {
+                    e.preventDefault();
+                    popup.classList.remove('hidden');
+                };
+            }
+
+            gridElement.appendChild(card);
+        });
+    }
+
+    // UTILITY: Clean up the URL when going back to the main hub
+    function clearUrlParams() {
+        if (window.history.replaceState) {
+            const url = window.location.protocol + "//" + window.location.host + window.location.pathname;
+            window.history.replaceState({path: url}, '', url);
+        }
+    }
+
     // --- 4. POPUP MANAGEMENT ---
     
     closeBtn.addEventListener('click', () => {
@@ -191,6 +291,13 @@ window.onload = function() {
         if (e.target === popup) popup.classList.add('hidden');
     });
 
-    // Initialize Page
-    renderMainView();
+    // --- 5. INITIALIZATION (Check URL for ?topic=) ---
+    const urlParams = new URLSearchParams(window.location.search);
+    const topicFilter = urlParams.get('topic');
+
+    if (topicFilter) {
+        renderTopicView(topicFilter);
+    } else {
+        renderMainView();
+    }
 };
