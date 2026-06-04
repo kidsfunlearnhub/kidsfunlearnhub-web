@@ -95,7 +95,7 @@ header { margin-top: 30px; }
 @media (min-width: 901px) { .mobile-ad { display: none !important; } }
 @media (max-width: 900px) {
     .desktop-ad { display: none !important; } 
-    .mobile-ad { display: flex !important; }
+    .mobile-ad { display: none !important; } /* changed to none to hide mobile ad on animals page */
     .layout-wrapper { display: block; } 
 }
 
