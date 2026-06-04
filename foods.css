@@ -47,7 +47,7 @@ header { margin-top: 15px; }
 @media (min-width: 901px) { .mobile-ad { display: none !important; } }
 @media (max-width: 900px) {
     .desktop-ad { display: none !important; } 
-    .mobile-ad { display: flex !important; }
+    .mobile-ad { display: none !important; }
     .layout-wrapper { display: block; margin-top: 0; } 
 }
 
