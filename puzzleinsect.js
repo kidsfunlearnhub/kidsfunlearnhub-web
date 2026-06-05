@@ -47,7 +47,7 @@ window.onload = function() {
         "game-title": { en: "🪰 Insect Picture Puzzle!", hi: "🪰 कीड़े चित्र पहेली!", mr: "🪰 कीटक चित्र कोडे!" },
         "score-label": { en: "Score:", hi: "स्कोर:", mr: "गुण:" },
         "instruction": { en: "Complete the picture!", hi: "चित्र पूरा करें!", mr: "चित्र पूर्ण करा!" },
-        "backBtn": { en: "⬅ Back to Activity Hub", hi: "⬅ वापस जाएँ", mr: "⬅ मागे जा" },
+        "backBtn": { en: "⬅ Back", hi: "⬅ पीछे", mr: "⬅ मागे" },
         "correct": { en: "Great Job! 🎉", hi: "बहुत अच्छे! 🎉", mr: "खूप छान! 🎉" },
         "total-score": { en: "Total Score: ", hi: "कुल स्कोर: ", mr: "एकूण गुण: " },
         "page-title": { en: "Insect Picture Puzzle Game | KidsFunLearnHub", hi: "कीड़े चित्र पहेली खेल | KidsFunLearnHub", mr: "कीटक चित्र कोडे खेळ | KidsFunLearnHub" }
@@ -271,7 +271,9 @@ window.onload = function() {
     document.getElementById("backBtn").addEventListener("click", () => {
         sessionStorage.removeItem('puzzleInsectScore'); 
         sessionStorage.removeItem('puzzleInsectThemeIndex'); 
-        window.location.href = "index.html"; 
+       // Grab the saved URL, or default to the hub if none exists
+        const returnUrl = sessionStorage.getItem('hubReturnUrl') || "activityhub.html";
+        window.location.href = returnUrl;
     });
 
     initProgressTrack(); 

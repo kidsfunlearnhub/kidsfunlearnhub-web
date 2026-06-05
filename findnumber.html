@@ -4,27 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Find The Vegetable Game | KidsFunLearnHub</title>
-    <meta name="title" content="Find The Vegetable Game | KidsFunLearnHub">
-    <meta name="description" content="Play the free Find The Vegetable game on KidsFunLearnHub! An interactive listening and visual recognition game for kids to learn vegetable names.">
-    <meta name="keywords" content="find the vegetable, kids educational game, toddler vegetable games, vegetable recognition, preschool activities, KidsFunLearnHub">
+    <title>Find The Number Game | KidsFunLearnHub</title>
+    <meta name="title" content="Find The Number Game | KidsFunLearnHub">
+    <meta name="description" content="Play the free Find The Number game on KidsFunLearnHub! A fun, interactive listening and visual recognition game for toddlers to learn numbers 1 to 40.">
+    <meta name="keywords" content="find the number, kids math game, toddler counting games, number recognition, preschool activities, KidsFunLearnHub, learn numbers">
     <meta name="author" content="KidsFunLearnHub">
     
-    <link rel="canonical" href="https://kidsfunlearnhub.com/findvegetable.html">
+    <link rel="canonical" href="https://kidsfunlearnhub.com/findnumber.html">
 
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kidsfunlearnhub.com/findvegetable.html">
-    <meta property="og:title" content="Find The Vegetable Game | KidsFunLearnHub">
-    <meta property="og:description" content="A fun, interactive visual recognition game for toddlers to learn vegetable names in English, Hindi, and Marathi.">
-    <meta property="og:image" content="https://kidsfunlearnhub.com/images/find-vegetable-preview.jpg"> 
+    <meta property="og:url" content="https://kidsfunlearnhub.com/findnumber.html">
+    <meta property="og:title" content="Find The Number Game | KidsFunLearnHub">
+    <meta property="og:description" content="A fun, interactive visual recognition game for toddlers to learn counting and numbers. Play for free!">
+    <meta property="og:image" content="https://kidsfunlearnhub.com/images/find-number-preview.jpg"> 
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "EducationalApplication",
-      "name": "Find The Vegetable",
-      "url": "https://kidsfunlearnhub.com/findvegetable.html",
-      "description": "An interactive educational game where children listen to prompts and find the correct vegetable, improving vocabulary and visual recognition.",
+      "name": "Find The Number",
+      "url": "https://kidsfunlearnhub.com/findnumber.html",
+      "description": "An interactive educational game where children listen to prompts and find the correct number digit, improving counting and visual recognition.",
       "applicationCategory": "EducationalGame",
       "operatingSystem": "Any",
       "educationalUse": "Interactive Learning",
@@ -33,12 +33,20 @@
         "educationalRole": "student",
         "audienceType": "toddlers and preschoolers"
       },
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "publisher": { "@type": "Organization", "name": "KidsFunLearnHub", "url": "https://kidsfunlearnhub.com" }
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "KidsFunLearnHub",
+        "url": "https://kidsfunlearnhub.com"
+      }
     }
     </script>
 
-    <link rel="stylesheet" href="findvegetable.css">
+    <link rel="stylesheet" href="findnumber.css?v=1">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
 </head>
 <body>
@@ -46,7 +54,7 @@
     <main class="game-container">
         
         <header class="header-row">
-            <h1 id="game-title">🫛 Find The Vegetable!</h1>
+            <h1 id="game-title">🔢 Find The Number!</h1>
             <div class="score-board" aria-live="polite">
                 <span id="score-label">Score:</span> 
                 <span id="score">0</span>
@@ -68,24 +76,27 @@
                     <div class="progress-line-fill" id="progress-line"></div> 
                 </div>
                 <div class="dots-container" id="dots-container"></div>
+                
                 <div class="runner-track-overlay">
                     <div id="runner-icon" class="runner-icon">
-                        <span id="runner-emoji" class="face-right">🐒</span>
+                        <span id="runner-emoji" class="face-right">✏️</span>
                     </div>
                 </div>
-                <div id="target-icon" class="target-icon">🍌</div>
+                
+                <div id="target-icon" class="target-icon">📓</div>
             </div>
         </section>
 
         <section id="promptBox" class="prompt-box" role="button" tabindex="0" aria-label="Play instruction audio">
             <div class="speaker-icon" aria-hidden="true">🔊</div>
             <div>
-                <h2 id="instruction">Where is the...</h2>
-                <div id="target-vegetable-name" class="target-text">???</div>
+                <h2 id="instruction">Where is...</h2>
+                <div id="target-number-name" class="target-text">???</div>
             </div>
         </section>
 
-        <section id="gameGrid" class="grid" role="list" aria-label="Vegetable Options"></section>
+        <section id="gameGrid" class="grid" role="list" aria-label="Number Options">
+        </section>
 
         <nav class="bottom-actions">
             <button id="backBtn" class="action-btn" aria-label="Go back">⬅ Back</button>
@@ -93,20 +104,20 @@
     </main>
 
     <section class="seo-description-container">
-        <h2>About The Find The Vegetable Activity</h2>
-        <p>Welcome to <strong>KidsFunLearnHub's Find The Vegetable</strong>! This free educational activity builds children's vocabulary and recognition skills by having them listen to audio prompts and select the correct healthy vegetable.</p>
-        <p><strong>Learning Outcomes:</strong> Auditory processing, visual recognition, and hand-eye coordination. Available in English, Hindi, and Marathi!</p>
+        <h2>About The Find The Number Activity</h2>
+        <p>Welcome to <strong>KidsFunLearnHub's Find The Number</strong>! This free educational activity is designed specifically for toddlers, preschoolers, and early learners. By listening to the audio prompts and selecting the correct number from the grid, children actively build their counting skills and digit recognition.</p>
+        <p><strong>Learning Outcomes:</strong> Auditory processing, visual recognition, early math skills, and hand-eye coordination. Fully voiced and available in English, Hindi, and Marathi (complete with Devanagari numerals) to support multilingual early childhood education!</p>
     </section>
 
     <div id="feedback" class="feedback-overlay hidden" role="alert">
         <div class="feedback-content">
-            <img id="feedback-img" src="" alt="Vegetable" class="hidden">
+            <img id="feedback-img" src="" alt="Counting Objects" class="hidden">
             <h2 id="feedback-text"></h2>
             <h3 id="feedback-score" class="score-text"></h3>
             <div style="font-size: 80px; animation: popIn 0.5s;">⭐</div>
         </div>
     </div>
 
-    <script src="findvegetable.js?v=1.1"></script>
+    <script src="findnumber.js?v=1.1"></script>
 </body>
 </html>

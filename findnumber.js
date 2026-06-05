@@ -1,95 +1,119 @@
+"use strict";
+
 window.onload = function() {
+    // --- THEME ROTATION SETUP ---
     const themes = [
-        { runner: '🐒', target: '🍌' }, 
-        { runner: '🐇', target: '🥕' }, 
-        { runner: '🐸', target: '🏞️' }  
+        { runner: '✏️', target: '📓' }, 
+        { runner: '🐢', target: '🌊' }, 
+        { runner: '🧸', target: '🎈' }  
     ];
     
-    let themeIndex = parseInt(sessionStorage.getItem('findVehicleThemeIndex')) || 0;
+    let themeIndex = parseInt(sessionStorage.getItem('findNumberThemeIndex')) || 0;
     const currentTheme = themes[themeIndex];
 
+    // Inject the correct emojis into the HTML
     document.getElementById("runner-emoji").innerText = currentTheme.runner;
     document.getElementById("target-icon").innerText = currentTheme.target;
 
-    let currentLang = sessionStorage.getItem('findVehicleLang') || 'en'; 
-    let score = parseInt(sessionStorage.getItem('findVehicleScore')) || 0;
+    // 1. STATE & LOCALIZATION SETUP
+    let currentLang = sessionStorage.getItem('findNumberLang') || 'en'; 
+    let score = parseInt(sessionStorage.getItem('findNumberScore')) || 0;
     
-    let targetVehicleKey = "";
+    let targetNumberKey = "";
     let isPlaying = false;
     let isAudioPlaying = false; 
 
+    // Tracker for pageviews
     let roundsPlayedThisSession = 0; 
     const ROUNDS_BEFORE_RELOAD = 5; 
 
+    // --- SOUND SYNTHESIZER ---
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     let audioCtx = null;
 
     function playJumpSound() {
         if (!audioCtx) audioCtx = new AudioContext();
         if (audioCtx.state === 'suspended') audioCtx.resume();
+
         const osc = audioCtx.createOscillator();
         const gainNode = audioCtx.createGain();
+        
         osc.type = 'sine';
         osc.frequency.setValueAtTime(600, audioCtx.currentTime);
         osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.15);
+        
         gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
+        
         osc.connect(gainNode);
         gainNode.connect(audioCtx.destination);
+        
         osc.start();
         osc.stop(audioCtx.currentTime + 0.15);
     }
 
     const uiDict = {
-        "game-title": { en: "🚌 Find The Vehicle!", hi: "🚌 वाहन खोजें!", mr: "🚌 वाहन शोधा!" },
+        "game-title": { en: "🔢 Find The Number!", hi: "🔢 नंबर खोजें!", mr: "🔢 क्रमांक शोधा!" },
         "score-label": { en: "Score:", hi: "स्कोर:", mr: "गुण:" },
-        "instruction": { en: "Where is the...", hi: "कहाँ है...", mr: "कुठे आहे..." },
+        "instruction": { en: "Where is...", hi: "कहाँ है...", mr: "कुठे आहे..." },
         "backBtn": { en: "⬅ Back", hi: "⬅ पीछे", mr: "⬅ मागे" },
         "correct": { en: "Great Job! 🎉", hi: "बहुत अच्छे! 🎉", mr: "खूप छान! 🎉" },
         "wrong": { en: "Try Again! ❌", hi: "फिर से कोशिश करें! ❌", mr: "पुन्हा प्रयत्न करा! ❌" },
         "total-score": { en: "Total Score: ", hi: "कुल स्कोर: ", mr: "एकूण गुण: " },
-        "page-title": { en: "Find The Vehicle Game | KidsFunLearnHub", hi: "वाहन खोजें खेल | KidsFunLearnHub", mr: "वाहन शोधा खेळ | KidsFunLearnHub" }
+        "page-title": { en: "Find The Number Game | KidsFunLearnHub", hi: "नंबर खोजें खेल | KidsFunLearnHub", mr: "क्रमांक शोधा खेळ | KidsFunLearnHub" }
     };
 
-    const vehicleDict = {
-        "car": { en: "Car", hi: "कार", mr: "कार" },
-        "bus": { en: "Bus", hi: "बस", mr: "बस" },
-        "auto rickshaw": { en: "Auto Rickshaw", hi: "ऑटो रिक्शा", mr: "ऑटो रिक्षा" },
-        "motorcycle": { en: "Motorcycle", hi: "मोटरसाइकिल", mr: "मोटारसायकल" },
-        "bicycle": { en: "Bicycle", hi: "साइकिल", mr: "सायकल" },
-        "scooter": { en: "Scooter", hi: "स्कूटर", mr: "स्कूटर" },
-        "truck": { en: "Truck", hi: "ट्रक", mr: "ट्रक" },
-        "tractor": { en: "Tractor", hi: "ट्रैक्टर", mr: "ट्रॅक्टर" },
-        "train": { en: "Train", hi: "रेलगाड़ी", mr: "रेल्वे" },
-        "metro": { en: "Metro", hi: "मेट्रो", mr: "मेट्रो" },
-        "ambulance": { en: "Ambulance", hi: "एम्बुलेंस", mr: "रुग्णवाहिका" },
-        "fire engine": { en: "Fire Engine", hi: "दमकल", mr: "अग्निशमन दल" },
-        "police jeep": { en: "Police Jeep", hi: "पुलिस जीप", mr: "पोलीस जीप" },
-        "school bus": { en: "School Bus", hi: "स्कूल बस", mr: "स्कूल बस" },
-        "van": { en: "Van", hi: "वैन", mr: "व्हॅन" },
-        "tempo": { en: "Tempo", hi: "टेम्पो", mr: "टेम्पो" },
-        "delivery truck": { en: "Delivery Truck", hi: "डिलीवरी ट्रक", mr: "मालवाहू ट्रक" },
-        "taxi": { en: "Taxi", hi: "टैक्सी", mr: "टॅक्सी" },
-        "rickshaw": { en: "Rickshaw", hi: "रिक्शा", mr: "रिक्षा" },
-        "bulldozer": { en: "Bulldozer", hi: "बुलडोजर", mr: "बुलडोझर" },
-        "crane": { en: "Crane", hi: "क्रेन", mr: "क्रेन" },
-        "excavator": { en: "Excavator", hi: "उत्खनन मशीन", mr: "एक्साव्हेटर" },
-        "boat": { en: "Boat", hi: "नाव", mr: "बोट" },
-        "ferry": { en: "Ferry", hi: "नौका", mr: "फेरी" },
-        "ship": { en: "Ship", hi: "पानी का जहाज", mr: "जहाज" },
-        "helicopter": { en: "Helicopter", hi: "हेलीकॉप्टर", mr: "हेलिकॉप्टर" },
-        "airplane": { en: "Airplane", hi: "हवाई जहाज", mr: "विमान" },
-        "garbage truck": { en: "Garbage Truck", hi: "कचरा ट्रक", mr: "कचऱ्याचा ट्रक" },
-        "cement mixer": { en: "Cement Mixer", hi: "सीमेंट मिक्सर", mr: "सिमेंट मिक्सर" },
-        "tow truck": { en: "Tow Truck", hi: "टो ट्रक", mr: "टोइंग ट्रक" }
+    const numbersDict = {
+        "1": { en: "One", hi: "एक", mr: "एक" },
+        "2": { en: "Two", hi: "दो", mr: "दोन" },
+        "3": { en: "Three", hi: "तीन", mr: "तीन" },
+        "4": { en: "Four", hi: "चार", mr: "चार" },
+        "5": { en: "Five", hi: "पांच", mr: "पाच" },
+        "6": { en: "Six", hi: "छह", mr: "सहा" },
+        "7": { en: "Seven", hi: "सात", mr: "सात" },
+        "8": { en: "Eight", hi: "आठ", mr: "आठ" },
+        "9": { en: "Nine", hi: "नौ", mr: "नऊ" },
+        "10": { en: "Ten", hi: "दस", mr: "दहा" },
+        "11": { en: "Eleven", hi: "ग्यारह", mr: "अकरा" },
+        "12": { en: "Twelve", hi: "बारह", mr: "बारा" },
+        "13": { en: "Thirteen", hi: "तेरह", mr: "तेरा" },
+        "14": { en: "Fourteen", hi: "चौदह", mr: "चौदा" },
+        "15": { en: "Fifteen", hi: "पंद्रह", mr: "पंधरा" },
+        "16": { en: "Sixteen", hi: "सोलह", mr: "सोळा" },
+        "17": { en: "Seventeen", hi: "सत्रह", mr: "सतरा" },
+        "18": { en: "Eighteen", hi: "अठारह", mr: "अठरा" },
+        "19": { en: "Nineteen", hi: "उन्नीस", mr: "एकोणीस" },
+        "20": { en: "Twenty", hi: "बीस", mr: "वीस" },
+        "21": { en: "Twenty-one", hi: "इक्कीस", mr: "एकवीस" },
+        "22": { en: "Twenty-two", hi: "बाईस", mr: "बावीस" },
+        "23": { en: "Twenty-three", hi: "तेईस", mr: "तेवीस" },
+        "24": { en: "Twenty-four", hi: "चौबीस", mr: "चोवीस" },
+        "25": { en: "Twenty-five", hi: "पच्चीस", mr: "पंचवीस" },
+        "26": { en: "Twenty-six", hi: "छब्बीस", mr: "सव्वीस" },
+        "27": { en: "Twenty-seven", hi: "सत्ताईस", mr: "सत्तावीस" },
+        "28": { en: "Twenty-eight", hi: "अट्ठाईस", mr: "अठ्ठावीस" },
+        "29": { en: "Twenty-nine", hi: "उन्तीस", mr: "एकोणतीस" },
+        "30": { en: "Thirty", hi: "तीस", mr: "तीस" },
+        "31": { en: "Thirty-one", hi: "इकतीस", mr: "एकतीस" },
+        "32": { en: "Thirty-two", hi: "बत्तीस", mr: "बत्तीस" },
+        "33": { en: "Thirty-three", hi: "तैंतीस", mr: "तेहतीस" },
+        "34": { en: "Thirty-four", hi: "चौंतीस", mr: "चौतीस" },
+        "35": { en: "Thirty-five", hi: "पैंतीस", mr: "पस्तीस" },
+        "36": { en: "Thirty-six", hi: "छत्तीस", mr: "छत्तीस" },
+        "37": { en: "Thirty-seven", hi: "सैंतीस", mr: "सदतीस" },
+        "38": { en: "Thirty-eight", hi: "अड़तीस", mr: "अडतीस" },
+        "39": { en: "Thirty-nine", hi: "उनतालीस", mr: "एकोणचाळीस" },
+        "40": { en: "Forty", hi: "चालीस", mr: "चाळीस" }
     };
 
-    const allVehicles = Object.keys(vehicleDict);
+    const allNumbers = Object.keys(numbersDict);
     document.getElementById("score").innerText = score;
 
+    // --- GENERATE DOTS ---
     function initProgressTrack() {
         const dotsContainer = document.getElementById("dots-container");
         dotsContainer.innerHTML = "";
+        
         for(let i = 0; i <= ROUNDS_BEFORE_RELOAD; i++) {
             let dot = document.createElement("div");
             dot.className = "path-dot";
@@ -97,9 +121,11 @@ window.onload = function() {
         }
     }
 
+    // --- MOVE CHARACTER & DRAW LINE ---
     function updateProgressTrack(isJumping = false, step = 0) {
         const runner = document.getElementById("runner-icon");
         const progressLine = document.getElementById("progress-line"); 
+        
         let percentage = (step / ROUNDS_BEFORE_RELOAD) * 100;
         if (percentage > 100) percentage = 100;
         
@@ -114,9 +140,11 @@ window.onload = function() {
         }
     }
 
+    // 2. UI & LANGUAGE HANDLING
     function updateLanguage(lang) {
         currentLang = lang;
-        sessionStorage.setItem('findVehicleLang', lang); 
+        sessionStorage.setItem('findNumberLang', lang); 
+        
         document.title = uiDict["page-title"][currentLang];
         
         document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -129,8 +157,13 @@ window.onload = function() {
         document.getElementById("instruction").innerText = uiDict["instruction"][currentLang];
         document.getElementById("backBtn").innerText = uiDict["backBtn"][currentLang];
         
-        if (targetVehicleKey) {
-            document.getElementById("target-vehicle-name").innerText = vehicleDict[targetVehicleKey][currentLang];
+        if (targetNumberKey) {
+            document.getElementById("target-number-name").innerText = numbersDict[targetNumberKey][currentLang];
+        }
+
+        // If playing, re-render grid so the Devanagari numerals update instantly when switching languages
+        if (isPlaying) {
+            renderGridOptions(Array.from(document.getElementById("gameGrid").children).map(c => c.getAttribute("data-key")));
         }
     }
 
@@ -141,23 +174,49 @@ window.onload = function() {
         });
     });
 
+    // Determine the correct image folder for numerals
+    function getImageFolder() {
+        return (currentLang === 'hi' || currentLang === 'mr') ? 'devanagari' : 'en';
+    }
+
+    function renderGridOptions(options) {
+        const grid = document.getElementById("gameGrid");
+        grid.innerHTML = "";
+        const imageFolder = getImageFolder();
+
+        options.forEach(numKey => {
+            const card = document.createElement("div");
+            card.className = "card";
+            card.setAttribute("role", "button");
+            card.setAttribute("tabindex", "0");
+            card.setAttribute("data-key", numKey); // Store key for dynamic re-rendering
+            card.setAttribute("aria-label", "Select " + numbersDict[numKey]['en']);
+            card.innerHTML = `<img src="images/numbers/digits/${imageFolder}/${numKey}.webp" alt="${numbersDict[numKey]['en']}">`;
+            card.onclick = () => handleGuess(numKey, card);
+            grid.appendChild(card);
+        });
+    }
+
+    // 3. SEQUENTIAL AUDIO PLAYBACK
     function playCustomAudio() {
-        if (isAudioPlaying || !targetVehicleKey) return; 
+        if (isAudioPlaying || !targetNumberKey) return; 
         isAudioPlaying = true;
+
         let part1, part2;
 
         if (currentLang === 'en') {
             part1 = new Audio(`sounds/en/where_is_the.mp3`);
-            part2 = new Audio(`sounds/en/vehicles/${targetVehicleKey}.mp3`);
+            part2 = new Audio(`sounds/en/numbers/${targetNumberKey}.mp3`);
         } else if (currentLang === 'hi') {
-            part1 = new Audio(`sounds/hi/vehicles/${targetVehicleKey}.mp3`);
+            part1 = new Audio(`sounds/hi/numbers/${targetNumberKey}.mp3`);
             part2 = new Audio(`sounds/hi/kahan_hai.mp3`);
         } else if (currentLang === 'mr') {
-            part1 = new Audio(`sounds/mr/vehicles/${targetVehicleKey}.mp3`);
+            part1 = new Audio(`sounds/mr/numbers/${targetNumberKey}.mp3`);
             part2 = new Audio(`sounds/mr/kuthe_aahe.mp3`);
         }
 
         part1.play().catch(e => isAudioPlaying = false);
+
         part1.onended = () => {
             part2.play().catch(e => isAudioPlaying = false);
             part2.onended = () => { isAudioPlaying = false; };
@@ -166,33 +225,23 @@ window.onload = function() {
 
     document.getElementById("promptBox").addEventListener("click", playCustomAudio);
 
+    // 4. CORE GAME LOGIC
     function startNewRound() {
         isPlaying = true;
+        
         updateProgressTrack(false, roundsPlayedThisSession);
 
-        const grid = document.getElementById("gameGrid");
-        grid.innerHTML = "";
-        
-        let shuffled = [...allVehicles].sort(() => 0.5 - Math.random());
+        let shuffled = [...allNumbers].sort(() => 0.5 - Math.random());
         let currentOptions = shuffled.slice(0, 4);
         
-        targetVehicleKey = currentOptions[Math.floor(Math.random() * currentOptions.length)];
-        document.getElementById("target-vehicle-name").innerText = vehicleDict[targetVehicleKey][currentLang];
+        targetNumberKey = currentOptions[Math.floor(Math.random() * currentOptions.length)];
+        document.getElementById("target-number-name").innerText = numbersDict[targetNumberKey][currentLang];
 
+        renderGridOptions(currentOptions);
         setTimeout(playCustomAudio, 500);
-
-        currentOptions.forEach(vehKey => {
-            const card = document.createElement("div");
-            card.className = "card";
-            card.setAttribute("role", "button");
-            card.setAttribute("tabindex", "0");
-            card.setAttribute("aria-label", "Select " + vehicleDict[vehKey]['en']);
-            card.innerHTML = `<img src="images/vehicles/${vehKey}.webp" alt="${vehicleDict[vehKey]['en']}">`;
-            card.onclick = () => handleGuess(vehKey, card);
-            grid.appendChild(card);
-        });
     }
 
+    // 5. HANDLING THE GUESS & REWARD SEQUENCE
     function handleGuess(guessedKey, cardElement) {
         if (!isPlaying) return;
 
@@ -201,7 +250,8 @@ window.onload = function() {
         const feedbackImg = document.getElementById("feedback-img");
         const feedbackScore = document.getElementById("feedback-score");
 
-        if (guessedKey === targetVehicleKey) {
+        if (guessedKey === targetNumberKey) {
+            // --- CORRECT GUESS SEQUENCE ---
             isPlaying = false;
             score += 10;
             document.getElementById("score").innerText = score;
@@ -211,10 +261,12 @@ window.onload = function() {
             setTimeout(() => {
                 feedbackScore.innerText = uiDict["total-score"][currentLang] + score;
                 feedbackScore.classList.remove("hidden");
+
                 feedbackText.innerText = uiDict["correct"][currentLang];
                 feedbackText.className = "correct-text";
                 feedbackImg.classList.add("hidden"); 
                 feedback.classList.remove("hidden");
+                
                 feedback.onclick = null; 
 
                 if (typeof confetti === "function") {
@@ -224,11 +276,12 @@ window.onload = function() {
                 let greatJobAudio = new Audio(`sounds/${currentLang}/great_job.mp3`);
                 
                 const triggerPhaseTwo = () => {
-                    feedbackText.innerText = vehicleDict[targetVehicleKey][currentLang];
-                    feedbackImg.src = `images/vehicles/${targetVehicleKey}.webp`;
+                    feedbackText.innerText = numbersDict[targetNumberKey][currentLang];
+                    // Display the counting object image as the reward!
+                    feedbackImg.src = `images/numbers/objects/${targetNumberKey}.webp`;
                     feedbackImg.classList.remove("hidden"); 
 
-                    let vehNameAudio = new Audio(`sounds/${currentLang}/vehicles/${targetVehicleKey}.mp3`);
+                    let numberAudio = new Audio(`sounds/${currentLang}/numbers/${targetNumberKey}.mp3`);
                     
                     let hasAdvanced = false;
                     let autoTimer;
@@ -237,37 +290,48 @@ window.onload = function() {
                         if (hasAdvanced) return; 
                         hasAdvanced = true;
                         clearTimeout(autoTimer); 
-                        vehNameAudio.pause(); 
+                        numberAudio.pause(); 
                         feedback.onclick = null; 
                         feedback.classList.add("hidden");
                         
                         roundsPlayedThisSession++; 
                         
                         if (roundsPlayedThisSession >= ROUNDS_BEFORE_RELOAD) {
-                            sessionStorage.setItem('findVehicleScore', score);
-                            sessionStorage.setItem('findVehicleLang', currentLang);
+                            sessionStorage.setItem('findNumberScore', score);
+                            sessionStorage.setItem('findNumberLang', currentLang);
+                            
                             let nextThemeIndex = (themeIndex + 1) % themes.length;
-                            sessionStorage.setItem('findVehicleThemeIndex', nextThemeIndex);
+                            sessionStorage.setItem('findNumberThemeIndex', nextThemeIndex);
+                            
                             window.location.reload();
                         } else {
                             startNewRound();
                         }
                     };
 
-                    setTimeout(() => { feedback.onclick = advanceToNext; }, 500);
+                    setTimeout(() => {
+                        feedback.onclick = advanceToNext;
+                    }, 500);
 
-                    vehNameAudio.play().then(() => {
-                        vehNameAudio.onended = () => { autoTimer = setTimeout(advanceToNext, 1600); };
-                    }).catch(e => { autoTimer = setTimeout(advanceToNext, 2000); });
+                    numberAudio.play().then(() => {
+                        numberAudio.onended = () => {
+                            autoTimer = setTimeout(advanceToNext, 1600); 
+                        };
+                    }).catch(e => {
+                        autoTimer = setTimeout(advanceToNext, 2000);
+                    });
                 };
 
                 greatJobAudio.play().then(() => {
                     greatJobAudio.onended = triggerPhaseTwo;
-                }).catch(() => { setTimeout(triggerPhaseTwo, 1500); });
+                }).catch(() => {
+                    setTimeout(triggerPhaseTwo, 1500); 
+                });
 
-            }, 800);
+            }, 800); 
 
         } else {
+            // --- WRONG GUESS SEQUENCE ---
             cardElement.classList.add("shake");
             feedbackText.innerText = uiDict["wrong"][currentLang];
             feedbackText.className = "wrong-text";
@@ -286,14 +350,16 @@ window.onload = function() {
         }
     }
 
+    // 6. BACK BUTTON ACTION
     document.getElementById("backBtn").addEventListener("click", () => {
-        sessionStorage.removeItem('findVehicleScore'); 
-        sessionStorage.removeItem('findVehicleThemeIndex');
+        sessionStorage.removeItem('findNumberScore'); 
+        sessionStorage.removeItem('findNumberThemeIndex');
         // Grab the saved URL, or default to the hub if none exists
         const returnUrl = sessionStorage.getItem('hubReturnUrl') || "activityhub.html";
         window.location.href = returnUrl; 
     });
 
+    // Initialize
     initProgressTrack();
     updateLanguage(currentLang);
     startNewRound();

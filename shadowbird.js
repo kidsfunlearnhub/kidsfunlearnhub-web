@@ -46,7 +46,7 @@ window.onload = function() {
         "game-title": { en: "🦚 Bird Shadow Match!", hi: "🦚 पक्षी परछाई मिलाओ!", mr: "🦚 पक्षी सावली जुळवा!" },
         "score-label": { en: "Score:", hi: "स्कोर:", mr: "गुण:" },
         "instruction": { en: "Match the birds to their shadows!", hi: "पक्षियों को उनकी परछाई से मिलाएँ!", mr: "पक्ष्यांना त्यांच्या सावलीशी जुळवा!" },
-        "backBtn": { en: "⬅ Back to Activity Hub", hi: "⬅ वापस जाएँ", mr: "⬅ मागे जा" },
+        "backBtn": { en: "⬅ Back", hi: "⬅ पीछे", mr: "⬅ मागे" },
         "correct": { en: "Great Job! 🎉", hi: "बहुत अच्छे! 🎉", mr: "खूप छान! 🎉" },
         "total-score": { en: "Total Score: ", hi: "कुल स्कोर: ", mr: "एकूण गुण: " },
         "page-title": { en: "Bird Shadow Match Game | KidsFunLearnHub", hi: "पक्षी छाया मिलान खेल | KidsFunLearnHub", mr: "पक्षी सावली जुळवा खेळ | KidsFunLearnHub" }
@@ -295,7 +295,9 @@ window.onload = function() {
     document.getElementById("backBtn").addEventListener("click", () => {
         sessionStorage.removeItem('shadowBirdScore'); 
         sessionStorage.removeItem('shadowBirdThemeIndex'); 
-        window.location.href = "index.html"; 
+        // Grab the saved URL, or default to the hub if none exists
+        const returnUrl = sessionStorage.getItem('hubReturnUrl') || "activityhub.html";
+        window.location.href = returnUrl; 
     });
 
     initProgressTrack(); 

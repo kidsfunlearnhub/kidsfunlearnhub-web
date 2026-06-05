@@ -1,3 +1,5 @@
+"use strict";
+
 window.onload = function() {
     const themes = [
         { runner: '🐒', target: '🍌' }, 
@@ -5,18 +7,18 @@ window.onload = function() {
         { runner: '🐸', target: '🏞️' }  
     ];
     
-    let themeIndex = parseInt(sessionStorage.getItem('puzzleBirdThemeIndex')) || 0;
+    let themeIndex = parseInt(sessionStorage.getItem('puzzleAnimalThemeIndex')) || 0;
     const currentTheme = themes[themeIndex];
 
     document.getElementById("runner-emoji").innerText = currentTheme.runner;
     document.getElementById("target-icon").innerText = currentTheme.target;
 
-    let currentLang = sessionStorage.getItem('puzzleBirdLang') || 'en'; 
-    let score = parseInt(sessionStorage.getItem('puzzleBirdScore')) || 0;
+    let currentLang = sessionStorage.getItem('puzzleAnimalLang') || 'en'; 
+    let score = parseInt(sessionStorage.getItem('puzzleAnimalScore')) || 0;
     
     let selectedPieceCard = null; 
     let piecesPlaced = 0; 
-    let currentTargetBird = "";
+    let currentTargetAnimal = "";
     
     let roundsPlayedThisSession = 0; 
     const ROUNDS_BEFORE_RELOAD = 5; 
@@ -44,49 +46,49 @@ window.onload = function() {
     }
 
     const uiDict = {
-        "game-title": { en: "🦚 Bird Picture Puzzle!", hi: "🦚 पक्षी चित्र पहेली!", mr: "🦚 पक्षी चित्र कोडे!" },
+        "game-title": { en: "🦁 Animal Picture Puzzle!", hi: "🦁 जानवर चित्र पहेली!", mr: "🦁 प्राणी चित्र कोडे!" },
         "score-label": { en: "Score:", hi: "स्कोर:", mr: "गुण:" },
         "instruction": { en: "Complete the picture!", hi: "चित्र पूरा करें!", mr: "चित्र पूर्ण करा!" },
         "backBtn": { en: "⬅ Back", hi: "⬅ पीछे", mr: "⬅ मागे" },
         "correct": { en: "Great Job! 🎉", hi: "बहुत अच्छे! 🎉", mr: "खूप छान! 🎉" },
         "total-score": { en: "Total Score: ", hi: "कुल स्कोर: ", mr: "एकूण गुण: " },
-        "page-title": { en: "Bird Picture Puzzle Game | KidsFunLearnHub", hi: "पक्षी चित्र पहेली खेल | KidsFunLearnHub", mr: "पक्षी चित्र कोडे खेळ | KidsFunLearnHub" }
+        "page-title": { en: "Animal Picture Puzzle Game | KidsFunLearnHub", hi: "जानवर चित्र पहेली खेल | KidsFunLearnHub", mr: "प्राणी चित्र कोडे खेळ | KidsFunLearnHub" }
     };
 
-    const birdDict = {
-        "peacock": { en: "Peacock", hi: "मोर", mr: "मोर" },
-        "sparrow": { en: "Sparrow", hi: "गौरैया", mr: "चिमणी" },
-        "crow": { en: "Crow", hi: "कौवा", mr: "कावळा" },
-        "parrot": { en: "Parrot", hi: "तोता", mr: "पोपट" },
-        "pigeon": { en: "Pigeon", hi: "कबूतर", mr: "कबूतर" },
-        "myna": { en: "Myna", hi: "मैना", mr: "मैना" },
-        "kingfisher": { en: "Kingfisher", hi: "किंगफिशर", mr: "खंड्या" },
-        "bulbul": { en: "Bulbul", hi: "बुलबुल", mr: "बुलबुल" },
-        "koel": { en: "Koel", hi: "कोयल", mr: "कोकिळा" },
-        "eagle": { en: "Eagle", hi: "गरुड़", mr: "गरुड" },
-        "owl": { en: "Owl", hi: "उल्लू", mr: "घुबड" },
-        "vulture": { en: "Vulture", hi: "गिद्ध", mr: "गिधाड" },
-        "crane": { en: "Crane", hi: "सारस", mr: "क्रौंच" },
-        "heron": { en: "Heron", hi: "बगुला", mr: "बगळा" },
-        "stork": { en: "Stork", hi: "स्टॉर्क", mr: "करकोचा" },
-        "duck": { en: "Duck", hi: "बत्तख", mr: "बदक" },
-        "goose": { en: "Goose", hi: "हंस", mr: "हंस" },
-        "quail": { en: "Quail", hi: "बटेर", mr: "लावा" },
-        "lapwing": { en: "Lapwing", hi: "टिटहरी", mr: "टिटवी" },
-        "woodpecker": { en: "Woodpecker", hi: "कठफोड़वा", mr: "सुतारपक्षी" },
-        "sunbird": { en: "Sunbird", hi: "शकरखोरा", mr: "शिंजीर" },
-        "hornbill": { en: "Hornbill", hi: "धनेश", mr: "धनेश" },
-        "kite": { en: "Kite", hi: "चील", mr: "घार" },
-        "falcon": { en: "Falcon", hi: "बाज", mr: "ससाणा" },
-        "weaverbird": { en: "Weaverbird", hi: "बया", mr: "सुगरण" },
-        "drongo": { en: "Drongo", hi: "भुजंगा", mr: "कोतवाल" },
-        "barbet": { en: "Barbet", hi: "बसंत बौरी", mr: "तांबट" },
-        "roller": { en: "Roller", hi: "नीलकंठ", mr: "नीलकंठ" },
-        "flamingo": { en: "Flamingo", hi: "राजहंस", mr: "रोहित पक्षी" },
-        "ibis": { en: "Ibis", hi: "इबिस", mr: "शराटी" }
+    const animalDict = {
+        "dog": { en: "Dog", hi: "कुत्ता", mr: "कुत्रा" },
+        "cat": { en: "Cat", hi: "बिल्ली", mr: "मांजर" },
+        "lion": { en: "Lion", hi: "शेर", mr: "सिंह" },
+        "tiger": { en: "Tiger", hi: "बाघ", mr: "वाघ" },
+        "elephant": { en: "Elephant", hi: "हाथी", mr: "हत्ती" },
+        "monkey": { en: "Monkey", hi: "बंदर", mr: "माकड" },
+        "cow": { en: "Cow", hi: "गाय", mr: "गाय" },
+        "horse": { en: "Horse", hi: "घोड़ा", mr: "घोडा" },
+        "goat": { en: "Goat", hi: "बकरी", mr: "शेळी" },
+        "bear": { en: "Bear", hi: "भालू", mr: "अस्वल" },
+        "zebra": { en: "Zebra", hi: "ज़ेबरा", mr: "झेब्रा" },
+        "giraffe": { en: "Giraffe", hi: "जिराफ़", mr: "जिराफ" },
+        "rabbit": { en: "Rabbit", hi: "खरगोश", mr: "ससा" },
+        "fox": { en: "Fox", hi: "लोमड़ी", mr: "कोल्हा" },
+        "deer": { en: "Deer", hi: "हिरण", mr: "हरीण" },
+        "camel": { en: "Camel", hi: "ऊंट", mr: "उंट" },
+        "wolf": { en: "Wolf", hi: "भेड़िया", mr: "लांडगा" },
+        "kangaroo": { en: "Kangaroo", hi: "कंगारू", mr: "कांगारू" },
+        "panda": { en: "Panda", hi: "पांडा", mr: "पांडा" },
+        "rhino": { en: "Rhino", hi: "गैंडा", mr: "गेंडा" },
+        "hippo": { en: "Hippo", hi: "दरियाई घोड़ा", mr: "पाणघोडा" },
+        "cheetah": { en: "Cheetah", hi: "चीता", mr: "चित्ता" },
+        "buffalo": { en: "Buffalo", hi: "भैंस", mr: "म्हैस" },
+        "donkey": { en: "Donkey", hi: "गधा", mr: "गाढव" },
+        "pig": { en: "Pig", hi: "सूअर", mr: "डुक्कर" },
+        "sheep": { en: "Sheep", hi: "भेड़", mr: "मेंढी" },
+        "yak": { en: "Yak", hi: "याक", mr: "याक" },
+        "otter": { en: "Otter", hi: "ऊदबिलाव", mr: "पाणमांजर" },
+        "squirrel": { en: "Squirrel", hi: "गिलहरी", mr: "खारूताई" },
+        "leopard": { en: "Leopard", hi: "तेंदुआ", mr: "बिबट्या" }
     };
 
-    const allBirds = Object.keys(birdDict);
+    const allAnimals = Object.keys(animalDict);
     document.getElementById("score").innerText = score;
 
     function initProgressTrack() {
@@ -119,7 +121,7 @@ window.onload = function() {
 
     function updateLanguage(lang) {
         currentLang = lang;
-        sessionStorage.setItem('puzzleBirdLang', lang); 
+        sessionStorage.setItem('puzzleAnimalLang', lang); 
         document.title = uiDict["page-title"][currentLang];
         
         document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -153,9 +155,9 @@ window.onload = function() {
         board.innerHTML = "";
         tray.innerHTML = "";
         
-        // 1. Pick a random bird
-        currentTargetBird = allBirds[Math.floor(Math.random() * allBirds.length)];
-        const imgUrl = `images/birds/${currentTargetBird}.webp`;
+        // 1. Pick a random animal
+        currentTargetAnimal = allAnimals[Math.floor(Math.random() * allAnimals.length)];
+        const imgUrl = `images/animals/${currentTargetAnimal}.webp`;
 
         // 2. Setup the Board
         board.style.backgroundImage = `url('${imgUrl}')`;
@@ -169,7 +171,6 @@ window.onload = function() {
         }
 
         // 3. Setup the Pieces
-        // Create array of indices 0,1,2,3 and shuffle it
         let pieceIndices = [0, 1, 2, 3].sort(() => 0.5 - Math.random());
         
         pieceIndices.forEach(idx => {
@@ -193,7 +194,6 @@ window.onload = function() {
             selectedPieceCard.classList.remove("selected");
         }
         
-        // If clicking the same piece, just deselect it
         if (selectedPieceCard === piece) {
             selectedPieceCard = null;
             return;
@@ -204,40 +204,30 @@ window.onload = function() {
     }
 
     function handleSlotClick(slot) {
-        // If the slot is already filled, ignore
         if (slot.children.length > 0) return;
-
-        // If no piece is selected, ignore
         if (!selectedPieceCard) return;
 
         const targetSlotIndex = slot.dataset.index;
         const selectedPieceIndex = selectedPieceCard.dataset.piece;
 
         if (targetSlotIndex === selectedPieceIndex) {
-            // Match Correct!
             selectedPieceCard.classList.remove("selected");
             selectedPieceCard.classList.add("placed");
             
-            // Move piece to board slot physically in DOM
             slot.appendChild(selectedPieceCard);
-            slot.style.border = "none"; // Hide dashed border when filled
+            slot.style.border = "none";
             
             score += 10;
             document.getElementById("score").innerText = score;
             piecesPlaced++;
 
             updateProgressTrack(true); 
-
-            // Clear selection
             selectedPieceCard = null; 
 
             if (piecesPlaced === 4) {
-                // Remove the fading overlay by hiding the ::after content via CSS class if needed, 
-                // but placing all pieces covers it anyway.
                 setTimeout(showRoundComplete, 600);
             }
         } else {
-            // Wrong slot
             selectedPieceCard.classList.add("shake");
             let tryAgainAudio = new Audio(`sounds/${currentLang}/try_again.mp3`);
             tryAgainAudio.play().catch(e => console.log("Audio not found"));
@@ -257,11 +247,9 @@ window.onload = function() {
             confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 }, zIndex: 9999 });
         }
 
-        // Play the bird's specific audio to reinforce learning
-        let birdAudio = new Audio(`sounds/${currentLang}/birds/${currentTargetBird}.mp3`);
+        let animalAudio = new Audio(`sounds/${currentLang}/animals/${currentTargetAnimal}.mp3`);
         
-        // Try playing specific audio, fallback to "great_job" if missing
-        birdAudio.play().catch(e => {
+        animalAudio.play().catch(e => {
             let greatJobAudio = new Audio(`sounds/${currentLang}/great_job.mp3`);
             greatJobAudio.play().catch(err => console.log("Audio not found"));
         });
@@ -271,10 +259,10 @@ window.onload = function() {
             roundsPlayedThisSession++; 
             
             if (roundsPlayedThisSession >= ROUNDS_BEFORE_RELOAD) {
-                sessionStorage.setItem('puzzleBirdScore', score);
-                sessionStorage.setItem('puzzleBirdLang', currentLang);
+                sessionStorage.setItem('puzzleAnimalScore', score);
+                sessionStorage.setItem('puzzleAnimalLang', currentLang);
                 let nextThemeIndex = (themeIndex + 1) % themes.length;
-                sessionStorage.setItem('puzzleBirdThemeIndex', nextThemeIndex);
+                sessionStorage.setItem('puzzleAnimalThemeIndex', nextThemeIndex);
                 window.location.reload();
             } else {
                 startNewRound();
@@ -282,18 +270,22 @@ window.onload = function() {
         }, 2500);
     }
 
-
-   
+    // 6. BACK BUTTON ACTION
     document.getElementById("backBtn").addEventListener("click", () => {
-        sessionStorage.removeItem('puzzleBirdScore'); 
-        sessionStorage.removeItem('puzzleBirdThemeIndex'); 
+        sessionStorage.removeItem('puzzleAnimalScore'); 
+        sessionStorage.removeItem('puzzleAnimalThemeIndex'); 
         
         // Grab the saved URL, or default to the hub if none exists
         const returnUrl = sessionStorage.getItem('hubReturnUrl') || "activityhub.html";
         window.location.href = returnUrl; 
     });
 
-
+    // document.getElementById("backBtn").addEventListener("click", () => {
+    //     sessionStorage.removeItem('puzzleAnimalScore'); 
+    //     sessionStorage.removeItem('puzzleAnimalThemeIndex'); 
+    //     // Redirecting back to the filtered Animal Activities hub view!
+    //     window.location.href = "activityhub.html?topic=animals"; 
+    // });
 
     initProgressTrack(); 
     updateLanguage(currentLang);

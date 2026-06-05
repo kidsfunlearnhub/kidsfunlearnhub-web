@@ -4,27 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Find The Vegetable Game | KidsFunLearnHub</title>
-    <meta name="title" content="Find The Vegetable Game | KidsFunLearnHub">
-    <meta name="description" content="Play the free Find The Vegetable game on KidsFunLearnHub! An interactive listening and visual recognition game for kids to learn vegetable names.">
-    <meta name="keywords" content="find the vegetable, kids educational game, toddler vegetable games, vegetable recognition, preschool activities, KidsFunLearnHub">
+    <title>Animal Picture Puzzle Game | KidsFunLearnHub</title>
+    <meta name="title" content="Animal Picture Puzzle Game | KidsFunLearnHub">
+    <meta name="description" content="Play the free Animal Picture Puzzle on KidsFunLearnHub! A fun educational logic game for kids to improve problem-solving and visual recognition.">
+    <meta name="keywords" content="animal puzzle game, kids jigsaw puzzle, learn animals, toddler logic games, preschool activities, KidsFunLearnHub">
     <meta name="author" content="KidsFunLearnHub">
     
-    <link rel="canonical" href="https://kidsfunlearnhub.com/findvegetable.html">
+    <link rel="canonical" href="https://kidsfunlearnhub.com/puzzleanimal.html">
 
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kidsfunlearnhub.com/findvegetable.html">
-    <meta property="og:title" content="Find The Vegetable Game | KidsFunLearnHub">
-    <meta property="og:description" content="A fun, interactive visual recognition game for toddlers to learn vegetable names in English, Hindi, and Marathi.">
-    <meta property="og:image" content="https://kidsfunlearnhub.com/images/find-vegetable-preview.jpg"> 
+    <meta property="og:url" content="https://kidsfunlearnhub.com/puzzleanimal.html">
+    <meta property="og:title" content="Animal Picture Puzzle Game | KidsFunLearnHub">
+    <meta property="og:description" content="A fun interactive puzzle for kids to improve visual recognition by joining pieces to complete the animal picture. Play for free!">
+    <meta property="og:image" content="https://kidsfunlearnhub.com/images/puzzle-animal-preview.jpg"> 
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "EducationalApplication",
-      "name": "Find The Vegetable",
-      "url": "https://kidsfunlearnhub.com/findvegetable.html",
-      "description": "An interactive educational game where children listen to prompts and find the correct vegetable, improving vocabulary and visual recognition.",
+      "name": "Animal Picture Puzzle",
+      "url": "https://kidsfunlearnhub.com/puzzleanimal.html",
+      "description": "An educational puzzle where children join scattered pieces to complete a colorful animal picture, improving spatial awareness.",
       "applicationCategory": "EducationalGame",
       "operatingSystem": "Any",
       "educationalUse": "Interactive Learning",
@@ -38,7 +38,7 @@
     }
     </script>
 
-    <link rel="stylesheet" href="findvegetable.css">
+    <link rel="stylesheet" href="puzzleanimal.css?v=1">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
 </head>
 <body>
@@ -46,7 +46,7 @@
     <main class="game-container">
         
         <header class="header-row">
-            <h1 id="game-title">🫛 Find The Vegetable!</h1>
+            <h1 id="game-title">🦁 Animal Picture Puzzle!</h1>
             <div class="score-board" aria-live="polite">
                 <span id="score-label">Score:</span> 
                 <span id="score">0</span>
@@ -80,12 +80,19 @@
         <section id="promptBox" class="prompt-box" role="button" tabindex="0" aria-label="Play instruction audio">
             <div class="speaker-icon" aria-hidden="true">🔊</div>
             <div>
-                <h2 id="instruction">Where is the...</h2>
-                <div id="target-vegetable-name" class="target-text">???</div>
+                <h2 id="instruction">Complete the picture!</h2>
             </div>
         </section>
 
-        <section id="gameGrid" class="grid" role="list" aria-label="Vegetable Options"></section>
+        <section class="puzzle-wrapper" aria-label="Interactive Puzzle Area">
+            <div class="puzzle-board-container">
+                <div id="puzzle-board" class="puzzle-board">
+                    </div>
+            </div>
+            
+            <div id="pieces-tray" class="pieces-tray" aria-label="Puzzle Pieces">
+                </div>
+        </section>
 
         <nav class="bottom-actions">
             <button id="backBtn" class="action-btn" aria-label="Go back">⬅ Back</button>
@@ -93,20 +100,19 @@
     </main>
 
     <section class="seo-description-container">
-        <h2>About The Find The Vegetable Activity</h2>
-        <p>Welcome to <strong>KidsFunLearnHub's Find The Vegetable</strong>! This free educational activity builds children's vocabulary and recognition skills by having them listen to audio prompts and select the correct healthy vegetable.</p>
-        <p><strong>Learning Outcomes:</strong> Auditory processing, visual recognition, and hand-eye coordination. Available in English, Hindi, and Marathi!</p>
+        <h2>About The Animal Picture Puzzle Activity</h2>
+        <p>Welcome to <strong>KidsFunLearnHub's Animal Picture Puzzle</strong>! This free educational activity helps children develop spatial awareness, problem-solving logic, and fine motor skills by connecting pieces to reveal an animal.</p>
+        <p><strong>Learning Outcomes:</strong> Pattern recognition, logic, animal vocabulary, and hand-eye coordination. Available in English, Hindi, and Marathi!</p>
     </section>
 
     <div id="feedback" class="feedback-overlay hidden" role="alert">
         <div class="feedback-content">
-            <img id="feedback-img" src="" alt="Vegetable" class="hidden">
-            <h2 id="feedback-text"></h2>
+            <h2 id="feedback-text" class="correct-text">Great Job! 🎉</h2>
             <h3 id="feedback-score" class="score-text"></h3>
             <div style="font-size: 80px; animation: popIn 0.5s;">⭐</div>
         </div>
     </div>
 
-    <script src="findvegetable.js?v=1.1"></script>
+    <script src="puzzleanimal.js?v=1.3"></script>
 </body>
 </html>

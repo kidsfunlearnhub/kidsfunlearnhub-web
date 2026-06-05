@@ -46,7 +46,7 @@ window.onload = function() {
         "game-title": { en: "🟢 Shape Shadow Match!", hi: "🟢 आकारों की परछाई मिलाओ!", mr: "🟢 आकारांची सावली जुळवा!" },
         "score-label": { en: "Score:", hi: "स्कोर:", mr: "गुण:" },
         "instruction": { en: "Match the shapes to their shadows!", hi: "आकारों को उनकी परछाई से मिलाएँ!", mr: "आकारांना त्यांच्या सावलीशी जुळवा!" },
-        "backBtn": { en: "⬅ Back to Activity Hub", hi: "⬅ वापस जाएँ", mr: "⬅ मागे जा" },
+        "backBtn": { en: "⬅ Back", hi: "⬅ पीछे", mr: "⬅ मागे" },
         "correct": { en: "Great Job! 🎉", hi: "बहुत अच्छे! 🎉", mr: "खूप छान! 🎉" },
         "total-score": { en: "Total Score: ", hi: "कुल स्कोर: ", mr: "एकूण गुण: " },
         "page-title": { en: "Shape Shadow Match Game | KidsFunLearnHub", hi: "आकार छाया मिलान खेल | KidsFunLearnHub", mr: "आकार सावली जुळवा खेळ | KidsFunLearnHub" }
@@ -275,7 +275,9 @@ window.onload = function() {
     document.getElementById("backBtn").addEventListener("click", () => {
         sessionStorage.removeItem('shadowShapeScore'); 
         sessionStorage.removeItem('shadowShapeThemeIndex'); 
-        window.location.href = "index.html"; 
+        // Grab the saved URL, or default to the hub if none exists
+        const returnUrl = sessionStorage.getItem('hubReturnUrl') || "activityhub.html";
+        window.location.href = returnUrl; 
     });
 
     initProgressTrack(); 

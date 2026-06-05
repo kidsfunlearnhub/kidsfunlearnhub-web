@@ -54,7 +54,7 @@ window.onload = function() {
         "game-title": { en: "🐾 Find The Animal!", hi: "🐾 जानवर खोजें!", mr: "🐾 प्राणी शोधा!" },
         "score-label": { en: "Score:", hi: "स्कोर:", mr: "गुण:" },
         "instruction": { en: "Where is the...", hi: "कहाँ है...", mr: "कुठे आहे..." },
-        "backBtn": { en: "⬅ Back to Activity Hub", hi: "⬅ वापस जाएँ", mr: "⬅ मागे जा" },
+        "backBtn": { en: "⬅ Back", hi: "⬅ पीछे", mr: "⬅ मागे" },
         "correct": { en: "Great Job! 🎉", hi: "बहुत अच्छे! 🎉", mr: "खूप छान! 🎉" },
         "wrong": { en: "Try Again! ❌", hi: "फिर से कोशिश करें! ❌", mr: "पुन्हा प्रयत्न करा! ❌" },
         "total-score": { en: "Total Score: ", hi: "कुल स्कोर: ", mr: "एकूण गुण: " },
@@ -330,7 +330,9 @@ window.onload = function() {
     document.getElementById("backBtn").addEventListener("click", () => {
         sessionStorage.removeItem('findAnimalScore'); 
         sessionStorage.removeItem('findAnimalThemeIndex');
-        window.location.href = "index.html"; 
+        // Grab the saved URL, or default to the hub if none exists
+        const returnUrl = sessionStorage.getItem('hubReturnUrl') || "activityhub.html";
+        window.location.href = returnUrl;
     });
 
     // Initialize

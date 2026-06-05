@@ -1,8 +1,9 @@
+"use strict";
+
 window.onload = function() {
     
     // --- 1. DATA ARCHITECTURE ---
 
-    // Level 1: Main Categories
     const mainCategories = [
         { id: "finding", name: "Finding", icon: "🔍", color: "color-orange", desc: "Find the hidden items!", targetVocab: "general" },
         { id: "shadow", name: "Shadow Matching", icon: "👥", color: "color-blue", desc: "Match the shapes!", targetVocab: "general" },
@@ -10,7 +11,6 @@ window.onload = function() {
         { id: "tapping", name: "Tapping", icon: "👆", color: "color-pink", desc: "Tap as fast as you can!", targetVocab: "tapping" }
     ];
 
-    // Level 2: General Vocabulary
     const generalSubCategories = [
         { id: "animals", name: "Animals", icon: "🦁" },
         { id: "birds", name: "Birds", icon: "🦚" },
@@ -25,7 +25,6 @@ window.onload = function() {
         { id: "shapes", name: "Shapes", icon: "⭐" }
     ];
 
-    // Level 2: Tapping Specific Vocab
     const tappingSubCategories = [
         { id: "alphabets", name: "Alphabets", icon: "🔤" },
         { id: "small_alphabets", name: "Small Alphabets", icon: "🔡" },
@@ -33,7 +32,6 @@ window.onload = function() {
         { id: "hindi", name: "Hindi (अ आ इ)", icon: "अ" }
     ];
 
-    // Dictionary mapping Topic IDs to their actual Learn Pages
     const learnPageUrls = {
         "animals": "animals.html",
         "birds": "birds.html",
@@ -46,13 +44,12 @@ window.onload = function() {
         "colours": "colors.html", 
         "bodyparts": "bodyparts.html",
         "shapes": "shapes.html",
-        "alphabets": "alphabets.html",
-        "small_alphabets": "small_alphabets.html",
+        "alphabets": "abc.html",
+        "small_alphabets": "small_abc.html",
         "numbers": "numbers.html",
         "hindi": "hindi.html"
     };
 
-    // Map existing live URLs
     const liveUrls = {
         "finding_animals": "findanimal.html",
         "finding_birds": "findbird.html",
@@ -94,13 +91,11 @@ window.onload = function() {
     const gridElement = document.getElementById("activity-grid");
     const breadcrumbElement = document.getElementById("breadcrumb");
     const bottomActionsElement = document.querySelector(".bottom-actions");
-    
     const popup = document.getElementById('comingSoonPopup');
     const closeBtn = document.getElementById('closePopupBtn');
 
     // --- 3. RENDER FUNCTIONS ---
 
-    // VIEW A: Main Activity Categories
     function renderMainView() {
         gridElement.innerHTML = "";
         
@@ -114,7 +109,6 @@ window.onload = function() {
         document.getElementById("backBtn").onclick = () => window.location.href = "index.html";
 
         mainCategories.forEach(cat => {
-            // FIX: Always use standard div for bulletproof mobile tapping
             const card = document.createElement("div");
             card.className = `activity-card ${cat.color}`;
             card.innerHTML = `
@@ -123,7 +117,14 @@ window.onload = function() {
                 <p>${cat.desc}</p>
                 <div class="play-btn">▶</div>
             `;
-            card.onclick = () => renderSubView(cat.id, cat.name, cat.targetVocab, cat.color);
+            card.onclick = () => {
+                // Update URL so we remember we are in a specific category view
+                if (window.history.pushState) {
+                    const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?category=' + cat.id;
+                    window.history.pushState({path: newUrl}, '', newUrl);
+                }
+                renderSubView(cat.id, cat.name, cat.targetVocab, cat.color);
+            };
             gridElement.appendChild(card);
         });
 
@@ -134,7 +135,6 @@ window.onload = function() {
         }
     }
 
-    // VIEW B: Sub-Categories inside a Main Category
     function renderSubView(categoryId, categoryName, vocabType, colorClass) {
         gridElement.innerHTML = "";
         
@@ -162,13 +162,12 @@ window.onload = function() {
             const urlKey = `${categoryId}_${sub.id}`;
             const isLive = liveUrls[urlKey] !== undefined;
 
-            // FIX: Always use standard div for bulletproof mobile tapping
             const card = document.createElement("div");
             card.className = `activity-card ${colorClass}`;
             
-            // FIX: Use Javascript window.location to force navigation on mobile
             if (isLive) {
                 card.onclick = () => {
+                    sessionStorage.setItem('hubReturnUrl', window.location.href);
                     window.location.href = liveUrls[urlKey];
                 };
             } else {
@@ -191,7 +190,6 @@ window.onload = function() {
         });
     }
 
-    // VIEW C: Topic Filter View (Shows Find, Shadow, Puzzle for a specific topic like 'Animals')
     function renderTopicView(topicId) {
         gridElement.innerHTML = "";
 
@@ -240,13 +238,12 @@ window.onload = function() {
             const urlKey = `${mainCat.id}_${topicId}`;
             const isLive = liveUrls[urlKey] !== undefined;
 
-            // FIX: Always use standard div for bulletproof mobile tapping
             const card = document.createElement("div");
             card.className = `activity-card ${mainCat.color}`;
             
-            // FIX: Use Javascript window.location to force navigation on mobile
             if (isLive) {
                 card.onclick = () => {
+                    sessionStorage.setItem('hubReturnUrl', window.location.href);
                     window.location.href = liveUrls[urlKey];
                 };
             } else {
@@ -269,7 +266,6 @@ window.onload = function() {
         });
     }
 
-    // UTILITY: Clean up the URL when going back to the main hub
     function clearUrlParams() {
         if (window.history.replaceState) {
             const url = window.location.protocol + "//" + window.location.host + window.location.pathname;
@@ -277,23 +273,38 @@ window.onload = function() {
         }
     }
 
-    // --- 4. POPUP MANAGEMENT ---
-    
-    closeBtn.addEventListener('click', () => {
-        popup.classList.add('hidden');
-    });
+    closeBtn.addEventListener('click', () => { popup.classList.add('hidden'); });
+    popup.addEventListener('click', (e) => { if (e.target === popup) popup.classList.add('hidden'); });
 
-    popup.addEventListener('click', (e) => {
-        if (e.target === popup) popup.classList.add('hidden');
-    });
-
-    // --- 5. INITIALIZATION (Check URL for ?topic=) ---
+    // --- 5. INITIALIZATION (Check URL for ?topic= or ?category=) ---
     const urlParams = new URLSearchParams(window.location.search);
     const topicFilter = urlParams.get('topic');
+    const categoryFilter = urlParams.get('category');
 
     if (topicFilter) {
         renderTopicView(topicFilter);
+    } else if (categoryFilter) {
+        // If the URL has ?category=joining, find the category details and render it!
+        const targetCategory = mainCategories.find(c => c.id === categoryFilter);
+        if(targetCategory) {
+            renderSubView(targetCategory.id, targetCategory.name, targetCategory.targetVocab, targetCategory.color);
+        } else {
+            renderMainView();
+        }
     } else {
         renderMainView();
     }
+    
+    // Also allow browser back button to work nicely
+    window.addEventListener('popstate', function() {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('topic')) {
+            renderTopicView(params.get('topic'));
+        } else if (params.get('category')) {
+            const cat = mainCategories.find(c => c.id === params.get('category'));
+            if(cat) renderSubView(cat.id, cat.name, cat.targetVocab, cat.color);
+        } else {
+            renderMainView();
+        }
+    });
 };

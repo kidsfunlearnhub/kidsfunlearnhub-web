@@ -46,7 +46,7 @@ window.onload = function() {
         "game-title": { en: "🌹 Flower Shadow Match!", hi: "🌹 फूलों की परछाई मिलाओ!", mr: "🌹 फुलांची सावली जुळवा!" },
         "score-label": { en: "Score:", hi: "स्कोर:", mr: "गुण:" },
         "instruction": { en: "Match the flowers to their shadows!", hi: "फूलों को उनकी परछाई से मिलाएँ!", mr: "फुलांना त्यांच्या सावलीशी जुळवा!" },
-        "backBtn": { en: "⬅ Back to Activity Hub", hi: "⬅ वापस जाएँ", mr: "⬅ मागे जा" },
+        "backBtn": { en: "⬅ Back", hi: "⬅ पीछे", mr: "⬅ मागे" },
         "correct": { en: "Great Job! 🎉", hi: "बहुत अच्छे! 🎉", mr: "खूप छान! 🎉" },
         "total-score": { en: "Total Score: ", hi: "कुल स्कोर: ", mr: "एकूण गुण: " },
         "page-title": { en: "Flower Shadow Match Game | KidsFunLearnHub", hi: "फूल छाया मिलान खेल | KidsFunLearnHub", mr: "फुल सावली जुळवा खेळ | KidsFunLearnHub" }
@@ -295,7 +295,9 @@ window.onload = function() {
     document.getElementById("backBtn").addEventListener("click", () => {
         sessionStorage.removeItem('shadowFlowerScore'); 
         sessionStorage.removeItem('shadowFlowerThemeIndex'); 
-        window.location.href = "index.html"; 
+        // Grab the saved URL, or default to the hub if none exists
+        const returnUrl = sessionStorage.getItem('hubReturnUrl') || "activityhub.html";
+        window.location.href = returnUrl; 
     });
 
     initProgressTrack(); 

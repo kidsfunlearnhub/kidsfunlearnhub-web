@@ -46,7 +46,7 @@ window.onload = function() {
         "game-title": { en: "🚌 Vehicle Shadow Match!", hi: "🚌 वाहनों की परछाई मिलाओ!", mr: "🚌 वाहनांची सावली जुळवा!" },
         "score-label": { en: "Score:", hi: "स्कोर:", mr: "गुण:" },
         "instruction": { en: "Match the vehicles to their shadows!", hi: "वाहनों को उनकी परछाई से मिलाएँ!", mr: "वाहनांना त्यांच्या सावलीशी जुळवा!" },
-        "backBtn": { en: "⬅ Back to Activity Hub", hi: "⬅ वापस जाएँ", mr: "⬅ मागे जा" },
+        "backBtn": { en: "⬅ Back", hi: "⬅ पीछे", mr: "⬅ मागे" },
         "correct": { en: "Great Job! 🎉", hi: "बहुत अच्छे! 🎉", mr: "खूप छान! 🎉" },
         "total-score": { en: "Total Score: ", hi: "कुल स्कोर: ", mr: "एकूण गुण: " },
         "page-title": { en: "Vehicle Shadow Match Game | KidsFunLearnHub", hi: "वाहन छाया मिलान खेल | KidsFunLearnHub", mr: "वाहन सावली जुळवा खेळ | KidsFunLearnHub" }
@@ -295,7 +295,9 @@ window.onload = function() {
     document.getElementById("backBtn").addEventListener("click", () => {
         sessionStorage.removeItem('shadowVehicleScore'); 
         sessionStorage.removeItem('shadowVehicleThemeIndex'); 
-        window.location.href = "index.html"; 
+        // Grab the saved URL, or default to the hub if none exists
+        const returnUrl = sessionStorage.getItem('hubReturnUrl') || "activityhub.html";
+        window.location.href = returnUrl; 
     });
 
     initProgressTrack(); 

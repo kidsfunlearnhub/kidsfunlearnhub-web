@@ -46,7 +46,7 @@ window.onload = function() {
         "game-title": { en: "🍓 Fruit Shadow Match!", hi: "🍓 फलों की परछाई मिलाओ!", mr: "🍓 फळांची सावली जुळवा!" },
         "score-label": { en: "Score:", hi: "स्कोर:", mr: "गुण:" },
         "instruction": { en: "Match the fruits to their shadows!", hi: "फलों को उनकी परछाई से मिलाएँ!", mr: "फळांना त्यांच्या सावलीशी जुळवा!" },
-        "backBtn": { en: "⬅ Back to Activity Hub", hi: "⬅ वापस जाएँ", mr: "⬅ मागे जा" },
+        "backBtn": { en: "⬅ Back", hi: "⬅ पीछे", mr: "⬅ मागे" },
         "correct": { en: "Great Job! 🎉", hi: "बहुत अच्छे! 🎉", mr: "खूप छान! 🎉" },
         "total-score": { en: "Total Score: ", hi: "कुल स्कोर: ", mr: "एकूण गुण: " },
         "page-title": { en: "Fruit Shadow Match Game | KidsFunLearnHub", hi: "फल छाया मिलान खेल | KidsFunLearnHub", mr: "फळे सावली जुळवा खेळ | KidsFunLearnHub" }
@@ -295,7 +295,9 @@ window.onload = function() {
     document.getElementById("backBtn").addEventListener("click", () => {
         sessionStorage.removeItem('shadowFruitScore'); 
         sessionStorage.removeItem('shadowFruitThemeIndex'); 
-        window.location.href = "index.html"; 
+        // Grab the saved URL, or default to the hub if none exists
+        const returnUrl = sessionStorage.getItem('hubReturnUrl') || "activityhub.html";
+        window.location.href = returnUrl; 
     });
 
     initProgressTrack(); 
