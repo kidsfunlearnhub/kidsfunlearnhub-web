@@ -43,7 +43,7 @@ window.onload = function() {
         "foods": "foods.html",
         "flowers": "flowers.html",
         "vehicles": "vehicles.html",
-        "colours": "colors.html", // Links 'colours' to your 'colors.html' file
+        "colours": "colors.html", 
         "bodyparts": "bodyparts.html",
         "shapes": "shapes.html",
         "alphabets": "alphabets.html",
@@ -110,11 +110,11 @@ window.onload = function() {
             <span class="breadcrumb-current">Activity Hub</span>
         `;
         
-        // Ensure only one back button is present
         bottomActionsElement.innerHTML = `<button id="backBtn" class="back-home-btn" aria-label="Go Back">🏠 Back to Home</button>`;
         document.getElementById("backBtn").onclick = () => window.location.href = "index.html";
 
         mainCategories.forEach(cat => {
+            // FIX: Always use standard div for bulletproof mobile tapping
             const card = document.createElement("div");
             card.className = `activity-card ${cat.color}`;
             card.innerHTML = `
@@ -150,7 +150,6 @@ window.onload = function() {
             renderMainView();
         };
 
-        // Ensure only one back button is present
         bottomActionsElement.innerHTML = `<button id="backBtn" class="back-home-btn" aria-label="Go Back">⬅ Back to Categories</button>`;
         document.getElementById("backBtn").onclick = () => {
             clearUrlParams();
@@ -163,13 +162,21 @@ window.onload = function() {
             const urlKey = `${categoryId}_${sub.id}`;
             const isLive = liveUrls[urlKey] !== undefined;
 
-            const card = document.createElement(isLive ? "a" : "div");
+            // FIX: Always use standard div for bulletproof mobile tapping
+            const card = document.createElement("div");
             card.className = `activity-card ${colorClass}`;
             
+            // FIX: Use Javascript window.location to force navigation on mobile
             if (isLive) {
-                card.href = liveUrls[urlKey];
+                card.onclick = () => {
+                    window.location.href = liveUrls[urlKey];
+                };
             } else {
                 card.classList.add("locked", "coming-soon");
+                card.onclick = (e) => {
+                    e.preventDefault();
+                    popup.classList.remove('hidden');
+                };
             }
 
             card.innerHTML = `
@@ -180,13 +187,6 @@ window.onload = function() {
                 ${isLive ? `<div class="play-btn">▶</div>` : ""}
             `;
 
-            if (!isLive) {
-                card.onclick = (e) => {
-                    e.preventDefault();
-                    popup.classList.remove('hidden');
-                };
-            }
-
             gridElement.appendChild(card);
         });
     }
@@ -195,11 +195,10 @@ window.onload = function() {
     function renderTopicView(topicId) {
         gridElement.innerHTML = "";
 
-        // Find the topic details
         const topicInfo = generalSubCategories.find(sub => sub.id === topicId) || tappingSubCategories.find(sub => sub.id === topicId);
 
         if (!topicInfo) {
-            renderMainView(); // Fallback if invalid topic
+            renderMainView(); 
             return;
         }
         
@@ -215,10 +214,8 @@ window.onload = function() {
             renderMainView();
         };
 
-        // --- NEW: INJECT TWO BUTTONS HERE ---
         bottomActionsElement.innerHTML = ""; 
 
-        // Button 1: Back to Learn Topic (e.g. Back to Learn Animals)
         if (learnPageUrls[topicId]) {
             const backToLearnBtn = document.createElement("button");
             backToLearnBtn.className = "back-home-btn return-learn-btn";
@@ -227,7 +224,6 @@ window.onload = function() {
             bottomActionsElement.appendChild(backToLearnBtn);
         }
 
-        // Button 2: Back to Activity Hub Main Page
         const backToHubBtn = document.createElement("button");
         backToHubBtn.className = "back-home-btn";
         backToHubBtn.innerHTML = "⬅ Back to Activity Hub";
@@ -236,7 +232,6 @@ window.onload = function() {
             renderMainView();
         };
         bottomActionsElement.appendChild(backToHubBtn);
-        // -------------------------------------
 
         mainCategories.forEach(mainCat => {
             if (mainCat.targetVocab === "tapping" && !tappingSubCategories.find(s => s.id === topicId)) return;
@@ -245,13 +240,21 @@ window.onload = function() {
             const urlKey = `${mainCat.id}_${topicId}`;
             const isLive = liveUrls[urlKey] !== undefined;
 
-            const card = document.createElement(isLive ? "a" : "div");
+            // FIX: Always use standard div for bulletproof mobile tapping
+            const card = document.createElement("div");
             card.className = `activity-card ${mainCat.color}`;
             
+            // FIX: Use Javascript window.location to force navigation on mobile
             if (isLive) {
-                card.href = liveUrls[urlKey];
+                card.onclick = () => {
+                    window.location.href = liveUrls[urlKey];
+                };
             } else {
                 card.classList.add("locked", "coming-soon");
+                card.onclick = (e) => {
+                    e.preventDefault();
+                    popup.classList.remove('hidden');
+                };
             }
 
             card.innerHTML = `
@@ -261,13 +264,6 @@ window.onload = function() {
                 <p>${isLive ? 'Play Now!' : 'Building...'}</p>
                 ${isLive ? `<div class="play-btn">▶</div>` : ""}
             `;
-
-            if (!isLive) {
-                card.onclick = (e) => {
-                    e.preventDefault();
-                    popup.classList.remove('hidden');
-                };
-            }
 
             gridElement.appendChild(card);
         });
