@@ -82,7 +82,7 @@ window.onload = function() {
         "joining_flowers": "puzzleflower.html",
         "joining_vehicles": "puzzlevehicle.html",
         "joining_colours": "puzzlecolour.html",
-        "joining_bodyparts": "puzzlebodypart.html",
+        "joining_bodyparts": "puzzlebodyparts.html",
         "joining_shapes": "puzzleshape.html"
     };
 

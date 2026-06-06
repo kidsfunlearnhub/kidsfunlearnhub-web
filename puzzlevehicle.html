@@ -38,7 +38,7 @@
     }
     </script>
 
-    <link rel="stylesheet" href="puzzlevehicle.css">
+    <link rel="stylesheet" href="puzzlevehicle.css?v=2">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
 </head>
 <body>
@@ -95,7 +95,7 @@
         </section>
 
         <nav class="bottom-actions">
-            <button id="backBtn" class="action-btn" aria-label="Go back">⬅ Back</button>
+            <button id="backBtn" class="action-btn" aria-label="Go back to Activity Hub">⬅ Back to Activity Hub</button>
         </nav>
     </main>
 
@@ -107,12 +107,13 @@
 
     <div id="feedback" class="feedback-overlay hidden" role="alert">
         <div class="feedback-content">
+            <img id="feedback-img" src="" alt="Vehicle" class="hidden">
             <h2 id="feedback-text" class="correct-text">Great Job! 🎉</h2>
             <h3 id="feedback-score" class="score-text"></h3>
             <div style="font-size: 80px; animation: popIn 0.5s;">⭐</div>
         </div>
     </div>
 
-    <script src="puzzlevehicle.js?v=1.1"></script>
+    <script src="puzzlevehicle.js?v=2"></script>
 </body>
 </html>

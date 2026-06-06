@@ -38,7 +38,7 @@
     }
     </script>
 
-    <link rel="stylesheet" href="puzzlebird.css">
+    <link rel="stylesheet" href="puzzlebird.css?v=2">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
 </head>
 <body>
@@ -95,24 +95,25 @@
         </section>
 
         <nav class="bottom-actions">
-            <button id="backBtn" class="action-btn" aria-label="Go back">⬅ Back</button>
+            <button id="backBtn" class="action-btn" aria-label="Go back to Activity Hub">⬅ Back to Activity Hub</button>
         </nav>
     </main>
 
     <section class="seo-description-container">
         <h2>About The Bird Picture Puzzle Activity</h2>
         <p>Welcome to <strong>KidsFunLearnHub's Bird Picture Puzzle</strong>! This free educational activity helps children develop spatial awareness, problem-solving logic, and fine motor skills by connecting pieces to reveal a beautiful bird.</p>
-        <p><strong>Learning Outcomes:</strong> Pattern recognition, logic, bird vocabulary, and hand-eye coordination. Available in English, Hindi, and Marathi!</p>
+        <p><strong>Learning Outcomes:</strong> Pattern recognition, logic, avian vocabulary, and hand-eye coordination. Available in English, Hindi, and Marathi!</p>
     </section>
 
     <div id="feedback" class="feedback-overlay hidden" role="alert">
         <div class="feedback-content">
+            <img id="feedback-img" src="" alt="Bird" class="hidden">
             <h2 id="feedback-text" class="correct-text">Great Job! 🎉</h2>
             <h3 id="feedback-score" class="score-text"></h3>
             <div style="font-size: 80px; animation: popIn 0.5s;">⭐</div>
         </div>
     </div>
 
-    <script src="puzzlebird.js?v=1"></script>
+    <script src="puzzlebird.js?v=2"></script>
 </body>
 </html>

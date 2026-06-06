@@ -1,3 +1,5 @@
+"use strict";
+
 window.onload = function() {
     const themes = [
         { runner: '🐒', target: '🍌' }, 
@@ -131,7 +133,6 @@ window.onload = function() {
         document.getElementById("score-label").innerText = uiDict["score-label"][currentLang];
         document.getElementById("instruction").innerText = uiDict["instruction"][currentLang];
         document.getElementById("backBtn").innerText = uiDict["backBtn"][currentLang];
-        document.getElementById("feedback-text").innerText = uiDict["correct"][currentLang];
     }
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -139,6 +140,13 @@ window.onload = function() {
             updateLanguage(e.target.dataset.lang);
         });
     });
+
+    // Added Instruction Audio Playback
+    function playInstructionAudio() {
+        let instructionAudio = new Audio(`sounds/${currentLang}/insects/${currentTargetInsect}.mp3`);
+        instructionAudio.play().catch(e => console.log("Instruction audio not found: ", e));
+    }
+    document.getElementById("promptBox").addEventListener("click", playInstructionAudio);
 
     // Positions for a 2x2 grid (Top-Left, Top-Right, Bottom-Left, Bottom-Right)
     const bgPositions = ["0% 0%", "100% 0%", "0% 100%", "100% 100%"];
@@ -236,42 +244,76 @@ window.onload = function() {
         }
     }
 
+    // --- PHASE 2 REWARD LOGIC ---
     function showRoundComplete() {
         const feedback = document.getElementById("feedback");
-        document.getElementById("feedback-score").innerText = uiDict["total-score"][currentLang] + score;
+        const feedbackText = document.getElementById("feedback-text");
+        const feedbackImg = document.getElementById("feedback-img");
+        const feedbackScore = document.getElementById("feedback-score");
+
+        feedbackScore.innerText = uiDict["total-score"][currentLang] + score;
+        feedbackScore.classList.remove("hidden");
+        feedbackText.innerText = uiDict["correct"][currentLang];
+        feedbackText.className = "correct-text";
+        feedbackImg.classList.add("hidden"); 
         feedback.classList.remove("hidden");
+        feedback.onclick = null; 
         
         if (typeof confetti === "function") {
             confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 }, zIndex: 9999 });
         }
 
-        let insectAudio = new Audio(`sounds/${currentLang}/insects/${currentTargetInsect}.mp3`);
+        let greatJobAudio = new Audio(`sounds/${currentLang}/great_job.mp3`);
         
-        insectAudio.play().catch(e => {
-            let greatJobAudio = new Audio(`sounds/${currentLang}/great_job.mp3`);
-            greatJobAudio.play().catch(err => console.log("Audio not found"));
-        });
+        const triggerPhaseTwo = () => {
+            feedbackText.innerText = insectDict[currentTargetInsect][currentLang];
+            feedbackImg.src = `images/insects/${currentTargetInsect}.webp`;
+            feedbackImg.classList.remove("hidden"); 
 
-        setTimeout(() => {
-            feedback.classList.add("hidden");
-            roundsPlayedThisSession++; 
+            let insectNameAudio = new Audio(`sounds/${currentLang}/insects/${currentTargetInsect}.mp3`);
             
-            if (roundsPlayedThisSession >= ROUNDS_BEFORE_RELOAD) {
-                sessionStorage.setItem('puzzleInsectScore', score);
-                sessionStorage.setItem('puzzleInsectLang', currentLang);
-                let nextThemeIndex = (themeIndex + 1) % themes.length;
-                sessionStorage.setItem('puzzleInsectThemeIndex', nextThemeIndex);
-                window.location.reload();
-            } else {
-                startNewRound();
-            }
-        }, 2500);
+            let hasAdvanced = false;
+            let autoTimer;
+
+            const advanceToNext = () => {
+                if (hasAdvanced) return; 
+                hasAdvanced = true;
+                clearTimeout(autoTimer); 
+                insectNameAudio.pause(); 
+                feedback.onclick = null; 
+                feedback.classList.add("hidden");
+                
+                roundsPlayedThisSession++; 
+                
+                if (roundsPlayedThisSession >= ROUNDS_BEFORE_RELOAD) {
+                    sessionStorage.setItem('puzzleInsectScore', score);
+                    sessionStorage.setItem('puzzleInsectLang', currentLang);
+                    let nextThemeIndex = (themeIndex + 1) % themes.length;
+                    sessionStorage.setItem('puzzleInsectThemeIndex', nextThemeIndex);
+                    window.location.reload();
+                } else {
+                    startNewRound();
+                }
+            };
+
+            setTimeout(() => { feedback.onclick = advanceToNext; }, 500);
+
+            insectNameAudio.play().then(() => {
+                insectNameAudio.onended = () => { autoTimer = setTimeout(advanceToNext, 1600); };
+            }).catch(e => { autoTimer = setTimeout(advanceToNext, 2000); });
+        };
+
+        greatJobAudio.play().then(() => {
+            greatJobAudio.onended = triggerPhaseTwo;
+        }).catch(() => { 
+            setTimeout(triggerPhaseTwo, 1500); 
+        });
     }
 
     document.getElementById("backBtn").addEventListener("click", () => {
         sessionStorage.removeItem('puzzleInsectScore'); 
         sessionStorage.removeItem('puzzleInsectThemeIndex'); 
-       // Grab the saved URL, or default to the hub if none exists
+        
         const returnUrl = sessionStorage.getItem('hubReturnUrl') || "activityhub.html";
         window.location.href = returnUrl;
     });

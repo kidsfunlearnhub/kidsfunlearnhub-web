@@ -1,3 +1,5 @@
+"use strict";
+
 window.onload = function() {
     const themes = [
         { runner: '🐒', target: '🍌' }, 
@@ -140,6 +142,13 @@ window.onload = function() {
         });
     });
 
+    // Added Instruction Audio Playback
+    function playInstructionAudio() {
+        let instructionAudio = new Audio(`sounds/${currentLang}/vehicles/${currentTargetVehicle}.mp3`);
+        instructionAudio.play().catch(e => console.log("Instruction audio not found: ", e));
+    }
+    document.getElementById("promptBox").addEventListener("click", playInstructionAudio);
+
     // Positions for a 2x2 grid (Top-Left, Top-Right, Bottom-Left, Bottom-Right)
     const bgPositions = ["0% 0%", "100% 0%", "0% 100%", "100% 100%"];
 
@@ -236,42 +245,76 @@ window.onload = function() {
         }
     }
 
+    // --- PHASE 2 REWARD LOGIC ---
     function showRoundComplete() {
         const feedback = document.getElementById("feedback");
-        document.getElementById("feedback-score").innerText = uiDict["total-score"][currentLang] + score;
+        const feedbackText = document.getElementById("feedback-text");
+        const feedbackImg = document.getElementById("feedback-img");
+        const feedbackScore = document.getElementById("feedback-score");
+
+        feedbackScore.innerText = uiDict["total-score"][currentLang] + score;
+        feedbackScore.classList.remove("hidden");
+        feedbackText.innerText = uiDict["correct"][currentLang];
+        feedbackText.className = "correct-text";
+        feedbackImg.classList.add("hidden"); 
         feedback.classList.remove("hidden");
+        feedback.onclick = null; 
         
         if (typeof confetti === "function") {
             confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 }, zIndex: 9999 });
         }
 
-        let vehicleAudio = new Audio(`sounds/${currentLang}/vehicles/${currentTargetVehicle}.mp3`);
+        let greatJobAudio = new Audio(`sounds/${currentLang}/great_job.mp3`);
         
-        vehicleAudio.play().catch(e => {
-            let greatJobAudio = new Audio(`sounds/${currentLang}/great_job.mp3`);
-            greatJobAudio.play().catch(err => console.log("Audio not found"));
-        });
+        const triggerPhaseTwo = () => {
+            feedbackText.innerText = vehicleDict[currentTargetVehicle][currentLang];
+            feedbackImg.src = `images/vehicles/${currentTargetVehicle}.webp`;
+            feedbackImg.classList.remove("hidden"); 
 
-        setTimeout(() => {
-            feedback.classList.add("hidden");
-            roundsPlayedThisSession++; 
+            let vehicleNameAudio = new Audio(`sounds/${currentLang}/vehicles/${currentTargetVehicle}.mp3`);
             
-            if (roundsPlayedThisSession >= ROUNDS_BEFORE_RELOAD) {
-                sessionStorage.setItem('puzzleVehicleScore', score);
-                sessionStorage.setItem('puzzleVehicleLang', currentLang);
-                let nextThemeIndex = (themeIndex + 1) % themes.length;
-                sessionStorage.setItem('puzzleVehicleThemeIndex', nextThemeIndex);
-                window.location.reload();
-            } else {
-                startNewRound();
-            }
-        }, 2500);
+            let hasAdvanced = false;
+            let autoTimer;
+
+            const advanceToNext = () => {
+                if (hasAdvanced) return; 
+                hasAdvanced = true;
+                clearTimeout(autoTimer); 
+                vehicleNameAudio.pause(); 
+                feedback.onclick = null; 
+                feedback.classList.add("hidden");
+                
+                roundsPlayedThisSession++; 
+                
+                if (roundsPlayedThisSession >= ROUNDS_BEFORE_RELOAD) {
+                    sessionStorage.setItem('puzzleVehicleScore', score);
+                    sessionStorage.setItem('puzzleVehicleLang', currentLang);
+                    let nextThemeIndex = (themeIndex + 1) % themes.length;
+                    sessionStorage.setItem('puzzleVehicleThemeIndex', nextThemeIndex);
+                    window.location.reload();
+                } else {
+                    startNewRound();
+                }
+            };
+
+            setTimeout(() => { feedback.onclick = advanceToNext; }, 500);
+
+            vehicleNameAudio.play().then(() => {
+                vehicleNameAudio.onended = () => { autoTimer = setTimeout(advanceToNext, 1600); };
+            }).catch(e => { autoTimer = setTimeout(advanceToNext, 2000); });
+        };
+
+        greatJobAudio.play().then(() => {
+            greatJobAudio.onended = triggerPhaseTwo;
+        }).catch(() => { 
+            setTimeout(triggerPhaseTwo, 1500); 
+        });
     }
 
     document.getElementById("backBtn").addEventListener("click", () => {
         sessionStorage.removeItem('puzzleVehicleScore'); 
         sessionStorage.removeItem('puzzleVehicleThemeIndex'); 
-        // Grab the saved URL, or default to the hub if none exists
+        
         const returnUrl = sessionStorage.getItem('hubReturnUrl') || "activityhub.html";
         window.location.href = returnUrl; 
     });
