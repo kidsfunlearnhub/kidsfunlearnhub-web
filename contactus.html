@@ -1,191 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Contact Us</title>
-
-<style>
-
-body{
-margin:0;
-font-family: Arial, sans-serif;
-background:#f5fbff;
-color:#333;
-line-height:1.6;
-}
-
-header{
-background:#4CAF50;
-color:white;
-text-align:center;
-padding:20px;
-}
-
-.container{
-max-width:900px;
-margin:auto;
-padding:20px;
-background:white;
-border-radius: 12px;
-box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
-
-h2{
-color:#4CAF50;
-margin-top:25px;
-}
-
-/* form styling */
-
-form{
-margin-top:20px;
-}
-
-label{
-display:block;
-margin-top:15px;
-font-weight:bold;
-}
-
-input, textarea{
-width:100%;
-padding:12px;
-margin-top:5px;
-border-radius:8px;
-border:1px solid #ccc;
-font-size:16px;
-box-sizing:border-box;
-}
-
-textarea{
-resize:vertical;
-min-height:120px;
-}
-
-button{
-margin-top:20px;
-padding:12px;
-font-size:18px;
-background:#4CAF50;
-color:white;
-border:none;
-border-radius:10px;
-cursor:pointer;
-transition:.2s;
-}
-
-button:hover{
-background:#45a049;
-}
-
-/* info box */
-
-.info{
-background:#e8f5e9;
-padding:15px;
-border-radius:10px;
-margin-top:20px;
-}
-
-footer{
-text-align:center;
-padding:15px;
-background:#333;
-color:white;
-margin-top:40px;
-}
-
-a{
-color:#4CAF50;
-text-decoration:none;
-}
-
-a:hover{
-text-decoration:underline;
-}
-
-/* mobile friendliness */
-
-@media(max-width:600px){
-.container{
-padding:15px;
-}
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | KidsFunLearnHub</title>
+    <meta name="description" content="Contact KidsFunLearnHub for feedback, worksheet requests, or support. We love hearing from parents and educators!">
+    <link rel="stylesheet" href="legalpages.css?v=2.0">
 </head>
-
 <body>
 
-<header>
-<h1>Contact Us</h1>
-<p>We love hearing from parents and learners!</p>
-</header>
+    <nav class="top-nav">
+        <a href="index.html" class="logo">🚀 KidsFunLearnHub</a>
+        <div class="lang-selector">
+            <button class="lang-btn" onclick="setLanguage('en')">English</button>
+            <button class="lang-btn" onclick="setLanguage('hi')">हिंदी</button>
+            <button class="lang-btn" onclick="setLanguage('mr')">मराठी</button>
+        </div>
+    </nav>
 
-<div class="container">
+    <main class="page-wrapper">
+        <div class="content-card">
+            <h1 data-en="Contact Us" data-hi="संपर्क करें" data-mr="संपर्क करा">Contact Us</h1>
+            
+            <p data-en="We love hearing from parents and learners! Have feedback, suggestions, or questions about our kids learning activities? We’re happy to help!"
+               data-hi="हमें माता-पिता से सुनना अच्छा लगता है! क्या आपके पास हमारी गतिविधियों के बारे में कोई प्रतिक्रिया या प्रश्न हैं? हमें मदद करने में खुशी होगी!"
+               data-mr="आम्हाला पालकांकडून ऐकायला आवडते! आमच्या क्रियाकलापांबद्दल कोणताही अभिप्राय किंवा प्रश्न आहेत? आम्हाला मदत करण्यात आनंद होईल!">
+            </p>
 
-<p>
-Have feedback, suggestions, or questions about our kids learning activities?  
-We’re happy to help! Parents are encouraged to reach out anytime.
-</p>
+            <div style="background:#e8f5e9; padding:20px; border-radius:10px; margin: 20px 0;">
+                <strong data-en="Parent Support:" data-hi="अभिभावक सहायता:" data-mr="पालक समर्थन:">Parent Support:</strong><br>
+                <span data-en="• Worksheet requests" data-hi="• वर्कशीट अनुरोध" data-mr="• वर्कशीट विनंत्या">• Worksheet requests</span><br>
+                <span data-en="• Feedback & suggestions" data-hi="• प्रतिक्रिया और सुझाव" data-mr="• अभिप्राय आणि सूचना">• Feedback & suggestions</span><br>
+                <span data-en="• Learning ideas" data-hi="• सीखने के विचार" data-mr="• शिकण्याच्या कल्पना">• Learning ideas</span><br>
+                </div>
 
-<div class="info">
-<strong>Parent Support:</strong><br>
-• Worksheet requests<br>
-• Feedback & suggestions<br>
-• Technical issues<br>
-• Learning ideas
-</div>
+                <!--  Contact Us -->
+            <h2 data-en="Connect Us:" data-hi="संपर्क करें" data-mr="संपर्क करा">4. Contact Us</h2>
+            <p data-en="Parents may email us directly at <i><b>support@kidsfunlearnhub.com</b></i> or use our Form below to send us a message. We aim to respond to all inquiries within 48 hours :-"
+               data-hi="माता-पिता हमें सीधे support@kidsfunlearnhub.com पर ईमेल कर सकते हैं या नीचे दिए गए फॉर्म का उपयोग करके हमें संदेश भेज सकते हैं। हम सभी पूछताछ का 48 घंटे के भीतर जवाब देने का लक्ष्य रखते हैं :-"
+               data-mr="पालक आम्हाला थेट support@kidsfunlearnhub.com वर ईमेल करू शकतात किंवा खालील फॉर्मचा वापर करून आम्हाला संदेश पाठवू शकतात. आम्ही सर्व प्रश्नांचा 48 तासांत उत्तर देण्याचा लक्ष्य धरतो ":->
+            </p>
+            <!-- FORMSUBMIT BACKEND INTEGRATION -->
+            <form action="https://formsubmit.co/support@kidsfunlearnhub.com" method="POST">
+                
+                <!-- Hidden fields to customize the email you receive -->
+                <input type="hidden" name="_subject" value="New Website Message from Parent!">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://kidsfunlearnhub.com/contactus.html?success=true">
 
-<h2>Send Us a Message</h2>
+                <label style="font-weight: bold;" data-en="Your Name:" data-hi="आपका नाम:" data-mr="तुमचे नाव:">Your Name</label>
+                <input type="text" name="name" required placeholder="Parent / Guardian name">
 
-<form onsubmit="handleSubmit(event)">
+                <label style="font-weight: bold;" data-en="Email Address:" data-hi="ईमेल:" data-mr="ईमेल:">Email Address</label>
+                <input type="email" name="email" required placeholder="your@email.com">
 
-<label>Your Name</label>
-<input type="text" placeholder="Parent / Guardian name" required>
+                <label style="font-weight: bold;" data-en="Message:" data-hi="संदेश:" data-mr="संदेश:">Message</label>
+                <textarea name="message" required placeholder="Write your message here..."></textarea>
+                
+                <button type="submit" class="submit-btn" data-en="Send Message" data-hi="संदेश भेजें" data-mr="संदेश पाठवा">Send Message</button>
+            </form>
 
-<label>Email Address</label>
-<input type="email" placeholder="your@email.com" required>
+            <p id="successMsg" style="display:none; color:green; margin-top:20px; font-weight:bold; text-align:center;">
+                ✅ Thank you! Your message has been sent successfully.
+            </p>
 
-<label>Message</label>
-<textarea placeholder="Write your message here..." required></textarea>
+            <p style="font-size: 0.9rem; color: #888; text-align: center; margin-top: 20px;"
+               data-en="For child safety, please do not share personal information about children. All communication should be handled by an adult."
+               data-hi="बाल सुरक्षा के लिए, कृपया बच्चों के बारे में व्यक्तिगत जानकारी साझा न करें।"
+               data-mr="बाल सुरक्षेसाठी, कृपया मुलांबद्दल वैयक्तिक माहिती सामायिक करू नका.">
+            </p>
 
-<button type="submit">Send Message</button>
+            <h3 style="text-align: center; color: #9c27b0;" 
+                data-en="We are always happy to hear from parents and support your child's learning journey." 
+                data-hi="हम माता-पिता से सुनने और आपके बच्चे की सीखने की यात्रा का समर्थन करने के लिए हमेशा तत्पर हैं।" 
+                data-mr="पालकांकडून ऐकायला आणि तुमच्या मुलाच्या शिकण्याच्या प्रवासाला पाठिंबा द्यायला आम्हाला नेहमीच आनंद होतो.">
+                We are always happy to hear from parents and support your child's learning journey.
+            </h3>
 
-</form>
+            <nav class="bottom-actions">
+                <a href="index.html" class="action-btn" 
+                    data-en="⬅ Back to Home" 
+                    data-hi="⬅ होम पर वापस जाएं" 
+                    data-mr="⬅ मुख्यपृष्ठावर परत जा">
+                    ⬅ Back to Home
+                </a>
+            </nav>
+        </div>
+    </main>
 
-<p id="successMsg" style="display:none; color:green; margin-top:15px;">
-✅ Thank you! Your message has been noted.
-</p>
+    <footer class="footer">
+      <nav aria-label="Footer Navigation">
+           <a href="aboutus.html" id="footerAbout">About Us</a> |
+            <a href="termsandconditions.html" id="footerTerms">Terms & Conditions</a> |
+            <a href="privacy.html" id="footerPrivacy">Privacy Policy</a> |
+            <a href="disclaimer.html" id="footerDisclaimer">Disclaimer</a> |
+            <!-- <a href="contactus.html" id="footerContact">Contact Us</a> -->
+      </nav>
+      <p class="copyright">© 2026 KidsFunLearnHub. All rights reserved.</p>
+    </footer>
 
-<h2>Safety Note</h2>
-
-<p>
-For child safety, please do not share personal information about children in messages.  
-All communication should be handled by a parent or guardian.
-</p>
-
-<p>
-Return to <a href="index.html">Home Page</a>
-</p>
-
-</div>
-
-<footer>
-© 2026 Kids Fun Learning — Safe Learning for Every Child
-</footer>
-
-<script>
-
-function handleSubmit(event){
-event.preventDefault();
-document.getElementById("successMsg").style.display="block";
-event.target.reset();
-}
-
-</script>
-
+    <!-- Script to show success message if returning from FormSubmit -->
+    <script>
+        if (window.location.search.includes('success=true')) {
+            document.getElementById('successMsg').style.display = 'block';
+        }
+    </script>
+    <!-- Paste the Shared Language JavaScript Here -->
+     <script src="legalpages.js?v=2.0" defer></script>
 </body>
 </html>

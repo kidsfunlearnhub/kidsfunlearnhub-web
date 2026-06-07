@@ -53,10 +53,11 @@ body {
 
 .animated-title {
     font-size: clamp(2rem, 4vw, 3.2rem);
-    color: #3f16af;
+    color:#ec51d8;
+    /* color:#da1050; */
     margin: 5px 20px 15px 20px;
     text-shadow: 
-        3px 3px 0 #7ddbf5,
+        3px 3px 0 #d0f090,
         /* 6px 6px 0 #171617, */
         9px 9px 15px rgba(0,0,0,0.2);
     letter-spacing: 2px;
