@@ -200,6 +200,7 @@ body {
 .seo-description-container li { margin-bottom: 10px; }
 
 /* Footer */
+/* Footer */
 .footer { 
     text-align: center; 
     padding: 25px 15px; 
@@ -207,10 +208,11 @@ body {
     color: white; 
     
     /* Layout Fixes */
-    margin-top: 50px; /* Adds breathing room above the footer */
-    margin-bottom: -30px; /* Counteracts the body's 30px bottom padding */
-    align-self: stretch; /* Stretches across the full flex container */
-    width: calc(100% + 30px); /* Ignores the body's 15px left/right padding */
+    margin-top: 50px; 
+    margin-bottom: -30px; 
+    margin-left: -15px;  /* Pulls footer completely to the left edge */
+    margin-right: -15px; /* Pulls footer completely to the right edge */
+    align-self: stretch; 
     
     position: relative; 
     z-index: 20; 
