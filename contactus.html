@@ -49,13 +49,7 @@
                Parents may email us directly at <i><b>support@kidsfunlearnhub.com</b></i> or use our Form below to send us a message. We aim to respond to all inquiries within 48 hours :-
             </p>
             <!-- FORMSUBMIT BACKEND INTEGRATION -->
-            <form action="https://formsubmit.co/support@kidsfunlearnhub.com" method="POST">
-                
-                <!-- Hidden fields to customize the email you receive -->
-                <input type="hidden" name="_subject" value="New Website Message from Parent!">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://kidsfunlearnhub.com/contactus.html?success=true">
-
+            <form id="contactForm">
                 <label style="font-weight: bold;" data-en="Your Name:" data-hi="आपका नाम:" data-mr="तुमचे नाव:">Your Name</label>
                 <input type="text" name="name" required placeholder="Parent / Guardian name">
 
@@ -65,12 +59,50 @@
                 <label style="font-weight: bold;" data-en="Message:" data-hi="संदेश:" data-mr="संदेश:">Message</label>
                 <textarea name="message" required placeholder="Write your message here..."></textarea>
                 
-                <button type="submit" class="submit-btn" data-en="Send Message" data-hi="संदेश भेजें" data-mr="संदेश पाठवा">Send Message</button>
+                <button type="submit" id="submitBtn" class="submit-btn" data-en="Send Message" data-hi="संदेश भेजें" data-mr="संदेश पाठवा">Send Message</button>
             </form>
 
             <p id="successMsg" style="display:none; color:green; margin-top:20px; font-weight:bold; text-align:center;">
                 ✅ Thank you! Your message has been sent successfully.
             </p>
+
+            <p id="errorMsg" style="display:none; color:red; margin-top:20px; font-weight:bold; text-align:center;">
+                ❌ Oops! Something went wrong. Please try again.
+            </p>
+
+            <script>
+                const form = document.getElementById('contactForm');
+                const submitBtn = document.getElementById('submitBtn');
+                
+                // 🛑 PASTE YOUR GOOGLE SCRIPT URL HERE:
+                const scriptURL = 'https://script.google.com/macros/s/AKfycbzG_gi-HHEy4tN1_N9TTSKZEK7ICoWvYnpMkZCK5D_0_dVK32cCayx6Tg8DPbJm-0LVCQ/exec';
+
+                form.addEventListener('submit', e => {
+                    e.preventDefault(); // Stop the page from reloading
+                    
+                    // Change button text so the parent knows it is working
+                    submitBtn.innerText = 'Sending...';
+                    submitBtn.disabled = true;
+
+                    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                        .then(response => {
+                            // Show success message and clear form
+                            document.getElementById('successMsg').style.display = 'block';
+                            document.getElementById('errorMsg').style.display = 'none';
+                            form.reset();
+                            submitBtn.innerText = 'Send Message';
+                            submitBtn.disabled = false;
+                        })
+                        .catch(error => {
+                            // Show error message
+                            document.getElementById('errorMsg').style.display = 'block';
+                            document.getElementById('successMsg').style.display = 'none';
+                            submitBtn.innerText = 'Send Message';
+                            submitBtn.disabled = false;
+                        });
+                });
+            </script>
+                <!--  END OF FORMSUBMIT BACKEND INTEGRATION -->
 
             <p style="font-size: 0.9rem; color: #888; text-align: center; margin-top: 20px;"
                data-en="For child safety, please do not share personal information about children. All communication should be handled by an adult."
@@ -117,3 +149,7 @@
      <script src="legalpages.js?v=2.0" defer></script>
 </body>
 </html>
+
+
+
+
