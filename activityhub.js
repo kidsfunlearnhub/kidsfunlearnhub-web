@@ -108,7 +108,11 @@ window.onload = function() {
         // --- NEW NUMBER GAMES MAPPED HERE ---
         "finding_numbers": "findnumber.html",
         "shadow_numbers": "shadownumber.html",
-        "joining_numbers": "puzzlenumber.html"
+        "joining_numbers": "puzzlenumber.html",
+
+        // Tapping category
+        "tapping_alphabets": "tapabc.html",
+        "tapping_small_alphabets": "tapsmallabc.html"
     };
 
     // --- 2. STATE MANAGEMENT ---
