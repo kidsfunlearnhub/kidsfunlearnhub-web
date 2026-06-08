@@ -22,7 +22,14 @@ window.onload = function() {
         { id: "vehicles", name: "Vehicles", icon: "🚗" },
         { id: "colours", name: "Colours", icon: "🎨" },
         { id: "bodyparts", name: "Body Parts", icon: "👀" },
-        { id: "shapes", name: "Shapes", icon: "⭐" }
+        { id: "shapes", name: "Shapes", icon: "⭐" },
+        // Added ABCs to general so they get Finding, Shadow, and Puzzle cards
+        { id: "alphabets", name: "Alphabets", icon: "🔤" },
+        { id: "small_alphabets", name: "Small Alphabets", icon: "🔡" },
+        // --- NEW VARNMALA ADDED HERE ---
+        { id: "hindi", name: "Hindi Varnmala", icon: "अ" },
+        // --- NEW NUMBERS ADDED HERE ---
+        { id: "numbers", name: "Numbers", icon: "🔢" }
     ];
 
     const tappingSubCategories = [
@@ -83,7 +90,25 @@ window.onload = function() {
         "joining_vehicles": "puzzlevehicle.html",
         "joining_colours": "puzzlecolour.html",
         "joining_bodyparts": "puzzlebodyparts.html",
-        "joining_shapes": "puzzleshape.html"
+        "joining_shapes": "puzzleshape.html",
+        
+        // --- NEW ALPHABET GAMES MAPPED HERE ---
+        "finding_alphabets": "findabc.html",
+        "shadow_alphabets": "shadowabc.html",
+        "joining_alphabets": "puzzleabc.html",
+        "finding_small_alphabets": "findabcbigsmall.html",
+        "shadow_small_alphabets": "shadowabcbigsmall.html",
+        "joining_small_alphabets": "puzzleabcbigsmall.html",
+
+        // --- NEW VARNMALA GAMES MAPPED HERE ---
+        "finding_hindi": "findvarnmala.html",
+        "shadow_hindi": "shadowvarnmala.html",
+        "joining_hindi": "puzzlevarnmala.html",
+
+        // --- NEW NUMBER GAMES MAPPED HERE ---
+        "finding_numbers": "findnumber.html",
+        "shadow_numbers": "shadownumber.html",
+        "joining_numbers": "puzzlenumber.html"
     };
 
     // --- 2. STATE MANAGEMENT ---
@@ -118,7 +143,6 @@ window.onload = function() {
                 <div class="play-btn">▶</div>
             `;
             card.onclick = () => {
-                // Update URL so we remember we are in a specific category view
                 if (window.history.pushState) {
                     const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?category=' + cat.id;
                     window.history.pushState({path: newUrl}, '', newUrl);
@@ -276,7 +300,7 @@ window.onload = function() {
     closeBtn.addEventListener('click', () => { popup.classList.add('hidden'); });
     popup.addEventListener('click', (e) => { if (e.target === popup) popup.classList.add('hidden'); });
 
-    // --- 5. INITIALIZATION (Check URL for ?topic= or ?category=) ---
+    // --- 5. INITIALIZATION ---
     const urlParams = new URLSearchParams(window.location.search);
     const topicFilter = urlParams.get('topic');
     const categoryFilter = urlParams.get('category');
@@ -284,7 +308,6 @@ window.onload = function() {
     if (topicFilter) {
         renderTopicView(topicFilter);
     } else if (categoryFilter) {
-        // If the URL has ?category=joining, find the category details and render it!
         const targetCategory = mainCategories.find(c => c.id === categoryFilter);
         if(targetCategory) {
             renderSubView(targetCategory.id, targetCategory.name, targetCategory.targetVocab, targetCategory.color);
@@ -295,7 +318,6 @@ window.onload = function() {
         renderMainView();
     }
     
-    // Also allow browser back button to work nicely
     window.addEventListener('popstate', function() {
         const params = new URLSearchParams(window.location.search);
         if (params.get('topic')) {

@@ -326,7 +326,8 @@ window.onload = function() {
     document.getElementById("backBtn").addEventListener("click", () => {
         sessionStorage.removeItem('findAbcScore'); 
         sessionStorage.removeItem('findAbcThemeIndex');
-        window.location.href = "activityhub.html?topic=alphabets"; 
+        const returnUrl = sessionStorage.getItem('hubReturnUrl') || "activityhub.html";
+        window.location.href = returnUrl; 
     });
 
     // Initialize
