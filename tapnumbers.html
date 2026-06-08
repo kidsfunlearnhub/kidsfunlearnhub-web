@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tap The Numbers 1-20 | KidsFunLearnHub</title>
+    <link rel="stylesheet" href="tapnumbers.css?v=6">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+</head>
+<body>
+
+    <div class="site-branding">
+        <a href="index.html" class="animated-logo">🚀 KidsFunLearnHub</a>
+    </div>
+
+    <main class="game-container">
+        <header class="header-row">
+            <h1 id="game-title">👆 Tap The Numbers!</h1>
+            <div class="score-board">
+                <span id="score-label">Score:</span> 
+                <span id="score">0</span>
+            </div>
+        </header>
+
+        <nav class="language-container" aria-label="Language Selection">
+            <div class="language-selector">
+                <button class="lang-btn active" data-lang="en" aria-label="Switch to English">English</button>
+                <button class="lang-btn" data-lang="hi" aria-label="Switch to Hindi">हिंदी</button>
+                <button class="lang-btn" data-lang="mr" aria-label="Switch to Marathi">मराठी</button>
+            </div>
+        </nav>
+
+        <section class="progress-container">
+            <div class="progress-track" id="progress-track">
+                <div class="line-track-overlay">
+                    <div class="progress-line-base"></div> 
+                    <div class="progress-line-fill" id="progress-line"></div> 
+                </div>
+                <div class="dots-container" id="dots-container"></div>
+                <div class="runner-track-overlay">
+                    <div id="runner-icon" class="runner-icon"><span id="runner-emoji" class="face-right">🖍️</span></div>
+                </div>
+                <div id="target-icon" class="target-icon">🍎</div>
+            </div>
+        </section>
+
+        <section id="promptBox" class="prompt-box" role="button" tabindex="0" aria-label="Play instruction audio">
+            <div class="speaker-icon" aria-hidden="true">🔊</div>
+            <div class="prompt-content">
+                <h2 id="instruction">Tap all...</h2>
+                <div id="target-number-name" class="target-text">???</div>
+            </div>
+        </section>
+
+        <section id="gameArea" class="scatter-area"></section>
+
+        <nav class="bottom-actions">
+            <button id="backBtn" class="action-btn">⬅ Back</button>
+        </nav>
+    </main>
+
+    <section class="seo-description-container">
+        <h2>About The Tap The Numbers Activity</h2>
+        <p>Welcome to <strong>KidsFunLearnHub's Tap The Numbers</strong>! This free educational activity is designed specifically to help toddlers and preschoolers recognize numbers from 1 to 20 in multiple languages. By finding and tapping all the correct numbers scattered across the screen, children actively build their counting foundations, visual scanning, and hand-eye coordination skills.</p>
+        <p><strong>Learning Outcomes:</strong> Number recognition, cognitive speed, early math skills, and visual tracking. Play in a fun, ad-free environment!</p>
+    </section>
+
+    <div id="feedback" class="feedback-overlay hidden">
+        <div class="feedback-content">
+            <h2 id="feedback-text">Great Job! 🎉</h2>
+            <h3 id="feedback-score" class="score-text"></h3>
+            <div style="font-size: 80px; animation: popIn 0.5s;">⭐</div>
+        </div>
+    </div>
+
+    <script src="tapnumbers.js?v=6.1"></script>
+</body>
+</html>

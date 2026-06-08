@@ -112,7 +112,9 @@ window.onload = function() {
 
         // Tapping category
         "tapping_alphabets": "tapabc.html",
-        "tapping_small_alphabets": "tapsmallabc.html"
+        "tapping_small_alphabets": "tapsmallabc.html",
+        "tapping_numbers": "tapnumbers.html",
+        "tapping_hindi": "taphindi.html"
     };
 
     // --- 2. STATE MANAGEMENT ---
