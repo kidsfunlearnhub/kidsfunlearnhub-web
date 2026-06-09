@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Find Big & Small Letters | KidsFunLearnHub</title>
+    <meta name="title" content="Find Big & Small Letters Game | KidsFunLearnHub">
+    <meta name="description" content="Play the free Find Big & Small Letters game on KidsFunLearnHub! A fun, interactive listening and visual recognition game for toddlers to connect uppercase and lowercase ABCs.">
+    <meta name="keywords" content="find big and small letters, kids abc game, uppercase lowercase, alphabet recognition, preschool activities, KidsFunLearnHub, learn abc">
+    <meta name="author" content="KidsFunLearnHub">
+    
+    <link rel="canonical" href="https://kidsfunlearnhub.com/findabcbigsmall.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kidsfunlearnhub.com/findabcbigsmall.html">
+    <meta property="og:title" content="Find Big & Small Letters | KidsFunLearnHub">
+    <meta property="og:description" content="A fun, interactive visual recognition game for toddlers to learn Big and Small English alphabets. Play for free!">
+    <meta property="og:image" content="https://kidsfunlearnhub.com/images/find-abcbigsmall-preview.jpg"> 
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalApplication",
+      "name": "Find Big & Small Letters",
+      "url": "https://kidsfunlearnhub.com/findabcbigsmall.html",
+      "description": "An interactive educational game where children listen to prompts and find the correct uppercase and lowercase alphabet pair.",
+      "applicationCategory": "EducationalGame",
+      "operatingSystem": "Any",
+      "educationalUse": "Interactive Learning",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student",
+        "audienceType": "toddlers and preschoolers"
+      },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@type": "Organization", "name": "KidsFunLearnHub", "url": "https://kidsfunlearnhub.com" }
+    }
+    </script>
+
+    <link rel="stylesheet" href="findabcbigsmall.css?v=1">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+</head>
+<body>
+
+    <main class="game-container">
+        
+        <header class="header-row">
+            <h1 id="game-title">🔠 Find Big & Small!</h1>
+            <div class="score-board" aria-live="polite">
+                <span id="score-label">Score:</span> 
+                <span id="score">0</span>
+            </div>
+        </header>
+
+        <nav class="language-container" aria-label="Language Selection">
+            <div class="language-selector">
+                <button class="lang-btn active" data-lang="en" aria-label="Switch to English">English</button>
+                <!-- <button class="lang-btn" data-lang="hi" aria-label="Switch to Hindi">हिंदी</button> -->
+                <!-- <button class="lang-btn" data-lang="mr" aria-label="Switch to Marathi">मराठी</button> -->
+            </div>
+        </nav>
+
+        <section class="progress-container" aria-hidden="true">
+            <div class="progress-track" id="progress-track">
+                <div class="line-track-overlay">
+                    <div class="progress-line-base"></div> 
+                    <div class="progress-line-fill" id="progress-line"></div> 
+                </div>
+                <div class="dots-container" id="dots-container"></div>
+                
+                <div class="runner-track-overlay">
+                    <div id="runner-icon" class="runner-icon">
+                        <span id="runner-emoji" class="face-right">🖍️</span>
+                    </div>
+                </div>
+                
+                <div id="target-icon" class="target-icon">🍎</div>
+            </div>
+        </section>
+
+        <section id="promptBox" class="prompt-box" role="button" tabindex="0" aria-label="Play instruction audio">
+            <div class="speaker-icon" aria-hidden="true">🔊</div>
+            <div>
+                <h2 id="instruction">Where is...</h2>
+                <div id="target-letter-name" class="target-text">???</div>
+            </div>
+        </section>
+
+        <section id="gameGrid" class="grid" role="list" aria-label="Alphabet Options">
+            </section>
+
+        <nav class="bottom-actions">
+            <button id="backBtn" class="action-btn" aria-label="Go back">⬅ Back</button>
+        </nav>
+    </main>
+
+    <section class="seo-description-container">
+        <h2>About The Find Big & Small Activity</h2>
+        <p>Welcome to <strong>KidsFunLearnHub's Find Big & Small Letters</strong>! This free educational activity is designed specifically for toddlers, preschoolers, and early learners. By listening to the audio prompts and visually matching the Capital letter to its lowercase buddy, children actively build their phonetic awareness and letter recognition skills.</p>
+        <p><strong>Learning Outcomes:</strong> Auditory processing, visual recognition, early reading skills, and uppercase/lowercase association. Fully voiced and available in English, Hindi, and Marathi!</p>
+    </section>
+
+    <div id="feedback" class="feedback-overlay hidden" role="alert">
+        <div class="feedback-content">
+            <div class="letter-buddies-feedback" id="feedback-letter-display">
+                </div>
+            <h2 id="feedback-text">Great Job! 🎉</h2>
+            <h3 id="feedback-score" class="score-text"></h3>
+            <div style="font-size: 80px; animation: popIn 0.5s;">⭐</div>
+        </div>
+    </div>
+
+    <script src="findabcbigsmall.js?v=1"></script>
+</body>
+</html>
