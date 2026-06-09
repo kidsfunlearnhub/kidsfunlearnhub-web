@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tap Varnmala | KidsFunLearnHub</title>
+    <link rel="stylesheet" href="tapvarnmala.css?v=2">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+</head>
+<body>
+
+    <div class="site-branding">
+        <a href="index.html" class="animated-logo">🚀 KidsFunLearnHub</a>
+    </div>
+
+    <main class="game-container">
+        <header class="header-row">
+            <h1 id="game-title">👆 वर्णमाला टैप करें!</h1>
+            <div class="score-board">
+                <span id="score-label">स्कोर:</span> 
+                <span id="score">0</span>
+            </div>
+        </header>
+
+        <nav class="language-container" aria-label="Language Selection">
+            <div class="language-selector">
+                <button class="lang-btn active" data-lang="hi" aria-label="Switch to Hindi">हिंदी</button>
+                <button class="lang-btn" data-lang="mr" aria-label="Switch to Marathi">मराठी</button>
+            </div>
+        </nav>
+
+        <section class="progress-container">
+            <div class="progress-track" id="progress-track">
+                <div class="line-track-overlay">
+                    <div class="progress-line-base"></div> 
+                    <div class="progress-line-fill" id="progress-line"></div> 
+                </div>
+                <div class="dots-container" id="dots-container"></div>
+                <div class="runner-track-overlay">
+                    <div id="runner-icon" class="runner-icon"><span id="runner-emoji" class="face-right">🖍️</span></div>
+                </div>
+                <div id="target-icon" class="target-icon">🍎</div>
+            </div>
+        </section>
+
+        <section id="promptBox" class="prompt-box" role="button" tabindex="0" aria-label="Play instruction audio">
+            <div class="speaker-icon" aria-hidden="true">🔊</div>
+            <div class="prompt-content">
+                <h2 id="instruction">सभी को टैप करें...</h2>
+                <div id="target-varnmala-name" class="target-text">???</div>
+            </div>
+        </section>
+
+        <section id="gameArea" class="scatter-area"></section>
+
+        <nav class="bottom-actions">
+            <button id="backBtn" class="action-btn">⬅ पीछे</button>
+        </nav>
+    </main>
+
+    <section class="seo-description-container">
+        <h2>About The Tap Varnmala Activity</h2>
+        <p>Welcome to <strong>KidsFunLearnHub's Tap Varnmala</strong>! This free educational activity is designed specifically to help toddlers and preschoolers recognize Hindi and Marathi Devanagari characters. By finding and tapping all the correct letters scattered across the screen, children actively build their phonetic foundations, visual scanning, and hand-eye coordination skills.</p>
+        <p><strong>Learning Outcomes:</strong> Character recognition, cognitive speed, early reading skills, and visual tracking. Play in a fun, ad-free environment!</p>
+    </section>
+
+    <div id="feedback" class="feedback-overlay hidden">
+        <div class="feedback-content">
+            <h2 id="feedback-text">बहुत अच्छे! 🎉</h2>
+            <h3 id="feedback-score" class="score-text"></h3>
+            <div style="font-size: 80px; animation: popIn 0.5s;">⭐</div>
+        </div>
+    </div>
+
+    <script src="tapvarnmala.js?v=2"></script>
+</body>
+</html>

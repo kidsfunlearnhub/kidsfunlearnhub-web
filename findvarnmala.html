@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Find Varnmala | KidsFunLearnHub</title>
+    <meta name="title" content="Find Varnmala Game | KidsFunLearnHub">
+    <meta name="description" content="Play the free Find Varnmala game on KidsFunLearnHub! A fun, interactive listening and visual recognition game for toddlers to learn Hindi and Marathi alphabets.">
+    <meta name="keywords" content="find varnmala, hindi alphabet game, marathi alphabet game, learn devanagari, preschool activities, KidsFunLearnHub">
+    <meta name="author" content="KidsFunLearnHub">
+    
+    <link rel="canonical" href="https://kidsfunlearnhub.com/findvarnmala.html">
+
+    <link rel="stylesheet" href="findvarnmala.css?v=1">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+</head>
+<body>
+
+    <main class="game-container">
+        
+        <header class="header-row">
+            <h1 id="game-title">🔠 वर्णमाला खोजें!</h1>
+            <div class="score-board" aria-live="polite">
+                <span id="score-label">स्कोर:</span> 
+                <span id="score">0</span>
+            </div>
+        </header>
+
+        <nav class="language-container" aria-label="Language Selection">
+            <div class="language-selector">
+                <button class="lang-btn active" data-lang="hi" aria-label="Switch to Hindi">हिंदी</button>
+                <button class="lang-btn" data-lang="mr" aria-label="Switch to Marathi">मराठी</button>
+            </div>
+        </nav>
+
+        <section class="progress-container" aria-hidden="true">
+            <div class="progress-track" id="progress-track">
+                <div class="line-track-overlay">
+                    <div class="progress-line-base"></div> 
+                    <div class="progress-line-fill" id="progress-line"></div> 
+                </div>
+                <div class="dots-container" id="dots-container"></div>
+                
+                <div class="runner-track-overlay">
+                    <div id="runner-icon" class="runner-icon">
+                        <span id="runner-emoji" class="face-right">🖍️</span>
+                    </div>
+                </div>
+                
+                <div id="target-icon" class="target-icon">🍎</div>
+            </div>
+        </section>
+
+        <section id="promptBox" class="prompt-box" role="button" tabindex="0" aria-label="Play instruction audio">
+            <div class="speaker-icon" aria-hidden="true">🔊</div>
+            <div>
+                <h2 id="instruction">कहाँ है...</h2>
+                <div id="target-varnmala-name" class="target-text">???</div>
+            </div>
+        </section>
+
+        <section id="gameGrid" class="grid" role="list" aria-label="Varnmala Options">
+        </section>
+
+        <nav class="bottom-actions">
+            <button id="backBtn" class="action-btn" aria-label="Go back">⬅ पीछे</button>
+        </nav>
+    </main>
+
+    <section class="seo-description-container">
+        <h2>About The Find Varnmala Activity</h2>
+        <p>Welcome to <strong>KidsFunLearnHub's Find Varnmala</strong>! This free educational activity is designed specifically for toddlers, preschoolers, and early learners. By listening to the audio prompts and selecting the correct Devanagari letter from the grid, children actively build their phonetic awareness and letter recognition skills in Hindi and Marathi.</p>
+        <p><strong>Learning Outcomes:</strong> Auditory processing, visual recognition, early reading skills, and hand-eye coordination. Play in a fun, ad-free environment!</p>
+    </section>
+
+    <div id="feedback" class="feedback-overlay hidden" role="alert">
+        <div class="feedback-content">
+            <img id="feedback-img" src="" alt="Varnmala Word" class="hidden">
+            <h2 id="feedback-text">बहुत अच्छे! 🎉</h2>
+            <h3 id="feedback-score" class="score-text"></h3>
+            <div style="font-size: 80px; animation: popIn 0.5s;">⭐</div>
+        </div>
+    </div>
+
+    <script src="findvarnmala.js?v=1"></script>
+</body>
+</html>

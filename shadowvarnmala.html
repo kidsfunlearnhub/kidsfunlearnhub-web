@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Varnmala Shadow Match Game | KidsFunLearnHub</title>
+    <meta name="title" content="Varnmala Shadow Match Game | KidsFunLearnHub">
+    <meta name="description" content="Play the free Varnmala Shadow Match puzzle on KidsFunLearnHub! A fun educational game for kids to improve cognitive skills and learn Hindi and Marathi alphabets.">
+    <meta name="keywords" content="varnmala shadow match, kids hindi game, learn devanagari, toddler puzzles, preschool activities, KidsFunLearnHub">
+    <meta name="author" content="KidsFunLearnHub">
+    
+    <link rel="canonical" href="https://kidsfunlearnhub.com/shadowvarnmala.html">
+
+    <link rel="stylesheet" href="shadowvarnmala.css?v=1">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+</head>
+<body>
+
+    <main class="game-container">
+        
+        <header class="header-row">
+            <h1 id="game-title">🟢 वर्णमाला परछाई मिलान!</h1>
+            <div class="score-board" aria-live="polite">
+                <span id="score-label">स्कोर:</span> 
+                <span id="score">0</span>
+            </div>
+        </header>
+
+        <nav class="language-container" aria-label="Language Selection">
+            <div class="language-selector">
+                <button class="lang-btn active" data-lang="hi" aria-label="Switch to Hindi">हिंदी</button>
+                <button class="lang-btn" data-lang="mr" aria-label="Switch to Marathi">मराठी</button>
+            </div>
+        </nav>
+
+        <section class="progress-container" aria-hidden="true">
+            <div class="progress-track" id="progress-track">
+                <div class="line-track-overlay">
+                    <div class="progress-line-base"></div> 
+                    <div class="progress-line-fill" id="progress-line"></div> 
+                </div>
+                <div class="dots-container" id="dots-container"></div>
+                <div class="runner-track-overlay">
+                    <div id="runner-icon" class="runner-icon">
+                        <span id="runner-emoji" class="face-right">🐒</span>
+                    </div>
+                </div>
+                <div id="target-icon" class="target-icon">🍌</div>
+            </div>
+        </section>
+
+        <section id="promptBox" class="prompt-box" role="button" tabindex="0" aria-label="Play instruction audio">
+            <div class="speaker-icon" aria-hidden="true">🔊</div>
+            <div>
+                <h2 id="instruction">अक्षरों को उनकी परछाई से मिलाएँ!</h2>
+            </div>
+        </section>
+
+        <section class="match-game-wrapper" id="match-container" aria-label="Interactive Matching Game Area">
+            <svg id="line-canvas" aria-hidden="true"></svg>
+            <div class="column" id="left-column" role="list" aria-label="Letters"></div>
+            <div class="column" id="right-column" role="list" aria-label="Shadows"></div>
+        </section>
+
+        <nav class="bottom-actions">
+            <button id="backBtn" class="action-btn" aria-label="Go back">⬅ पीछे</button>
+        </nav>
+    </main>
+
+    <section class="seo-description-container">
+        <h2>About The Varnmala Shadow Match Activity</h2>
+        <p>Welcome to <strong>KidsFunLearnHub's Varnmala Shadow Match</strong>! This free educational puzzle helps children develop visual discrimination and fine motor skills by connecting Hindi and Marathi Devanagari characters to their silhouettes.</p>
+        <p><strong>Learning Outcomes:</strong> Character recognition, logic, phonetic vocabulary, and hand-eye coordination. Play in a fun, ad-free environment!</p>
+    </section>
+
+    <div id="feedback" class="feedback-overlay hidden" role="alert">
+        <div class="feedback-content">
+            <h2 id="feedback-text" class="correct-text">बहुत अच्छे! 🎉</h2>
+            <h3 id="feedback-score" class="score-text"></h3>
+            <div style="font-size: 80px; animation: popIn 0.5s;">⭐</div>
+        </div>
+    </div>
+
+    <script src="shadowvarnmala.js?v=1"></script>
+</body>
+</html>
