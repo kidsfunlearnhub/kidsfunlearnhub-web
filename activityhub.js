@@ -12,6 +12,14 @@ window.onload = function() {
     ];
 
     const generalSubCategories = [
+        // Added ABCs to general so they get Finding, Shadow, and Puzzle cards
+        { id: "alphabets", name: "Alphabets", icon: "🔤" },
+        { id: "small_alphabets", name: "Big & Small Alphabets", icon: "🔡" },
+          // --- NEW VARNMALA ADDED HERE ---
+        { id: "hindi", name: "Hindi & Marathi Varnmala", icon: "अ" },
+        // --- NEW NUMBERS ADDED HERE ---
+        { id: "numbers", name: "Numbers", icon: "🔢" },
+
         { id: "animals", name: "Animals", icon: "🦁" },
         { id: "birds", name: "Birds", icon: "🦚" },
         { id: "insects", name: "Insects", icon: "🦋" },
@@ -22,24 +30,22 @@ window.onload = function() {
         { id: "vehicles", name: "Vehicles", icon: "🚗" },
         { id: "colours", name: "Colours", icon: "🎨" },
         { id: "bodyparts", name: "Body Parts", icon: "👀" },
-        { id: "shapes", name: "Shapes", icon: "⭐" },
-        // Added ABCs to general so they get Finding, Shadow, and Puzzle cards
-        { id: "alphabets", name: "Alphabets", icon: "🔤" },
-        { id: "small_alphabets", name: "Small Alphabets", icon: "🔡" },
-        // --- NEW VARNMALA ADDED HERE ---
-        { id: "hindi", name: "Hindi Varnmala", icon: "अ" },
-        // --- NEW NUMBERS ADDED HERE ---
-        { id: "numbers", name: "Numbers", icon: "🔢" }
+        { id: "shapes", name: "Shapes", icon: "⭐" }
     ];
 
     const tappingSubCategories = [
         { id: "alphabets", name: "Alphabets", icon: "🔤" },
-        { id: "small_alphabets", name: "Small Alphabets", icon: "🔡" },
-        { id: "numbers", name: "Numbers", icon: "🔢" },
-        { id: "hindi", name: "Hindi (अ आ इ)", icon: "अ" }
+        { id: "small_alphabets", name: "Big & Small Alphabets", icon: "🔡" },
+         { id: "hindi", name: "Hindi & Marathi (अ आ इ)", icon: "अ" },
+        { id: "numbers", name: "Numbers", icon: "🔢" }
+       
     ];
 
     const learnPageUrls = {
+        "alphabets": "abc.html",
+        "small_alphabets": "abcbigsmall.html",
+        "numbers": "numbers.html",
+        "hindi": "varnmala.html",
         "animals": "animals.html",
         "birds": "birds.html",
         "insects": "insects.html",
@@ -50,14 +56,17 @@ window.onload = function() {
         "vehicles": "vehicles.html",
         "colours": "colors.html", 
         "bodyparts": "bodyparts.html",
-        "shapes": "shapes.html",
-        "alphabets": "abc.html",
-        "small_alphabets": "small_abc.html",
-        "numbers": "numbers.html",
-        "hindi": "hindi.html"
+        "shapes": "shapes.html"
+        
     };
 
     const liveUrls = {
+
+
+        "finding_alphabets": "findabc.html",
+        "finding_small_alphabets": "findabcbigsmall.html",
+        "finding_hindi": "findvarnmala.html",
+        "finding_numbers": "findnumber.html",
         "finding_animals": "findanimal.html",
         "finding_birds": "findbird.html",
         "finding_insects": "findinsect.html",
@@ -69,6 +78,11 @@ window.onload = function() {
         "finding_colours": "findcolour.html",
         "finding_bodyparts": "findbodyparts.html",
         "finding_shapes": "findshape.html",
+
+        "shadow_alphabets": "shadowabc.html",
+        "shadow_small_alphabets": "shadowabcbigsmall.html",
+        "shadow_hindi": "shadowvarnmala.html",
+        "shadow_numbers": "shadownumber.html",
         "shadow_animals": "shadowgame.html",
         "shadow_birds": "shadowbird.html",
         "shadow_insects": "shadowinsect.html",
@@ -80,6 +94,11 @@ window.onload = function() {
         "shadow_colours": "shadowcolour.html",
         "shadow_bodyparts": "shadowbodyparts.html",
         "shadow_shapes": "shadowshape.html",
+
+        "joining_alphabets": "puzzleabc.html",
+        "joining_small_alphabets": "puzzleabcbigsmall.html",
+        "joining_hindi": "puzzlevarnmala.html",
+        "joining_numbers": "puzzlenumber.html",
         "joining_animals": "puzzleanimal.html",
         "joining_birds": "puzzlebird.html",
         "joining_insects": "puzzleinsect.html",
@@ -92,24 +111,6 @@ window.onload = function() {
         "joining_bodyparts": "puzzlebodyparts.html",
         "joining_shapes": "puzzleshape.html",
         
-        // --- NEW ALPHABET GAMES MAPPED HERE ---
-        "finding_alphabets": "findabc.html",
-        "shadow_alphabets": "shadowabc.html",
-        "joining_alphabets": "puzzleabc.html",
-        "finding_small_alphabets": "findabcbigsmall.html",
-        "shadow_small_alphabets": "shadowabcbigsmall.html",
-        "joining_small_alphabets": "puzzleabcbigsmall.html",
-
-        // --- NEW VARNMALA GAMES MAPPED HERE ---
-        "finding_hindi": "findvarnmala.html",
-        "shadow_hindi": "shadowvarnmala.html",
-        "joining_hindi": "puzzlevarnmala.html",
-
-        // --- NEW NUMBER GAMES MAPPED HERE ---
-        "finding_numbers": "findnumber.html",
-        "shadow_numbers": "shadownumber.html",
-        "joining_numbers": "puzzlenumber.html",
-
         // Tapping category
         "tapping_alphabets": "tapabc.html",
         "tapping_small_alphabets": "tapsmallabc.html",
