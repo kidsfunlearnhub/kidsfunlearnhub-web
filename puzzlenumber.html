@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Number Puzzle Match Game | KidsFunLearnHub</title>
+    <meta name="title" content="Number Puzzle Match Game | KidsFunLearnHub">
+    <meta name="description" content="Play the free Number Puzzle Match game on KidsFunLearnHub! A fun educational drag-and-drop game for kids to count objects and connect them to numbers 1-20.">
+    <meta name="keywords" content="number puzzle, count objects, kids drag and drop, learn numbers, toddler math puzzles, preschool activities, KidsFunLearnHub">
+    <meta name="author" content="KidsFunLearnHub">
+    
+    <link rel="canonical" href="https://kidsfunlearnhub.com/puzzlenumber.html">
+
+    <link rel="stylesheet" href="puzzlenumber.css?v=3">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+</head>
+<body>
+
+    <main class="game-container">
+        
+        <header class="header-row">
+            <h1 id="game-title">🔢 Number Puzzle Match!</h1>
+            <div class="score-board" aria-live="polite">
+                <span id="score-label">Score:</span> 
+                <span id="score">0</span>
+            </div>
+        </header>
+
+        <nav class="language-container" aria-label="Language Selection">
+            <div class="language-selector">
+                <button class="lang-btn active" data-lang="en" aria-label="Switch to English">English</button>
+                <button class="lang-btn" data-lang="hi" aria-label="Switch to Hindi">हिंदी</button>
+                <button class="lang-btn" data-lang="mr" aria-label="Switch to Marathi">मराठी</button>
+            </div>
+        </nav>
+
+        <section class="progress-container" aria-hidden="true">
+            <div class="progress-track" id="progress-track">
+                <div class="line-track-overlay">
+                    <div class="progress-line-base"></div> 
+                    <div class="progress-line-fill" id="progress-line"></div> 
+                </div>
+                <div class="dots-container" id="dots-container"></div>
+                <div class="runner-track-overlay">
+                    <div id="runner-icon" class="runner-icon">
+                        <span id="runner-emoji" class="face-right">🖍️</span>
+                    </div>
+                </div>
+                <div id="target-icon" class="target-icon">🍎</div>
+            </div>
+        </section>
+
+        <section id="promptBox" class="prompt-box" role="button" tabindex="0" aria-label="Play instruction audio">
+            <div class="speaker-icon" aria-hidden="true">🔊</div>
+            <div>
+                <h2 id="instruction">Drag the objects to the correct number!</h2>
+            </div>
+        </section>
+
+        <section class="puzzle-game-wrapper" id="puzzle-container" aria-label="Interactive Puzzle Area">
+            <div class="puzzle-column" id="left-column" role="list" aria-label="Numbers"></div>
+            
+            <div class="puzzle-column draggable-area" id="right-column" role="list" aria-label="Quantities"></div>
+        </section>
+
+        <nav class="bottom-actions">
+            <button id="backBtn" class="action-btn" aria-label="Go back">⬅ Back</button>
+        </nav>
+    </main>
+
+    <section class="seo-description-container">
+        <h2>About The Number Quantity Puzzle</h2>
+        <p>Welcome to <strong>KidsFunLearnHub's Number Puzzle Match</strong>! This interactive drag-and-drop activity helps preschoolers build early math skills by counting groups of objects and matching them to the exact numerical digit (1 through 20).</p>
+        <p><strong>Learning Outcomes:</strong> Number-quantity association, visual counting, math vocabulary, and fine motor skills. Play in English, Hindi, or Marathi!</p>
+    </section>
+
+    <div id="feedback" class="feedback-overlay hidden" role="alert">
+        <div class="feedback-content">
+            <h2 id="feedback-text" class="correct-text">Great Job! 🎉</h2>
+            <h3 id="feedback-score" class="score-text"></h3>
+            <div style="font-size: 80px; animation: popIn 0.5s;">⭐</div>
+        </div>
+    </div>
+
+    <script src="puzzlenumber.js?v=3"></script>
+</body>
+</html>

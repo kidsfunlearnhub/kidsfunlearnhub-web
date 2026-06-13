@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Big & Small Puzzle Match | KidsFunLearnHub</title>
+    <meta name="title" content="Big & Small Puzzle Match Game | KidsFunLearnHub">
+    <meta name="description" content="Play the free Big & Small Puzzle Match on KidsFunLearnHub! A fun educational drag-and-drop game for kids to connect uppercase Capital letters to their lowercase Small buddies.">
+    <meta name="keywords" content="big and small letters, match uppercase lowercase, kids letter puzzle, learn abc, preschool activities, KidsFunLearnHub">
+    <meta name="author" content="KidsFunLearnHub">
+    
+    <link rel="canonical" href="https://kidsfunlearnhub.com/puzzleabcbigsmall.html">
+
+    <link rel="stylesheet" href="puzzleabcbigsmall.css?v=3">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+</head>
+<body>
+
+    <main class="game-container">
+        
+        <header class="header-row">
+            <h1 id="game-title">🟢 Big & Small Match!</h1>
+            <div class="score-board" aria-live="polite">
+                <span id="score-label">Score:</span> 
+                <span id="score">0</span>
+            </div>
+        </header>
+
+        <section class="progress-container" aria-hidden="true">
+            <div class="progress-track" id="progress-track">
+                <div class="line-track-overlay">
+                    <div class="progress-line-base"></div> 
+                    <div class="progress-line-fill" id="progress-line"></div> 
+                </div>
+                <div class="dots-container" id="dots-container"></div>
+                <div class="runner-track-overlay">
+                    <div id="runner-icon" class="runner-icon">
+                        <span id="runner-emoji" class="face-right">🖍️</span>
+                    </div>
+                </div>
+                <div id="target-icon" class="target-icon">🍎</div>
+            </div>
+        </section>
+
+        <section id="promptBox" class="prompt-box" role="button" tabindex="0" aria-label="Play instruction audio">
+            <div class="speaker-icon" aria-hidden="true">🔊</div>
+            <div>
+                <h2 id="instruction">Drag the Small letter to its Capital buddy!</h2>
+            </div>
+        </section>
+
+        <section class="puzzle-game-wrapper" id="puzzle-container" aria-label="Interactive Puzzle Area">
+            <div class="puzzle-column" id="left-column" role="list" aria-label="Capital Letters"></div>
+            
+            <div class="puzzle-column draggable-area" id="right-column" role="list" aria-label="Small Letters"></div>
+        </section>
+
+        <nav class="bottom-actions">
+            <button id="backBtn" class="action-btn" aria-label="Go back">⬅ Back</button>
+        </nav>
+    </main>
+
+    <section class="seo-description-container">
+        <h2>About The Big & Small Puzzle Match Activity</h2>
+        <p>Welcome to <strong>KidsFunLearnHub's Big & Small Letter Puzzle</strong>! This interactive drag-and-drop activity helps children develop visual discrimination and early reading skills by physically connecting Capital letters to their lowercase partners.</p>
+        <p><strong>Learning Outcomes:</strong> Uppercase/lowercase association, logic, fine motor skills, and touch-screen coordination. Play in a fun, ad-free environment!</p>
+    </section>
+
+    <div id="feedback" class="feedback-overlay hidden" role="alert">
+        <div class="feedback-content">
+            <h2 id="feedback-text" class="correct-text">Great Job! 🎉</h2>
+            <h3 id="feedback-score" class="score-text"></h3>
+            <div style="font-size: 80px; animation: popIn 0.5s;">⭐</div>
+        </div>
+    </div>
+
+    <script src="puzzleabcbigsmall.js?v=3"></script>
+</body>
+</html>

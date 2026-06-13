@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Varnmala Puzzle Match | KidsFunLearnHub</title>
+    <meta name="title" content="Varnmala Puzzle Match Game | KidsFunLearnHub">
+    <meta name="description" content="Play the free Varnmala Puzzle Match game on KidsFunLearnHub! A fun educational drag-and-drop game for kids to connect Devanagari letters to their vocabulary words in Hindi and Marathi.">
+    <meta name="keywords" content="varnmala puzzle, kids drag and drop, learn devanagari, toddler puzzles, preschool activities, KidsFunLearnHub">
+    <meta name="author" content="KidsFunLearnHub">
+    
+    <link rel="canonical" href="https://kidsfunlearnhub.com/puzzlevarnmala.html">
+
+    <link rel="stylesheet" href="puzzlevarnmala.css?v=1">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+</head>
+<body>
+
+    <main class="game-container">
+        
+        <header class="header-row">
+            <h1 id="game-title">🧩 वर्णमाला पहेली!</h1>
+            <div class="score-board" aria-live="polite">
+                <span id="score-label">स्कोर:</span> 
+                <span id="score">0</span>
+            </div>
+        </header>
+
+        <nav class="language-container" aria-label="Language Selection">
+            <div class="language-selector">
+                <button class="lang-btn active" data-lang="hi" aria-label="Switch to Hindi">हिंदी</button>
+                <button class="lang-btn" data-lang="mr" aria-label="Switch to Marathi">मराठी</button>
+            </div>
+        </nav>
+
+        <section class="progress-container" aria-hidden="true">
+            <div class="progress-track" id="progress-track">
+                <div class="line-track-overlay">
+                    <div class="progress-line-base"></div> 
+                    <div class="progress-line-fill" id="progress-line"></div> 
+                </div>
+                <div class="dots-container" id="dots-container"></div>
+                <div class="runner-track-overlay">
+                    <div id="runner-icon" class="runner-icon">
+                        <span id="runner-emoji" class="face-right">🖍️</span>
+                    </div>
+                </div>
+                <div id="target-icon" class="target-icon">🍎</div>
+            </div>
+        </section>
+
+        <section id="promptBox" class="prompt-box" role="button" tabindex="0" aria-label="Play instruction audio">
+            <div class="speaker-icon" aria-hidden="true">🔊</div>
+            <div>
+                <h2 id="instruction">चित्र को उसके अक्षर तक खींचें!</h2>
+            </div>
+        </section>
+
+        <section class="puzzle-game-wrapper" id="puzzle-container" aria-label="Interactive Puzzle Area">
+            <!-- Left side: Drop Zones (Letters) -->
+            <div class="puzzle-column" id="left-column" role="list" aria-label="Letters"></div>
+            
+            <!-- Right side: Draggable Pieces (Vocabulary Pictures) -->
+            <div class="puzzle-column draggable-area" id="right-column" role="list" aria-label="Pictures"></div>
+        </section>
+
+        <nav class="bottom-actions">
+            <!-- Routes back to the Hindi Varnmala hub page -->
+            <button id="backBtn" class="action-btn" aria-label="Go back">⬅ पीछे</button>
+        </nav>
+    </main>
+
+    <section class="seo-description-container">
+        <h2>About The Varnmala Puzzle Match Activity</h2>
+        <p>Welcome to <strong>KidsFunLearnHub's Varnmala Puzzle Match</strong>! This interactive drag-and-drop activity helps preschoolers build vocabulary and fine motor skills by piecing together Hindi and Marathi letters with their matching objects.</p>
+        <p><strong>Learning Outcomes:</strong> Letter-object association, visual logic, phonetic vocabulary, and touchscreen coordination. Play in a fun, ad-free environment!</p>
+    </section>
+
+    <div id="feedback" class="feedback-overlay hidden" role="alert">
+        <div class="feedback-content">
+            <h2 id="feedback-text" class="correct-text">बहुत अच्छे! 🎉</h2>
+            <h3 id="feedback-score" class="score-text"></h3>
+            <div style="font-size: 80px; animation: popIn 0.5s;">⭐</div>
+        </div>
+    </div>
+
+    <script src="puzzlevarnmala.js?v=1"></script>
+</body>
+</html>

@@ -4,27 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Bird Picture Puzzle Game | KidsFunLearnHub</title>
-    <meta name="title" content="Bird Picture Puzzle Game | KidsFunLearnHub">
-    <meta name="description" content="Play the free Bird Picture Puzzle on KidsFunLearnHub! A fun educational logic game for kids to improve problem-solving and visual recognition.">
-    <meta name="keywords" content="bird puzzle game, kids jigsaw puzzle, learn birds, toddler logic games, preschool activities, KidsFunLearnHub">
+    <title>Number Shadow Match Game | KidsFunLearnHub</title>
+    <meta name="title" content="Number Shadow Match Game | KidsFunLearnHub">
+    <meta name="description" content="Play the free Number Shadow Match puzzle on KidsFunLearnHub! A fun educational game for kids to improve cognitive skills and number recognition in multiple languages.">
+    <meta name="keywords" content="number shadow match, kids math game, learn numbers, toddler puzzles, preschool activities, KidsFunLearnHub">
     <meta name="author" content="KidsFunLearnHub">
     
-    <link rel="canonical" href="https://kidsfunlearnhub.com/puzzlebird.html">
+    <link rel="canonical" href="https://kidsfunlearnhub.com/shadownumber.html">
 
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kidsfunlearnhub.com/puzzlebird.html">
-    <meta property="og:title" content="Bird Picture Puzzle Game | KidsFunLearnHub">
-    <meta property="og:description" content="A fun interactive puzzle for kids to improve visual recognition by joining pieces to complete the bird picture. Play for free!">
-    <meta property="og:image" content="https://kidsfunlearnhub.com/images/puzzle-bird-preview.jpg"> 
+    <meta property="og:url" content="https://kidsfunlearnhub.com/shadownumber.html">
+    <meta property="og:title" content="Number Shadow Match Game | KidsFunLearnHub">
+    <meta property="og:description" content="A fun interactive puzzle for kids to improve visual recognition by matching numbers to their shadows. Play for free!">
+    <meta property="og:image" content="https://kidsfunlearnhub.com/images/shadow-number-preview.jpg"> 
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "EducationalApplication",
-      "name": "Bird Picture Puzzle",
-      "url": "https://kidsfunlearnhub.com/puzzlebird.html",
-      "description": "An educational puzzle where children join scattered pieces to complete a colorful bird picture, improving spatial awareness.",
+      "name": "Number Shadow Match",
+      "url": "https://kidsfunlearnhub.com/shadownumber.html",
+      "description": "An educational puzzle where children match colorful numbers to their silhouettes, improving memory and fine motor skills.",
       "applicationCategory": "EducationalGame",
       "operatingSystem": "Any",
       "educationalUse": "Interactive Learning",
@@ -38,7 +38,7 @@
     }
     </script>
 
-    <link rel="stylesheet" href="puzzlebird.css">
+    <link rel="stylesheet" href="shadownumber.css?v=1">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
 </head>
 <body>
@@ -46,7 +46,7 @@
     <main class="game-container">
         
         <header class="header-row">
-            <h1 id="game-title">🦚 Bird Picture Puzzle!</h1>
+            <h1 id="game-title">🔢 Number Shadow Match!</h1>
             <div class="score-board" aria-live="polite">
                 <span id="score-label">Score:</span> 
                 <span id="score">0</span>
@@ -70,39 +70,35 @@
                 <div class="dots-container" id="dots-container"></div>
                 <div class="runner-track-overlay">
                     <div id="runner-icon" class="runner-icon">
-                        <span id="runner-emoji" class="face-right">🐒</span>
+                        <span id="runner-emoji" class="face-right">🖍️</span>
                     </div>
                 </div>
-                <div id="target-icon" class="target-icon">🍌</div>
+                <div id="target-icon" class="target-icon">🍎</div>
             </div>
         </section>
 
         <section id="promptBox" class="prompt-box" role="button" tabindex="0" aria-label="Play instruction audio">
             <div class="speaker-icon" aria-hidden="true">🔊</div>
             <div>
-                <h2 id="instruction">Complete the picture!</h2>
+                <h2 id="instruction">Match the numbers to their shadows!</h2>
             </div>
         </section>
 
-        <section class="puzzle-wrapper" aria-label="Interactive Puzzle Area">
-            <div class="puzzle-board-container">
-                <div id="puzzle-board" class="puzzle-board">
-                    </div>
-            </div>
-            
-            <div id="pieces-tray" class="pieces-tray" aria-label="Puzzle Pieces">
-                </div>
+        <section class="match-game-wrapper" id="match-container" aria-label="Interactive Matching Game Area">
+            <svg id="line-canvas" aria-hidden="true"></svg>
+            <div class="column" id="left-column" role="list" aria-label="Numbers"></div>
+            <div class="column" id="right-column" role="list" aria-label="Shadows"></div>
         </section>
 
         <nav class="bottom-actions">
-            <button id="backBtn" class="action-btn" aria-label="Go back to Activity Hub">⬅ Back to Activity Hub</button>
+            <button id="backBtn" class="action-btn" aria-label="Go back">⬅ Back</button>
         </nav>
     </main>
 
     <section class="seo-description-container">
-        <h2>About The Bird Picture Puzzle Activity</h2>
-        <p>Welcome to <strong>KidsFunLearnHub's Bird Picture Puzzle</strong>! This free educational activity helps children develop spatial awareness, problem-solving logic, and fine motor skills by connecting pieces to reveal a beautiful bird.</p>
-        <p><strong>Learning Outcomes:</strong> Pattern recognition, logic, bird vocabulary, and hand-eye coordination. Available in English, Hindi, and Marathi!</p>
+        <h2>About The Number Shadow Match Activity</h2>
+        <p>Welcome to <strong>KidsFunLearnHub's Number Shadow Match</strong>! This free educational puzzle helps children develop visual discrimination and fine motor skills by connecting numbers (1-40) to their silhouettes in English, Hindi, and Marathi.</p>
+        <p><strong>Learning Outcomes:</strong> Number recognition, logic, math vocabulary, and hand-eye coordination. Play in a fun, ad-free environment!</p>
     </section>
 
     <div id="feedback" class="feedback-overlay hidden" role="alert">
@@ -113,6 +109,6 @@
         </div>
     </div>
 
-    <script src="puzzlebird.js"></script>
+    <script src="shadownumber.js?v=1"></script>
 </body>
 </html>

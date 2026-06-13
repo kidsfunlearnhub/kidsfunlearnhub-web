@@ -83,7 +83,7 @@ window.onload = function() {
         "shadow_small_alphabets": "shadowabcbigsmall.html",
         "shadow_hindi": "shadowvarnmala.html",
         "shadow_numbers": "shadownumber.html",
-        "shadow_animals": "shadowgame.html",
+        "shadow_animals": "shadowanimal.html",
         "shadow_birds": "shadowbird.html",
         "shadow_insects": "shadowinsect.html",
         "shadow_fruits": "shadowfruit.html",
