@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Advanced SEO Meta Tags -->
     <title>Learn Numbers 1 to 40 | Counting for Kids | KidsFunLearnHub</title>
     <meta name="title" content="Learn Numbers 1 to 40 | Counting for Kids | KidsFunLearnHub">
     <meta name="description" content="Learn numbers and counting for kids! Fun, interactive number flashcards with images, sounds, and pronunciation for toddlers and preschoolers from 1 to 40.">
@@ -13,14 +12,12 @@
     
     <link rel="canonical" href="https://kidsfunlearnhub.com/numbers.html">
 
-    <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kidsfunlearnhub.com/numbers.html">
     <meta property="og:title" content="Learn Numbers 1-40 with KidsFunLearnHub">
     <meta property="og:description" content="Interactive 3D numbers, fun counting images, and sound! The best way for kids to learn how to count.">
     <meta property="og:image" content="https://kidsfunlearnhub.com/images/numbers-preview.jpg"> 
 
-    <!-- Schema.org JSON-LD for SEO -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -39,13 +36,12 @@
     }
     </script>
 
-    <link rel="stylesheet" href="numbers.css?v=2.1">
+    <link rel="stylesheet" href="numbers.css?v=2.2">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 
 <body>
 
-    <!-- Cursor Selector -->
     <div class="cursor-dropdown" aria-label="Select Custom Cursor">
         <select id="cursorSelect">
             <option value="">Default Cursor</option>
@@ -54,7 +50,6 @@
         </select>
     </div>
 
-    <!-- Floating Bubble Button for Parent Corner -->
     <a href="parent.html" class="parent-corner bubble-btn" id="parentCornerBtn" aria-label="Go to Parent Corner">
         👨‍👩‍👧 Parent Corner
     </a>
@@ -62,30 +57,25 @@
     <header>
         <h1 class="title" id="page-title">🔢 Learn Numbers</h1>
         
-        <!-- Breadcrumb Navigation -->
         <nav class="home-nav">
           <a href="index.html" class="home-btn" id="homeBtnNav">🏠 Home</a>
           <a href="activityhub.html" class="home-btn" id="hubBtnNav" style="background:#ff9800; margin-left:10px;">🎮 Activity Hub</a>
         </nav>
     </header>
 
-    <!-- TOP AD ZONE: AdSense Safe -->
     <div class="ad-container">
         <div class="ad-space">
             <span>[AdSense Top Banner Area]</span>
         </div>
     </div>
 
-    <!-- MAIN GRID CONTENT -->
     <main class="page-wrapper">
         <div id="numberGrid" class="container grid" role="list"></div>
 
-        <!-- Pagination Controls -->
         <div class="card-nav">
             <button id="nextBtn" class="action-btn">➡ Next Numbers</button>
         </div>
 
-        <!-- BOTTOM NAVIGATION BUTTONS -->
         <nav class="bottom-nav">
             <a href="hub.html" class="home-btn" id="backBtn" style="background:#e91e63;">⬅ Back</a>
             <a href="numberstrace.html" class="home-btn" id="traceBtn" style="background:#4caf50;">Number Tracing</a>
@@ -93,25 +83,24 @@
         </nav>
     </main>
 
-    <!-- SEO Friendly Introduction Box -->
     <section class="seo-intro-box">
         <p id="seoText"></p>
     </section>
 
-    <!-- BOTTOM AD ZONE -->
     <div class="ad-container">
         <div class="ad-space">
             <span>[AdSense Bottom Banner Area]</span>
         </div>
     </div>
 
-    <!-- POPUP OVERLAY -->
     <div id="popup" class="popup hidden" role="dialog" aria-modal="true">
       <div class="popup-card">
         <div class="popup-images">
             <img id="popupImgDigit" alt="Number Digit">
-            <span class="plus-sign">➕</span>
-            <img id="popupImgObject" alt="Counting Objects">
+            <span class="plus-sign">🟰</span>
+            
+            <div id="popupRepeatedObjects" class="repeated-images-container"></div>
+            
         </div>
         <h2 id="popupName"></h2>
         <button class="close-btn" id="closePopupBtn">Close ✖</button>
@@ -129,6 +118,6 @@
         <p class="copyright">© 2026 KidsFunLearnHub. All rights reserved.</p>
     </footer>
 
-    <script src="numbers.js?v=4.2"></script>
+    <script src="numbers.js?v=5.1"></script>
 </body>
 </html>

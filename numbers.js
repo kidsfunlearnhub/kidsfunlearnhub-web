@@ -33,46 +33,26 @@ window.onload = function() {
 
     // Dictionary for 1-40
     const numbersDict = {
-        "1": { en: "One", hi: "एक", mr: "एक" },
-        "2": { en: "Two", hi: "दो", mr: "दोन" },
-        "3": { en: "Three", hi: "तीन", mr: "तीन" },
-        "4": { en: "Four", hi: "चार", mr: "चार" },
-        "5": { en: "Five", hi: "पांच", mr: "पाच" },
-        "6": { en: "Six", hi: "छह", mr: "सहा" },
-        "7": { en: "Seven", hi: "सात", mr: "सात" },
-        "8": { en: "Eight", hi: "आठ", mr: "आठ" },
-        "9": { en: "Nine", hi: "नौ", mr: "नऊ" },
-        "10": { en: "Ten", hi: "दस", mr: "दहा" },
-        "11": { en: "Eleven", hi: "ग्यारह", mr: "अकरा" },
-        "12": { en: "Twelve", hi: "बारह", mr: "बारा" },
-        "13": { en: "Thirteen", hi: "तेरह", mr: "तेरा" },
-        "14": { en: "Fourteen", hi: "चौदह", mr: "चौदा" },
-        "15": { en: "Fifteen", hi: "पंद्रह", mr: "पंधरा" },
-        "16": { en: "Sixteen", hi: "सोलह", mr: "सोळा" },
-        "17": { en: "Seventeen", hi: "सत्रह", mr: "सतरा" },
-        "18": { en: "Eighteen", hi: "अठारह", mr: "अठरा" },
-        "19": { en: "Nineteen", hi: "उन्नीस", mr: "एकोणीस" },
-        "20": { en: "Twenty", hi: "बीस", mr: "वीस" },
-        "21": { en: "Twenty-one", hi: "इक्कीस", mr: "एकवीस" },
-        "22": { en: "Twenty-two", hi: "बाईस", mr: "बावीस" },
-        "23": { en: "Twenty-three", hi: "तेईस", mr: "तेवीस" },
-        "24": { en: "Twenty-four", hi: "चौबीस", mr: "चोवीस" },
-        "25": { en: "Twenty-five", hi: "पच्चीस", mr: "पंचवीस" },
-        "26": { en: "Twenty-six", hi: "छब्बीस", mr: "सव्वीस" },
-        "27": { en: "Twenty-seven", hi: "सत्ताईस", mr: "सत्तावीस" },
-        "28": { en: "Twenty-eight", hi: "अट्ठाईस", mr: "अठ्ठावीस" },
-        "29": { en: "Twenty-nine", hi: "उन्तीस", mr: "एकोणतीस" },
-        "30": { en: "Thirty", hi: "तीस", mr: "तीस" },
-        "31": { en: "Thirty-one", hi: "इकतीस", mr: "एकतीस" },
-        "32": { en: "Thirty-two", hi: "बत्तीस", mr: "बत्तीस" },
-        "33": { en: "Thirty-three", hi: "तैंतीस", mr: "तेहतीस" },
-        "34": { en: "Thirty-four", hi: "चौंतीस", mr: "चौतीस" },
-        "35": { en: "Thirty-five", hi: "पैंतीस", mr: "पस्तीस" },
-        "36": { en: "Thirty-six", hi: "छत्तीस", mr: "छत्तीस" },
-        "37": { en: "Thirty-seven", hi: "सैंतीस", mr: "सदतीस" },
-        "38": { en: "Thirty-eight", hi: "अड़तीस", mr: "अडतीस" },
-        "39": { en: "Thirty-nine", hi: "उनतालीस", mr: "एकोणचाळीस" },
-        "40": { en: "Forty", hi: "चालीस", mr: "चाळीस" }
+        "1": { en: "One", hi: "एक", mr: "एक" }, "2": { en: "Two", hi: "दो", mr: "दोन" },
+        "3": { en: "Three", hi: "तीन", mr: "तीन" }, "4": { en: "Four", hi: "चार", mr: "चार" },
+        "5": { en: "Five", hi: "पांच", mr: "पाच" }, "6": { en: "Six", hi: "छह", mr: "सहा" },
+        "7": { en: "Seven", hi: "सात", mr: "सात" }, "8": { en: "Eight", hi: "आठ", mr: "आठ" },
+        "9": { en: "Nine", hi: "नौ", mr: "नऊ" }, "10": { en: "Ten", hi: "दस", mr: "दहा" },
+        "11": { en: "Eleven", hi: "ग्यारह", mr: "अकरा" }, "12": { en: "Twelve", hi: "बारह", mr: "बारा" },
+        "13": { en: "Thirteen", hi: "तेरह", mr: "तेरा" }, "14": { en: "Fourteen", hi: "चौदह", mr: "चौदा" },
+        "15": { en: "Fifteen", hi: "पंद्रह", mr: "पंधरा" }, "16": { en: "Sixteen", hi: "सोलह", mr: "सोळा" },
+        "17": { en: "Seventeen", hi: "सत्रह", mr: "सतरा" }, "18": { en: "Eighteen", hi: "अठारह", mr: "अठरा" },
+        "19": { en: "Nineteen", hi: "उन्नीस", mr: "एकोणीस" }, "20": { en: "Twenty", hi: "बीस", mr: "वीस" },
+        "21": { en: "Twenty-one", hi: "इक्कीस", mr: "एकवीस" }, "22": { en: "Twenty-two", hi: "बाईस", mr: "बावीस" },
+        "23": { en: "Twenty-three", hi: "तेईस", mr: "तेवीस" }, "24": { en: "Twenty-four", hi: "चौबीस", mr: "चोवीस" },
+        "25": { en: "Twenty-five", hi: "पच्चीस", mr: "पंचवीस" }, "26": { en: "Twenty-six", hi: "छब्बीस", mr: "सव्वीस" },
+        "27": { en: "Twenty-seven", hi: "सत्ताईस", mr: "सत्तावीस" }, "28": { en: "Twenty-eight", hi: "अट्ठाईस", mr: "अठ्ठावीस" },
+        "29": { en: "Twenty-nine", hi: "उन्तीस", mr: "एकोणतीस" }, "30": { en: "Thirty", hi: "तीस", mr: "तीस" },
+        "31": { en: "Thirty-one", hi: "इकतीस", mr: "एकतीस" }, "32": { en: "Thirty-two", hi: "बत्तीस", mr: "बत्तीस" },
+        "33": { en: "Thirty-three", hi: "तैंतीस", mr: "तेहतीस" }, "34": { en: "Thirty-four", hi: "चौंतीस", mr: "चौतीस" },
+        "35": { en: "Thirty-five", hi: "पैंतीस", mr: "पस्तीस" }, "36": { en: "Thirty-six", hi: "छत्तीस", mr: "छत्तीस" },
+        "37": { en: "Thirty-seven", hi: "सैंतीस", mr: "सदतीस" }, "38": { en: "Thirty-eight", hi: "अड़तीस", mr: "अडतीस" },
+        "39": { en: "Thirty-nine", hi: "उनतालीस", mr: "एकोणचाळीस" }, "40": { en: "Forty", hi: "चालीस", mr: "चाळीस" }
     };
 
     const numbers = Object.keys(numbersDict);
@@ -86,19 +66,16 @@ window.onload = function() {
     const grid = document.getElementById("numberGrid");
     const popup = document.getElementById("popup");
     const popupImgDigit = document.getElementById("popupImgDigit");
-    const popupImgObject = document.getElementById("popupImgObject");
     const popupName = document.getElementById("popupName");
     const nextBtn = document.getElementById("nextBtn");
     const closePopupBtn = document.getElementById("closePopupBtn");
     const traceBtn = document.getElementById("traceBtn");
 
-    // Apply text translations using innerHTML to keep bold tags
     for (let id in uiDictionary) {
         const el = document.getElementById(id);
         if (el) el.innerHTML = uiDictionary[id][currentLang];
     }
 
-    // Smart Routing for the Tracing Button
     if (traceBtn) {
         if (currentLang === 'hi' || currentLang === 'mr') {
             traceBtn.href = "devnagaarinumberstrace.html";
@@ -108,11 +85,25 @@ window.onload = function() {
     }
 
     /////////////////////////////////////////////////
+    // OBJECT IMAGE ARRAY LOGIC
+    /////////////////////////////////////////////////
+    
+    // Extracted directly from numberscount.js
+    const availableImages = [
+      "images/numberscount/sparrow.webp", "images/numberscount/tiger.webp", "images/numberscount/lion.webp",
+      "images/numberscount/elephant.webp", "images/numberscount/dog.webp", "images/numberscount/ant.webp",
+      "images/numberscount/butterfly.webp", "images/numberscount/t1.webp", "images/numberscount/capsicum.webp",
+      "images/numberscount/cat.webp", "images/numberscount/17.webp", "images/numberscount/parrot.webp",
+      "images/numberscount/pigeon.webp", "images/numberscount/cow.webp", "images/numberscount/guava.webp",
+      "images/numberscount/housefly.webp", "images/numberscount/ladybug.webp", "images/numberscount/lotus.webp",
+      "images/numberscount/monkey.webp", "images/numberscount/8.webp"
+    ];
+
+    /////////////////////////////////////////////////
     // 🚀 ULTRA-FAST PRELOAD CACHE
     /////////////////////////////////////////////////
 
     const imageCacheDigits = {};
-    const imageCacheObjects = {};
     const soundCache = {};
 
     let imageFolder = 'en'; 
@@ -121,14 +112,12 @@ window.onload = function() {
     }
 
     numbers.forEach(num => {
+      // Preload Text Digits
       const imgDigit = new Image();
       imgDigit.src = `images/numbers/digits/${imageFolder}/${num}.webp`;
       imageCacheDigits[num] = imgDigit;
 
-      const imgObject = new Image();
-      imgObject.src = `images/numbers/objects/${num}.webp`; 
-      imageCacheObjects[num] = imgObject;
-
+      // Preload Audio
       const audio = new Audio();
       audio.src = `sounds/${currentLang}/numbers/${num}.mp3`;
       audio.preload = "auto";
@@ -177,18 +166,73 @@ window.onload = function() {
     }
 
     /////////////////////////////////////////////////
-    // POPUP DISPLAY (TWO IMAGES)
+    // POPUP DISPLAY (DYNAMIC MULTIPLE IMAGES)
     /////////////////////////////////////////////////
 
     function showNumber(num) {
       if (popupImgDigit) popupImgDigit.src = imageCacheDigits[num].src;
-      if (popupImgObject) popupImgObject.src = imageCacheObjects[num].src;
+      
+      // 1. Hide the old single object image from your original HTML safely
+      const oldObjectImg = document.getElementById("popupImgObject");
+      if (oldObjectImg) {
+          oldObjectImg.style.display = 'none';
+      }
+
+      // 2. Create the robust repeating container dynamically if it isn't there yet
+      let repeatedContainer = document.getElementById("popupRepeatedObjects");
+      if (!repeatedContainer) {
+          repeatedContainer = document.createElement("div");
+          repeatedContainer.id = "popupRepeatedObjects";
+          
+          // Pure CSS mapping to ensure it perfectly mimics the old image box
+          repeatedContainer.style.cssText = "display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 4px; width: 180px; height: 180px; background: #f1f8e9; border-radius: 15px; padding: 10px; box-shadow: inset 0 4px 8px rgba(0,0,0,0.05); overflow: hidden; flex-shrink: 0; box-sizing: border-box;";
+          
+          const popupImagesDiv = document.querySelector(".popup-images");
+          if (popupImagesDiv) {
+              popupImagesDiv.appendChild(repeatedContainer);
+          }
+          
+          // Mobile responsiveness handling
+          if (window.innerWidth <= 500) {
+              repeatedContainer.style.width = "150px";
+              repeatedContainer.style.height = "150px";
+          }
+          window.addEventListener('resize', () => {
+              if (window.innerWidth <= 500) {
+                  repeatedContainer.style.width = "150px";
+                  repeatedContainer.style.height = "150px";
+              } else {
+                  repeatedContainer.style.width = "180px";
+                  repeatedContainer.style.height = "180px";
+              }
+          });
+      }
+
+      // 3. Populate the container using direct Array Index math! 
+      let imagesHtml = '';
+      const limit = parseInt(num);
+      
+      // Calculate which image to use directly from the array (Bulletproof mapping)
+      const index = (limit - 1) % availableImages.length;
+      const imgSrc = availableImages[index];
+      
+      // Scale images so they perfectly fit within the box dynamically
+      const dynamicSize = Math.min(100, Math.floor(150 / Math.sqrt(limit)));
+      
+      for(let i = 0; i < limit; i++) {
+          imagesHtml += `<img src="${imgSrc}" style="width: ${dynamicSize}px; height: ${dynamicSize}px; object-fit: contain; pointer-events: none; background: transparent; padding: 0; box-shadow: none; margin: 0;" alt="Object">`;
+      }
+      
+      repeatedContainer.innerHTML = imagesHtml;
+
       if (popupName) popupName.textContent = numbersDict[num][currentLang];
       if (popup) popup.classList.remove("hidden");
 
       const sound = soundCache[num];
-      sound.currentTime = 0;
-      sound.play().catch(e => console.log("Sound play error: ", e));
+      if (sound) {
+          sound.currentTime = 0;
+          sound.play().catch(e => console.log("Sound play error: ", e));
+      }
 
       launchConfetti();
     }
