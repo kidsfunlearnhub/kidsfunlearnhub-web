@@ -66,10 +66,7 @@ window.onload = function() {
     const grid = document.getElementById("numberGrid");
     const popup = document.getElementById("popup");
     const popupImgDigit = document.getElementById("popupImgDigit");
-    
-    // Original image tag from HTML
-    const popupImgObject = document.getElementById("popupImgObject"); 
-    
+    const popupRepeatedObjects = document.getElementById("popupRepeatedObjects");
     const popupName = document.getElementById("popupName");
     const nextBtn = document.getElementById("nextBtn");
     const closePopupBtn = document.getElementById("closePopupBtn");
@@ -89,7 +86,7 @@ window.onload = function() {
     }
 
     /////////////////////////////////////////////////
-    // OBJECT IMAGE MAPPING LOGIC
+    // EXACT IMAGE MAPPING LOGIC (1 TO 40)
     /////////////////////////////////////////////////
     
     const availableImages = [
@@ -127,12 +124,10 @@ window.onload = function() {
     }
 
     numbers.forEach(num => {
-      // Preload text digits
       const imgDigit = new Image();
       imgDigit.src = `images/numbers/digits/${imageFolder}/${num}.webp`;
       imageCacheDigits[num] = imgDigit;
 
-      // Preload audio
       const audio = new Audio();
       audio.src = `sounds/${currentLang}/numbers/${num}.mp3`;
       audio.preload = "auto";
@@ -181,7 +176,7 @@ window.onload = function() {
     }
 
     /////////////////////////////////////////////////
-    // POPUP DISPLAY (DYNAMIC MULTIPLE IMAGES)
+    // POPUP DISPLAY (DYNAMICALLY GROWING IMAGES)
     /////////////////////////////////////////////////
 
     function showNumber(num) {
@@ -189,37 +184,23 @@ window.onload = function() {
 
       if (popupImgDigit) popupImgDigit.src = imageCacheDigits[num].src;
       
-      if (popupImgObject) {
-          popupImgObject.style.display = 'none';
-          
-          let repeatedContainer = document.getElementById("popupRepeatedObjects");
-          if (!repeatedContainer) {
-              repeatedContainer = document.createElement("div");
-              repeatedContainer.id = "popupRepeatedObjects";
-              
-              // MASSIVELY INCREASED CONTAINER SIZE!
-              repeatedContainer.style.cssText = "display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 2px; background: #f1f8e9; border-radius: 15px; padding: 5px; box-shadow: inset 0 4px 8px rgba(0,0,0,0.05); overflow: hidden; flex-shrink: 0; box-sizing: border-box;";
-              
-              const popupImagesDiv = document.querySelector(".popup-images");
-              if (popupImagesDiv) {
-                  popupImagesDiv.appendChild(repeatedContainer);
-              }
-          }
-
+      if (popupRepeatedObjects) {
           const limit = parseInt(num);
+          const isMobile = window.innerWidth <= 500;
+          let dynamicSize = 100;
           
-          // INCREASED DIMENSIONS: 280px on desktop, 250px on mobile
-          const boxSize = window.innerWidth <= 500 ? 250 : 280; 
-          
-          repeatedContainer.style.width = boxSize + "px";
-          repeatedContainer.style.height = boxSize + "px";
-
-          const availableSpace = boxSize - 10; 
-          const cols = Math.ceil(Math.sqrt(limit));
-          const exactSize = Math.floor((availableSpace - ((cols - 1) * 2)) / cols);
-          
-          // CAP INCREASED: Allows single items to be up to 130px big!
-          const dynamicSize = Math.min(130, exactSize);
+          // Image sizing tiers! They remain large enough to be easily counted, while CSS handles expanding the box.
+          if (limit <= 4) {
+              dynamicSize = isMobile ? 80 : 100;
+          } else if (limit <= 9) {
+              dynamicSize = isMobile ? 60 : 70;
+          } else if (limit <= 16) {
+              dynamicSize = isMobile ? 45 : 55;
+          } else if (limit <= 25) {
+              dynamicSize = isMobile ? 35 : 45;
+          } else {
+              dynamicSize = isMobile ? 30 : 38; 
+          }
 
           let imagesHtml = '';
           const imgSrc = numberImages[num]; 
@@ -228,7 +209,7 @@ window.onload = function() {
               imagesHtml += `<img src="${imgSrc}" style="width: ${dynamicSize}px; height: ${dynamicSize}px; object-fit: contain; pointer-events: none; background: transparent; padding: 0; box-shadow: none; margin: 0;" alt="Object">`;
           }
           
-          repeatedContainer.innerHTML = imagesHtml;
+          popupRepeatedObjects.innerHTML = imagesHtml;
       }
 
       if (popupName) popupName.textContent = numbersDict[num][currentLang];
@@ -246,19 +227,6 @@ window.onload = function() {
     function closePopup() {
         if (popup) popup.classList.add("hidden");
     }
-
-    // Ensures sizes stay perfect if the user rotates their phone
-    window.addEventListener('resize', () => {
-        if (!popup.classList.contains("hidden")) {
-            const currentName = popupName.textContent;
-            for (let num in numbersDict) {
-                if (numbersDict[num][currentLang] === currentName) {
-                    showNumber(num);
-                    break;
-                }
-            }
-        }
-    });
 
     if (popup) popup.onclick = closePopup;
     if (closePopupBtn) closePopupBtn.onclick = closePopup;

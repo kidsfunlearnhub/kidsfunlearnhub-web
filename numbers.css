@@ -164,7 +164,7 @@ header { margin-top: 30px; }
 }
 
 /* =========================================
-   POPUP OVERLAY & MOBILE IMAGE FIX
+   POPUP OVERLAY & DYNAMIC GROWING BOX
    ========================================= */
 .popup {
     position: fixed; inset: 0;
@@ -180,8 +180,11 @@ header { margin-top: 30px; }
     padding: 30px 20px;
     border-radius: 30px;
     animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    max-width: 600px;
+    max-width: 650px;
     width: 100%;
+    /* Ensure the entire popup can scroll if it gets too tall on mobile! */
+    max-height: 90vh;
+    overflow-y: auto;
     border: 6px solid #4caf50;
     box-shadow: 0 15px 40px rgba(0,0,0,0.3);
 }
@@ -199,7 +202,7 @@ header { margin-top: 30px; }
     margin-bottom: 20px;
 }
 
-/* Restricts to only the main digit image, keeping the mini objects safe */
+/* The Fixed Number Digit on the Left */
 .popup-images > img {
     width: 180px;
     height: 180px;
@@ -217,15 +220,18 @@ header { margin-top: 30px; }
     flex-wrap: wrap; 
     justify-content: center; 
     align-content: center; 
-    gap: 4px; 
-    width: 180px; 
-    height: 180px; 
+    gap: 8px; /* Breathing room for objects */
     background: #f1f8e9; 
     border-radius: 15px; 
-    padding: 10px;
+    padding: 15px;
     box-shadow: inset 0 4px 8px rgba(0,0,0,0.05);
-    overflow: hidden;
-    flex-shrink: 0; 
+    
+    /* DYNAMIC SIZING MAGIC */
+    flex: 1; /* Takes up all remaining space to the right */
+    min-width: 180px; 
+    min-height: 180px; /* Base height matches digit */
+    height: auto; /* Lets the box grow as tall as it needs to! */
+    box-sizing: border-box;
 }
 
 .mini-count-img {
@@ -246,7 +252,10 @@ header { margin-top: 30px; }
 @media (max-width: 500px) {
     .popup-images { flex-direction: column; gap: 10px; }
     .popup-images > img { width: 150px; height: 150px; }
-    .repeated-images-container { width: 150px; height: 150px; }
+    .repeated-images-container { 
+        min-width: 100%; /* Take full width on mobile */
+        min-height: 150px; 
+    }
     .plus-sign { display: none; } 
 }
 
@@ -279,10 +288,6 @@ header { margin-top: 30px; }
     box-shadow: 0 8px 32px rgba(0,0,0,0.1); position: relative; z-index: 30; 
 }
 .seo-intro-box p { margin: 0; text-align: justify; }
-
-/* Animations */
-.bouncing { animation: bounce 1.2s infinite ease-in-out; }
-@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 
 /* Footer */
 .footer { text-align: center; padding: 20px 15px; background: #2c3e50; color: white; margin-top: 20px; position: relative; z-index: 20; }
