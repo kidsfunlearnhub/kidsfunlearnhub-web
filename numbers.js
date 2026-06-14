@@ -66,6 +66,10 @@ window.onload = function() {
     const grid = document.getElementById("numberGrid");
     const popup = document.getElementById("popup");
     const popupImgDigit = document.getElementById("popupImgDigit");
+    
+    // Original image tag from HTML
+    const popupImgObject = document.getElementById("popupImgObject"); 
+    
     const popupName = document.getElementById("popupName");
     const nextBtn = document.getElementById("nextBtn");
     const closePopupBtn = document.getElementById("closePopupBtn");
@@ -85,10 +89,9 @@ window.onload = function() {
     }
 
     /////////////////////////////////////////////////
-    // OBJECT IMAGE ARRAY LOGIC
+    // OBJECT IMAGE MAPPING LOGIC
     /////////////////////////////////////////////////
     
-    // Extracted directly from numberscount.js
     const availableImages = [
       "images/numberscount/sparrow.webp", "images/numberscount/tiger.webp", "images/numberscount/lion.webp",
       "images/numberscount/elephant.webp", "images/numberscount/dog.webp", "images/numberscount/ant.webp",
@@ -96,8 +99,20 @@ window.onload = function() {
       "images/numberscount/cat.webp", "images/numberscount/17.webp", "images/numberscount/parrot.webp",
       "images/numberscount/pigeon.webp", "images/numberscount/cow.webp", "images/numberscount/guava.webp",
       "images/numberscount/housefly.webp", "images/numberscount/ladybug.webp", "images/numberscount/lotus.webp",
-      "images/numberscount/monkey.webp", "images/numberscount/8.webp"
+      "images/numberscount/monkey.webp", "images/numberscount/8.webp", "images/numberscount/onion.webp",
+      "images/numberscount/panda.webp", "images/numberscount/potato.webp", "images/numberscount/rabit.webp",
+      "images/numberscount/rose.webp", "images/numberscount/beetroot.webp", "images/numberscount/okra.webp",
+      "images/numberscount/9.webp", "images/numberscount/10.webp", "images/numberscount/13.webp",
+      "images/numberscount/14.webp", "images/numberscount/18.webp", "images/numberscount/22.webp",
+      "images/numberscount/23.webp", "images/numberscount/24.webp", "images/numberscount/star.webp",
+      "images/numberscount/sunflower.webp", "images/numberscount/th2.webp", "images/numberscount/zinnia.webp"
     ];
+
+    const numberImages = {};
+    for (let i = 1; i <= 40; i++) {
+      let index = (i - 1) % availableImages.length;
+      numberImages[String(i)] = availableImages[index];
+    }
 
     /////////////////////////////////////////////////
     // 🚀 ULTRA-FAST PRELOAD CACHE
@@ -112,12 +127,12 @@ window.onload = function() {
     }
 
     numbers.forEach(num => {
-      // Preload Text Digits
+      // Preload text digits
       const imgDigit = new Image();
       imgDigit.src = `images/numbers/digits/${imageFolder}/${num}.webp`;
       imageCacheDigits[num] = imgDigit;
 
-      // Preload Audio
+      // Preload audio
       const audio = new Audio();
       audio.src = `sounds/${currentLang}/numbers/${num}.mp3`;
       audio.preload = "auto";
@@ -170,60 +185,51 @@ window.onload = function() {
     /////////////////////////////////////////////////
 
     function showNumber(num) {
+      num = String(num); 
+
       if (popupImgDigit) popupImgDigit.src = imageCacheDigits[num].src;
       
-      // 1. Hide the old single object image from your original HTML safely
-      const oldObjectImg = document.getElementById("popupImgObject");
-      if (oldObjectImg) {
-          oldObjectImg.style.display = 'none';
-      }
-
-      // 2. Create the robust repeating container dynamically if it isn't there yet
-      let repeatedContainer = document.getElementById("popupRepeatedObjects");
-      if (!repeatedContainer) {
-          repeatedContainer = document.createElement("div");
-          repeatedContainer.id = "popupRepeatedObjects";
+      if (popupImgObject) {
+          popupImgObject.style.display = 'none';
           
-          // Pure CSS mapping to ensure it perfectly mimics the old image box
-          repeatedContainer.style.cssText = "display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 4px; width: 180px; height: 180px; background: #f1f8e9; border-radius: 15px; padding: 10px; box-shadow: inset 0 4px 8px rgba(0,0,0,0.05); overflow: hidden; flex-shrink: 0; box-sizing: border-box;";
-          
-          const popupImagesDiv = document.querySelector(".popup-images");
-          if (popupImagesDiv) {
-              popupImagesDiv.appendChild(repeatedContainer);
-          }
-          
-          // Mobile responsiveness handling
-          if (window.innerWidth <= 500) {
-              repeatedContainer.style.width = "150px";
-              repeatedContainer.style.height = "150px";
-          }
-          window.addEventListener('resize', () => {
-              if (window.innerWidth <= 500) {
-                  repeatedContainer.style.width = "150px";
-                  repeatedContainer.style.height = "150px";
-              } else {
-                  repeatedContainer.style.width = "180px";
-                  repeatedContainer.style.height = "180px";
+          let repeatedContainer = document.getElementById("popupRepeatedObjects");
+          if (!repeatedContainer) {
+              repeatedContainer = document.createElement("div");
+              repeatedContainer.id = "popupRepeatedObjects";
+              
+              // MASSIVELY INCREASED CONTAINER SIZE!
+              repeatedContainer.style.cssText = "display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 2px; background: #f1f8e9; border-radius: 15px; padding: 5px; box-shadow: inset 0 4px 8px rgba(0,0,0,0.05); overflow: hidden; flex-shrink: 0; box-sizing: border-box;";
+              
+              const popupImagesDiv = document.querySelector(".popup-images");
+              if (popupImagesDiv) {
+                  popupImagesDiv.appendChild(repeatedContainer);
               }
-          });
-      }
+          }
 
-      // 3. Populate the container using direct Array Index math! 
-      let imagesHtml = '';
-      const limit = parseInt(num);
-      
-      // Calculate which image to use directly from the array (Bulletproof mapping)
-      const index = (limit - 1) % availableImages.length;
-      const imgSrc = availableImages[index];
-      
-      // Scale images so they perfectly fit within the box dynamically
-      const dynamicSize = Math.min(100, Math.floor(150 / Math.sqrt(limit)));
-      
-      for(let i = 0; i < limit; i++) {
-          imagesHtml += `<img src="${imgSrc}" style="width: ${dynamicSize}px; height: ${dynamicSize}px; object-fit: contain; pointer-events: none; background: transparent; padding: 0; box-shadow: none; margin: 0;" alt="Object">`;
+          const limit = parseInt(num);
+          
+          // INCREASED DIMENSIONS: 280px on desktop, 250px on mobile
+          const boxSize = window.innerWidth <= 500 ? 250 : 280; 
+          
+          repeatedContainer.style.width = boxSize + "px";
+          repeatedContainer.style.height = boxSize + "px";
+
+          const availableSpace = boxSize - 10; 
+          const cols = Math.ceil(Math.sqrt(limit));
+          const exactSize = Math.floor((availableSpace - ((cols - 1) * 2)) / cols);
+          
+          // CAP INCREASED: Allows single items to be up to 130px big!
+          const dynamicSize = Math.min(130, exactSize);
+
+          let imagesHtml = '';
+          const imgSrc = numberImages[num]; 
+          
+          for(let i = 0; i < limit; i++) {
+              imagesHtml += `<img src="${imgSrc}" style="width: ${dynamicSize}px; height: ${dynamicSize}px; object-fit: contain; pointer-events: none; background: transparent; padding: 0; box-shadow: none; margin: 0;" alt="Object">`;
+          }
+          
+          repeatedContainer.innerHTML = imagesHtml;
       }
-      
-      repeatedContainer.innerHTML = imagesHtml;
 
       if (popupName) popupName.textContent = numbersDict[num][currentLang];
       if (popup) popup.classList.remove("hidden");
@@ -240,6 +246,19 @@ window.onload = function() {
     function closePopup() {
         if (popup) popup.classList.add("hidden");
     }
+
+    // Ensures sizes stay perfect if the user rotates their phone
+    window.addEventListener('resize', () => {
+        if (!popup.classList.contains("hidden")) {
+            const currentName = popupName.textContent;
+            for (let num in numbersDict) {
+                if (numbersDict[num][currentLang] === currentName) {
+                    showNumber(num);
+                    break;
+                }
+            }
+        }
+    });
 
     if (popup) popup.onclick = closePopup;
     if (closePopupBtn) closePopupBtn.onclick = closePopup;
