@@ -195,7 +195,7 @@ window.onload = function() {
 
         let dragOptions = [...currentOptions].sort(() => 0.5 - Math.random());
         
-        // --- Right Side: Draggable Pieces (Dynamic Sized Images) ---
+        // --- Right Side: Draggable Pieces (Responsive Images) ---
         dragOptions.forEach(numKey => {
             const dragPiece = document.createElement("div");
             dragPiece.className = "draggable-piece";
@@ -205,21 +205,57 @@ window.onload = function() {
             const imgSrc = numberImages[numKey];
             const limit = parseInt(numKey);
             
-            // INCREASED DYNAMIC SIZING: Max size 100px for 1 object, perfectly scaled down for 20
-            // const dynamicSize = Math.min(100, Math.floor(130 / Math.sqrt(limit)));
-
-            const dynamicSize = Math.min(120, Math.floor(160 / Math.sqrt(limit)));
+            // Mobile detection specifically for the tight puzzle boxes
+            const isMobile = window.innerWidth <= 600;
+            let dynamicSize = 60;
             
-            for(let i = 0; i < limit; i++) {
-                imagesHtml += `<img src="${imgSrc}" class="mini-count-img" style="width: ${dynamicSize}px; height: ${dynamicSize}px;" alt="Object">`;
+            // Smart Tiers: Perfectly sized to fit within the fixed CSS constraints
+            if (limit <= 4) {
+                dynamicSize = isMobile ? 45 : 70;
+            } else if (limit <= 9) {
+                dynamicSize = isMobile ? 32 : 45;
+            } else if (limit <= 16) {
+                dynamicSize = isMobile ? 24 : 35;
+            } else { // 17 to 20
+                dynamicSize = isMobile ? 20 : 28;
             }
             
-            dragPiece.innerHTML = `<div class="repeated-images-container">${imagesHtml}</div>`;
+            for(let i = 0; i < limit; i++) {
+                // Reduced the margins to maximize available space for the objects
+                imagesHtml += `<img src="${imgSrc}" class="mini-count-img" style="width: ${dynamicSize}px; height: ${dynamicSize}px; object-fit: contain; pointer-events: none; margin: 1px;" alt="Object">`;
+            }
+            
+            // Inline styling ensures gap is minimal so objects don't clip
+            dragPiece.innerHTML = `<div class="repeated-images-container" style="display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 2px; width: 100%; height: 100%; overflow: hidden;">${imagesHtml}</div>`;
             
             setupDragAndDrop(dragPiece);
             rightColumn.appendChild(dragPiece);
         });
     }
+
+    // Ensures sizes stay perfect if the user rotates their phone
+    window.addEventListener('resize', () => {
+        if (matchesFound < 3) {
+            // Re-render the sizes if screen changes mid-game
+            const rightColumn = document.getElementById("right-column");
+            const pieces = rightColumn.querySelectorAll('.draggable-piece');
+            pieces.forEach(piece => {
+                const limit = parseInt(piece.dataset.match);
+                const isMobile = window.innerWidth <= 600;
+                let dynamicSize = 60;
+                if (limit <= 4) dynamicSize = isMobile ? 45 : 70;
+                else if (limit <= 9) dynamicSize = isMobile ? 32 : 45;
+                else if (limit <= 16) dynamicSize = isMobile ? 24 : 35;
+                else dynamicSize = isMobile ? 20 : 28;
+                
+                const imgs = piece.querySelectorAll('.mini-count-img');
+                imgs.forEach(img => {
+                    img.style.width = dynamicSize + 'px';
+                    img.style.height = dynamicSize + 'px';
+                });
+            });
+        }
+    });
 
     // --- BULLETPROOF BOUNDING BOX DRAG AND DROP ---
     let currentDragItem = null;
@@ -302,6 +338,7 @@ window.onload = function() {
             dropZone.classList.remove('drag-over');
             dropZone.classList.add('matched');
             
+            // Snap perfectly back into constraints
             currentDragItem.style.position = 'static';
             currentDragItem.style.width = '45%'; 
             currentDragItem.style.height = '100%';
@@ -319,9 +356,15 @@ window.onload = function() {
             let matchAudio = new Audio(`sounds/${currentLang}/numbers/${currentDragItem.dataset.match}.mp3`);
 
             if (matchesFound === 3) {
-                setTimeout(triggerVisualCelebration, 600);
-                matchAudio.onended = triggerAudioCelebration;
-                matchAudio.play().catch(e => { setTimeout(triggerAudioCelebration, 800); });
+                // 1. Play the number sound immediately
+                matchAudio.play().catch(e => console.log("Audio not found"));
+
+                // 2. WAIT 1.5 SECONDS before showing the "Great Job" popup!
+                setTimeout(() => {
+                    triggerVisualCelebration();
+                    triggerAudioCelebration();
+                }, 1500);
+
             } else {
                 matchAudio.play().catch(e => console.log("Audio not found"));
             }
@@ -333,7 +376,6 @@ window.onload = function() {
             
             currentDragItem.classList.add("shake");
             
-            // Adjusted the fallback height to match the new larger CSS height
             const rightColumn = document.getElementById("right-column");
             currentDragItem.style.position = 'static';
             currentDragItem.style.width = '100%';
