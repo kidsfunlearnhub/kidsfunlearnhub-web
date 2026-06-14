@@ -1,4 +1,6 @@
-body { margin: 0; font-family: 'Comic Sans MS', sans-serif; text-align: center; background: linear-gradient(to right, #b3ffff, #fcb69f); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px 0; touch-action: none; user-select: none; }
+/* REMOVED touch-action: none; from the body so the page can scroll! */
+body { margin: 0; font-family: 'Comic Sans MS', sans-serif; text-align: center; background: linear-gradient(to right, #b3ffff, #fcb69f); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px 0; user-select: none; }
+
 .game-container { background: rgba(255, 255, 255, 0.95); padding: clamp(15px, 2vh, 20px) 30px; border-radius: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); width: 90%; max-width: 700px; margin-bottom: 30px; }
 .header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: clamp(5px, 1vh, 10px); flex-wrap: wrap; gap: 10px; }
 #game-title { font-size: clamp(22px, 3.5vh, 34px); margin: 0; color: #ff5722; text-align: left; }
@@ -35,7 +37,6 @@ body { margin: 0; font-family: 'Comic Sans MS', sans-serif; text-align: center; 
 .puzzle-column { display: flex; flex-direction: column; gap: 20px; z-index: 3; width: 45%; position: relative;}
 
 /* Left Half (The Drop Zone) */
-/* INCREASED HEIGHT HERE */
 .puzzle-drop-zone { background: #f9f9f9; border: 4px dashed #bdbdbd; border-radius: 20px; display: flex; align-items: center; justify-content: flex-start; height: clamp(130px, 22vh, 180px); position: relative; transition: background 0.3s; }
 .puzzle-drop-zone.drag-over { background: #e8f5e9; border-color: #4caf50; }
 .puzzle-drop-zone.matched { border: 6px solid #4CAF50; border-radius: 20px; background: white; box-shadow: 0 8px 15px rgba(76, 175, 80, 0.3); justify-content: space-between; padding: 0 15px;}
@@ -44,11 +45,9 @@ body { margin: 0; font-family: 'Comic Sans MS', sans-serif; text-align: center; 
 .matched .left-half-content { border-right: none; }
 
 /* Large Text style for the Number */
-/* INCREASED FONT SIZE HERE */
 .number-text { font-size: clamp(4rem, 10vw, 6.5rem); font-weight: bold; line-height: 1; text-shadow: 2px 2px 0px rgba(0,0,0,0.1); pointer-events: none; }
 
 /* Right Half (The Draggable Box with Images) */
-/* INCREASED HEIGHT HERE */
 .draggable-piece { background: white; border: 6px solid #e0e0e0; border-radius: 20px; padding: 8px; cursor: grab; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 6px 12px rgba(0,0,0,0.1); display: flex; justify-content: center; align-items: center; height: clamp(130px, 22vh, 180px); touch-action: none; z-index: 10; }
 .draggable-piece:active { cursor: grabbing; transform: scale(1.05); box-shadow: 0 12px 25px rgba(0,0,0,0.2); }
 .draggable-piece.dragging { opacity: 0.9; pointer-events: none; }
