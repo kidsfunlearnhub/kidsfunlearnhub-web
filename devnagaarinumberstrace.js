@@ -42,22 +42,48 @@ window.onload = function() {
     // Base SVG Paths for Devanagari 0-9 (०-९)
     const devanagariBase = {
             '0': ["M 50 40 C 20 40 20 160 50 160 C 80 160 80 40 50 40"], // ० (Shunya)
-            '1': ["M 30 60 C 30 30 70 30 70 60 L 70 140 C 70 160 90 160 90 140"], // १ (Ek)
+            '1': ["M102.91,90.91C9.09,63.64,100.00,-18.18,125.75,60.00Q118.18,90.91,73.63,112.43", "M81.82,109.09C103.08,136.36,141.78,145.45,120.26,181.82"], // १ (Ek)
             '2': ["M 30 60 C 30 20 80 20 80 60 C 80 100 30 120 40 160 C 50 180 80 160 80 140"], // २ (Do)
             '3': ["M 30 50 C 80 30 80 90 50 100 C 90 100 90 160 50 160 C 30 160 30 130 50 130"], // ३ (Teen)
             '4': ["M 70 60 C 50 30 30 50 30 80 C 30 110 60 130 60 130 C 90 150 90 180 60 180 C 30 180 30 150 60 130"], // ४ (Char)
             '5': ["M 30 40 C 30 100 80 100 80 60 L 80 160"], // ५ (Paanch)
             '6': ["M 70 40 C 20 40 20 100 50 100 C 10 100 10 160 50 160 C 80 160 80 120 50 120"], // ६ (Chhah)
             '7': ["M 40 60 C 40 40 60 40 60 60 C 60 80 40 100 40 120 C 40 150 70 150 70 150"], // ७ (Saat)
-            '8': ["M 80 40 C 10 60 10 140 80 160"], // ८ (Aath)
+            '8': ["M130.92,32.91C0.00,115.82,77.78,211.11,145.45,145.45"], // ८ (Aath)
             '9': ["M 60 100 C 20 100 20 40 60 40 L 60 160"] // ९ (Nau)
     };
 
+    // function shiftPath(path, shiftX) {
+    //     return path.replace(/([-\d.]+)\s+([-\d.]+)/g, (match, x, y) => {
+    //         return `${parseFloat(x) + shiftX} ${y}`;
+    //     });
+    // }
+
     function shiftPath(path, shiftX) {
-        return path.replace(/([-\d.]+)\s+([-\d.]+)/g, (match, x, y) => {
-            return `${parseFloat(x) + shiftX} ${y}`;
-        });
-    }
+    // The [,\s]+ allows it to read coordinates separated by commas OR spaces
+    return path.replace(/([-\d.]+)[,\s]+([-\d.]+)/g, (match, x, y) => {
+        return `${parseFloat(x) + shiftX} ${y}`;
+    });
+}
+
+    // // Generates the final paths array up to 40
+    // const numberData = [];
+    // for (let i = 1; i <= 40; i++) {
+    //     let strNum = i.toString();
+    //     let finalPaths = [];
+        
+    //     if (strNum.length === 1) {
+    //         // Single digit: Center it (Shift right by 50px)
+    //         finalPaths = devanagariBase[strNum].map(p => shiftPath(p, 50));
+    //     } else {
+    //         // Double digit: Shift tens left, Shift ones right
+    //         let tensDigit = strNum[0];
+    //         let onesDigit = strNum[1];
+    //         finalPaths = [
+    //             ...devanagariBase[tensDigit].map(p => shiftPath(p, 10)), 
+    //             ...devanagariBase[onesDigit].map(p => shiftPath(p, 90))  
+    //         ];
+    //     }
 
     // Generates the final paths array up to 40
     const numberData = [];
@@ -66,17 +92,18 @@ window.onload = function() {
         let finalPaths = [];
         
         if (strNum.length === 1) {
-            // Single digit: Center it (Shift right by 50px)
-            finalPaths = devanagariBase[strNum].map(p => shiftPath(p, 50));
+            // Single digit: Since you draw them centered, shift by 0
+            finalPaths = devanagariBase[strNum].map(p => shiftPath(p, 0));
         } else {
-            // Double digit: Shift tens left, Shift ones right
+            // Double digit: Shift the tens digit LEFT (-45), and ones digit RIGHT (+45)
             let tensDigit = strNum[0];
             let onesDigit = strNum[1];
             finalPaths = [
-                ...devanagariBase[tensDigit].map(p => shiftPath(p, 10)), 
-                ...devanagariBase[onesDigit].map(p => shiftPath(p, 90))  
+                ...devanagariBase[tensDigit].map(p => shiftPath(p, -45)), 
+                ...devanagariBase[onesDigit].map(p => shiftPath(p, 45))  
             ];
         }
+        // ... (keep the rest of the loop the same)
         
         numberData.push({
             number: strNum,
