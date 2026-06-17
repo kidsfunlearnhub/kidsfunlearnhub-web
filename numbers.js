@@ -97,7 +97,7 @@ window.onload = function() {
       "images/numberscount/pigeon.webp", "images/numberscount/cow.webp", "images/numberscount/guava.webp",
       "images/numberscount/housefly.webp", "images/numberscount/ladybug.webp", "images/numberscount/lotus.webp",
       "images/numberscount/monkey.webp", "images/numberscount/8.webp", "images/numberscount/onion.webp",
-      "images/numberscount/panda.webp", "images/numberscount/potato.webp", "images/numberscount/rabit.webp",
+      "images/numberscount/panda.webp", "images/numberscount/potato.webp", "images/numberscount/rabbit.webp",
       "images/numberscount/rose.webp", "images/numberscount/beetroot.webp", "images/numberscount/okra.webp",
       "images/numberscount/9.webp", "images/numberscount/10.webp", "images/numberscount/13.webp",
       "images/numberscount/14.webp", "images/numberscount/18.webp", "images/numberscount/22.webp",
