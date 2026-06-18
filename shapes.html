@@ -36,7 +36,7 @@
     }
     </script>
 
-    <link rel="stylesheet" href="shapes.css?v=1">
+    <link rel="stylesheet" href="shapes.css?v=2">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 
@@ -70,6 +70,15 @@
     </div>
 
     <main class="page-wrapper">
+        
+        <nav class="language-container" aria-label="Language Selection">
+            <div class="language-selector">
+                <button class="lang-btn" data-lang="en" aria-label="Switch to English">English</button>
+                <button class="lang-btn" data-lang="hi" aria-label="Switch to Hindi">हिंदी</button>
+                <button class="lang-btn" data-lang="mr" aria-label="Switch to Marathi">मराठी</button>
+            </div>
+        </nav>
+
         <div id="shapesGrid" class="grid-container" role="list"></div>
 
         <nav class="bottom-nav">
@@ -112,6 +121,6 @@
         <p class="copyright">© 2026 KidsFunLearnHub. All rights reserved.</p>
     </footer>
 
-    <script src="shapes.js?v=1.1"></script>
+    <script src="shapes.js?v=2"></script>
 </body>
 </html>

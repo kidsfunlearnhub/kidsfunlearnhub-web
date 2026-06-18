@@ -25,9 +25,32 @@ window.onload = function() {
     }
 
     /////////////////////////////////////////////////
-    // 2. LANGUAGE SETUP & DICTIONARIES
+    // 2. LANGUAGE SETUP, DICTIONARIES & BUTTONS
     /////////////////////////////////////////////////
-    let currentLang = localStorage.getItem('mySecretLanguage') || 'en';
+
+    // Get the global language from index.html
+    let globalLang = localStorage.getItem('mySecretLanguage') || 'en';
+    
+    // Get this specific page's language, fallback to global if not clicked yet
+    let currentLang = sessionStorage.getItem('shapesPageLang') || globalLang;
+
+    // Highlight the active language button and set up the reload logic
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        if(btn.dataset.lang === currentLang) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+        
+        btn.addEventListener('click', (e) => {
+            const selectedLang = e.target.dataset.lang;
+            if (selectedLang !== currentLang) {
+                // Save only to sessionStorage so it doesn't affect the rest of the site!
+                sessionStorage.setItem('shapesPageLang', selectedLang);
+                window.location.reload(); 
+            }
+        });
+    });
 
     const uiDictionary = {
         "page-title": { en: "🟢 Learn Shapes", hi: "🟢 आकार सीखें", mr: "🟢 आकार शिका" },
@@ -152,7 +175,7 @@ window.onload = function() {
         }
     }
 
-    // NEW FIX: Clicking absolutely ANYWHERE on the popup overlay or card will close it!
+    // Clicking absolutely ANYWHERE on the popup overlay or card will close it!
     if (popup) {
         popup.onclick = () => {
             closePopup();
@@ -160,13 +183,19 @@ window.onload = function() {
     }
 
     /////////////////////////////////////////////////
-    // 7. CONFETTI
+    // 7. CONFETTI & CLEANUP
     /////////////////////////////////////////////////
     function launchConfetti() {
       if (typeof confetti === "function") {
         confetti({ particleCount: 120, spread: 100, origin: { y: 0.6 } });
       }
     }
+
+    const cleanupSession = () => sessionStorage.removeItem('shapesPageLang');
+    
+    document.getElementById("backBtn")?.addEventListener("click", cleanupSession);
+    document.getElementById("homeBtnNav")?.addEventListener("click", cleanupSession);
+    document.getElementById("hubBtnNav")?.addEventListener("click", cleanupSession);
 
     // INITIALIZE
     loadPage();

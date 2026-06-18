@@ -40,6 +40,15 @@ header { margin-top: 30px; }
 .page-wrapper { flex: 1; width: 100%; max-width: 1200px; margin: auto; padding: 0 20px; box-sizing: border-box; position: relative; z-index: 20; }
 
 /* =========================================
+   LANGUAGE SELECTOR
+   ========================================= */
+.language-container { display: flex; justify-content: center; margin-bottom: clamp(15px, 3vh, 25px); width: 100%; }
+.language-selector { display: flex; gap: 10px; background: rgba(255, 255, 255, 0.8); padding: 8px 15px; border-radius: 50px; box-shadow: 0 6px 15px rgba(0,0,0,0.1); border: 2px solid white; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.lang-btn { border: none; background: transparent; padding: 10px 22px; font-size: 16px; font-family: inherit; font-weight: bold; border-radius: 40px; cursor: pointer; color: #555; transition: all 0.3s ease; }
+.lang-btn:hover { background: rgba(76, 175, 80, 0.1); color: #4caf50; }
+.lang-btn.active { background: #4caf50; color: white; box-shadow: 0 4px 10px rgba(76, 175, 80, 0.4); }
+
+/* =========================================
    FLEXBOX CENTERED GRID
    ========================================= */
 .grid-container {

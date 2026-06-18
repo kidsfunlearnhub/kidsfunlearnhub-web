@@ -25,9 +25,32 @@ window.onload = function() {
     }
 
     /////////////////////////////////////////////////
-    // 2. LANGUAGE SETUP & DICTIONARIES
+    // 2. LANGUAGE SETUP, DICTIONARIES & BUTTONS
     /////////////////////////////////////////////////
-    let currentLang = localStorage.getItem('mySecretLanguage') || 'en';
+
+    // Get the global language from index.html
+    let globalLang = localStorage.getItem('mySecretLanguage') || 'en';
+    
+    // Get this specific page's language, fallback to global if not clicked yet
+    let currentLang = sessionStorage.getItem('shapesTracePageLang') || globalLang;
+
+    // Highlight the active language button and set up the reload logic
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        if(btn.dataset.lang === currentLang) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+        
+        btn.addEventListener('click', (e) => {
+            const selectedLang = e.target.dataset.lang;
+            if (selectedLang !== currentLang) {
+                // Save only to sessionStorage so it doesn't affect the rest of the site
+                sessionStorage.setItem('shapesTracePageLang', selectedLang);
+                window.location.reload(); 
+            }
+        });
+    });
 
     const uiDictionary = {
         "page-title": { en: "✏️ Shape Tracing", hi: "✏️ आकार ट्रेसिंग", mr: "✏️ आकार ट्रेसिंग" },
@@ -177,7 +200,8 @@ window.onload = function() {
         cardElement.dataset.finished = "false"; 
         
         if (currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; }
-        // Correctly pulls audio based on the active language directory
+        
+        // Correctly pulls audio based on the active language selected!
         currentAudio = new Audio(`sounds/${currentLang}/shapes/${itemData.audioFile}`);
         currentAudio.play().catch(e => console.log("Sound missing"));
 
@@ -249,4 +273,15 @@ window.onload = function() {
     document.addEventListener('click', () => {
         document.querySelectorAll('.card.active').forEach(c => closeCard(c));
     });
+
+    /////////////////////////////////////////////////
+    // 6. CLEANUP LOGIC ON EXIT
+    /////////////////////////////////////////////////
+    const cleanupSession = () => sessionStorage.removeItem('shapesTracePageLang');
+    
+    document.getElementById("backBtn")?.addEventListener("click", cleanupSession);
+    document.getElementById("homeBtnNav")?.addEventListener("click", cleanupSession);
+    document.getElementById("hubBtnNav")?.addEventListener("click", cleanupSession);
+    document.getElementById("learnBtn")?.addEventListener("click", cleanupSession);
+    document.getElementById("activitiesBtn")?.addEventListener("click", cleanupSession);
 };
