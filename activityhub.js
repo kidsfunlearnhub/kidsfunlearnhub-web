@@ -91,7 +91,7 @@ window.onload = function() {
         "shadow_foods": "shadowfood.html",
         "shadow_flowers": "shadowflower.html",
         "shadow_vehicles": "shadowvehicle.html",
-        "shadow_colours": "shadowcolour.html",
+        // "shadow_colours": "shadowcolour.html",
         "shadow_bodyparts": "shadowbodyparts.html",
         "shadow_shapes": "shadowshape.html",
 
@@ -190,6 +190,10 @@ window.onload = function() {
         const listToRender = (vocabType === "tapping") ? tappingSubCategories : generalSubCategories;
 
         listToRender.forEach(sub => {
+
+            // ---> ADD THIS LINE: Completely skip "Colours" if we are in "Shadow Matching"
+            if (categoryId === "shadow" && sub.id === "colours") return;
+
             const urlKey = `${categoryId}_${sub.id}`;
             const isLive = liveUrls[urlKey] !== undefined;
 
@@ -265,6 +269,10 @@ window.onload = function() {
         mainCategories.forEach(mainCat => {
             if (mainCat.targetVocab === "tapping" && !tappingSubCategories.find(s => s.id === topicId)) return;
             if (mainCat.targetVocab === "general" && !generalSubCategories.find(s => s.id === topicId)) return;
+
+
+            // ---> ADD THIS LINE: Completely skip the "Shadow" card if the topic is "Colours"
+            if (mainCat.id === "shadow" && topicId === "colours") return;
 
             const urlKey = `${mainCat.id}_${topicId}`;
             const isLive = liveUrls[urlKey] !== undefined;
