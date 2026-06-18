@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "images/numberscount/panda.webp",
       
       "images/numberscount/potato.webp",
-      "images/numberscount/rabit.webp",
+      "images/numberscount/rabbit.webp",
       "images/numberscount/rose.webp",
       "images/numberscount/beetroot.webp",
 
