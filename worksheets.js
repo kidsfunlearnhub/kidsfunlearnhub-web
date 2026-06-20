@@ -7,35 +7,35 @@ document.addEventListener("DOMContentLoaded", function() {
     const worksheetsData = [
         // --- COGNITIVE / CIRCLE ACTIVITIES ---
         {
-            id: 1, title: "Circle the Big Alphabets", category: "cognitive", badge: "A-Z", 
+            id: 1, title: "Circle the Big Alphabets", categories: ["cognitive", "language"], badge: "A-Z", 
             // thumbnail: "images/thumbnails/circle-big-abc.png", 
             pdfColor: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_Circle_The_Alphabet_FullColor.pdf", 
             pdfEco: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_Circle_The_Alphabet_EcoPrint.pdf", 
             keywords: ["find", "circle", "alphabets", "english", "logic"]
         },
         {
-            id: 2, title: "Circle the Small Alphabets", category: "cognitive", badge: "a-z", 
+            id: 2, title: "Circle the Small Alphabets", categories: ["cognitive", "language"], badge: "a-z", 
             // thumbnail: "images/thumbnails/circle-small-abc.png", 
             pdfColor: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_Circle_The_Small_Alphabet_FullColor.pdf", 
             pdfEco: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_Circle_The_Small_Alphabet_EcoPrint.pdf", 
             keywords: ["find", "circle", "alphabets", "english", "logic"]
         },
         {
-            id: 3, title: "Circle the Numbers 0-25", category: "cognitive", badge: "0-25", 
+            id: 3, title: "Circle the Numbers 0-25", categories: ["cognitive", "math"], badge: "0-25", 
             // thumbnail: "images/thumbnails/circle-numbers.png", 
             pdfColor: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_Circle_The_Number_FullColor.pdf", 
             pdfEco: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_Circle_The_Number_EcoPrint.pdf", 
             keywords: ["find", "circle", "numbers", "math", "logic"]
         },
         {
-            id: 4, title: "Circle Hindi Numbers 1-10", category: "cognitive", badge: "Hindi", 
+            id: 4, title: "Circle Hindi Numbers 1-10", categories: ["cognitive", "math", "language"], badge: "Hindi", 
             // thumbnail: "images/thumbnails/circle-hindi-numbers.png", 
             pdfColor: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_Circle_The_Hindi_Number_FullColor.pdf", 
             pdfEco: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_Circle_The_Hindi_Number_EcoPrint.pdf", 
             keywords: ["find", "circle", "numbers", "hindi", "math"]
         },
         {
-            id: 5, title: "Circle Hindi Varnmala", category: "cognitive", badge: "Hindi", 
+            id: 5, title: "Circle Hindi Varnmala", categories: ["cognitive", "language"], badge: "Hindi", 
             // thumbnail: "images/thumbnails/circle-varnmala.png", 
             pdfColor: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_Circle_The_Hindi_Varnmala_FullColor.pdf", 
             pdfEco: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_Circle_The_Hindi_Varnmala_EcoPrint.pdf", 
@@ -44,42 +44,42 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // --- TRACING ACTIVITIES ---
         {
-            id: 6, title: "Tracing Basic Lines", category: "tracing", badge: "Strokes", 
+            id: 6, title: "Tracing Basic Lines", categories: ["tracing"], badge: "Strokes", 
             // thumbnail: "images/thumbnails/tracing-lines.png", 
             pdfColor: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_Tracing_Lines_FullColor.pdf", 
             pdfEco: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_Tracing_Lines_EcoPrint.pdf", 
             keywords: ["lines", "strokes", "tracing", "pre-writing"]
         },
         {
-            id: 7, title: "4-Line Basic Patterns", category: "tracing", badge: "Patterns", 
+            id: 7, title: "4-Line Basic Patterns", categories: ["tracing"], badge: "Patterns", 
             // thumbnail: "images/thumbnails/4line-patterns.png", 
             pdfColor: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_4Line_AllPatterns_FullColor.pdf", 
             pdfEco: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_4Line_AllPatterns_EcoPrint.pdf", 
             keywords: ["lines", "patterns", "tracing", "4 line"]
         },
         {
-            id: 8, title: "4-Line Big Alphabets", category: "tracing", badge: "A-Z", 
+            id: 8, title: "4-Line Big Alphabets", categories: ["tracing", "language"], badge: "A-Z", 
             // thumbnail: "images/thumbnails/4line-big-abc.png", 
             pdfColor: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_4Line_BigAlphabets_FullColor.pdf", 
             pdfEco: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_4Line_BigAlphabets_EcoPrint.pdf", 
             keywords: ["alphabets", "tracing", "english", "4 line", "capital"]
         },
         {
-            id: 9, title: "4-Line Numbers 1-20", category: "tracing", badge: "1-20", 
+            id: 9, title: "4-Line Numbers 1-20", categories: ["tracing", "math"], badge: "1-20", 
             // thumbnail: "images/thumbnails/4line-numbers.png", 
             pdfColor: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_4Line_Numbers_1to20_FullColor.pdf", 
             pdfEco: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_4Line_Numbers_1to20_EcoPrint.pdf", 
             keywords: ["numbers", "tracing", "math", "4 line"]
         },
         {
-            id: 10, title: "4-Line Hindi Numbers", category: "tracing", badge: "Hindi", 
+            id: 10, title: "4-Line Hindi Numbers", categories: ["tracing", "math", "language"], badge: "Hindi", 
             // thumbnail: "images/thumbnails/4line-hindi-numbers.png", 
             pdfColor: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_4Line_HindiNumbers_1to20_FullColor.pdf", 
             pdfEco: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_4Line_HindiNumbers_1to20_EcoPrint.pdf", 
             keywords: ["numbers", "tracing", "hindi", "math", "4 line"]
         },
         {
-            id: 11, title: "4-Line Hindi Varnmala", category: "tracing", badge: "Hindi", 
+            id: 11, title: "4-Line Hindi Varnmala", categories: ["tracing", "language"], badge: "Hindi", 
             // thumbnail: "images/thumbnails/4line-varnmala.png", 
             pdfColor: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_4Line_HindiVarnmala_FullColor.pdf", 
             pdfEco: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_4Line_HindiVarnmala_EcoPrint.pdf", 
@@ -88,42 +88,42 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // --- COLORING ACTIVITIES ---
         {
-            id: 12, title: "Color Big Alphabets", category: "coloring", badge: "A-Z", 
+            id: 12, title: "Color Big Alphabets", categories: ["coloring", "language"], badge: "A-Z", 
             // thumbnail: "images/thumbnails/color-big-abc.png", 
             pdfColor: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_Color_The_Alphabet_FullColor.pdf", 
             pdfEco: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_Color_The_Alphabet_EcoPrint.pdf", 
             keywords: ["coloring", "alphabets", "english", "draw", "capital"]
         },
         {
-            id: 13, title: "Color Small Alphabets", category: "coloring", badge: "a-z", 
+            id: 13, title: "Color Small Alphabets", categories: ["coloring", "language"], badge: "a-z", 
             // thumbnail: "images/thumbnails/color-small-abc.png", 
             pdfColor: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_Color_The_SmallAlphabet_FullColor.pdf", 
             pdfEco: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_Color_The_SmallAlphabet_EcoPrint.pdf", 
             keywords: ["coloring", "alphabets", "english", "draw", "lowercase"]
         },
         {
-            id: 14, title: "Color Numbers 1-20", category: "coloring", badge: "1-20", 
+            id: 14, title: "Color Numbers 1-20", categories: ["coloring", "math"], badge: "1-20", 
             // thumbnail: "images/thumbnails/color-numbers.png", 
             pdfColor: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_Color_The_Numbers_1to20_FullColor.pdf", 
             pdfEco: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_Color_The_Numbers_1to20_EcoPrint.pdf", 
             keywords: ["coloring", "numbers", "math", "draw"]
         },
         {
-            id: 15, title: "Color Hindi Numbers", category: "coloring", badge: "Hindi", 
+            id: 15, title: "Color Hindi Numbers", categories: ["coloring", "math", "language"], badge: "Hindi", 
             // thumbnail: "images/thumbnails/color-hindi-numbers.png", 
             pdfColor: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_Color_The_HindiNumbers_1to20_FullColor.pdf", 
             pdfEco: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_Color_The_HindiNumbers_1to20_EcoPrint.pdf", 
             keywords: ["coloring", "numbers", "hindi", "draw", "math"]
         },
         {
-            id: 16, title: "Color Hindi Varnmala", category: "coloring", badge: "Bilingual", 
+            id: 16, title: "Color Hindi Varnmala", categories: ["coloring", "language"], badge: "Bilingual", 
             // thumbnail: "images/thumbnails/color-varnmala.png", 
             pdfColor: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_Color_The_HindiVarnmala_Bilingual_FullColor.pdf", 
             pdfEco: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_Color_The_HindiVarnmala_Bilingual_EcoPrint.pdf", 
             keywords: ["coloring", "alphabets", "hindi", "marathi", "draw", "varnmala"]
         },
         {
-            id: 17, title: "Color Trilingual Shapes", category: "coloring", badge: "Shapes", 
+            id: 17, title: "Color Trilingual Shapes", categories: ["coloring", "cognitive"], badge: "Shapes", 
             // thumbnail: "images/thumbnails/color-shapes.png", 
             pdfColor: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_Color_The_Shapes_FullColor.pdf", 
             pdfEco: "KidsFunLearnHub_Worksheets/KidsFunLearnHub_Color_The_Shapes_EcoPrint.pdf", 
@@ -143,10 +143,11 @@ document.addEventListener("DOMContentLoaded", function() {
         worksheetsGrid.innerHTML = "";
         
         const filteredList = worksheetsData.filter(item => {
-            const matchesCategory = (currentCategory === "all" || item.category === currentCategory);
+            const matchesCategory = (currentCategory === "all" || item.categories.includes(currentCategory));
+            
             const matchesSearch = item.title.toLowerCase().includes(searchQuery) ||
                                   item.keywords.some(kw => kw.toLowerCase().includes(searchQuery)) ||
-                                  item.category.toLowerCase().includes(searchQuery);
+                                  item.categories.some(cat => cat.toLowerCase().includes(searchQuery));
 
             return matchesCategory && matchesSearch;
         });
@@ -162,8 +163,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const card = document.createElement("div");
                 card.className = "worksheet-card";
                 
-                // Clicking the card area (except buttons) doesn't auto-download anymore 
-                // since there are two distinct choices now!
+                // Reverted back to standard download behavior (no target="_blank")
                 card.innerHTML = `
                     <div class="card-thumbnail-wrapper">
                         <span class="lang-badge">${sheet.badge}</span>
