@@ -157,27 +157,27 @@ window.onload = function() {
     if (popup) popup.onclick = closePopup;
     if (closePopupBtn) closePopupBtn.onclick = closePopup;
 
-    /////////////////////////////////////////////////
-    // CURSOR LOGIC
-    /////////////////////////////////////////////////
-    const select = document.getElementById("cursorSelect");
-    const savedCursor = localStorage.getItem("kidsCursor");
-    if (savedCursor) {
-        document.documentElement.style.cursor = savedCursor;
-        if(select) select.value = savedCursor.split("/").pop().replace(/["')]/g, '').split(' ')[0];
-    }
-    if(select) {
-        select.addEventListener("change", () => {
-            if (!select.value) {
-                document.documentElement.style.cursor = "auto";
-                localStorage.removeItem("kidsCursor");
-                return;
-            }
-            const cursorValue = `url("images/cursors/${select.value}") 16 16, auto`;
-            document.documentElement.style.cursor = cursorValue;
-            localStorage.setItem("kidsCursor", cursorValue);
-        });
-    }
+    // /////////////////////////////////////////////////
+    // // CURSOR LOGIC
+    // /////////////////////////////////////////////////
+    // const select = document.getElementById("cursorSelect");
+    // const savedCursor = localStorage.getItem("kidsCursor");
+    // if (savedCursor) {
+    //     document.documentElement.style.cursor = savedCursor;
+    //     if(select) select.value = savedCursor.split("/").pop().replace(/["')]/g, '').split(' ')[0];
+    // }
+    // if(select) {
+    //     select.addEventListener("change", () => {
+    //         if (!select.value) {
+    //             document.documentElement.style.cursor = "auto";
+    //             localStorage.removeItem("kidsCursor");
+    //             return;
+    //         }
+    //         const cursorValue = `url("images/cursors/${select.value}") 16 16, auto`;
+    //         document.documentElement.style.cursor = cursorValue;
+    //         localStorage.setItem("kidsCursor", cursorValue);
+    //     });
+    // }
 
     /////////////////////////////////////////////////
     // CONFETTI
