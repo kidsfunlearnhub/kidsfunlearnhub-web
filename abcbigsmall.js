@@ -160,16 +160,16 @@ document.addEventListener("DOMContentLoaded", () => {
     /////////////////////////////////////////////////
     // 6. BACKGROUND MUSIC
     /////////////////////////////////////////////////
-    let bgMusicStarted = false;
-    const bgMusic = new Audio("sounds/bg-music.mp3");
-    bgMusic.loop = true;
-    bgMusic.volume = 0.05; 
+    // let bgMusicStarted = false;
+    // const bgMusic = new Audio("sounds/bg-music.mp3");
+    // bgMusic.loop = true;
+    // bgMusic.volume = 0.05; 
 
-    document.addEventListener("click", () => {
-        if (!bgMusicStarted) {
-            bgMusic.play().catch(() => {});
-            bgMusicStarted = true;
-        }
-    }, { once: true }); 
+    // document.addEventListener("click", () => {
+    //     if (!bgMusicStarted) {
+    //         bgMusic.play().catch(() => {});
+    //         bgMusicStarted = true;
+    //     }
+    // }, { once: true }); 
 
 });

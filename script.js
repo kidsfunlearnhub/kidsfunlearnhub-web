@@ -45,19 +45,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --- 3. Background Music Logic ---
-    let bgMusicStarted = false;
-    const bgMusic = new Audio("sounds/bg-music.mp3");
-    bgMusic.loop = true;
-    bgMusic.volume = 0.05; // Soft volume
+    // let bgMusicStarted = false;
+    // const bgMusic = new Audio("sounds/bg-music.mp3");
+    // bgMusic.loop = true;
+    // bgMusic.volume = 0.05; // Soft volume
 
-    // Play on first interaction
-    document.addEventListener("click", () => {
-        if (!bgMusicStarted) {
-            bgMusic.play().then(() => {
-                bgMusicStarted = true;
-            }).catch(err => console.log("Audio play prevented by browser interaction policy"));
-        }
-    }, { once: true });
+    // // Play on first interaction
+    // document.addEventListener("click", () => {
+    //     if (!bgMusicStarted) {
+    //         bgMusic.play().then(() => {
+    //             bgMusicStarted = true;
+    //         }).catch(err => console.log("Audio play prevented by browser interaction policy"));
+    //     }
+    // }, { once: true });
 
     // --- 4. Homepage Dynamic Card Gradients ---
     const vividGradients = [
