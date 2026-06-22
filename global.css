@@ -1,0 +1,18 @@
+/* =========================================
+   DYNAMIC GLOBAL CURSORS
+   ========================================= */
+:root {
+    /* Fallback values. These are overwritten immediately by your JavaScript */
+    --main-cursor: url("images/cursors/dinosaur.webp") 16 16, auto;
+    --pointer-cursor: url("images/cursors/dinosaur_fire.webp") 16 16, pointer;
+}
+
+/* Apply main cursor to the whole document */
+html, body {
+    cursor: var(--main-cursor) !important;
+}
+
+/* Apply clickable cursor to all interactive elements globally */
+a, button, select, input, label, .clickable, .card, .bubble-btn, .parent-corner, .play-btn {
+    cursor: var(--pointer-cursor) !important;
+}

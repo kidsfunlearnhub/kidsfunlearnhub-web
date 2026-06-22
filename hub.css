@@ -252,5 +252,5 @@ header { margin-top: 30px; }
 .bubble-btn:hover { transform: scale(1.1); }
 
 /* Cursors */
-button, a, .clickable, .letter { cursor: url("images/cursors/dinosaur_fire.png") 16 16, pointer; }
+button, a, .clickable, .letter { cursor: url("images/cursors/dinosaur_fire.webp") 16 16, pointer; }
 

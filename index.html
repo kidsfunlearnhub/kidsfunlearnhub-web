@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Advanced SEO Meta Tags -->
     <title>Fun Learning Games for Kids | KidsFunLearnHub</title>
     <meta name="title" content="Fun Learning Games for Kids | KidsFunLearnHub">
     <meta name="description" content="Interactive ABC, numbers, and language learning games for toddlers and kids. Fun educational activities in English, Hindi, and Marathi!">
@@ -13,14 +12,12 @@
     
     <link rel="canonical" href="https://kidsfunlearnhub.com/index.html">
 
-    <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kidsfunlearnhub.com/index.html">
     <meta property="og:title" content="Kids Fun-Learn Hub | Educational Games">
     <meta property="og:description" content="Discover fun interactive puzzles and language games for kids. Play and learn in English, Hindi, and Marathi!">
     <meta property="og:image" content="https://kidsfunlearnhub.com/images/home-preview.jpg"> 
 
-    <!-- Schema.org JSON-LD for SEO -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -39,21 +36,23 @@
     }
     </script>
 
-    <link rel="stylesheet" href="style.css?v=2.2">
+    <link rel="stylesheet" href="global.css">
+    
+    <link rel="stylesheet" href="style.css?v=3.0">
 </head>
 
 <body>
 
-    <!-- Cursor Selector -->
-    <div class="cursor-dropdown" aria-label="Select Custom Cursor">
-        <select id="cursorSelect">
-            <option value="">Default Cursor</option>
-            <option value="dinosaur.png">🦖 Dinosaur</option>
-            <option value="star.png">⭐ Star</option>
+    <div class="cursor-wrapper" aria-label="Select Custom Cursor">
+        <select id="cursorSelect" aria-controls="cursorSelect" aria-label="Choose a custom cursor">
+            <option value="" disabled hidden>🪄 Choose Cursor...</option>
+            <option value="dinosaur.webp">🦖Dinosaur(Default)</option>
+            <option value="dinosaur_fire.webp">🔥 Fire Dinosaur</option>
+            <!-- <option value="pencil.webp">✏️ Pencil</option> -->
+            <option value="auto">💻 System Default</option>
         </select>
     </div>
 
-    <!-- Floating Bubble Button for Parent Corner -->
     <a href="parent.html" class="parent-corner bubble-btn" aria-label="Go to Parent Corner">
         👨‍👩‍👧 Parent Corner
     </a>
@@ -63,61 +62,14 @@
         <h2 class="subtitle">Where Fun Meets Learning</h2>
     </header>
 
-    <!-- TOP AD ZONE -->
     <div class="ad-container">
         <div class="ad-space">
             <span>[AdSense Top Banner Area]</span>
         </div>
     </div>
 
-    <!-- MAIN GAME CONTENT -->
     <main class="page-wrapper">
         <div class="container" role="list">
-
-            <!-- <a href="javascript:void(0)" onclick="goToHub('en')" class="card englishhub" role="listitem">
-                <div class="card-icon">🔠</div>
-                <div class="content">
-                    <span class="big-text bouncing">Kids ENGLISH Hub</span>
-                    <span class="small-text dancing">Learn English</span>
-                </div>
-                <div class="play-btn">▶</div>
-            </a>
-            
-            <a href="javascript:void(0)" onclick="goToHub('hi')" class="card hindihub" role="listitem">
-                <div class="card-icon">अ</div>
-                <div class="content">
-                    <span class="big-text bouncing">Kids हिंदी भाषा Hub</span> 
-                    <span class="small-text dancing">हिंदी सीखें</span>
-                </div>
-                <div class="play-btn">▶</div>
-            </a>
-
-            <a href="javascript:void(0)" onclick="goToHub('mr')" class="card marathihub" role="listitem">
-                <div class="card-icon">म</div>
-                <div class="content">
-                    <span class="big-text bouncing">Kids मराठी भाषा Hub</span> 
-                    <span class="small-text dancing">मराठी शिका</span>
-                </div>
-                <div class="play-btn">▶</div>
-            </a>
-
-            <a href="activityhub.html" class="card activityhub" role="listitem">
-                <div class="card-icon">🎮</div>
-                <div class="content">
-                    <span class="big-text bouncing">Kids ACTIVITY Hub</span> 
-                    <span class="small-text dancing">Learn Activity</span>
-                </div>
-                <div class="play-btn">▶</div>
-            </a>
-
-            <a href="parent.html" class="card parent-card" role="listitem">
-                <div class="card-icon">📈</div>
-                <div class="content">
-                    <span class="big-text">Parent Corner</span> 
-                    <span class="small-text">Resources & Worksheets</span>
-                </div>
-                <div class="play-btn">▶</div>
-            </a> -->
 
             <a href="javascript:void(0)" onclick="goToHub('en')" class="card englishhub" role="listitem">
                 <div class="card-icon">🔠</div>
@@ -167,22 +119,21 @@
         </div>
     </main>
 
-    <!-- SEO Friendly Introduction -->
     <section class="seo-intro-box">
         <p>Welcome to <strong>KidsFunLearnHub</strong>, a safe and interactive digital playground where toddlers and preschoolers can discover the joy of education! Explore our colorful activities designed to help your child master the alphabet, recognize numbers, and build foundational vocabulary in English, Hindi, and Marathi.</p>
     </section>
 
-    <!-- BOTTOM AD ZONE -->
     <div class="ad-container">
         <div class="ad-space">
             <span>[AdSense Bottom Banner Area]</span>
         </div>
     </div>
 
-    <!-- Floating Bubbles Container -->
     <div id="bubble-container" aria-hidden="true"></div>
 
-    <script src="script.js"></script>
+    <script src="global.js"></script>
+    
+    <script src="script.js?v=3.0"></script>
 
     <script>
         function goToHub(languageCode) {

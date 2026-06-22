@@ -12,6 +12,13 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
+    /* ==========================================
+       HIDDEN FOR ADSENSE APPROVAL 
+       Uncomment this block when you restore 
+       the "Coming Soon" cards in the HTML.
+       ========================================== */
+       
+    /*
     // Gentle shake animation for "Coming Soon" cards
     const comingSoonCards = document.querySelectorAll('.coming-soon');
     
@@ -38,4 +45,5 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     `;
     document.head.appendChild(style);
+    */
 });

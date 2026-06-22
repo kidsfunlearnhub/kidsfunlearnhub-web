@@ -1,8 +1,6 @@
 :root {
     /* The "Cotton Candy Sky" soft background gradient */
-    /* --bg-gradient: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); */
-        background: linear-gradient(to right, #b3ffff, #fcb69f);
-        /* background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); */
+    background: linear-gradient(to right, #b3ffff, #fcb69f);
     --font-main: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif;
 }
 
@@ -27,9 +25,15 @@ header { margin-top: 30px; }
         padding: 8px 12px !important;
         font-size: 0.85rem !important;
     }
-    .cursor-dropdown select {
-        padding: 6px 10px !important;
-        font-size: 12px !important;
+    
+    .cursor-wrapper {
+        top: 15px !important;
+        left: 15px !important;
+    }
+    
+    #cursorSelect {
+        padding: 8px 12px !important;
+        font-size: 0.85rem !important;
     }
 }
 
@@ -46,9 +50,71 @@ header { margin-top: 30px; }
     margin-top: 0; margin-bottom: 15px; 
 }
 
+/* =========================================
+   CURSOR SELECTOR (Matches Parent Corner Size)
+   ========================================= */
+.cursor-wrapper {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 1000;
+}
+
+#cursorSelect {
+    border: 2px solid #ff9800;
+    
+    /* EXACT SIZING MATCH TO PARENT CORNER BUTTON */
+    padding: 10px 18px; 
+    border-radius: 40px; 
+    font-size: clamp(0.85rem, 1.2vw, 1rem);
+    
+    font-family: inherit;
+    font-weight: bold;
+    color: #ff5722;
+    outline: none;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    backdrop-filter: blur(5px);
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+#cursorSelect:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* =========================================
+   FLOATING PARENT CORNER BUTTON
+   ========================================= */
+.bubble-btn {
+    position: fixed; 
+    top: 15px; 
+    right: 15px;
+    background: linear-gradient(135deg, #ff9800, #ff4081);
+    color: white; 
+    
+    /* EXACT SIZING MATCH TO CURSOR SELECT */
+    padding: 10px 18px; 
+    border-radius: 40px; 
+    font-size: clamp(0.85rem, 1.2vw, 1rem);
+    
+    font-weight: bold; 
+    text-decoration: none;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.3); 
+    z-index: 999; 
+    animation: floaty 2.5s infinite alternate ease-in-out;
+    border: 2px solid white; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@keyframes floaty { from { transform: translateY(0); } to { transform: translateY(-5px); } }
+.bubble-btn:hover { transform: scale(1.05); }
+
 /* Frosted Glass Effect for Ads */
 .ad-container {
-    /* width: 100%; display: flex; justify-content: center; */
     width: 100%; display: none; justify-content: center;
     margin: 10px 0 20px 0; position: relative; z-index: 40; 
     padding: 0 15px; box-sizing: border-box;
@@ -75,7 +141,7 @@ header { margin-top: 30px; }
     gap: 25px; margin: 10px auto 30px auto; max-width: 1050px; 
 }
 
-/* === UNIVERSAL CARD BASE (Backgrounds are now injected by JS) === */
+/* === UNIVERSAL CARD BASE === */
 .card {
     width: 300px; 
     height: 280px;
@@ -88,10 +154,8 @@ header { margin-top: 30px; }
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
 }
-
-/* Fallback background just in case JS fails to load */
-.card { background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); }
 
 @media (max-width: 700px) {
     .card { width: 100%; max-width: 400px; }
@@ -106,7 +170,6 @@ header { margin-top: 30px; }
     border-bottom-width: 2px;
 }
 
-/* Subtle highlight to the top of all cards for a 3D effect */
 .card::after {
     content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     background: linear-gradient(rgba(255,255,255,0.25), transparent); pointer-events: none;
@@ -141,29 +204,29 @@ header { margin-top: 30px; }
     text-shadow: 1px 1px 3px rgba(0,0,0,0.15); 
 }
 
-/* Solid White Pill Badges with dark text (Looks great on any random color!) */
+/* Solid White Pill Badges */
 .small-text {
     font-size: clamp(1rem, 1.4vw, 1.2rem);
     font-weight: bold; display: inline-block; padding: 5px 15px; border-radius: 15px;
     background: rgba(255, 255, 255, 0.95);
     border: 2px solid white;
-    color: #444; /* Dark grey ensures it's readable */
+    color: #444; 
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* Solid White Play Buttons with dark icons */
+/* Solid White Play Buttons */
 .play-btn {
     width: 40px; height: 40px; display: flex; align-items: center;
     justify-content: center; font-size: 16px; border-radius: 50%;
     margin-top: 15px; transition: transform 0.2s;
     background: white; 
-    color: #444; /* Dark grey play icon */
+    color: #444; 
     box-shadow: 0 4px 0 rgba(0,0,0,0.15);
     z-index: 2; position: relative;
 }
 .card:hover .play-btn { transform: scale(1.1); }
 
-/* Frosted Glass for SEO Intro Box (Justified text) */
+/* Frosted Glass for SEO Intro Box */
 .seo-intro-box {
     max-width: 900px; margin: 10px auto 30px auto; padding: 20px 30px; 
     background: rgba(255, 255, 255, 0.35); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
@@ -195,6 +258,7 @@ header { margin-top: 30px; }
 }
 @keyframes floatUp { from { transform: translateY(0) scale(1); } to { transform: translateY(-110vh) scale(1.2); opacity: 0; } }
 
+
 /* Footer */
 .footer {
     text-align: center; padding: 20px 15px; background: #2c3e50; color: white;
@@ -203,23 +267,3 @@ header { margin-top: 30px; }
 .footer a { color: #ffcc00; text-decoration: none; margin: 0 10px; display: inline-block; padding: 5px 0; font-size: 1rem; transition: color 0.2s; }
 .footer a:hover { color: #fff; text-decoration: underline; }
 .copyright { margin-top: 10px; font-size: 0.85rem; color: #aaa; }
-
-/* Cursor Dropdown */
-.cursor-dropdown { position: fixed; top: 15px; left: 15px; z-index: 999; }
-.cursor-dropdown select {
-    padding: 8px 15px; border-radius: 20px; border: 2px solid #00bcd4; font-size: 14px;
-    font-weight: bold; background: white; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); outline: none;
-}
-
-/* Floating Parent Bubble Button */
-.bubble-btn {
-    position: fixed; top: 15px; right: 15px; background: linear-gradient(135deg, #ff9800, #ff4081);
-    color: white; padding: 10px 18px; border-radius: 40px; font-weight: bold; text-decoration: none;
-    box-shadow: 0 8px 18px rgba(0,0,0,0.3); z-index: 999; animation: floaty 2.5s infinite alternate ease-in-out;
-    border: 2px solid white; font-size: clamp(0.85rem, 1.2vw, 1rem);
-}
-@keyframes floaty { from { transform: translateY(0); } to { transform: translateY(-5px); } }
-.bubble-btn:hover { transform: scale(1.1); }
-
-/* Cursors */
-button, a, .clickable, .letter { cursor: url("images/cursors/dinosaur_fire.png") 16 16, pointer; }
