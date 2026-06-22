@@ -45,6 +45,37 @@ header { margin-top: 30px; }
     margin-top: 0; margin-bottom: 15px; 
 }
 
+
+/* =========================================
+   CENTERED 3D LOGO STYLES
+   ========================================= */
+.site-logo {
+    height: 140px; /* Big enough to read, but not overwhelming */
+    width: auto;
+    margin: 0 auto 10px auto; /* Centers the image perfectly */
+    display: block;
+    
+    /* Adds a soft shadow behind the 3D shapes to make it pop */
+    filter: drop-shadow(0px 10px 15px rgba(0, 0, 0, 0.25));
+    
+    /* Optional: A very gentle floating animation! */
+    animation: gentleFloat 4s ease-in-out infinite;
+}
+
+@keyframes gentleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* Make it slightly smaller for mobile screens */
+@media (max-width: 600px) {
+    .site-logo {
+        height: 100px;
+        margin-bottom: 5px;
+    }
+}
+/* logo styles end here */
+
 /* =========================================
    CURSOR SELECTOR (Matches Parent Corner Size)
    ========================================= */
