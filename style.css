@@ -26,14 +26,9 @@ header { margin-top: 30px; }
         font-size: 0.85rem !important;
     }
     
+    /* HIDE CURSOR MENU ON MOBILE SCREENS */
     .cursor-wrapper {
-        top: 15px !important;
-        left: 15px !important;
-    }
-    
-    #cursorSelect {
-        padding: 8px 12px !important;
-        font-size: 0.85rem !important;
+        display: none !important; 
     }
 }
 
@@ -78,11 +73,20 @@ header { margin-top: 30px; }
     backdrop-filter: blur(5px);
     transition: all 0.2s ease;
     text-align: center;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
 }
 
 #cursorSelect:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+#cursorSelect option {
+    background: white;
+    color: #333;
+    font-weight: bold;
 }
 
 /* =========================================
@@ -112,6 +116,7 @@ header { margin-top: 30px; }
 }
 @keyframes floaty { from { transform: translateY(0); } to { transform: translateY(-5px); } }
 .bubble-btn:hover { transform: scale(1.05); }
+
 
 /* Frosted Glass Effect for Ads */
 .ad-container {
@@ -257,7 +262,6 @@ header { margin-top: 30px; }
     animation: floatUp linear forwards; box-shadow: inset -5px -5px 15px rgba(0,0,0,0.1), 0 5px 15px rgba(0,0,0,0.1); opacity: 0.5; 
 }
 @keyframes floatUp { from { transform: translateY(0) scale(1); } to { transform: translateY(-110vh) scale(1.2); opacity: 0; } }
-
 
 /* Footer */
 .footer {
