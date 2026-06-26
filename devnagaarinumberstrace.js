@@ -19,8 +19,54 @@ window.onload = function() {
         "learnBtn": { hi: "नंबर सीखें", mr: "अंक शिका" },
         "activitiesBtn": { hi: "नंबर गतिविधियां", mr: "अंक ऍक्टिव्हिटीज" },
         "seoText": {
-            hi: "<strong>KidsFunLearnHub देवनागरी नंबर ट्रेसिंग ज़ोन</strong> में आपका स्वागत है! देवनागरी नंबरों (१ से ४०) को स्ट्रोक दर स्ट्रोक लिखना सीखने के लिए किसी भी नंबर पर टैप करें। यह बच्चों में मोटर कौशल और गिनती की क्षमताओं को बढ़ाने में मदद करता है।",
-            mr: "<strong>KidsFunLearnHub देवनागरी क्रमांक ट्रेसिंग झोनमध्ये</strong> आपले स्वागत आहे! देवनागरी क्रमांक (१ ते ४०) स्ट्रोक बाय स्ट्रोक कसे लिहायचे हे पाहण्यासाठी कोणत्याही क्रमांकावर टॅप करा. हे मुलांना मोटर कौशल्ये आणि मोजणी क्षमता वाढविण्यास मदत करते."
+            en: `
+                <h2>About The Devanagari Numbers Tracing Zone</h2>
+                <p>Welcome to the KidsFunLearnHub Devanagari Numbers Tracing Zone! Tap on any Devanagari number from १ (1) to ४० (40) to watch the magic pencil show you exactly how to write it, stroke by stroke, building a strong foundation in regional mathematics.</p>
+                <p><strong>Learning Outcomes:</strong> Regional numeral formation, fine motor skills, double-digit writing, and native math readiness.</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>How to Play & Educational Benefits</h3>
+                        <p>Mastering regional numerals is a fantastic cognitive exercise. The structural shapes of Devanagari numbers—like २ (2) and ४ (4)—are unique and require specialized fine motor planning. The "magic pencil" breaks down these distinct curves into easy-to-follow, directional steps, helping preschoolers internalize the correct formations before they start writing independently.</p>
+                        <p>As children watch the numbers being formed on the screen, they hear the correct native pronunciations. This multi-sensory approach ensures that a child tracing '५' (5) instantly connects the physical drawing stroke with the spoken word 'Paach' (पाच), seamlessly integrating motor skill development with regional vocabulary.</p>
+                        <h3>Frequently Asked Questions (FAQs)</h3>
+                        <p><strong>Why teach Devanagari numbers up to ४० (40)?</strong><br>Extending handwriting practice beyond १० (10) helps children understand the patterns and positioning required for double-digit formation in Devanagari.</p>
+                        <p><strong>Are there printable worksheets for these numbers?</strong><br>Yes, you can download completely free Devanagari number tracing PDFs in our Parents Corner for off-screen practice.</p>
+                    </div>
+                </details>
+            `,
+            hi: `
+                <h2>देवनागरी नंबर ट्रेसिंग ज़ोन के बारे में</h2>
+                <p>KidsFunLearnHub देवनागरी नंबर ट्रेसिंग ज़ोन में आपका स्वागत है! जादुई पेंसिल को स्ट्रोक दर स्ट्रोक लिखते हुए देखने के लिए १ (1) से ४० (40) तक किसी भी देवनागरी नंबर पर टैप करें, जो क्षेत्रीय गणित में एक मजबूत आधार बनाता है।</p>
+                <p><strong>सीखने के परिणाम:</strong> क्षेत्रीय अंक निर्माण, ठीक गामक कौशल, दोहरे अंक का लेखन, और देशी गणित की तैयारी।</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>कैसे खेलें और शैक्षिक लाभ</h3>
+                        <p>क्षेत्रीय अंकों में महारत हासिल करना एक शानदार मानसिक व्यायाम है। देवनागरी संख्याओं के संरचनात्मक आकार—जैसे २ (2) और ४ (4)—अद्वितीय हैं और इसके लिए विशेष मोटर योजना की आवश्यकता होती है। "जादुई पेंसिल" इन विशिष्ट वक्रों को आसान, दिशात्मक चरणों में तोड़ देती है, जिससे प्रीस्कूलर स्वतंत्र रूप से लिखना शुरू करने से पहले सही बनावट को आत्मसात कर लेते हैं।</p>
+                        <p>जैसे-जैसे बच्चे स्क्रीन पर संख्याओं को बनते हुए देखते हैं, वे सही देशी उच्चारण सुनते हैं। यह बहु-संवेदी दृष्टिकोण यह सुनिश्चित करता है कि '५' (5) को ट्रेस करने वाला बच्चा तुरंत भौतिक ड्राइंग स्ट्रोक को बोले गए शब्द 'पांच' (Paach) के साथ जोड़ता है, क्षेत्रीय शब्दावली के साथ मोटर कौशल विकास को सहजता से एकीकृत करता है।</p>
+                        <h3>अक्सर पूछे जाने वाले प्रश्न (FAQs)</h3>
+                        <p><strong>देवनागरी नंबरों को ४० (40) तक क्यों सिखाएं?</strong><br>लिखावट के अभ्यास को १० (10) से आगे बढ़ाने से बच्चों को देवनागरी में दोहरे अंक के निर्माण के लिए आवश्यक पैटर्न और स्थिति को समझने में मदद मिलती है।</p>
+                        <p><strong>क्या इन नंबरों के लिए प्रिंट करने योग्य वर्कशीट हैं?</strong><br>हाँ, आप ऑफ़-स्क्रीन अभ्यास के लिए हमारे पेरेंट्स कॉर्नर में पूरी तरह से मुफ्त देवनागरी नंबर ट्रेसिंग पीडीएफ डाउनलोड कर सकते हैं।</p>
+                    </div>
+                </details>
+            `,
+            mr: `
+                <h2>देवनागरी क्रमांक ट्रेसिंग झोनबद्दल</h2>
+                <p>KidsFunLearnHub देवनागरी क्रमांक ट्रेसिंग झोनमध्ये आपले स्वागत आहे! जादूची पेन्सिल एकामागून एक रेषा ओढून क्रमांक कसा काढते हे पाहण्यासाठी १ (1) ते ४० (40) मधील कोणत्याही देवनागरी क्रमांकावर टॅप करा, ज्यामुळे प्रादेशिक गणिताचा भक्कम पाया तयार होतो.</p>
+                <p><strong>शिकण्याचे परिणाम:</strong> प्रादेशिक अंक रचना, हातांच्या स्नायूंची कौशल्ये, दोन अंकी संख्या लेखन आणि स्थानिक गणितीय तयारी.</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>कसे खेळायचे आणि शैक्षणिक फायदे</h3>
+                        <p>प्रादेशिक अंकांवर प्रभुत्व मिळवणे हा एक उत्तम बौद्धिक व्यायाम आहे. देवनागरी क्रमांकांचे संरचनात्मक आकार—जसे की २ (2) आणि ४ (4)—अद्वितीय आहेत आणि त्यासाठी विशेष फाइन मोटर नियोजनाची आवश्यकता असते. "जादूची पेन्सिल" या विशिष्ट वक्रांना सोप्या, दिशात्मक टप्प्यांत विभागते, ज्यामुळे प्रीस्कूलच्या मुलांना स्वतःहून लिहायला सुरुवात करण्यापूर्वी योग्य रचना आत्मसात करण्यास मदत होते.</p>
+                        <p>जेव्हा मुले स्क्रीनवर क्रमांक तयार होताना पाहतात, तेव्हा त्यांना अचूक स्थानिक उच्चार ऐकू येतात. हा बहु-संवेदी दृष्टिकोन हे सुनिश्चित करतो की '५' (5) गिरवणारे मूल त्वरित रेखाटनाच्या शारीरिक क्रियेला 'पाच' (Paach) या उच्चारलेल्या शब्दाशी जोडते, ज्यामुळे प्रादेशिक शब्दसंग्रहासह मोटर कौशल्यांचा विकास सहजपणे होतो.</p>
+                        <h3>वारंवार विचारले जाणारे प्रश्न (FAQs)</h3>
+                        <p><strong>देवनागरी क्रमांक ४० (40) पर्यंत का शिकवावे?</strong><br>हस्ताक्षराचा सराव १० (10) च्या पुढे वाढवल्याने मुलांना देवनागरीमध्ये दोन अंकी संख्या तयार करण्यासाठी आवश्यक असलेले नमुने आणि स्थिती समजण्यास मदत होते.</p>
+                        <p><strong>या क्रमांकांसाठी प्रिंट करण्यायोग्य वर्कशीट्स आहेत का?</strong><br>होय, तुम्ही स्क्रीनशिवाय सरावासाठी आमच्या पेरेंट्स कॉर्नरमध्ये पूर्णपणे मोफत देवनागरी क्रमांक ट्रेसिंग PDF डाउनलोड करू शकता.</p>
+                    </div>
+                </details>
+            `
         },
         // Footer Translations
         "footerAbout": { en: "About Us", hi: "हमारे बारे में", mr: "आमच्याबद्दल" },

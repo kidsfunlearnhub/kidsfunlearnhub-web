@@ -19,9 +19,54 @@ window.onload = function() {
         "learnBtn": { en: "Learn Varnamala", hi: "वर्णमाला सीखें", mr: "वर्णमाला शिका" },
         "activitiesBtn": { en: "Varnamala Activities", hi: "वर्णमाला गतिविधियां", mr: "वर्णमाला ऍक्टिव्हिटीज" },
         "seoText": {
-            en: "Welcome to the <strong>KidsFunLearnHub Varnamala Tracing Zone</strong>! Tap on any letter to watch the magic pencil show you exactly how to write the Devanagari script, stroke by stroke. This helps children develop fine motor skills and memorize letter formation.",
-            hi: "<strong>KidsFunLearnHub वर्णमाला ट्रेसिंग ज़ोन</strong> में आपका स्वागत है! देवनागरी लिपि को स्ट्रोक दर स्ट्रोक लिखना सीखने के लिए किसी भी अक्षर पर टैप करें। यह बच्चों में मोटर कौशल विकसित करने और अक्षरों की बनावट को याद रखने में मदद करता है।",
-            mr: "<strong>KidsFunLearnHub वर्णमाला ट्रेसिंग झोनमध्ये</strong> आपले स्वागत आहे! देवनागरी लिपी स्ट्रोक बाय स्ट्रोक कशी लिहायची हे पाहण्यासाठी कोणत्याही अक्षरावर टॅप करा. हे मुलांना मोटर कौशल्ये विकसित करण्यास आणि अक्षरांची रचना लक्षात ठेवण्यास मदत करते."
+            en: `
+                <h2>About The Varnamala Tracing Zone</h2>
+                <p>Welcome to the KidsFunLearnHub Varnamala Tracing Zone! Tap on any Devanagari letter to watch the magic pencil demonstrate exactly how to write it, stroke by stroke, beautifully guiding your child's early handwriting journey.</p>
+                <p><strong>Learning Outcomes:</strong> Fine motor planning, Devanagari stroke order, Shirekha placement, and handwriting readiness.</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>How to Play & Educational Benefits</h3>
+                        <p>Writing the Devanagari script requires specific directional strokes and the crucial top-line (Shirekha). The "magic pencil" animation breaks down these complex characters into intuitive, step-by-step movements. By visually tracking the pencil, toddlers subconsciously internalize the correct starting points and curves, preventing awkward pencil grips and incorrect formations later on.</p>
+                        <p>We pair this essential visual-motor training with clear native audio. As children watch the Hindi and Marathi letters being constructed on the screen, they hear the correct pronunciations. This multi-sensory approach ensures they connect the physical drawing motion with the exact phonetic sound, solidifying their understanding of the alphabet.</p>
+                        <h3>Frequently Asked Questions (FAQs)</h3>
+                        <p><strong>Why is stroke order important?</strong><br>Correct stroke order prevents hand fatigue and ensures neat, legible handwriting as children transition from drawing single letters to writing full sentences.</p>
+                        <p><strong>Can my child practice these strokes on paper?</strong><br>Yes! We highly recommend downloading our free, high-quality printable Varnamala tracing worksheets from the Parents Corner for physical pencil practice.</p>
+                    </div>
+                </details>
+            `,
+            hi: `
+                <h2>वर्णमाला ट्रेसिंग ज़ोन के बारे में</h2>
+                <p>KidsFunLearnHub वर्णमाला ट्रेसिंग ज़ोन में आपका स्वागत है! जादुई पेंसिल को स्ट्रोक दर स्ट्रोक, देवनागरी अक्षर लिखते हुए देखने के लिए किसी भी अक्षर पर टैप करें, जो आपके बच्चे की प्रारंभिक हस्तलेखन यात्रा का खूबसूरती से मार्गदर्शन करता है।</p>
+                <p><strong>सीखने के परिणाम:</strong> ठीक गामक योजना (फाइन मोटर प्लानिंग), देवनागरी स्ट्रोक क्रम, शिरोरेखा प्लेसमेंट, और हस्तलेखन की तैयारी।</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>कैसे खेलें और शैक्षिक लाभ</h3>
+                        <p>देवनागरी लिपि लिखने के लिए विशिष्ट दिशात्मक स्ट्रोक और महत्वपूर्ण शीर्ष रेखा (शिरोरेखा) की आवश्यकता होती है। "जादुई पेंसिल" एनीमेशन इन जटिल अक्षरों को सहज, चरण-दर-चरण आंदोलनों में तोड़ देता है। पेंसिल को देखकर, बच्चे अवचेतन रूप से सही शुरुआती बिंदुओं और वक्रों को आत्मसात कर लेते हैं, जिससे बाद में गलत पेंसिल पकड़ और गलत बनावट को रोका जा सकता है।</p>
+                        <p>हम इस आवश्यक दृश्य-मोटर प्रशिक्षण को स्पष्ट देशी ऑडियो के साथ जोड़ते हैं। जैसे ही बच्चे स्क्रीन पर हिंदी और मराठी अक्षरों को बनते हुए देखते हैं, वे सही उच्चारण सुनते हैं। यह बहु-संवेदी दृष्टिकोण यह सुनिश्चित करता है कि वे शारीरिक ड्राइंग गति को सटीक ध्वन्यात्मक ध्वनि के साथ जोड़ते हैं, जिससे वर्णमाला की उनकी समझ ठोस होती है।</p>
+                        <h3>अक्सर पूछे जाने वाले प्रश्न (FAQs)</h3>
+                        <p><strong>स्ट्रोक का क्रम क्यों महत्वपूर्ण है?</strong><br>सही स्ट्रोक क्रम हाथ की थकान को रोकता है और यह सुनिश्चित करता है कि जब बच्चे एकल अक्षर खींचने से पूरे वाक्य लिखने की ओर बढ़ते हैं तो लिखावट साफ और सुपाठ्य हो।</p>
+                        <p><strong>क्या मेरा बच्चा कागज पर इन स्ट्रोक्स का अभ्यास कर सकता है?</strong><br>हाँ! भौतिक पेंसिल अभ्यास के लिए हम पेरेंट्स कॉर्नर से हमारे मुफ्त, उच्च गुणवत्ता वाले प्रिंट करने योग्य वर्णमाला ट्रेसिंग वर्कशीट डाउनलोड करने की अत्यधिक अनुशंसा करते हैं।</p>
+                    </div>
+                </details>
+            `,
+            mr: `
+                <h2>वर्णमाला ट्रेसिंग झोनबद्दल</h2>
+                <p>KidsFunLearnHub वर्णमाला ट्रेसिंग झोनमध्ये आपले स्वागत आहे! जादूची पेन्सिल एकामागून एक रेषा ओढून देवनागरी अक्षर कसे काढते हे पाहण्यासाठी कोणत्याही अक्षरावर टॅप करा, जे तुमच्या मुलाच्या सुरुवातीच्या हस्ताक्षर प्रवासाला सुंदरपणे मार्गदर्शन करते.</p>
+                <p><strong>शिकण्याचे परिणाम:</strong> फाइन मोटर नियोजन, देवनागरी स्ट्रोक क्रम, शिरोरेषा आखणी आणि लेखनपूर्व तयारी.</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>कसे खेळायचे आणि शैक्षणिक फायदे</h3>
+                        <p>देवनागरी लिपी लिहिण्यासाठी विशिष्ट दिशात्मक स्ट्रोक आणि सर्वात महत्त्वाची वरची रेषा (शिरोरेषा) आवश्यक असते. "जादूची पेन्सिल" ॲनिमेशन या गुंतागुंतीच्या अक्षरांना सोप्या, टप्प्याटप्प्याच्या हालचालींमध्ये विभागते. पेन्सिलच्या हालचालींकडे पाहून, लहान मुले नकळतपणे योग्य सुरुवातीचे बिंदू आणि वक्र आत्मसात करतात, ज्यामुळे पुढे जाऊन पेन्सिल चुकीची पकडणे आणि चुकीची रचना करणे टळते.</p>
+                        <p>आम्ही या आवश्यक व्हिज्युअल-मोटर प्रशिक्षणाला स्पष्ट मूळ ऑडिओची जोड देतो. स्क्रीनवर हिंदी आणि मराठी अक्षरे तयार होताना मुले पाहतात, तेव्हा त्यांना अचूक उच्चार ऐकू येतो. हा बहु-संवेदी दृष्टिकोन हे सुनिश्चित करतो की ते अक्षरे काढण्याच्या शारीरिक हालचालीला अचूक ध्वन्यात्मक आवाजाशी जोडतात, ज्यामुळे त्यांची वर्णमालेची समज पक्की होते.</p>
+                        <h3>वारंवार विचारले जाणारे प्रश्न (FAQs)</h3>
+                        <p><strong>स्ट्रोकचा क्रम का महत्त्वाचा आहे?</strong><br>स्ट्रोकचा योग्य क्रम हाताचा थकवा टाळतो आणि जेव्हा मुले एकच अक्षर काढण्याकडून पूर्ण वाक्य लिहिण्याकडे वळतात तेव्हा हस्ताक्षर स्वच्छ आणि वाचनीय असल्याची खात्री देतो.</p>
+                        <p><strong>माझे मूल कागदावर या स्ट्रोकचा सराव करू शकते का?</strong><br>होय! प्रत्यक्ष पेन्सिलच्या सरावासाठी आम्ही पेरेंट्स कॉर्नरवरून आमचे मोफत, उच्च दर्जाचे प्रिंट करण्यायोग्य वर्णमाला ट्रेसिंग वर्कशीट्स डाउनलोड करण्याची शिफारस करतो.</p>
+                    </div>
+                </details>
+            `
         },
         // Footer Translations
         "footerAbout": { en: "About Us", hi: "हमारे बारे में", mr: "आमच्याबद्दल" },

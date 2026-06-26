@@ -61,9 +61,54 @@ window.onload = function() {
         "learnBtn": { en: "Learn Shapes", hi: "आकार सीखें", mr: "आकार शिका" },
         "activitiesBtn": { en: "Shapes Activities", hi: "आकार गतिविधियां", mr: "आकार ऍक्टिव्हिटीज" },
         "seoText": {
-            en: "Welcome to the <strong>KidsFunLearnHub Shape Tracing Zone</strong>! Tap on any shape to watch the magic pencil draw it stroke by stroke. Practicing these foundational drawing movements helps toddlers develop essential fine motor skills and spatial awareness.",
-            hi: "<strong>KidsFunLearnHub शेप ट्रेसिंग ज़ोन</strong> में आपका स्वागत है! मैजिक पेंसिल को स्ट्रोक दर स्ट्रोक बनाते देखने के लिए किसी भी आकार पर टैप करें। इन बुनियादी ड्राइंग गतिविधियों का अभ्यास करने से बच्चों को आवश्यक ठीक मोटर कौशल और स्थानिक जागरूकता विकसित करने में मदद मिलती है।",
-            mr: "<strong>KidsFunLearnHub शेप ट्रेसिंग झोनमध्ये</strong> आपले स्वागत आहे! मॅजिक पेन्सिल स्ट्रोक बाय स्ट्रोक काढताना पाहण्यासाठी कोणत्याही आकारावर टॅप करा. या मूलभूत रेखाचित्र हालचालींचा सराव केल्याने लहान मुलांना आवश्यक मोटर कौशल्ये आणि अवकाशीय जागरूकता विकसित होण्यास मदत होते."
+            en: `
+                <h2>About The Shape Tracing Zone</h2>
+                <p>Welcome to the KidsFunLearnHub Shape Tracing Zone! Tap on any shape to watch the magic pencil draw it stroke by stroke. This interactive digital canvas helps toddlers and preschoolers develop the foundational fine motor movements needed for drawing and writing by guiding them through basic 2D geometry.</p>
+                <p><strong>Learning Outcomes:</strong> Fine motor planning, directional stroke order, geometric construction, and pre-writing readiness.</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>How to Play & Educational Benefits</h3>
+                        <p>Before a child can write complex letters or numbers, they must master basic directional strokes—like the continuous curve of a circle or the sharp, intersecting straight lines of a triangle. The "magic pencil" animation breaks down these geometric shapes into intuitive steps. By watching the pencil move, toddlers subconsciously internalize the correct starting points and angles necessary for handwriting, preventing awkward pencil grips and reversed strokes later on.</p>
+                        <p>We pair this essential visual-motor training with our signature trilingual audio system. As children watch the shapes being constructed on the screen, they hear the correct pronunciations. A child tracing a square simultaneously connects the physical drawing motion with its English name, as well as its regional Hindi and Marathi equivalents, such as 'Chaukon' (चौकोन). This multi-sensory approach solidifies their understanding of spatial concepts in their native language.</p>
+                        <h3>Frequently Asked Questions (FAQs)</h3>
+                        <p><strong>Why is shape tracing important before letter tracing?</strong><br>All letters and numbers are fundamentally made up of basic shapes! For example, writing the letter 'A' requires mastering the slanted lines of a triangle, and 'O' requires the continuous curve of a circle.</p>
+                        <p><strong>Can my child practice drawing these shapes on paper?</strong><br>Absolutely! We highly recommend downloading our free, high-quality printable shape tracing worksheets from the Parents Corner to help your child transition these digital concepts into physical pencil-and-paper practice.</p>
+                    </div>
+                </details>
+            `,
+            hi: `
+                <h2>शेप ट्रेसिंग ज़ोन के बारे में</h2>
+                <p>KidsFunLearnHub के शेप ट्रेसिंग ज़ोन में आपका स्वागत है! जादू की पेंसिल को स्ट्रोक दर स्ट्रोक आकार बनाते हुए देखने के लिए किसी भी आकृति पर टैप करें। यह इंटरैक्टिव डिजिटल कैनवास बच्चों को बुनियादी 2D ज्यामिति के माध्यम से मार्गदर्शन करके ड्राइंग और लेखन के लिए आवश्यक बुनियादी गामक (फाइन मोटर) आंदोलनों को विकसित करने में मदद करता है।</p>
+                <p><strong>सीखने के परिणाम:</strong> ठीक गामक योजना (फाइन मोटर प्लानिंग), दिशात्मक स्ट्रोक क्रम, ज्यामितीय निर्माण, और लेखन-पूर्व तैयारी।</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>कैसे खेलें और शैक्षिक लाभ</h3>
+                        <p>इससे पहले कि कोई बच्चा जटिल अक्षर या संख्याएं लिख सके, उन्हें बुनियादी दिशात्मक स्ट्रोक में महारत हासिल करनी होगी—जैसे कि एक वृत्त का निरंतर वक्र या एक त्रिकोण की तेज, आपस में काटने वाली सीधी रेखाएं। "जादुई पेंसिल" एनीमेशन इन ज्यामितीय आकारों को सहज चरणों में तोड़ता है। पेंसिल को चलते हुए देखकर, बच्चे अवचेतन रूप से हस्तलेखन के लिए आवश्यक सही शुरुआती बिंदुओं और कोणों को आत्मसात कर लेते हैं, जिससे बाद में गलत पेंसिल पकड़ और उल्टे स्ट्रोक को रोका जा सकता है।</p>
+                        <p>हम इस आवश्यक दृश्य-मोटर प्रशिक्षण को हमारे सिग्नेचर त्रिभाषी ऑडियो सिस्टम के साथ जोड़ते हैं। जैसे-जैसे बच्चे स्क्रीन पर आकृतियों को बनते हुए देखते हैं, वे सही उच्चारण सुनते हैं। एक चौकोर आकार को ट्रेस करने वाला बच्चा एक साथ शारीरिक ड्राइंग गति को उसके अंग्रेजी नाम के साथ-साथ उसके क्षेत्रीय हिंदी और मराठी समकक्षों, जैसे 'चौकोन' (Chaukon) से जोड़ता है। यह बहु-संवेदी दृष्टिकोण उनकी मूल भाषा में स्थानिक अवधारणाओं की समझ को ठोस बनाता है।</p>
+                        <h3>अक्सर पूछे जाने वाले प्रश्न (FAQs)</h3>
+                        <p><strong>अक्षर ट्रेसिंग से पहले आकार (शेप) ट्रेसिंग क्यों महत्वपूर्ण है?</strong><br>सभी अक्षर और संख्याएं मूल रूप से बुनियादी आकारों से बनी हैं! उदाहरण के लिए, अक्षर 'A' लिखने के लिए एक त्रिकोण की तिरछी रेखाओं में महारत हासिल करने की आवश्यकता होती है, और 'O' के लिए एक वृत्त के निरंतर वक्र की आवश्यकता होती है।</p>
+                        <p><strong>क्या मेरा बच्चा इन आकारों को कागज पर बनाने का अभ्यास कर सकता है?</strong><br>बिल्कुल! हम इन डिजिटल अवधारणाओं को भौतिक पेंसिल और कागज के अभ्यास में बदलने में आपके बच्चे की मदद करने के लिए पेरेंट्स कॉर्नर से हमारे मुफ्त, उच्च गुणवत्ता वाले प्रिंट करने योग्य आकार ट्रेसिंग वर्कशीट डाउनलोड करने की अत्यधिक अनुशंसा करते हैं।</p>
+                    </div>
+                </details>
+            `,
+            mr: `
+                <h2>शेप ट्रेसिंग झोनबद्दल</h2>
+                <p>KidsFunLearnHub च्या शेप ट्रेसिंग झोनमध्ये आपले स्वागत आहे! जादूची पेन्सिल एकामागून एक रेषा ओढून आकार कसा काढते हे पाहण्यासाठी कोणत्याही आकारावर टॅप करा। हे इंटरएक्टिव्ह डिजिटल कॅनव्हास लहान मुलांना मूलभूत 2D भूमितीद्वारे मार्गदर्शन करून चित्र काढण्यासाठी आणि लिहिण्यासाठी आवश्यक असलेल्या हातांच्या स्नायूंच्या हालचाली (फाइन मोटर स्किल्स) विकसित करण्यास मदत करते.</p>
+                <p><strong>शिकण्याचे परिणाम:</strong> फाइन मोटर नियोजन, दिशात्मक स्ट्रोक क्रम, भूमितीय रचना आणि लेखनपूर्व तयारी.</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>कसे खेळायचे आणि शैक्षणिक फायदे</h3>
+                        <p>मुलाने गुंतागुंतीची अक्षरे किंवा संख्या लिहिण्यापूर्वी, त्याने मूलभूत दिशात्मक रेषांवर प्रभुत्व मिळवणे आवश्यक आहे—जसे की वर्तुळाचा सलग वक्र किंवा त्रिकोणाच्या टोकदार, एकमेकांना छेदणाऱ्या सरळ रेषा. "जादूची पेन्सिल" ॲनिमेशन या भूमितीय आकारांना सोप्या टप्प्यांत विभागते. पेन्सिल फिरताना पाहून, लहान मुले हस्ताक्षरासाठी आवश्यक असलेले योग्य सुरवातीचे बिंदू आणि कोन नकळत आत्मसात करतात, ज्यामुळे पुढे जाऊन पेन्सिल चुकीची पकडणे किंवा उलट्या रेषा ओढणे टाळता येते.</p>
+                        <p>आम्ही या आवश्यक व्हिज्युअल-मोटर प्रशिक्षणाला आमच्या सिग्नेचर त्रिभाषिक ऑडिओ सिस्टीमशी जोडतो. मुले स्क्रीनवर आकार तयार होताना पाहत असताना, त्यांना योग्य उच्चारण ऐकू येते. चौकोन ट्रेस करणारे मूल शारीरिक चित्र काढण्याच्या हालचालीला त्याच्या इंग्रजी नावाशी, तसेच त्याच्या प्रादेशिक हिंदी आणि मराठी शब्द 'चौकोन' (Chaukon) शी जोडते. हा बहु-संवेदी दृष्टिकोन त्यांच्या मातृभाषेतील अवकाशीय संकल्पनांची समज दृढ करतो.</p>
+                        <h3>वारंवार विचारले जाणारे प्रश्न (FAQs)</h3>
+                        <p><strong>अक्षर ट्रेसिंगपूर्वी आकार (शेप) ट्रेसिंग का महत्त्वाचे आहे?</strong><br>सर्व अक्षरे आणि संख्या मुळात मूलभूत आकारांपासून बनलेली असतात! उदाहरणार्थ, 'A' हे अक्षर लिहिण्यासाठी त्रिकोणाच्या तिरप्या रेषांवर प्रभुत्व मिळवणे आवश्यक आहे आणि 'O' साठी वर्तुळाच्या सलग वक्राची आवश्यकता असते.</p>
+                        <p><strong>माझे मूल कागदावर हे आकार काढण्याचा सराव करू शकते का?</strong><br>नक्कीच! या डिजिटल संकल्पनांना प्रत्यक्ष पेन्सिल आणि कागदाच्या सरावात बदलण्यासाठी आम्ही पेरेंट्स कॉर्नरवरून आमचे मोफत, उच्च दर्जाचे प्रिंट करण्यायोग्य शेप ट्रेसिंग वर्कशीट्स डाउनलोड करण्याची शिफारस करतो.</p>
+                    </div>
+                </details>
+            `
         },
         // Footer Translations
         "footerAbout": { en: "About Us", hi: "हमारे बारे में", mr: "आमच्याबद्दल" },

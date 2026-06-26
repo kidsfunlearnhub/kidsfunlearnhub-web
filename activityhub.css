@@ -183,7 +183,7 @@ body {
 @keyframes bounceIn { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 
 /* SEO Container */
-.seo-description-container {
+/* .seo-description-container {
     width: 90%;
     max-width: 1000px;
     background: rgba(255, 255, 255, 0.8);
@@ -197,7 +197,90 @@ body {
 }
 .seo-description-container h2 { color: #9c27b0; font-size: 22px; margin-top: 0; }
 .seo-description-container ul { padding-left: 20px; }
-.seo-description-container li { margin-bottom: 10px; }
+.seo-description-container li { margin-bottom: 10px; } */
+
+/* --- SEO TEXT CONTAINER STYLING --- */
+.seo-description-container {
+    width: 90%;
+    max-width: 700px;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 20px 30px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    text-align: left;
+    color: #444;
+    font-size: 16px;
+    line-height: 1.6;
+}
+/* .seo-description-container h2 { color: #9c27b0; font-size: 20px; margin-top: 0; } */
+
+
+/* --- SEO Accordion Styles --- */
+.seo-description-container h2 {
+    color: #9c27b0;
+    font-size: clamp(18px, 3vw, 22px);
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+details.seo-accordion > summary {
+    list-style: none; /* Removes default triangle */
+    cursor: pointer;
+    outline: none;
+    margin-top: 15px;
+    display: inline-block; /* Makes the clickable area only as wide as the button */
+}
+
+details.seo-accordion > summary::-webkit-details-marker {
+    display: none; /* Removes default triangle in Chrome/Safari */
+}
+
+.read-more-btn {
+    font-size: 14px;
+    background: #ff5722;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: background 0.3s;
+    display: inline-block;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Text changing magic */
+details:not([open]) .read-more-btn::before {
+    content: "Read More ▼";
+}
+
+details[open] .read-more-btn {
+    background: #757575;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+}
+
+details[open] .read-more-btn::before {
+    content: "Close ✖";
+}
+
+.seo-content-wrapper {
+    margin-top: 20px;
+    border-top: 2px dashed #ccc;
+    padding-top: 15px;
+    animation: slideDown 0.4s ease-out;
+}
+
+.seo-content-wrapper h3 {
+    color: #00bcd4;
+    font-size: 18px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
 
 /* Footer */
 /* Footer */

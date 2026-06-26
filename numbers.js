@@ -19,9 +19,54 @@ window.onload = function() {
         "activitiesBtn": { en: "Numbers Activities", hi: "नंबर गतिविधियां", mr: "अंक ऍक्टिव्हिटीज" },
         "closePopupBtn": { en: "Close ✖", hi: "बंद करें ✖", mr: "बंद करा ✖" },
         "seoText": {
-            en: "Welcome to the <strong>KidsFunLearnHub Numbers Learning Zone</strong>! Tap on any number to see it come to life with fun counting images and sounds. This interactive activity helps toddlers connect digits to visual quantities, boosting their early math skills, counting abilities, and pronunciation.",
-            hi: "<strong>KidsFunLearnHub नंबर्स लर्निंग ज़ोन</strong> में आपका स्वागत है! मज़ेदार गिनती वाली छवियों और ध्वनियों के साथ इसे जीवंत होते देखने के लिए किसी भी नंबर पर टैप करें। यह संवादात्मक गतिविधि बच्चों को अंकों को दृश्य मात्रा से जोड़ने में मदद करती है, जिससे उनके शुरुआती गणित कौशल, गिनती की क्षमताओं और उच्चारण को बढ़ावा मिलता है।",
-            mr: "<strong>KidsFunLearnHub नंबर्स लर्निंग झोनमध्ये</strong> आपले स्वागत आहे! मजेदार मोजणीच्या प्रतिमा आणि आवाजांसह ते जिवंत होताना पाहण्यासाठी कोणत्याही क्रमांकावर टॅप करा. हा संवादात्मक क्रियाकलाप लहान मुलांना अंकांना दृश्य प्रमाणाशी जोडण्यास मदत करतो, ज्यामुळे त्यांचे सुरुवातीचे गणित कौशल्य, मोजणी क्षमता आणि उच्चार वाढतो."
+            en: `
+                <h2>About The Interactive Numbers Learning Zone</h2>
+                <p>Welcome to the KidsFunLearnHub Numbers Learning Zone! This interactive digital math board is designed to help early learners grasp the magic of numbers. Tap on any digit to see it come to life with fun, countable images and hear its exact pronunciation, seamlessly connecting abstract numbers to visual quantities.</p>
+                <p><strong>Learning Outcomes:</strong> Number recognition, 1-to-1 correspondence, early math readiness, and multilingual counting vocabulary.</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>How to Play & Educational Benefits</h3>
+                        <p>Understanding that the symbol "3" actually represents three physical items is a massive cognitive leap for a toddler. By tapping a number on the screen, children are instantly rewarded with a pop-up showing that exact quantity of fun objects. This engaging cause-and-effect mechanic effectively teaches "1-to-1 correspondence," which is the absolute foundation of all future mathematics and problem-solving.</p>
+                        <p>To fully support our diverse early learners, this interactive counting tool features built-in multilingual audio. As the countable objects pop up, your child will hear clear human pronunciations. They can learn to count in English, and instantly switch to hear the regional Devanagari equivalents, such as learning 'Ek' (एक) in Hindi and Marathi. This creates a highly versatile, trilingual foundation for preschool math.</p>
+                        <h3>Frequently Asked Questions (FAQs)</h3>
+                        <p><strong>Does this activity teach tracing or just counting?</strong><br>This specific page focuses heavily on number recognition, auditory counting, and quantity association. If your child is ready to start writing, you can explore our free printable tracing resources.</p>
+                        <p><strong>Can I download counting worksheets?</strong><br>Yes! Parents can access our high-quality, free PDF number tracing and counting worksheets directly from the Parents Corner for hands-on, screen-free practice.</p>
+                    </div>
+                </details>
+            `,
+            hi: `
+                <h2>इंटरएक्टिव नंबर्स लर्निंग ज़ोन के बारे में</h2>
+                <p>KidsFunLearnHub के नंबर्स लर्निंग ज़ोन में आपका स्वागत है! यह इंटरएक्टिव डिजिटल गणित बोर्ड शुरुआती शिक्षार्थियों को संख्याओं के जादू को समझने में मदद करने के लिए डिज़ाइन किया गया है। किसी भी अंक पर टैप करके उसे मज़ेदार, गिने जाने योग्य चित्रों के साथ जीवंत होते हुए देखें और उसका सटीक उच्चारण सुनें, जो अमूर्त संख्याओं को सीधे दृश्य मात्राओं से जोड़ता है।</p>
+                <p><strong>सीखने के परिणाम:</strong> संख्या पहचान, 1-से-1 संगति (संख्या-मात्रा संबंध), प्रारंभिक गणित की तैयारी, और बहुभाषी गिनती शब्दावली।</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>कैसे खेलें और शैक्षिक लाभ</h3>
+                        <p>यह समझना कि प्रतीक "3" वास्तव में तीन भौतिक वस्तुओं का प्रतिनिधित्व करता है, एक छोटे बच्चे के लिए एक बड़ी मानसिक छलांग है। स्क्रीन पर किसी संख्या को टैप करके, बच्चों को तुरंत एक पॉप-अप मिलता है जो मज़ेदार वस्तुओं की सटीक मात्रा दिखाता है। यह आकर्षक कारण-और-प्रभाव तंत्र प्रभावी रूप से "1-से-1 संगति" सिखाता है, जो भविष्य के सभी गणित और समस्या-समाधान की पूर्ण नींव है।</p>
+                        <p>हमारे विविध शुरुआती शिक्षार्थियों को पूरी तरह से समर्थन देने के लिए, इस इंटरैक्टिव गिनती टूल में इन-बिल्ट बहुभाषी ऑडियो है। जैसे ही गिनने योग्य वस्तुएं पॉप अप होती हैं, आपका बच्चा स्पष्ट मानवीय उच्चारण सुनेगा। वे अंग्रेजी में गिनती सीख सकते हैं, और तुरंत क्षेत्रीय देवनागरी समकक्षों को सुनने के लिए स्विच कर सकते हैं, जैसे कि हिंदी और मराठी में 'एक' (Ek) सीखना। यह प्रीस्कूल गणित के लिए एक अत्यधिक बहुमुखी, त्रिभाषी आधार बनाता है।</p>
+                        <h3>अक्सर पूछे जाने वाले प्रश्न (FAQs)</h3>
+                        <p><strong>क्या यह गतिविधि लिखना (ट्रेसिंग) सिखाती है या केवल गिनती?</strong><br>यह विशिष्ट पृष्ठ संख्या पहचान, श्रवण गिनती और मात्रा जुड़ाव पर भारी ध्यान केंद्रित करता है। यदि आपका बच्चा लिखना शुरू करने के लिए तैयार है, तो आप हमारे मुफ्त प्रिंट करने योग्य ट्रेसिंग संसाधनों का पता लगा सकते हैं।</p>
+                        <p><strong>क्या मैं गिनती की वर्कशीट डाउनलोड कर सकता हूँ?</strong><br>हाँ! माता-पिता हाथों-हाथ, स्क्रीन-मुक्त अभ्यास के लिए सीधे पेरेंट्स कॉर्नर से हमारे उच्च गुणवत्ता वाले, मुफ्त पीडीएफ नंबर ट्रेसिंग और गिनती वर्कशीट्स तक पहुंच सकते हैं।</p>
+                    </div>
+                </details>
+            `,
+            mr: `
+                <h2>इंटरएक्टिव नंबर्स लर्निंग झोनबद्दल</h2>
+                <p>KidsFunLearnHub च्या नंबर्स लर्निंग झोनमध्ये आपले स्वागत आहे! हे इंटरएक्टिव्ह डिजिटल मॅथ बोर्ड सुरुवातीच्या शिकणाऱ्यांना संख्यांचे महत्त्व समजून घेण्यास मदत करण्यासाठी डिझाइन केलेले आहे. कोणत्याही अंकावर टॅप करून त्याला मजेदार, मोजण्यायोग्य चित्रांसह जिवंत होताना पहा आणि त्याचे अचूक उच्चारण ऐका, जे अमूर्त संख्यांना थेट दृश्य प्रमाणांशी जोडते.</p>
+                <p><strong>शिकण्याचे परिणाम:</strong> संख्या ओळख, 1-ते-1 संबंध (संख्या-प्रमाण ओळख), लवकर गणित शिकण्याची तयारी आणि बहुभाषिक मोजणी शब्दसंग्रह.</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>कसे खेळायचे आणि शैक्षणिक फायदे</h3>
+                        <p>"३" हे चिन्ह प्रत्यक्षात तीन भौतिक वस्तूंचे प्रतिनिधित्व करते हे समजणे लहान मुलासाठी एक मोठी मानसिक झेप आहे. स्क्रीनवरील संख्येवर टॅप केल्याने, मुलांना लगेचच एक पॉप-अप दिसते ज्यामध्ये मजेदार वस्तूंचे अचूक प्रमाण दर्शवले जाते. ही आकर्षक कृती प्रभावीपणे "1-ते-1 संबंध" शिकवते, जी भविष्यातील सर्व गणित आणि समस्या सोडवण्याचा मूळ पाया आहे.</p>
+                        <p>आमच्या विविध बालमित्रांना पूर्ण पाठबळ देण्यासाठी, या इंटरएक्टिव्ह काउंटिंग टूलमध्ये इन-बिल्ट बहुभाषिक ऑडिओ समाविष्ट आहे. मोजण्यायोग्य वस्तू पॉप अप होताच, तुमचे मूल स्पष्ट मानवी उच्चारण ऐकेल. ते इंग्रजीत मोजायला शिकू शकतात आणि हिंदी आणि मराठीत 'एक' (Ek) यांसारखे प्रादेशिक देवनागरी उच्चार ऐकण्यासाठी त्वरित स्विच करू शकतात. हे प्रीस्कूल गणितासाठी एक अत्यंत उपयुक्त, त्रिभाषिक पाया तयार करते.</p>
+                        <h3>वारंवार विचारले जाणारे प्रश्न (FAQs)</h3>
+                        <p><strong>ही ऍक्टिव्हिटी ट्रेसिंग (लेखन) शिकवते की फक्त मोजणी?</strong><br>हे विशिष्ट पृष्ठ प्रामुख्याने संख्या ओळख, ऑडिओ मोजणी आणि प्रमाण ओळख यावर लक्ष केंद्रित करते. जर तुमचे मूल लिहायला शिकण्यास तयार असेल, तर तुम्ही आमची मोफत प्रिंट करण्यायोग्य ट्रेसिंग संसाधने पाहू शकता.</p>
+                        <p><strong>मी मोजणीच्या वर्कशीट्स डाउनलोड करू शकतो का?</strong><br>होय! प्रत्यक्ष अभ्यासासाठी पालकांना आमच्या उच्च दर्जाच्या, मोफत PDF नंबर ट्रेसिंग आणि काउंटिंग वर्कशीट्स थेट पेरेंट्स कॉर्नरवरून डाउनलोड करता येतील.</p>
+                    </div>
+                </details>
+            `
         },
         // Footer Translations
         "footerAbout": { en: "About Us", hi: "हमारे बारे में", mr: "आमच्याबद्दल" },
