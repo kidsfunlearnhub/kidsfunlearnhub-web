@@ -1,0 +1,12 @@
+# KidsFunLearnHub
+
+> KidsFunLearnHub is a free early-education web platform designed for toddlers and preschoolers. It provides interactive digital learning games, flashcards, and printable PDF worksheets to build foundational vocabulary, numeracy, and alphabet mastery in English, Hindi, and Marathi.
+
+## Key Resources
+
+- [Home](https://www.kidsfunlearnhub.com) - Main entry point to the platform.
+- [Learning Hub](https://www.kidsfunlearnhub.com/hub) - Interactive dashboard featuring flashcards, alphabet and number tracing, and foundational activities.
+- [Activity Hub](https://www.kidsfunlearnhub.com/activityhub) - Game dashboard containing four interactive modes: Finding, Shadow Matching, Picture Puzzles, and Tapping.
+- [Parents Corner](https://www.kidsfunlearnhub.com/parent) - Repository of downloadable, printable PDF worksheets for offline practice.
+- [Privacy Policy](https://www.kidsfunlearnhub.com/privacy) - Data handling and compliance information for child-directed content.
+- [Contact Us](https://www.kidsfunlearnhub.com/contactus) - Support inquiries and platform feedback.
