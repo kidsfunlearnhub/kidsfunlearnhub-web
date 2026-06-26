@@ -62,9 +62,54 @@ document.addEventListener("DOMContentLoaded", () => {
         "nextBtn": { en: "➡ Next Flowers", hi: "➡ अगले फूल", mr: "➡ पुढील फुले" },
         "closeHint": { en: "Tap anywhere to close", hi: "बंद करने के लिए कहीं भी टैप करें", mr: "बंद करण्यासाठी कुठेही टॅप करा" },
         "seoText": {
-            en: "Welcome to the <strong>KidsFunLearnHub Botanical Garden</strong>! Tap on any flower card to see a beautiful picture and hear its name. This interactive vocabulary activity helps toddlers recognize nature's colorful plants, improving their memory and early speech skills.",
-            hi: "<strong>KidsFunLearnHub बोटैनिकल गार्डन</strong> में आपका स्वागत है! एक सुंदर तस्वीर देखने और उसका नाम सुनने के लिए किसी भी फूल कार्ड पर टैप करें। यह संवादात्मक शब्दावली गतिविधि बच्चों को प्रकृति के रंगीन पौधों को पहचानने में मदद करती है, जिससे उनकी याददाश्त और प्रारंभिक भाषण कौशल में सुधार होता है।",
-            mr: "<strong>KidsFunLearnHub बोटॅनिकल गार्डनमध्ये</strong> आपले स्वागत आहे! एक सुंदर चित्र पाहण्यासाठी आणि त्याचे नाव ऐकण्यासाठी कोणत्याही फूल कार्डवर टॅप करा. ही संवादात्मक शब्दसंग्रह ऍक्टिव्हिटी लहान मुलांना निसर्गातील रंगीबेरंगी वनस्पती ओळखण्यास मदत करते, त्यांची स्मरणशक्ती आणि प्रारंभिक भाषण कौशल्ये सुधारते."
+            en: `
+                <h2>About The Flower Learning Flashcards</h2>
+                <p>Welcome to the Flower Learning Flashcards! This visually stunning module teaches children about the wonders of nature. Tap any beautiful bloom to trigger a high-resolution pop-up image and hear its exact name spoken aloud.</p>
+                <p><strong>Learning Outcomes:</strong> Botanical vocabulary, nature appreciation, auditory-visual matching, and multilingual sensory words.</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>How to Play & Educational Benefits</h3>
+                        <p>Flowers feature incredible geometric patterns and vivid color gradients. Our pop-up mechanic isolates the flower on the screen, allowing preschoolers to focus intently on the shape of the petals and the vivid colors without background distractions. This focused observation is a foundational skill for later art and science education.</p>
+                        <p>The gentle, engaging visuals are paired with our powerful trilingual audio system. A child can tap a lotus to see it bloom on screen, learn its English name, and immediately switch to hear the Hindi and Marathi translations like 'Kamal' (कमळ). This makes vocabulary building an immersive, relaxing experience.</p>
+                        <h3>Frequently Asked Questions (FAQs)</h3>
+                        <p><strong>Is this activity good for learning colors?</strong><br>Absolutely. The rich, full-screen pop-ups of red roses and yellow sunflowers naturally reinforce early color recognition.</p>
+                        <p><strong>Can I print these flower flashcards?</strong><br>Yes! We offer free, printable PDF flower flashcards and coloring sheets in our printable section.</p>
+                    </div>
+                </details>
+            `,
+            hi: `
+                <h2>फूल लर्निंग फ्लैशकार्ड के बारे में</h2>
+                <p>फूल लर्निंग फ्लैशकार्ड में आपका स्वागत है! यह आकर्षक मॉड्यूल बच्चों को प्रकृति के अजूबों के बारे में सिखाता है। एक उच्च-रिज़ॉल्यूशन पॉप-अप छवि को ट्रिगर करने और उसका सटीक नाम ज़ोर से सुनने के लिए किसी भी सुंदर फूल पर टैप करें।</p>
+                <p><strong>सीखने के परिणाम:</strong> वानस्पतिक शब्दावली, प्रकृति प्रशंसा, श्रवण-दृश्य मिलान, और बहुभाषी संवेदी शब्द।</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>कैसे खेलें और शैक्षिक लाभ</h3>
+                        <p>फूलों में अविश्वसनीय ज्यामितीय पैटर्न और ज्वलंत रंग ग्रेडिएंट होते हैं। हमारा पॉप-अप मैकेनिक स्क्रीन पर फूल को अलग करता है, जिससे प्रीस्कूलर बिना पृष्ठभूमि के विकर्षणों के पंखुड़ियों के आकार और ज्वलंत रंगों पर ध्यान केंद्रित कर सकते हैं। यह केंद्रित अवलोकन बाद की कला और विज्ञान शिक्षा के लिए एक आधारभूत कौशल है।</p>
+                        <p>सौम्य, आकर्षक दृश्यों को हमारे शक्तिशाली त्रिभाषी ऑडियो सिस्टम के साथ जोड़ा गया है। एक बच्चा कमल को स्क्रीन पर खिलते हुए देखने के लिए उस पर टैप कर सकता है, उसका अंग्रेजी नाम सीख सकता है, और तुरंत 'कमल' (Kamal) जैसे हिंदी और मराठी अनुवाद सुनने के लिए स्विच कर सकता है। यह शब्दावली निर्माण को एक गहन, आरामदायक अनुभव बनाता है।</p>
+                        <h3>अक्सर पूछे जाने वाले प्रश्न (FAQs)</h3>
+                        <p><strong>क्या यह गतिविधि रंग सीखने के लिए अच्छी है?</strong><br>बिल्कुल। लाल गुलाब और पीले सूरजमुखी के समृद्ध, पूर्ण-स्क्रीन पॉप-अप स्वाभाविक रूप से प्रारंभिक रंग पहचान को सुदृढ़ करते हैं।</p>
+                        <p><strong>क्या मैं इन फूल फ्लैशकार्ड को प्रिंट कर सकता हूँ?</strong><br>हाँ! हम अपने प्रिंट करने योग्य अनुभाग में मुफ्त, प्रिंट करने योग्य पीडीएफ फूल फ्लैशकार्ड और रंग शीट प्रदान करते हैं।</p>
+                    </div>
+                </details>
+            `,
+            mr: `
+                <h2>फुले लर्निंग फ्लॅशकार्ड्सबद्दल</h2>
+                <p>फुले लर्निंग फ्लॅशकार्ड्समध्ये आपले स्वागत आहे! हे दृश्यात्मक दृष्ट्या आश्चर्यकारक मॉड्यूल मुलांना निसर्गाच्या चमत्कारांबद्दल शिकवते. हाय-रिझोल्यूशन पॉप-अप प्रतिमा ट्रिगर करण्यासाठी आणि तिचे अचूक नाव मोठ्याने ऐकण्यासाठी कोणत्याही सुंदर फुलावर टॅप करा.</p>
+                <p><strong>शिकण्याचे परिणाम:</strong> वनस्पतिशास्त्रीय शब्दसंग्रह, निसर्गाची आवड, श्रवण-दृश्य मिलान आणि बहुभाषिक संवेदी शब्द.</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>कसे खेळायचे आणि शैक्षणिक फायदे</h3>
+                        <p>फुलांमध्ये अविश्वसनीय भौमितिक नमुने आणि ज्वलंत रंग असतात. आमचे पॉप-अप मेकॅनिक स्क्रीनवरील फुलाला वेगळे करते, ज्यामुळे लहान मुलांना पार्श्वभूमीतील गोंधळाशिवाय पाकळ्यांच्या आकारावर आणि ज्वलंत रंगांवर लक्ष केंद्रित करण्यास मदत होते. हे केंद्रित निरीक्षण नंतरच्या कला आणि विज्ञान शिक्षणासाठी एक पायाभूत कौशल्य आहे.</p>
+                        <p>सौम्य, आकर्षक व्हिज्युअल्स आमच्या शक्तिशाली त्रिभाषिक ऑडिओ प्रणालीशी जोडलेले आहेत. एक मूल कमळ स्क्रीनवर फुललेले पाहण्यासाठी टॅप करू शकते, त्याचे इंग्रजी नाव शिकू शकते आणि 'कमळ' (Kamal) सारखे हिंदी आणि मराठी भाषांतर ऐकण्यासाठी त्वरित स्विच करू शकते. हे शब्दसंग्रह तयार करण्याला एक तल्लीन करणारा, आरामदायी अनुभव बनवते.</p>
+                        <h3>वारंवार विचारले जाणारे प्रश्न (FAQs)</h3>
+                        <p><strong>ही ऍक्टिव्हिटी रंग शिकण्यासाठी चांगली आहे का?</strong><br>नक्कीच. लाल गुलाब आणि पिवळ्या सूर्यफुलाचे समृद्ध, फुल-स्क्रीन पॉप-अप नैसर्गिकरित्या प्रारंभिक रंग ओळख मजबूत करतात.</p>
+                        <p><strong>मी हे फुलांचे फ्लॅशकार्ड प्रिंट करू शकतो का?</strong><br>होय! आम्ही आमच्या प्रिंटेबल विभागात मोफत, प्रिंट करण्यायोग्य PDF फुलांचे फ्लॅशकार्ड आणि कलरिंग शीट्स देतो.</p>
+                    </div>
+                </details>
+            `
         },
         // Footer Translations
         "footerAbout": { en: "About Us", hi: "हमारे बारे में", mr: "आमच्याबद्दल" },

@@ -62,9 +62,54 @@ document.addEventListener("DOMContentLoaded", () => {
         "nextBtn": { en: "➡ Next Foods", hi: "➡ अगला भोजन", mr: "➡ पुढील पदार्थ" },
         "closeHint": { en: "Tap anywhere to close", hi: "बंद करने के लिए कहीं भी टैप करें", mr: "बंद करण्यासाठी कुठेही टॅप करा" },
         "seoText": {
-            en: "Welcome to the <strong>KidsFunLearnHub Food Court</strong>! Tap on any food card to see a vibrant picture and hear its name. This interactive vocabulary activity helps toddlers recognize everyday Indian foods and dishes, improving their memory and early speech skills.",
-            hi: "<strong>KidsFunLearnHub फ़ूड कोर्ट</strong> में आपका स्वागत है! एक जीवंत तस्वीर देखने और उसका नाम सुनने के लिए किसी भी भोजन कार्ड पर टैप करें। यह संवादात्मक शब्दावली गतिविधि बच्चों को रोजमर्रा के भारतीय खाद्य पदार्थों को पहचानने में मदद करती है, जिससे उनकी याददाश्त और प्रारंभिक भाषण कौशल में सुधार होता है।",
-            mr: "<strong>KidsFunLearnHub फूड कोर्टमध्ये</strong> आपले स्वागत आहे! एक दोलायमान चित्र पाहण्यासाठी आणि त्याचे नाव ऐकण्यासाठी कोणत्याही खाद्यपदार्थाच्या कार्डवर टॅप करा. ही संवादात्मक शब्दसंग्रह ऍक्टिव्हिटी लहान मुलांना दररोजचे भारतीय पदार्थ ओळखण्यास मदत करते, त्यांची स्मरणशक्ती आणि प्रारंभिक भाषण कौशल्ये सुधारते."
+            en: `
+                <h2>About The Daily Foods Learning Flashcards</h2>
+                <p>Step into the kitchen with our Daily Foods Learning Flashcards! This interactive vocabulary builder helps early learners identify everyday meals and snacks. Tapping an item triggers a full-screen pop-up and clear audio pronunciation.</p>
+                <p><strong>Learning Outcomes:</strong> Daily routine vocabulary, cultural food awareness, speech articulation, and bilingual meal identification.</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>How to Play & Educational Benefits</h3>
+                        <p>Learning the names of daily foods is a massive leap in a toddler’s ability to communicate their needs. By tapping on bread, milk, or a bowl of rice, the distraction-free pop-up helps them associate the visual dish with the spoken word. This drastically reduces frustration when a child is trying to ask parents for a specific snack.</p>
+                        <p>Food is deeply tied to culture. We designed this interactive canvas to be highly relevant to our users by including audio dictionaries spanning English, Hindi, and Marathi. This ensures that children can clearly recognize and articulate the names of the dishes prepared in their own homes.</p>
+                        <h3>Frequently Asked Questions (FAQs)</h3>
+                        <p><strong>Are regional Indian dishes included?</strong><br>Yes, we prioritize a localized learning experience, ensuring the vocabulary matches the everyday foods children actually see on their plates.</p>
+                        <p><strong>What age is appropriate for food flashcards?</strong><br>Children as young as 18 months can begin using this tool to point out and mimic the names of their favorite foods.</p>
+                    </div>
+                </details>
+            `,
+            hi: `
+                <h2>दैनिक भोजन लर्निंग फ्लैशकार्ड के बारे में</h2>
+                <p>हमारे दैनिक भोजन लर्निंग फ्लैशकार्ड के साथ रसोई में कदम रखें! यह इंटरैक्टिव शब्दावली निर्माता प्रारंभिक शिक्षार्थियों को रोज़मर्रा के भोजन और स्नैक्स को पहचानने में मदद करता है। किसी आइटम पर टैप करने से पूर्ण-स्क्रीन पॉप-अप और स्पष्ट ऑडियो उच्चारण ट्रिगर होता है।</p>
+                <p><strong>सीखने के परिणाम:</strong> दैनिक दिनचर्या शब्दावली, सांस्कृतिक भोजन जागरूकता, वाक् स्पष्टता, और द्विभाषी भोजन पहचान।</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>कैसे खेलें और शैक्षिक लाभ</h3>
+                        <p>दैनिक खाद्य पदार्थों के नाम सीखना एक बच्चे की अपनी ज़रूरतों को संप्रेषित करने की क्षमता में एक बड़ी छलांग है। ब्रेड, दूध या चावल के कटोरे पर टैप करके, व्याकुलता मुक्त पॉप-अप उन्हें दृश्य पकवान को बोले गए शब्द के साथ जोड़ने में मदद करता है। जब कोई बच्चा माता-पिता से किसी विशिष्ट स्नैक के लिए पूछने की कोशिश कर रहा होता है तो यह हताशा को काफी कम कर देता है।</p>
+                        <p>भोजन संस्कृति से गहराई से जुड़ा हुआ है। हमने अंग्रेजी, हिंदी और मराठी में ऑडियो डिक्शनरी शामिल करके इस इंटरैक्टिव कैनवास को अपने उपयोगकर्ताओं के लिए अत्यधिक प्रासंगिक बनाने के लिए डिज़ाइन किया है। यह सुनिश्चित करता है कि बच्चे अपने घरों में तैयार किए गए व्यंजनों के नामों को स्पष्ट रूप से पहचान और बोल सकें।</p>
+                        <h3>अक्सर पूछे जाने वाले प्रश्न (FAQs)</h3>
+                        <p><strong>क्या इसमें क्षेत्रीय भारतीय व्यंजन शामिल हैं?</strong><br>हाँ, हम एक स्थानीय सीखने के अनुभव को प्राथमिकता देते हैं, यह सुनिश्चित करते हुए कि शब्दावली रोज़मर्रा के खाद्य पदार्थों से मेल खाती है जो बच्चे वास्तव में अपनी प्लेटों पर देखते हैं।</p>
+                        <p><strong>भोजन फ्लैशकार्ड के लिए कौन सी उम्र उपयुक्त है?</strong><br>18 महीने के बच्चे अपने पसंदीदा खाद्य पदार्थों के नामों को इंगित करने और उनकी नकल करने के लिए इस उपकरण का उपयोग करना शुरू कर सकते हैं।</p>
+                    </div>
+                </details>
+            `,
+            mr: `
+                <h2>दैनंदिन अन्न लर्निंग फ्लॅशकार्ड्सबद्दल</h2>
+                <p>आमच्या दैनंदिन अन्न लर्निंग फ्लॅशकार्ड्ससह स्वयंपाकघरात प्रवेश करा! हे इंटरएक्टिव्ह शब्दसंग्रह साधन सुरुवातीच्या शिकणाऱ्यांना रोजचे जेवण आणि स्नॅक्स ओळखण्यास मदत करते. आयटमवर टॅप केल्याने फुल-स्क्रीन पॉप-अप आणि स्पष्ट ऑडिओ उच्चार ट्रिगर होतो.</p>
+                <p><strong>शिकण्याचे परिणाम:</strong> दैनंदिन दिनचर्या शब्दसंग्रह, सांस्कृतिक अन्न जागरूकता, भाषण स्पष्टता आणि द्विभाषिक जेवण ओळख.</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>कसे खेळायचे आणि शैक्षणिक फायदे</h3>
+                        <p>दैनंदिन अन्नाची नावे शिकणे ही लहान मुलांच्या गरजा सांगण्याच्या क्षमतेत मोठी झेप आहे. ब्रेड, दूध किंवा तांदळाच्या वाटीवर टॅप करून, विचलित न करणारे पॉप-अप त्यांना दृश्य अन्नाला उच्चारलेल्या शब्दाशी जोडण्यास मदत करते. जेव्हा मूल पालकांना विशिष्ट स्नॅकसाठी विचारण्याचा प्रयत्न करत असते तेव्हा यामुळे निराशा मोठ्या प्रमाणात कमी होते.</p>
+                        <p>अन्न संस्कृतीशी खोलवर जोडलेले आहे. इंग्रजी, हिंदी आणि मराठीतील ऑडिओ डिक्शनरी समाविष्ट करून आम्ही हा इंटरएक्टिव्ह कॅनव्हास आमच्या वापरकर्त्यांसाठी अत्यंत प्रासंगिक बनवण्यासाठी डिझाइन केला आहे. यामुळे मुले त्यांच्या स्वतःच्या घरात तयार केलेल्या पदार्थांची नावे स्पष्टपणे ओळखू आणि बोलू शकतील याची खात्री होते.</p>
+                        <h3>वारंवार विचारले जाणारे प्रश्न (FAQs)</h3>
+                        <p><strong>यामध्ये प्रादेशिक भारतीय पदार्थांचा समावेश आहे का?</strong><br>होय, आम्ही स्थानिक शिकण्याच्या अनुभवाला प्राधान्य देतो, हे सुनिश्चित करून की शब्दसंग्रह रोजच्या अन्नाशी जुळतो जे मुले खरोखर त्यांच्या ताटात पाहतात.</p>
+                        <p><strong>अन्न फ्लॅशकार्ड्ससाठी कोणते वय योग्य आहे?</strong><br>१८ महिन्यांची मुले त्यांच्या आवडत्या अन्नाकडे बोट दाखवण्यासाठी आणि नावांची नक्कल करण्यासाठी या साधनाची मदत घेऊ शकतात.</p>
+                    </div>
+                </details>
+            `
         },
         // Footer Translations
         "footerAbout": { en: "About Us", hi: "हमारे बारे में", mr: "आमच्याबद्दल" },

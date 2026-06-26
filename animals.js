@@ -62,9 +62,54 @@ document.addEventListener("DOMContentLoaded", () => {
         "nextBtn": { en: "➡ Next Animals", hi: "➡ अगले जानवर", mr: "➡ पुढील प्राणी" },
         "closeHint": { en: "Tap anywhere to close", hi: "बंद करने के लिए कहीं भी टैप करें", mr: "बंद करण्यासाठी कुठेही टॅप करा" },
         "seoText": {
-            en: "Welcome to the <strong>KidsFunLearnHub Animal Kingdom</strong>! Tap on any animal card to see a larger picture and hear its name. This interactive vocabulary activity helps toddlers recognize wildlife and domestic animals, improving their memory and speech.",
-            hi: "<strong>KidsFunLearnHub पशु साम्राज्य</strong> में आपका स्वागत है! बड़ी तस्वीर देखने और उसका नाम सुनने के लिए किसी भी पशु कार्ड पर टैप करें। यह संवादात्मक शब्दावली गतिविधि बच्चों को वन्यजीवों और घरेलू जानवरों को पहचानने में मदद करती है, जिससे उनकी याददाश्त और वाणी में सुधार होता है।",
-            mr: "<strong>KidsFunLearnHub प्राणी साम्राज्यामध्ये</strong> आपले स्वागत आहे! मोठे चित्र पाहण्यासाठी आणि त्याचे नाव ऐकण्यासाठी कोणत्याही प्राणी कार्डवर टॅप करा. ही संवादात्मक शब्दसंग्रह ऍक्टिव्हिटी लहान मुलांना वन्यजीव आणि पाळीव प्राणी ओळखण्यास मदत करते, त्यांची स्मरणशक्ती आणि भाषण सुधारते."
+            en: `
+                <h2>About The Animal Learning Flashcards</h2>
+                <p>Welcome to KidsFunLearnHub's Animal Learning Flashcards! This interactive digital vocabulary builder lets toddlers tap on vibrant wildlife cards to trigger a large pop-up image and instantly hear the animal's exact pronunciation.</p>
+                <p><strong>Learning Outcomes:</strong> Wildlife vocabulary, auditory-visual association, speech development, and multilingual noun recognition.</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>How to Play & Educational Benefits</h3>
+                        <p>Digital flashcards are incredibly effective for early childhood education. When a child taps an animal card, the large pop-up removes all screen distractions, focusing their complete attention on the animal's specific physical traits. This isolated visual focus drastically improves memory retention compared to looking at crowded picture books.</p>
+                        <p>The true power of this activity is the immediate auditory feedback. As the image pops up, children hear a crystal-clear pronunciation of the animal. With our built-in language toggle, a toddler can hear "Dog" in English, and instantly switch to learn 'Kutta' (कुत्ता) in Hindi or 'Kutra' (कुत्रा) in Marathi, seamlessly building a rich, trilingual vocabulary.</p>
+                        <h3>Frequently Asked Questions (FAQs)</h3>
+                        <p><strong>Is this suitable for speech therapy or delayed speech?</strong><br>Yes! The cause-and-effect mechanic of tapping an image to hear a clear, isolated word is highly recommended for encouraging early speech and mimicking.</p>
+                        <p><strong>Are there offline animal flashcards available?</strong><br>Absolutely. We offer high-quality, printable PDF animal flashcards for free in our Parents Corner.</p>
+                    </div>
+                </details>
+            `,
+            hi: `
+                <h2>पशु लर्निंग फ्लैशकार्ड के बारे में</h2>
+                <p>KidsFunLearnHub के पशु लर्निंग फ्लैशकार्ड में आपका स्वागत है! यह इंटरैक्टिव डिजिटल शब्दावली निर्माता बच्चों को जीवंत वन्यजीव कार्ड पर टैप करके एक बड़ी पॉप-अप छवि देखने और तुरंत जानवर का सटीक उच्चारण सुनने की सुविधा देता है।</p>
+                <p><strong>सीखने के परिणाम:</strong> वन्यजीव शब्दावली, श्रवण-दृश्य जुड़ाव, वाक् विकास, और बहुभाषी संज्ञा पहचान।</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>कैसे खेलें और शैक्षिक लाभ</h3>
+                        <p>प्रारंभिक बचपन की शिक्षा के लिए डिजिटल फ्लैशकार्ड अविश्वसनीय रूप से प्रभावी हैं। जब कोई बच्चा किसी जानवर के कार्ड पर टैप करता है, तो बड़ा पॉप-अप स्क्रीन के सभी विकर्षणों को दूर कर देता है, जिससे उनका पूरा ध्यान जानवर के विशिष्ट शारीरिक लक्षणों पर केंद्रित हो जाता है। यह पृथक दृश्य फोकस भीड़-भाड़ वाली चित्र पुस्तकों को देखने की तुलना में स्मृति प्रतिधारण में काफी सुधार करता है।</p>
+                        <p>इस गतिविधि की असली शक्ति तत्काल श्रवण प्रतिक्रिया है। जैसे ही छवि पॉप अप होती है, बच्चों को जानवर का स्पष्ट उच्चारण सुनाई देता है। हमारे इन-बिल्ट लैंग्वेज टॉगल के साथ, एक बच्चा अंग्रेजी में "Dog" सुन सकता है, और तुरंत हिंदी में 'कुत्ता' या मराठी में 'कुत्रा' सीखने के लिए स्विच कर सकता है, जिससे एक समृद्ध, त्रिभाषी शब्दावली का निर्माण होता है।</p>
+                        <h3>अक्सर पूछे जाने वाले प्रश्न (FAQs)</h3>
+                        <p><strong>क्या यह स्पीच थेरेपी या देरी से बोलने वाले बच्चों के लिए उपयुक्त है?</strong><br>हाँ! एक स्पष्ट, पृथक शब्द सुनने के लिए एक छवि को टैप करने के कारण-और-प्रभाव तंत्र की अत्यधिक अनुशंसा की जाती है ताकि शुरुआती बोलने और नकल करने को प्रोत्साहित किया जा सके।</p>
+                        <p><strong>क्या ऑफ़लाइन पशु फ्लैशकार्ड उपलब्ध हैं?</strong><br>बिल्कुल। हम अपने पेरेंट्स कॉर्नर में मुफ्त में उच्च गुणवत्ता वाले, प्रिंट करने योग्य पीडीएफ पशु फ्लैशकार्ड प्रदान करते हैं।</p>
+                    </div>
+                </details>
+            `,
+            mr: `
+                <h2>प्राणी लर्निंग फ्लॅशकार्ड्सबद्दल</h2>
+                <p>KidsFunLearnHub च्या प्राणी लर्निंग फ्लॅशकार्ड्समध्ये आपले स्वागत आहे! हे इंटरएक्टिव्ह डिजिटल व्होकॅब्युलरी बिल्डर लहान मुलांना वन्यजीव कार्डवर टॅप करून एक मोठी पॉप-अप प्रतिमा पाहू देते आणि लगेच प्राण्याचे अचूक उच्चारण ऐकू देते.</p>
+                <p><strong>शिकण्याचे परिणाम:</strong> वन्यजीव शब्दसंग्रह, श्रवण-दृश्य ओळख, भाषण विकास आणि बहुभाषिक नाम ओळख.</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>कसे खेळायचे आणि शैक्षणिक फायदे</h3>
+                        <p>लहान मुलांच्या शिक्षणासाठी डिजिटल फ्लॅशकार्ड आश्चर्यकारकपणे प्रभावी आहेत. जेव्हा मूल प्राणी कार्ड टॅप करते, तेव्हा मोठे पॉप-अप स्क्रीनवरील सर्व विचलित करणाऱ्या गोष्टी काढून टाकते आणि त्यांचे पूर्ण लक्ष प्राण्यांच्या विशिष्ट शारीरिक वैशिष्ट्यांवर केंद्रित करते. पुस्तकातील गर्दीच्या चित्रांच्या तुलनेत या एकाग्र दृश्य फोकसमुळे स्मरणशक्तीमध्ये लक्षणीय सुधारणा होते.</p>
+                        <p>या ऍक्टिव्हिटीची खरी ताकद म्हणजे त्वरित ऑडिओ प्रतिसाद. प्रतिमा पॉप अप होताच, मुलांना प्राण्याचे स्पष्ट उच्चारण ऐकू येते. आमच्या इन-बिल्ट लँग्वेज टॉगलसह, बाळ इंग्रजीमध्ये "Dog" ऐकू शकते आणि हिंदीमध्ये 'कुत्ता' किंवा मराठीत 'कुत्रा' शिकण्यासाठी त्वरित स्विच करू शकते, ज्यामुळे एक समृद्ध, त्रिभाषिक शब्दसंग्रह तयार होतो.</p>
+                        <h3>वारंवार विचारले जाणारे प्रश्न (FAQs)</h3>
+                        <p><strong>हे स्पीच थेरपी किंवा उशिरा बोलणाऱ्या मुलांसाठी योग्य आहे का?</strong><br>होय! स्पष्ट, वेगळा शब्द ऐकण्यासाठी प्रतिमेवर टॅप करण्याच्या कृतीची शिफारस लवकर बोलण्यासाठी आणि नक्कल करण्यास प्रोत्साहित करण्यासाठी केली जाते.</p>
+                        <p><strong>ऑफलाइन प्राणी फ्लॅशकार्ड्स उपलब्ध आहेत का?</strong><br>नक्कीच. आम्ही आमच्या पेरेंट्स कॉर्नरमध्ये मोफत उच्च दर्जाचे, प्रिंट करण्यायोग्य PDF प्राणी फ्लॅशकार्ड्स देतो.</p>
+                    </div>
+                </details>
+            `
         },
         // Footer Translations
         "footerAbout": { en: "About Us", hi: "हमारे बारे में", mr: "आमच्याबद्दल" },

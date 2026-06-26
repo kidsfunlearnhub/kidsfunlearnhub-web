@@ -62,9 +62,54 @@ document.addEventListener("DOMContentLoaded", () => {
         "nextBtn": { en: "➡ Next Vehicles", hi: "➡ अगले वाहन", mr: "➡ पुढील वाहने" },
         "closeHint": { en: "Tap anywhere to close", hi: "बंद करने के लिए कहीं भी टैप करें", mr: "बंद करण्यासाठी कुठेही टॅप करा" },
         "seoText": {
-            en: "Welcome to the <strong>KidsFunLearnHub Transportation Hub</strong>! Tap on any vehicle card to see a larger picture and hear its name. This interactive vocabulary activity helps toddlers recognize different modes of transport, improving their memory and early speech skills.",
-            hi: "<strong>KidsFunLearnHub ट्रांसपोर्टेशन हब</strong> में आपका स्वागत है! बड़ी तस्वीर देखने और उसका नाम सुनने के लिए किसी भी वाहन कार्ड पर टैप करें। यह संवादात्मक शब्दावली गतिविधि बच्चों को परिवहन के विभिन्न साधनों को पहचानने में मदद करती है, जिससे उनकी याददाश्त और प्रारंभिक भाषण कौशल में सुधार होता है।",
-            mr: "<strong>KidsFunLearnHub ट्रान्सपोर्टेशन हबमध्ये</strong> आपले स्वागत आहे! मोठे चित्र पाहण्यासाठी आणि त्याचे नाव ऐकण्यासाठी कोणत्याही वाहन कार्डवर टॅप करा. ही संवादात्मक शब्दसंग्रह ऍक्टिव्हिटी लहान मुलांना वाहतुकीचे विविध मार्ग ओळखण्यास मदत करते, त्यांची स्मरणशक्ती आणि प्रारंभिक भाषण कौशल्ये सुधारते."
+            en: `
+                <h2>About The Vehicle Learning Flashcards</h2>
+                <p>Zoom into learning with the Vehicle Learning Flashcards! This exciting digital activity introduces toddlers to community transport. Tapping any vehicle triggers a massive pop-up image and a clear, precise audio pronunciation.</p>
+                <p><strong>Learning Outcomes:</strong> Community transport vocabulary, mechanical categorization, early speech development, and regional language integration.</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>How to Play & Educational Benefits</h3>
+                        <p>Vehicles are incredibly engaging for young minds. Our pop-up flashcard system allows children to closely examine the structural details of land, air, and water transport. Isolating a fire truck or an airplane on the screen helps them focus on distinct parts like wheels, windows, and wings, building early mechanical awareness.</p>
+                        <p>Our interactive audio system provides precise Devanagari pronunciations alongside English. This allows children to confidently learn regional terms for trains, boats, and cars that match their local environment, ensuring their vocabulary grows rapidly in English, Hindi, and Marathi simultaneously.</p>
+                        <h3>Frequently Asked Questions (FAQs)</h3>
+                        <p><strong>Does this module include emergency vehicles?</strong><br>Yes, recognizing community helper vehicles like ambulances and police cars is a key part of this vocabulary lesson.</p>
+                        <p><strong>Are transport flashcards available for offline play?</strong><br>Absolutely! Check the Parents Corner for high-quality, printable transport flashcards and puzzles.</p>
+                    </div>
+                </details>
+            `,
+            hi: `
+                <h2>वाहन लर्निंग फ्लैशकार्ड के बारे में</h2>
+                <p>वाहन लर्निंग फ्लैशकार्ड के साथ सीखने में ज़ूम इन करें! यह रोमांचक डिजिटल गतिविधि बच्चों को सामुदायिक परिवहन से परिचित कराती है। किसी भी वाहन को टैप करने से एक विशाल पॉप-अप छवि और एक स्पष्ट, सटीक ऑडियो उच्चारण ट्रिगर होता है।</p>
+                <p><strong>सीखने के परिणाम:</strong> सामुदायिक परिवहन शब्दावली, यांत्रिक वर्गीकरण, प्रारंभिक वाक् विकास, और क्षेत्रीय भाषा एकीकरण।</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>कैसे खेलें और शैक्षिक लाभ</h3>
+                        <p>वाहन युवा दिमाग के लिए अविश्वसनीय रूप से आकर्षक हैं। हमारा पॉप-अप फ्लैशकार्ड सिस्टम बच्चों को भूमि, वायु और जल परिवहन के संरचनात्मक विवरणों की बारीकी से जांच करने की अनुमति देता है। स्क्रीन पर फायर ट्रक या हवाई जहाज को अलग करने से उन्हें पहियों, खिड़कियों और पंखों जैसे अलग-अलग हिस्सों पर ध्यान केंद्रित करने में मदद मिलती है, जिससे प्रारंभिक यांत्रिक जागरूकता का निर्माण होता है।</p>
+                        <p>हमारा इंटरैक्टिव ऑडियो सिस्टम अंग्रेजी के साथ-साथ सटीक देवनागरी उच्चारण प्रदान करता है। इससे बच्चों को ट्रेनों, नावों और कारों के लिए क्षेत्रीय शब्द आत्मविश्वास से सीखने की अनुमति मिलती है जो उनके स्थानीय वातावरण से मेल खाते हैं, यह सुनिश्चित करते हुए कि उनकी शब्दावली अंग्रेजी, हिंदी और मराठी में एक साथ तेजी से बढ़ती है।</p>
+                        <h3>अक्सर पूछे जाने वाले प्रश्न (FAQs)</h3>
+                        <p><strong>क्या इस मॉड्यूल में आपातकालीन वाहन शामिल हैं?</strong><br>हाँ, एम्बुलेंस और पुलिस कारों जैसे सामुदायिक सहायक वाहनों को पहचानना इस शब्दावली पाठ का एक महत्वपूर्ण हिस्सा है।</p>
+                        <p><strong>क्या ऑफ़लाइन खेलने के लिए परिवहन फ्लैशकार्ड उपलब्ध हैं?</strong><br>बिल्कुल! उच्च गुणवत्ता वाले, प्रिंट करने योग्य परिवहन फ्लैशकार्ड और पहेलियों के लिए पेरेंट्स कॉर्नर देखें।</p>
+                    </div>
+                </details>
+            `,
+            mr: `
+                <h2>वाहने लर्निंग फ्लॅशकार्ड्सबद्दल</h2>
+                <p>वाहने लर्निंग फ्लॅशकार्ड्ससह शिकण्याला वेग द्या! ही रोमांचक डिजिटल ऍक्टिव्हिटी लहान मुलांना सार्वजनिक वाहतुकीची ओळख करून देते. कोणत्याही वाहनावर टॅप केल्याने एक मोठी पॉप-अप प्रतिमा आणि एक स्पष्ट, अचूक ऑडिओ उच्चार ट्रिगर होतो.</p>
+                <p><strong>शिकण्याचे परिणाम:</strong> सार्वजनिक वाहतूक शब्दसंग्रह, यांत्रिक वर्गीकरण, प्रारंभिक भाषण विकास आणि प्रादेशिक भाषा एकत्रीकरण.</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>कसे खेळायचे आणि शैक्षणिक फायदे</h3>
+                        <p>वाहने तरुण मनांसाठी आश्चर्यकारकपणे आकर्षक आहेत. आमची पॉप-अप फ्लॅशकार्ड प्रणाली मुलांना जमीन, हवा आणि जल वाहतुकीच्या संरचनात्मक तपशीलांचे बारकाईने परीक्षण करण्यास अनुमती देते. स्क्रीनवर फायर ट्रक किंवा विमान वेगळे केल्याने त्यांना चाके, खिडक्या आणि पंख यांसारख्या विशिष्ट भागांवर लक्ष केंद्रित करण्यास मदत होते, ज्यामुळे प्रारंभिक यांत्रिक जागरूकता निर्माण होते.</p>
+                        <p>आमची इंटरएक्टिव्ह ऑडिओ प्रणाली इंग्रजीच्या बरोबरीने अचूक देवनागरी उच्चार प्रदान करते. यामुळे मुलांना त्यांच्या स्थानिक वातावरणाशी जुळणाऱ्या ट्रेन, बोटी आणि गाड्यांसाठी प्रादेशिक शब्द आत्मविश्वासाने शिकता येतात, ज्यामुळे त्यांचा शब्दसंग्रह एकाच वेळी इंग्रजी, हिंदी आणि मराठीमध्ये वेगाने वाढतो.</p>
+                        <h3>वारंवार विचारले जाणारे प्रश्न (FAQs)</h3>
+                        <p><strong>या मॉड्यूलमध्ये आपत्कालीन वाहनांचा समावेश आहे का?</strong><br>होय, रुग्णवाहिका आणि पोलिसांच्या गाड्यांसारख्या सार्वजनिक मदतनीस वाहनांना ओळखणे हा या शब्दसंग्रह धड्याचा एक महत्त्वाचा भाग आहे.</p>
+                        <p><strong>ऑफलाइन खेळासाठी वाहतूक फ्लॅशकार्ड्स उपलब्ध आहेत का?</strong><br>नक्कीच! उच्च दर्जाच्या, प्रिंट करण्यायोग्य वाहतूक फ्लॅशकार्ड्स आणि पझल्ससाठी पेरेंट्स कॉर्नर तपासा.</p>
+                    </div>
+                </details>
+            `
         },
         // Footer Translations
         "footerAbout": { en: "About Us", hi: "हमारे बारे में", mr: "आमच्याबद्दल" },

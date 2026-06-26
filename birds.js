@@ -62,9 +62,54 @@ document.addEventListener("DOMContentLoaded", () => {
         "nextBtn": { en: "➡ Next Birds", hi: "➡ अगले पक्षी", mr: "➡ पुढील पक्षी" },
         "closeHint": { en: "Tap anywhere to close", hi: "बंद करने के लिए कहीं भी टैप करें", mr: "बंद करण्यासाठी कुठेही टॅप करा" },
         "seoText": {
-            en: "Welcome to the <strong>KidsFunLearnHub Bird Sanctuary</strong>! Tap on any bird card to see a beautiful picture and hear its name. This interactive vocabulary activity helps toddlers recognize common and wild birds, improving their memory and early speech skills.",
-            hi: "<strong>KidsFunLearnHub पक्षी अभयारण्य</strong> में आपका स्वागत है! एक सुंदर तस्वीर देखने और उसका नाम सुनने के लिए किसी भी पक्षी कार्ड पर टैप करें। यह संवादात्मक शब्दावली गतिविधि बच्चों को आम और जंगली पक्षियों को पहचानने में मदद करती है, जिससे उनकी याददाश्त और प्रारंभिक भाषण कौशल में सुधार होता है।",
-            mr: "<strong>KidsFunLearnHub पक्षी अभयारण्यात</strong> आपले स्वागत आहे! एक सुंदर चित्र पाहण्यासाठी आणि त्याचे नाव ऐकण्यासाठी कोणत्याही पक्षी कार्डवर टॅप करा. ही संवादात्मक शब्दसंग्रह ऍक्टिव्हिटी लहान मुलांना सामान्य आणि जंगली पक्षी ओळखण्यास मदत करते, त्यांची स्मरणशक्ती आणि प्रारंभिक भाषण कौशल्ये सुधारते."
+            en: `
+                <h2>About The Bird Learning Flashcards</h2>
+                <p>Take flight with the Bird Learning Flashcards! This engaging educational tool invites preschoolers to explore the avian world. Tapping any bird reveals a beautiful, up-close pop-up image accompanied by a clear voice pronouncing its name.</p>
+                <p><strong>Learning Outcomes:</strong> Nature observation, avian vocabulary, pronunciation clarity, and bilingual environmental awareness.</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>How to Play & Educational Benefits</h3>
+                        <p>Birds share many similar characteristics, making them tricky for toddlers to differentiate. Our interactive pop-up mechanic isolates each bird—from the grand peacock to the tiny sparrow—allowing children to study distinct feather patterns and beak shapes without background clutter. This builds excellent visual discrimination skills.</p>
+                        <p>Because children see birds every day, localizing this vocabulary is essential. Our platform provides precise Devanagari audio support. When the pop-up opens, a child can hear the English name alongside regional terms like 'Popat' (पोपट) for parrot and 'Mor' (मोर) for peacock, creating a highly engaging, multilingual nature lesson.</p>
+                        <h3>Frequently Asked Questions (FAQs)</h3>
+                        <p><strong>Does the pop-up play bird sounds or human voices?</strong><br>To prioritize early reading and speech development, the audio plays clear human pronunciations of the bird's name in the selected language.</p>
+                        <p><strong>Can I print these bird images for my classroom?</strong><br>Yes! You can download printable bird flashcards and coloring pages directly from our website.</p>
+                    </div>
+                </details>
+            `,
+            hi: `
+                <h2>पक्षी लर्निंग फ्लैशकार्ड के बारे में</h2>
+                <p>पक्षी लर्निंग फ्लैशकार्ड के साथ उड़ान भरें! यह आकर्षक शैक्षिक उपकरण बच्चों को पक्षियों की दुनिया का पता लगाने के लिए आमंत्रित करता है। किसी भी पक्षी को टैप करने से एक सुंदर, करीब से पॉप-अप छवि दिखाई देती है और उसका नाम बोलने वाली स्पष्ट आवाज़ आती है।</p>
+                <p><strong>सीखने के परिणाम:</strong> प्रकृति अवलोकन, पक्षी शब्दावली, उच्चारण स्पष्टता, और द्विभाषी पर्यावरण जागरूकता।</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>कैसे खेलें और शैक्षिक लाभ</h3>
+                        <p>पक्षियों में कई समान विशेषताएं होती हैं, जिससे बच्चों के लिए उनके बीच अंतर करना मुश्किल हो जाता है। हमारा इंटरएक्टिव पॉप-अप तंत्र प्रत्येक पक्षी को अलग करता है—भव्य मोर से लेकर छोटी गौरैया तक—जिससे बच्चों को पृष्ठभूमि की अव्यवस्था के बिना विशिष्ट पंख पैटर्न और चोंच के आकार का अध्ययन करने की अनुमति मिलती है। यह उत्कृष्ट दृश्य भेदभाव कौशल का निर्माण करता है।</p>
+                        <p>चूंकि बच्चे हर दिन पक्षियों को देखते हैं, इसलिए इस शब्दावली को स्थानीय बनाना आवश्यक है। हमारा प्लेटफॉर्म सटीक देवनागरी ऑडियो सहायता प्रदान करता है। जब पॉप-अप खुलता है, तो एक बच्चा तोते के लिए 'पोपट' (Popat) और मोर के लिए 'मोर' (Mor) जैसे क्षेत्रीय शब्दों के साथ अंग्रेजी नाम सुन सकता है, जिससे एक अत्यधिक आकर्षक, बहुभाषी प्रकृति पाठ तैयार होता है।</p>
+                        <h3>अक्सर पूछे जाने वाले प्रश्न (FAQs)</h3>
+                        <p><strong>क्या पॉप-अप में पक्षियों की आवाज़ या इंसानों की आवाज़ आती है?</strong><br>शुरुआती पढ़ने और वाक् विकास को प्राथमिकता देने के लिए, ऑडियो चयनित भाषा में पक्षी के नाम का स्पष्ट मानव उच्चारण बजाता है。</p>
+                        <p><strong>क्या मैं अपनी कक्षा के लिए इन पक्षियों की छवियों को प्रिंट कर सकता हूँ?</strong><br>हाँ! आप सीधे हमारी वेबसाइट से प्रिंट करने योग्य पक्षी फ्लैशकार्ड और रंग पेज डाउनलोड कर सकते हैं।</p>
+                    </div>
+                </details>
+            `,
+            mr: `
+                <h2>पक्षी लर्निंग फ्लॅशकार्ड्सबद्दल</h2>
+                <p>पक्षी लर्निंग फ्लॅशकार्ड्ससह भरारी घ्या! हे आकर्षक शैक्षणिक साधन लहान मुलांना पक्ष्यांचे जग शोधण्यासाठी आमंत्रित करते. कोणत्याही पक्ष्यावर टॅप केल्यावर एक सुंदर, जवळची पॉप-अप प्रतिमा आणि त्याचे नाव उच्चारलेला स्पष्ट आवाज उघड होतो.</p>
+                <p><strong>शिकण्याचे परिणाम:</strong> निसर्ग निरीक्षण, पक्षी शब्दसंग्रह, उच्चारण स्पष्टता आणि द्विभाषिक पर्यावरणीय जागरूकता.</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>कसे खेळायचे आणि शैक्षणिक फायदे</h3>
+                        <p>पक्ष्यांमध्ये अनेक समान वैशिष्ट्ये असतात, ज्यामुळे लहान मुलांना त्यांच्यात फरक करणे कठीण जाते. आमचे इंटरएक्टिव्ह पॉप-अप तंत्र प्रत्येक पक्ष्याला वेगळे करते—भव्य मोरापासून ते चिमुकल्या चिमणीपर्यंत—ज्यामुळे मुलांना पार्श्वभूमीतील गोंधळाशिवाय पंखांचे नमुने आणि चोचीच्या आकारांचा अभ्यास करता येतो. हे उत्कृष्ट दृश्य ओळख कौशल्य निर्माण करते.</p>
+                        <p>मुले दररोज पक्षी पाहत असल्यामुळे, हा शब्दसंग्रह स्थानिक भाषेत शिकणे आवश्यक आहे. आमचे प्लॅटफॉर्म अचूक देवनागरी ऑडिओ सपोर्ट देते. जेव्हा पॉप-अप उघडतो, तेव्हा मूल पोपटासाठी 'पोपट' (Popat) आणि मोरासाठी 'मोर' (Mor) यांसारख्या प्रादेशिक शब्दांसह इंग्रजी नाव ऐकू शकते, ज्यामुळे एक अतिशय आकर्षक, बहुभाषिक निसर्ग धडा तयार होतो.</p>
+                        <h3>वारंवार विचारले जाणारे प्रश्न (FAQs)</h3>
+                        <p><strong>पॉप-अपमध्ये पक्ष्यांचा आवाज येतो की मानवी आवाज?</strong><br>लवकर वाचणे आणि भाषणाचा विकास याला प्राधान्य देण्यासाठी, ऑडिओ निवडलेल्या भाषेत पक्ष्यांच्या नावाचे स्पष्ट मानवी उच्चारण वाजवतो.</p>
+                        <p><strong>मी माझ्या वर्गासाठी या पक्ष्यांच्या प्रतिमा प्रिंट करू शकतो का?</strong><br>होय! तुम्ही थेट आमच्या वेबसाइटवरून प्रिंट करण्यायोग्य पक्ष्यांचे फ्लॅशकार्ड आणि कलरिंग पेज डाउनलोड करू शकता.</p>
+                    </div>
+                </details>
+            `
         },
         // Footer Translations
         "footerAbout": { en: "About Us", hi: "हमारे बारे में", mr: "आमच्याबद्दल" },

@@ -65,9 +65,54 @@ document.addEventListener("DOMContentLoaded", () => {
         "neutral": { en: "Neutral Colors", hi: "तटस्थ रंग", mr: "तटस्थ रंग" },
         "advanced": { en: "Advanced Shades", hi: "उन्नत रंग", mr: "प्रगत छटा" },
         "seoText": {
-            en: "Welcome to the <strong>KidsFunLearnHub Colour Studio</strong>! Tap on any colour card to see a vibrant object matching that colour and hear its name. This visual activity helps toddlers grasp early categorisation concepts and visual identification.",
-            hi: "<strong>KidsFunLearnHub कलर स्टूडियो</strong> में आपका स्वागत है! उस रंग से मेल खाने वाली एक जीवंत वस्तु को देखने और उसका नाम सुनने के लिए किसी भी रंग कार्ड पर टैप करें। यह दृश्य गतिविधि बच्चों को प्रारंभिक वर्गीकरण अवधारणाओं और दृश्य पहचान को समझने में मदद करती है।",
-            mr: "<strong>KidsFunLearnHub कलर स्टुडिओमध्ये</strong> आपले स्वागत आहे! त्या रंगाशी जुळणारी एक दोलायमान वस्तू पाहण्यासाठी आणि तिचे नाव ऐकण्यासाठी कोणत्याही रंग कार्डवर टॅप करा. ही दृश्य ऍक्टिव्हिटी लहान मुलांना प्रारंभिक वर्गीकरण संकल्पना आणि दृश्य ओळख समजून घेण्यास मदत करते."
+            en: `
+                <h2>About The Interactive Colour Studio</h2>
+                <p>Welcome to the KidsFunLearnHub Colour Studio! This vibrant interactive activity helps early learners master color identification. Tap on any color card to reveal a bright, everyday object matching that hue and hear its exact name spoken aloud, making abstract colors easy to understand and remember.</p>
+                <p><strong>Learning Outcomes:</strong> Color theory basics, visual categorization, auditory-visual association, and multilingual color vocabulary.</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>How to Play & Educational Benefits</h3>
+                        <p>Understanding abstract concepts like "Red" or "Blue" can be tricky for toddlers until they are tied to real-world items. By tapping a red card and seeing it transform into a bright red apple or fire truck, children immediately grasp the concept of color categorization. This cause-and-effect digital flashcard mechanic grabs their attention and solidifies their visual identification skills without background distractions.</p>
+                        <p>The visual learning is powerfully reinforced with our signature trilingual audio system. When the colorful object pops up, the child receives immediate auditory feedback. Learning that "Yellow" is seamlessly connected to 'Pivla' (पिवळा) in Marathi and 'Peela' (पीला) in Hindi ensures your child can confidently point out and describe the colorful world around them in their native language.</p>
+                        <h3>Frequently Asked Questions (FAQs)</h3>
+                        <p><strong>What age is best for this color learning activity?</strong><br>Most toddlers begin recognizing and naming core colors between 18 months and 3 years old, making this interactive studio the perfect tool for early cognitive development.</p>
+                        <p><strong>Can my child practice color recognition offline?</strong><br>Yes! We highly recommend downloading our free, high-quality printable color matching and coloring worksheets from the Parents Corner to reinforce these skills offline with physical crayons.</p>
+                    </div>
+                </details>
+            `,
+            hi: `
+                <h2>इंटरएक्टिव कलर स्टूडियो के बारे में</h2>
+                <p>KidsFunLearnHub कलर स्टूडियो में आपका स्वागत है! यह जीवंत गतिविधि बच्चों को रंग पहचानने में मदद करती है। किसी भी रंग कार्ड पर टैप करके उस रंग से मेल खाने वाली एक रोज़मर्रा की वस्तु देखें और उसका नाम सुनें, जिससे अमूर्त रंगों को समझना और याद रखना आसान हो जाता है।</p>
+                <p><strong>सीखने के परिणाम:</strong> रंग सिद्धांत की मूल बातें, दृश्य वर्गीकरण, श्रवण-दृश्य जुड़ाव और बहुभाषी रंग शब्दावली।</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>कैसे खेलें और शैक्षिक लाभ</h3>
+                        <p>बच्चों के लिए "लाल" या "नीला" जैसी अमूर्त अवधारणाओं को समझना तब तक मुश्किल हो सकता है जब तक कि उन्हें वास्तविक दुनिया की वस्तुओं से न जोड़ा जाए। लाल कार्ड पर टैप करके और उसे एक चमकीले लाल सेब में बदलते हुए देखकर, बच्चे तुरंत रंग वर्गीकरण की अवधारणा को समझ जाते हैं। यह डिजिटल फ्लैशकार्ड तंत्र उनका ध्यान खींचता है और बिना किसी रुकावट के उनके दृश्य पहचान कौशल को मजबूत करता है।</p>
+                        <p>हमारी त्रिभाषी ऑडियो प्रणाली के साथ दृश्य शिक्षा को शक्तिशाली रूप से सुदृढ़ किया जाता है। जब रंगीन वस्तु पॉप अप होती है, तो बच्चे को तुरंत ऑडियो सुनाई देता है। यह जानना कि "Yellow" मराठी में 'पिवळा' और हिंदी में 'पीला' से जुड़ा है, यह सुनिश्चित करता है कि आपका बच्चा अपनी मातृभाषा में अपने आस-पास की रंगीन दुनिया का आत्मविश्वास से वर्णन कर सके।</p>
+                        <h3>अक्सर पूछे जाने वाले प्रश्न (FAQs)</h3>
+                        <p><strong>इस रंग सीखने की गतिविधि के लिए कौन सी उम्र सबसे अच्छी है?</strong><br>ज्यादातर बच्चे 18 महीने से 3 साल की उम्र के बीच मुख्य रंगों को पहचानना और नाम देना शुरू कर देते हैं, जिससे यह इंटरएक्टिव स्टूडियो प्रारंभिक संज्ञानात्मक विकास के लिए एक आदर्श उपकरण बन जाता है।</p>
+                        <p><strong>क्या मेरा बच्चा ऑफलाइन रंग पहचान का अभ्यास कर सकता है?</strong><br>हाँ! हम भौतिक क्रेयॉन के साथ ऑफ़लाइन इन कौशलों को सुदृढ़ करने के लिए पेरेंट्स कॉर्नर से हमारे मुफ्त मुद्रण योग्य रंग मिलान वर्कशीट डाउनलोड करने की अत्यधिक अनुशंसा करते हैं।</p>
+                    </div>
+                </details>
+            `,
+            mr: `
+                <h2>इंटरएक्टिव कलर स्टुडिओबद्दल</h2>
+                <p>KidsFunLearnHub कलर स्टुडिओमध्ये आपले स्वागत आहे! ही दोलायमान ऍक्टिव्हिटी लहान मुलांना रंग ओळखण्यास मदत करते. त्या रंगाशी जुळणारी एक रोजची वस्तू पाहण्यासाठी कोणत्याही रंग कार्डवर टॅप करा आणि तिचे नाव ऐका, ज्यामुळे रंग समजून घेणे आणि लक्षात ठेवणे सोपे होते.</p>
+                <p><strong>शिकण्याचे परिणाम:</strong> रंगाच्या सिद्धांताच्या मूलभूत गोष्टी, दृश्य वर्गीकरण, श्रवण-दृश्य संरेखन आणि बहुभाषिक शब्दसंग्रह.</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>कसे खेळायचे आणि शैक्षणिक फायदे</h3>
+                        <p>लहान मुलांसाठी "लाल" किंवा "निळा" सारख्या अमूर्त संकल्पना समजून घेणे कठीण होऊ शकते जोपर्यंत ते वास्तविक जगातील वस्तूंशी जोडले जात नाहीत. लाल कार्ड टॅप करून आणि त्याचे लाल सफरचंदात रूपांतर होताना पाहून, मुलांना रंगाच्या वर्गीकरणाची संकल्पना लगेच समजते. हे डिजिटल फ्लॅशकार्ड त्यांचे लक्ष वेधून घेते आणि त्यांची दृश्य ओळख कौशल्ये मजबूत करते.</p>
+                        <p>आमच्या त्रिभाषिक ऑडिओ प्रणालीमुळे दृश्य शिक्षण अधिक प्रभावी होते. जेव्हा रंगीत वस्तू पॉप अप होते, तेव्हा मुलाला त्वरित ऑडिओ ऐकू येतो. "Yellow" ला मराठीत 'पिवळा' आणि हिंदीत 'पीला' म्हणतात हे शिकल्याने तुमचे बाळ स्वतःच्या मातृभाषेत रंगीत जगाचे आत्मविश्वासाने वर्णन करू शकते.</p>
+                        <h3>वारंवार विचारले जाणारे प्रश्न (FAQs)</h3>
+                        <p><strong>या रंगांच्या ऍक्टिव्हिटीसाठी कोणते वय सर्वोत्तम आहे?</strong><br>बहुतेक मुले १८ महिने ते ३ वर्षांच्या दरम्यान मुख्य रंग ओळखण्यास आणि नावे देण्यास सुरुवात करतात, ज्यामुळे हा इंटरएक्टिव स्टुडिओ प्रारंभिक संज्ञानात्मक विकासासाठी एक परिपूर्ण साधन बनतो.</p>
+                        <p><strong>माझे बाळ ऑफलाइन रंग ओळखण्याचा सराव करू शकते का?</strong><br>होय! भौतिक क्रेयॉनसह ऑफलाइन या कौशल्यांचा सराव करण्यासाठी आम्ही पेरेंट्स कॉर्नरमधून आमच्या मोफत प्रिंट करण्यायोग्य कलर मॅचिंग वर्कशीट डाउनलोड करण्याची शिफारस करतो.</p>
+                    </div>
+                </details>
+            `
         },
         // Footer Translations
         "footerAbout": { en: "About Us", hi: "हमारे बारे में", mr: "आमच्याबद्दल" },

@@ -61,10 +61,55 @@ document.addEventListener("DOMContentLoaded", () => {
         "activitiesBtn": { en: "Insect Activities", hi: "कीट गतिविधियां", mr: "कीटक ऍक्टिव्हिटीज" },
         "nextBtn": { en: "➡ Next Insects", hi: "➡ अगले कीड़े", mr: "➡ पुढील कीटक" },
         "closeHint": { en: "Tap anywhere to close", hi: "बंद करने के लिए कहीं भी टैप करें", mr: "बंद करण्यासाठी कुठेही टॅप करा" },
-        "seoText": {
-            en: "Welcome to the <strong>KidsFunLearnHub Bug Explorer</strong>! Tap on any insect card to see a larger picture and hear its name. This interactive vocabulary activity helps toddlers recognize nature's smallest creatures, improving their memory and early speech skills.",
-            hi: "<strong>KidsFunLearnHub बग एक्सप्लोरर</strong> में आपका स्वागत है! बड़ी तस्वीर देखने और उसका नाम सुनने के लिए किसी भी कीट कार्ड पर टैप करें। यह संवादात्मक शब्दावली गतिविधि बच्चों को प्रकृति के सबसे छोटे जीवों को पहचानने में मदद करती है, जिससे उनकी याददाश्त और प्रारंभिक भाषण कौशल में सुधार होता है।",
-            mr: "<strong>KidsFunLearnHub बग एक्सप्लोररमध्ये</strong> आपले स्वागत आहे! मोठे चित्र पाहण्यासाठी आणि त्याचे नाव ऐकण्यासाठी कोणत्याही कीटक कार्डवर टॅप करा. ही संवादात्मक शब्दसंग्रह ऍक्टिव्हिटी लहान मुलांना निसर्गातील सर्वात लहान जीव ओळखण्यास मदत करते, त्यांची स्मरणशक्ती आणि प्रारंभिक भाषण कौशल्ये सुधारते."
+       "seoText": {
+            en: `
+                <h2>About The Insect Learning Flashcards</h2>
+                <p>Explore the microscopic world safely with our Insect Learning Flashcards! This fun digital tool replaces bug-related fears with scientific curiosity by allowing toddlers to tap, pop up, and learn the names of friendly backyard insects.</p>
+                <p><strong>Learning Outcomes:</strong> Scientific curiosity, backyard vocabulary, auditory processing, and regional nature terminology.</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>How to Play & Educational Benefits</h3>
+                        <p>Insects can be intimidating for young children. By presenting them as bright, friendly flashcards that pop up on command, we give the child complete control over their learning environment. This macro-view allows them to safely count the legs on an ant or observe the colorful wings of a butterfly, fostering early scientific observation.</p>
+                        <p>Coupled with our English, Hindi, and Marathi audio dictionaries, this activity builds practical vocabulary. A child interacting with the butterfly pop-up will simultaneously absorb the English term alongside the regional word 'Phulpakhru' (फुलपाखरू), enriching their daily conversational language.</p>
+                        <h3>Frequently Asked Questions (FAQs)</h3>
+                        <p><strong>Why are digital flashcards effective for toddlers?</strong><br>They introduce "cause and effect." The child learns that their physical action (tapping) yields a specific reward (a fun pop-up and sound), keeping them highly engaged.</p>
+                        <p><strong>Are printable bug flashcards available?</strong><br>Yes, we offer ink-friendly printable insect cards for offline nature walks in the Parents Corner.</p>
+                    </div>
+                </details>
+            `,
+            hi: `
+                <h2>कीट लर्निंग फ्लैशकार्ड के बारे में</h2>
+                <p>हमारे कीट लर्निंग फ्लैशकार्ड के साथ सुरक्षित रूप से सूक्ष्म दुनिया का अन्वेषण करें! यह मज़ेदार डिजिटल टूल बच्चों को कीड़ों से जुड़े डर को वैज्ञानिक जिज्ञासा में बदल देता है, जिससे वे टैप करके दोस्ताना कीड़ों के नाम सीख सकते हैं।</p>
+                <p><strong>सीखने के परिणाम:</strong> वैज्ञानिक जिज्ञासा, पिछवाड़े की शब्दावली, श्रवण प्रसंस्करण, और क्षेत्रीय प्रकृति शब्दावली।</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>कैसे खेलें और शैक्षिक लाभ</h3>
+                        <p>छोटे बच्चों के लिए कीड़े डरावने हो सकते हैं। उन्हें चमकीले, मैत्रीपूर्ण फ्लैशकार्ड के रूप में प्रस्तुत करके जो टैप करने पर पॉप अप होते हैं, हम बच्चे को उनके सीखने के माहौल पर पूर्ण नियंत्रण देते हैं। यह मैक्रो-दृश्य उन्हें सुरक्षित रूप से एक चींटी के पैरों को गिनने या तितली के रंगीन पंखों का निरीक्षण करने की अनुमति देता है, जिससे प्रारंभिक वैज्ञानिक अवलोकन को बढ़ावा मिलता है।</p>
+                        <p>हमारे अंग्रेजी, हिंदी और मराठी ऑडियो डिक्शनरी के साथ मिलकर, यह गतिविधि व्यावहारिक शब्दावली का निर्माण करती है। तितली पॉप-अप के साथ बातचीत करने वाला बच्चा एक साथ क्षेत्रीय शब्द 'फुलपाखरू' (Phulpakhru) के साथ-साथ अंग्रेजी शब्द को भी सीखेगा, जिससे उनकी दैनिक संवादात्मक भाषा समृद्ध होगी।</p>
+                        <h3>अक्सर पूछे जाने वाले प्रश्न (FAQs)</h3>
+                        <p><strong>बच्चों के लिए डिजिटल फ्लैशकार्ड क्यों प्रभावी हैं?</strong><br>वे "कारण और प्रभाव" पेश करते हैं। बच्चा सीखता है कि उनकी शारीरिक क्रिया (टैपिंग) से एक विशिष्ट इनाम (एक मज़ेदार पॉप-अप और आवाज़) मिलता है, जिससे वे अत्यधिक व्यस्त रहते हैं।</p>
+                        <p><strong>क्या प्रिंट करने योग्य बग फ्लैशकार्ड उपलब्ध हैं?</strong><br>हाँ, हम पेरेंट्स कॉर्नर में ऑफ़लाइन प्रकृति की सैर के लिए स्याही-अनुकूल प्रिंट करने योग्य कीट कार्ड प्रदान करते हैं।</p>
+                    </div>
+                </details>
+            `,
+            mr: `
+                <h2>कीटक लर्निंग फ्लॅशकार्ड्सबद्दल</h2>
+                <p>आमच्या कीटक लर्निंग फ्लॅशकार्ड्ससह सूक्ष्म जग सुरक्षितपणे एक्सप्लोर करा! हे मजेशीर डिजिटल साधन कीटकांशी संबंधित भीतीची जागा वैज्ञानिक कुतूहलाने घेते, ज्यामुळे लहान मुलांना टॅप करून, पॉप अप करून बागेतील अनुकूल कीटकांची नावे शिकता येतात.</p>
+                <p><strong>शिकण्याचे परिणाम:</strong> वैज्ञानिक कुतूहल, बागेतील शब्दसंग्रह, श्रवण प्रक्रिया आणि प्रादेशिक निसर्ग संज्ञा.</p>
+                <details class="seo-accordion">
+                    <summary><span class="read-more-btn"></span></summary>
+                    <div class="seo-content-wrapper">
+                        <h3>कसे खेळायचे आणि शैक्षणिक फायदे</h3>
+                        <p>लहान मुलांसाठी कीटक भीतीदायक असू शकतात. त्यांना टॅप केल्यावर पॉप अप होणाऱ्या चमकदार, अनुकूल फ्लॅशकार्ड्सच्या रूपात सादर करून, आम्ही मुलाला त्यांच्या शिकण्याच्या वातावरणावर पूर्ण नियंत्रण देतो. हे मॅक्रो-दृश्य त्यांना सुरक्षितपणे मुंगीचे पाय मोजण्यास किंवा फुलपाखराच्या रंगीबेरंगी पंखांचे निरीक्षण करण्यास अनुमती देते, ज्यामुळे प्रारंभिक वैज्ञानिक निरीक्षणाला चालना मिळते.</p>
+                        <p>आमच्या इंग्रजी, हिंदी आणि मराठी ऑडिओ डिक्शनरीसह एकत्रित केलेली ही ऍक्टिव्हिटी व्यावहारिक शब्दसंग्रह तयार करते. फुलपाखराच्या पॉप-अपशी संवाद साधणारे मूल प्रादेशिक शब्द 'फुलपाखरू' (Phulpakhru) सोबत इंग्रजी शब्द एकाच वेळी ग्रहण करेल, ज्यामुळे त्यांची दैनंदिन संवादाची भाषा समृद्ध होईल.</p>
+                        <h3>वारंवार विचारले जाणारे प्रश्न (FAQs)</h3>
+                        <p><strong>लहान मुलांसाठी डिजिटल फ्लॅशकार्ड का प्रभावी आहेत?</strong><br>ते "कारण आणि परिणाम" ओळख करून देतात. मूल शिकते की त्यांच्या शारीरिक कृतीमुळे (टॅपिंग) एक विशिष्ट बक्षीस (मजेदार पॉप-अप आणि आवाज) मिळते, ज्यामुळे ते व्यस्त राहतात.</p>
+                        <p><strong>प्रिंट करण्यायोग्य कीटकांचे फ्लॅशकार्ड उपलब्ध आहेत का?</strong><br>होय, आम्ही पेरेंट्स कॉर्नरमध्ये ऑफलाइन निसर्ग भ्रमंतीसाठी शाई-अनुकूल प्रिंट करण्यायोग्य कीटक कार्ड देतो.</p>
+                    </div>
+                </details>
+            `
         },
         // Footer Translations
         "footerAbout": { en: "About Us", hi: "हमारे बारे में", mr: "आमच्याबद्दल" },
