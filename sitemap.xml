@@ -32,7 +32,7 @@
   </url>
   <url>
     <loc>https://www.kidsfunlearnhub.com/birds</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-06-30</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
@@ -348,6 +348,11 @@
   <url>
     <loc>https://www.kidsfunlearnhub.com/tapabc</loc>
     <lastmod>2026-06-25</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.kidsfunlearnhub.com/tapcolors</loc>
+    <lastmod>2026-06-30</lastmod>
     <priority>0.80</priority>
   </url>
   <url>

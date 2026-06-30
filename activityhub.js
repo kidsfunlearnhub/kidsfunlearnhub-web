@@ -37,7 +37,8 @@ window.onload = function() {
         { id: "alphabets", name: "Alphabets", icon: "🔤" },
         { id: "small_alphabets", name: "Big & Small Alphabets", icon: "🔡" },
          { id: "hindi", name: "Hindi & Marathi (अ आ इ)", icon: "अ" },
-        { id: "numbers", name: "Numbers", icon: "🔢" }
+        { id: "numbers", name: "Numbers", icon: "🔢" },
+        { id: "colours", name: "Colours", icon: "🎨" }
        
     ];
 
@@ -115,7 +116,8 @@ window.onload = function() {
         "tapping_alphabets": "tapabc.html",
         "tapping_small_alphabets": "tapsmallabc.html",
         "tapping_numbers": "tapnumbers.html",
-        "tapping_hindi": "tapvarnmala.html"
+        "tapping_hindi": "tapvarnmala.html",
+        "tapping_colours": "tapcolors.html"
     };
 
     // --- 2. STATE MANAGEMENT ---
