@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tap The Shapes | KidsFunLearnHub</title>
+    <meta name="title" content="Tap The Shapes | KidsFunLearnHub">
+    <meta name="description" content="Play the Tap The Shapes game! A fun, fast-paced educational activity for kids to find and tap the correct geometric shapes on the screen.">
+    <link rel="canonical" href="https://kidsfunlearnhub.com/tapshapes.html">
+    <link rel="stylesheet" href="tapshapes.css?v=1">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+</head>
+<body>
+
+    <div class="site-branding">
+        <a href="index.html" class="animated-logo">🚀 KidsFunLearnHub</a>
+    </div>
+
+    <main class="game-container">
+        <header class="header-row">
+            <h1 id="game-title">👆 Tap The Shapes!</h1>
+            <div class="score-board">
+                <span id="score-label">Score:</span> 
+                <span id="score">0</span>
+            </div>
+        </header>
+
+        <nav class="language-container" aria-label="Language Selection">
+            <div class="language-selector">
+                <button class="lang-btn active" data-lang="en" aria-label="Switch to English">English</button>
+                <button class="lang-btn" data-lang="hi" aria-label="Switch to Hindi">हिंदी</button>
+                <button class="lang-btn" data-lang="mr" aria-label="Switch to Marathi">मराठी</button>
+            </div>
+        </nav>
+
+        <section class="progress-container">
+            <div class="progress-track" id="progress-track">
+                <div class="line-track-overlay">
+                    <div class="progress-line-base"></div> 
+                    <div class="progress-line-fill" id="progress-line"></div> 
+                </div>
+                <div class="dots-container" id="dots-container"></div>
+                <div class="runner-track-overlay">
+                    <div id="runner-icon" class="runner-icon"><span id="runner-emoji" class="face-right">🖍️</span></div>
+                </div>
+                <div id="target-icon" class="target-icon">⭐</div>
+            </div>
+        </section>
+
+        <section id="promptBox" class="prompt-box" role="button" tabindex="0" aria-label="Play instruction audio">
+            <div class="speaker-icon" aria-hidden="true">🔊</div>
+            <div class="prompt-content">
+                <h2 id="instruction">Tap all...</h2>
+                <div id="target-shape-name" class="target-text">???</div>
+            </div>
+        </section>
+
+        <section id="gameArea" class="scatter-area"></section>
+
+        <nav class="bottom-actions">
+            <button id="backBtn" class="action-btn">⬅ Back</button>
+        </nav>
+    </main>
+
+   <section class="seo-description-container">
+        <h2>About The Tap The Shapes Activity</h2>
+        <p>Welcome to the Tap The Shapes Activity at KidsFunLearnHub! This energetic visual game helps toddlers develop geometric recognition by asking them to find and tap all the correct shapes scattered across the play area.</p>
+        <p><strong>Learning Outcomes:</strong> 2D Shape identification, visual scanning, early geometry readiness, and multilingual shape vocabulary.</p>
+
+        <details class="seo-accordion">
+            <summary>
+                <span class="read-more-btn"></span>
+            </summary>
+            
+            <div class="seo-content-wrapper">
+                <h3>How to Play & Educational Benefits</h3>
+                <p>Identifying shapes quickly is an essential milestone in early cognitive development and spatial awareness. In this game, a toddler might be asked to find all the "Circles" hidden among "Squares" and "Triangles." This forces them to visually filter and categorize objects based purely on their geometric structure.</p>
+                
+                <p>We have completely localized this tool for our users. When a child taps the correct shape, they don't just hear the English word. They are exposed to regional pronunciations, building an incredibly versatile, trilingual geometry vocabulary.</p>
+
+                <h3>Frequently Asked Questions (FAQs)</h3>
+                <p><strong>Which shapes are featured in this game?</strong><br>This specific module focuses on mastering foundational 2D shapes like circles, squares, triangles, rectangles, stars, and more.</p>
+                
+                <p><strong>How can I practice shape recognition offline?</strong><br>We offer a variety of free printable shape tracing and matching activities in our Parents Corner.</p>
+            </div>
+        </details>
+    </section>
+
+    <div id="feedback" class="feedback-overlay hidden">
+        <div class="feedback-content">
+            <h2 id="feedback-text">Great Job! 🎉</h2>
+            <h3 id="feedback-score" class="score-text"></h3>
+            <div style="font-size: 80px; animation: popIn 0.5s;">⭐</div>
+        </div>
+    </div>
+
+    <script src="tapshapes.js?v=1"></script>
+</body>
+</html>
