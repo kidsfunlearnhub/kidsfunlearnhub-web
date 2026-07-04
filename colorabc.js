@@ -1,7 +1,6 @@
 "use strict";
 
 window.onload = function() {
-    // --- THEME ROTATION SETUP ---
     const themes = [
         { runner: '🖍️', target: '🍎' }, 
         { runner: '🚗', target: '🎈' }, 
@@ -14,20 +13,15 @@ window.onload = function() {
     document.getElementById("runner-emoji").innerText = currentTheme.runner;
     document.getElementById("target-icon").innerText = currentTheme.target;
 
-    // 1. STATE & LOCALIZATION SETUP
     let currentLang = sessionStorage.getItem('findAbcLang') || 'en'; 
     let score = parseInt(sessionStorage.getItem('colorAbcScore')) || 0;
-    
-    // Track the sequential index!
     let currentLetterIndex = parseInt(sessionStorage.getItem('colorAbcLetterIdx')) || 0;
     
     let isPlaying = false;
     let isAudioPlaying = false; 
-
     let roundsPlayedThisSession = 0; 
     const ROUNDS_BEFORE_RELOAD = 5; 
 
-    // --- SOUND SYNTHESIZER ---
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     let audioCtx = null;
 
@@ -148,36 +142,26 @@ window.onload = function() {
         });
     });
 
-    // ==========================================
-    // 3. UPGRADED SEQUENTIAL AUDIO PLAYBACK
-    // ==========================================
     function playCustomAudio() {
         if (isAudioPlaying) return; 
         isAudioPlaying = true;
         
         window.speechSynthesis.cancel();
-        
         const targetLetterKey = allLetters[currentLetterIndex];
-        
         let vocabAudio = new Audio(`sounds/${currentLang}/abc/${targetLetterKey}.mp3`);
         
         const triggerPhaseTwo = () => {
             vocabAudio.play().then(() => {
                 vocabAudio.onended = () => { isAudioPlaying = false; };
-            }).catch(e => {
-                console.log("Vocabulary audio missing:", e);
-                isAudioPlaying = false; 
-            });
+            }).catch(e => { isAudioPlaying = false; });
         };
 
         let instructionAudio = new Audio(`sounds/${currentLang}/color_the_letter.mp3`);
-        
         instructionAudio.play().then(() => {
             instructionAudio.onended = triggerPhaseTwo;
         }).catch(() => {
-            let msg = new SpeechSynthesisUtterance(uiDict["instruction"][currentLang]);
-            msg.rate = 0.85; 
-            msg.pitch = 1.2;
+            let msg = new SpeechSynthesisUtterance(uiDict["instruction"][currentLang] + " " + targetLetterKey.toUpperCase());
+            msg.rate = 0.85; msg.pitch = 1.2;
             msg.onend = triggerPhaseTwo;
             window.speechSynthesis.speak(msg);
         });
@@ -187,12 +171,12 @@ window.onload = function() {
 
 
     // ==========================================
-    // 4. CANVAS PIXEL COLORING LOGIC (THE MAGIC)
+    // 4. THE LAYERED DILATION ENGINE (NO STROKES!)
     // ==========================================
+    const canvasOutline = document.getElementById('canvasOutline');
+    const ctxOutline = canvasOutline.getContext('2d', { willReadFrequently: true });
     const canvasMask = document.getElementById('canvasMask');
     const ctxMask = canvasMask.getContext('2d', { willReadFrequently: true });
-    const canvasOutline = document.getElementById('canvasOutline');
-    const ctxOutline = canvasOutline.getContext('2d');
     
     const pencilCursor = document.getElementById('pencilCursor');
     const pencilSVG = document.getElementById('pencilSVG');
@@ -226,10 +210,26 @@ window.onload = function() {
         const cw = canvasMask.width;
         const ch = canvasMask.height;
         const fontSize = cw * 0.8; 
-        
         const mobileSafeFonts = `900 ${fontSize}px 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif`;
 
-        // 1. Draw Mask
+        // 1. Draw the Bottom Layer: The Fat Black Shadow (Bypasses Android Stroke Bug!)
+        ctxOutline.globalCompositeOperation = 'source-over';
+        ctxOutline.clearRect(0, 0, cw, ch);
+        ctxOutline.font = mobileSafeFonts;
+        ctxOutline.textAlign = 'center';
+        ctxOutline.textBaseline = 'middle';
+        ctxOutline.fillStyle = '#333333';
+        
+        // Draw the filled text 32 times in a tiny circle to make it perfectly thick and round
+        const outlineThickness = cw * 0.025; 
+        for(let i = 0; i < 32; i++) {
+            const angle = (i / 32) * Math.PI * 2;
+            const dx = Math.cos(angle) * outlineThickness;
+            const dy = Math.sin(angle) * outlineThickness;
+            ctxOutline.fillText(letter, cw/2 + dx, ch/2 + (fontSize * 0.05) + dy);
+        }
+
+        // 2. Draw the Top Layer: The White Paint Trap
         ctxMask.globalCompositeOperation = 'source-over';
         ctxMask.clearRect(0, 0, cw, ch);
         ctxMask.font = mobileSafeFonts;
@@ -243,25 +243,11 @@ window.onload = function() {
         const data = imgData.data;
         totalTargetPixels = 0;
         for (let i = 0; i < data.length; i += 4) {
-            if (data[i + 3] > 50) {
-                totalTargetPixels++;
-            }
+            if (data[i + 3] > 50) totalTargetPixels++;
         }
         
+        // Lock the paint so it only draws over the white letter!
         ctxMask.globalCompositeOperation = 'source-atop'; 
-
-        // 2. Draw Outline
-        ctxOutline.clearRect(0, 0, cw, ch);
-        ctxOutline.font = mobileSafeFonts;
-        ctxOutline.textAlign = 'center';
-        ctxOutline.textBaseline = 'middle';
-        
-        // CRITICAL FIX FOR SPIKY LETTERS ON ANDROID
-        ctxOutline.lineJoin = 'bevel'; // Forces flat corners instead of spikes!
-        
-        ctxOutline.lineWidth = cw * 0.04; 
-        ctxOutline.strokeStyle = '#333333';
-        ctxOutline.strokeText(letter, cw/2, ch/2 + (fontSize * 0.05));
     }
 
     function checkFillProgress() {
@@ -281,8 +267,8 @@ window.onload = function() {
 
         const percentageFilled = coloredPixels / totalTargetPixels;
 
-        // Strict 95% threshold to ensure they really color it!
-        if (percentageFilled > 0.95) {
+        // Set to 90% so they have to color thoroughly, but not frustratingly exact
+        if (percentageFilled > 0.90) {
             clearInterval(checkInterval);
             finishColoring();
         }
@@ -323,9 +309,7 @@ window.onload = function() {
         movePencil(e);
         
         ctxMask.beginPath();
-        
-        // REDUCED BRUSH SIZE to 8% (from 12%) so it takes more swipes to fill!
-        ctxMask.lineWidth = canvasMask.width * 0.08; 
+        ctxMask.lineWidth = canvasMask.width * 0.15; // Healthy brush size
         ctxMask.lineCap = 'round';
         ctxMask.lineJoin = 'round';
         ctxMask.strokeStyle = currentColor;
@@ -424,6 +408,7 @@ window.onload = function() {
         clearInterval(checkInterval);
         checkInterval = null;
 
+        // Auto-fill everything perfectly
         const letter = allLetters[currentLetterIndex].toUpperCase();
         const cw = canvasMask.width;
         const ch = canvasMask.height;
@@ -482,20 +467,14 @@ window.onload = function() {
                 feedback.classList.add("hidden");
                 
                 roundsPlayedThisSession++; 
-                
                 currentLetterIndex++;
-                if (currentLetterIndex >= allLetters.length) {
-                    currentLetterIndex = 0; 
-                }
+                if (currentLetterIndex >= allLetters.length) currentLetterIndex = 0; 
                 
                 if (roundsPlayedThisSession >= ROUNDS_BEFORE_RELOAD) {
                     sessionStorage.setItem('colorAbcScore', score);
                     sessionStorage.setItem('findAbcLang', currentLang);
                     sessionStorage.setItem('colorAbcLetterIdx', currentLetterIndex); 
-                    
-                    let nextThemeIndex = (themeIndex + 1) % themes.length;
-                    sessionStorage.setItem('colorAbcThemeIndex', nextThemeIndex);
-                    
+                    sessionStorage.setItem('colorAbcThemeIndex', (themeIndex + 1) % themes.length);
                     window.location.reload();
                 } else {
                     startNewRound();

@@ -1,38 +1,20 @@
 body {
-    margin: 0;
-    font-family: 'Comic Sans MS', sans-serif;
-    text-align: center;
-    background: linear-gradient(to right, #b3ffff, #fcb69f);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-    padding: 20px 0; 
-    overflow-x: hidden;
+    margin: 0; font-family: 'Comic Sans MS', sans-serif; text-align: center;
+    background: linear-gradient(to right, #b3ffff, #fcb69f); min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; padding: 20px 0; overflow-x: hidden;
 }
 
-.game-container {
-    background: rgba(255, 255, 255, 0.95);
-    padding: clamp(15px, 2vh, 20px) 30px;
-    border-radius: 30px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-    width: 90%;
-    max-width: 700px;
-    margin-bottom: 30px; 
-}
+.game-container { background: rgba(255, 255, 255, 0.95); padding: clamp(15px, 2vh, 20px) 30px; border-radius: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); width: 90%; max-width: 700px; margin-bottom: 30px; }
 
-/* --- HEADER ROW --- */
 .header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: clamp(5px, 1vh, 10px); flex-wrap: wrap; gap: 10px; }
 #game-title { font-size: clamp(22px, 3.5vh, 34px); margin: 0; color: #ff5722; text-align: left; }
 .score-board { font-size: clamp(16px, 2.5vh, 22px); background: #ffeb3b; padding: 6px 15px; border-radius: 20px; font-weight: bold; color: #333; box-shadow: 0 4px 0 #fbc02d; margin: 0; }
 
-/* --- LANGUAGE SELECTOR --- */
 .language-container { display: flex; justify-content: center; margin-bottom: clamp(5px, 1vh, 10px); }
 .language-selector { display: flex; gap: 10px; background: #f1f1f1; padding: 6px 12px; border-radius: 50px; }
 .lang-btn { border: none; background: transparent; padding: 6px 14px; font-size: 16px; font-family: inherit; font-weight: bold; border-radius: 40px; cursor: pointer; color: #555; transition: all 0.3s ease; }
 .lang-btn.active { background: #4caf50; color: white; box-shadow: 0 4px 10px rgba(76, 175, 80, 0.4); }
 
-/* --- DOTTED PROGRESS TRACK WITH LINES --- */
 .progress-container { width: 100%; margin: 5px 0 15px 0; box-sizing: border-box; }
 .progress-track { position: relative; height: 50px; background: #e0f7fa; border-radius: 30px; border: 3px solid #00bcd4; display: flex; align-items: center; padding: 0 45px 0 20px; box-shadow: inset 0 3px 6px rgba(0,0,0,0.1); }
 .line-track-overlay { position: absolute; left: 25px; right: 50px; height: 100%; z-index: 1; }
@@ -49,13 +31,8 @@ body {
 .face-right { display: inline-block; transform: scaleX(-1); }
 
 .jump-animation { animation: hop 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
-@keyframes hop {
-    0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
-    50% { transform: translate(-50%, calc(-50% - 25px)) scale(1.15) rotate(-15deg); }
-    100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
-}
+@keyframes hop { 0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); } 50% { transform: translate(-50%, calc(-50% - 25px)) scale(1.15) rotate(-15deg); } 100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); } }
 
-/* --- PROMPT BOX --- */
 .prompt-box { background: #fff3e0; padding: clamp(10px, 1.5vh, 15px) 20px; border-radius: 25px; border: 5px dashed #ffb74d; margin-bottom: clamp(10px, 2vh, 15px); display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap; cursor: pointer; transition: transform 0.15s ease; animation: slowPulse 2s infinite alternate ease-in-out; }
 .prompt-box:active { transform: scale(0.96); }
 
@@ -65,7 +42,7 @@ body {
 #instruction { font-size: clamp(16px, 2.5vh, 20px); margin: 0 0 2px 0; color: #555; }
 .target-text { font-size: clamp(24px, 4vh, 42px); color: #d32f2f; font-weight: bold; text-transform: uppercase; }
 
-/* --- CANVAS COLORING AREA --- */
+/* --- THE STACKED CANVAS COLORING AREA --- */
 .coloring-area {
     position: relative;
     width: 280px; 
@@ -83,7 +60,7 @@ body {
     .coloring-area { width: 350px; height: 350px; }
 }
 
-#canvasMask, #canvasOutline {
+#canvasOutline, #canvasMask {
     position: absolute;
     top: 0;
     left: 0;
@@ -92,43 +69,21 @@ body {
     border-radius: 30px;
 }
 
-#canvasOutline {
-    pointer-events: none; 
-}
+#canvasOutline { z-index: 1; }
+#canvasMask { z-index: 2; touch-action: none; }
 
 .pencil-cursor {
     position: fixed;
     pointer-events: none;
     z-index: 100;
-    /* REMOVED: display: none; -> Pencil is always visible now! */
     transform: translate(0, -100%); 
     filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.3));
     transition: transform 0.1s;
 }
 
 /* --- COLOR PALETTE SWATCHES --- */
-.color-palette {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-    background: #f9f9f9;
-    padding: 15px;
-    border-radius: 20px;
-    border: 3px solid #e0e0e0;
-}
-
-.color-swatch {
-    width: clamp(50px, 10vw, 70px);
-    height: clamp(50px, 10vw, 70px);
-    border-radius: 50%;
-    border: 5px solid #ffffff;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-    cursor: pointer;
-    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
+.color-palette { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 20px; background: #f9f9f9; padding: 15px; border-radius: 20px; border: 3px solid #e0e0e0; }
+.color-swatch { width: clamp(50px, 10vw, 70px); height: clamp(50px, 10vw, 70px); border-radius: 50%; border: 5px solid #ffffff; box-shadow: 0 5px 10px rgba(0,0,0,0.2); cursor: pointer; transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 .color-swatch:hover { transform: scale(1.15) translateY(-5px); }
 .color-swatch:active { transform: scale(0.95); }
 .color-swatch.active { border-color: #333; transform: scale(1.1); box-shadow: 0 8px 15px rgba(0,0,0,0.3); }
@@ -146,7 +101,6 @@ body {
 .feedback-content h2 { font-size: clamp(40px, 8vw, 90px); margin: 0; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 .correct-text { color: #4caf50; }
 .score-text { font-size: clamp(28px, 6vw, 45px); color: #ff9800; margin: -10px 0 10px 0; font-weight: bold; text-shadow: 2px 2px 0px #ffe0b2; animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-
 @keyframes popIn { 0% { transform: scale(0.1); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 
 /* --- SEO TEXT CONTAINER STYLING --- */
