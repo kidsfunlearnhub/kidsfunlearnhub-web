@@ -227,9 +227,9 @@ window.onload = function() {
         const ch = canvasMask.height;
         const fontSize = cw * 0.8; 
         
-        // Use the EXACT same kid-friendly font stack as your CSS for mobile consistency
         const mobileSafeFonts = `900 ${fontSize}px 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif`;
 
+        // 1. Draw Mask
         ctxMask.globalCompositeOperation = 'source-over';
         ctxMask.clearRect(0, 0, cw, ch);
         ctxMask.font = mobileSafeFonts;
@@ -238,6 +238,7 @@ window.onload = function() {
         ctxMask.fillStyle = '#ffffff'; 
         ctxMask.fillText(letter, cw/2, ch/2 + (fontSize * 0.05)); 
         
+        // Count Target Pixels
         const imgData = ctxMask.getImageData(0, 0, cw, ch);
         const data = imgData.data;
         totalTargetPixels = 0;
@@ -249,15 +250,14 @@ window.onload = function() {
         
         ctxMask.globalCompositeOperation = 'source-atop'; 
 
+        // 2. Draw Outline
         ctxOutline.clearRect(0, 0, cw, ch);
         ctxOutline.font = mobileSafeFonts;
         ctxOutline.textAlign = 'center';
         ctxOutline.textBaseline = 'middle';
         
-        // CRITICAL FIX: Forces round edges to stop spiky vector artifacting
-        ctxOutline.lineJoin = 'round';
-        ctxOutline.lineCap = 'round';
-        ctxOutline.miterLimit = 1; 
+        // CRITICAL FIX FOR SPIKY LETTERS ON ANDROID
+        ctxOutline.lineJoin = 'bevel'; // Forces flat corners instead of spikes!
         
         ctxOutline.lineWidth = cw * 0.04; 
         ctxOutline.strokeStyle = '#333333';
@@ -281,7 +281,7 @@ window.onload = function() {
 
         const percentageFilled = coloredPixels / totalTargetPixels;
 
-        // Ensure they color at least 95% of the body
+        // Strict 95% threshold to ensure they really color it!
         if (percentageFilled > 0.95) {
             clearInterval(checkInterval);
             finishColoring();
@@ -323,7 +323,9 @@ window.onload = function() {
         movePencil(e);
         
         ctxMask.beginPath();
-        ctxMask.lineWidth = canvasMask.width * 0.12; 
+        
+        // REDUCED BRUSH SIZE to 8% (from 12%) so it takes more swipes to fill!
+        ctxMask.lineWidth = canvasMask.width * 0.08; 
         ctxMask.lineCap = 'round';
         ctxMask.lineJoin = 'round';
         ctxMask.strokeStyle = currentColor;
@@ -422,7 +424,6 @@ window.onload = function() {
         clearInterval(checkInterval);
         checkInterval = null;
 
-        // Auto-fill perfectly to make it look completely clean
         const letter = allLetters[currentLetterIndex].toUpperCase();
         const cw = canvasMask.width;
         const ch = canvasMask.height;
