@@ -45,11 +45,11 @@ window.onload = function() {
     ];
 
     const coloringSubCategories = [
-        { id: "alphabets", name: "Alphabets", icon: "🔤" },
-        { id: "small_alphabets", name: "Small Alphabets", icon: "🔡" },
-         { id: "hindi", name: "Hindi & Marathi (अ आ इ)", icon: "अ" },
-        { id: "numbers", name: "Numbers", icon: "🔢" },
-        { id: "shapes", name: "Shapes", icon: "⭐" }
+        { id: "alphabets", name: "Alphabets", icon: "🔤" }
+        // { id: "small_alphabets", name: "Small Alphabets", icon: "🔡" },
+        //  { id: "hindi", name: "Hindi & Marathi (अ आ इ)", icon: "अ" },
+        // { id: "numbers", name: "Numbers", icon: "🔢" },
+        // { id: "shapes", name: "Shapes", icon: "⭐" }
        
     ];
 
