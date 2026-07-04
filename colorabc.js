@@ -200,7 +200,6 @@ window.onload = function() {
     let currentColor = colorSwatches[0];
     let isDrawing = false;
     
-    // Pixel Tracking Variables
     let totalTargetPixels = 0;
     let checkInterval = null;
 
@@ -227,47 +226,44 @@ window.onload = function() {
         const cw = canvasMask.width;
         const ch = canvasMask.height;
         const fontSize = cw * 0.8; 
+        
+        // Use the EXACT same kid-friendly font stack as your CSS for mobile consistency
+        const mobileSafeFonts = `900 ${fontSize}px 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif`;
 
-        // 1. Draw the initial solid white letter
         ctxMask.globalCompositeOperation = 'source-over';
         ctxMask.clearRect(0, 0, cw, ch);
-        ctxMask.font = `900 ${fontSize}px 'Comic Sans MS', sans-serif`;
+        ctxMask.font = mobileSafeFonts;
         ctxMask.textAlign = 'center';
         ctxMask.textBaseline = 'middle';
         ctxMask.fillStyle = '#ffffff'; 
         ctxMask.fillText(letter, cw/2, ch/2 + (fontSize * 0.05)); 
         
-        // 2. Count exactly how many pixels make up the letter body!
         const imgData = ctxMask.getImageData(0, 0, cw, ch);
         const data = imgData.data;
         totalTargetPixels = 0;
         for (let i = 0; i < data.length; i += 4) {
-            // Count pixels that are solid (alpha > 50)
             if (data[i + 3] > 50) {
                 totalTargetPixels++;
             }
         }
         
-        // 3. Set to atop so they can only paint over the white pixels
         ctxMask.globalCompositeOperation = 'source-atop'; 
 
-        // Draw the thick black outline on the layer above
         ctxOutline.clearRect(0, 0, cw, ch);
-        ctxOutline.font = `900 ${fontSize}px 'Comic Sans MS', sans-serif`;
+        ctxOutline.font = mobileSafeFonts;
         ctxOutline.textAlign = 'center';
         ctxOutline.textBaseline = 'middle';
         
-        // FIX FOR THE SPIKY 'B' GLITCH!
+        // CRITICAL FIX: Forces round edges to stop spiky vector artifacting
         ctxOutline.lineJoin = 'round';
         ctxOutline.lineCap = 'round';
-        ctxOutline.miterLimit = 2;
+        ctxOutline.miterLimit = 1; 
         
-        ctxOutline.lineWidth = cw * 0.04; // Slightly thicker, smoother outline
+        ctxOutline.lineWidth = cw * 0.04; 
         ctxOutline.strokeStyle = '#333333';
         ctxOutline.strokeText(letter, cw/2, ch/2 + (fontSize * 0.05));
     }
 
-    // --- PROGRESS CHECKER ---
     function checkFillProgress() {
         if (!isPlaying || totalTargetPixels === 0) return;
 
@@ -275,11 +271,8 @@ window.onload = function() {
         const data = imgData.data;
         let coloredPixels = 0;
 
-        // Loop through all pixels
         for (let i = 0; i < data.length; i += 4) {
-            // If the pixel is part of the letter (alpha > 50)
             if (data[i + 3] > 50) {
-                // If it is NO LONGER pure white, it means the kid colored it!
                 if (data[i] < 240 || data[i + 1] < 240 || data[i + 2] < 240) {
                     coloredPixels++;
                 }
@@ -288,7 +281,7 @@ window.onload = function() {
 
         const percentageFilled = coloredPixels / totalTargetPixels;
 
-        // Increased to 95% so they have to color almost the whole thing!
+        // Ensure they color at least 95% of the body
         if (percentageFilled > 0.95) {
             clearInterval(checkInterval);
             finishColoring();
@@ -330,7 +323,6 @@ window.onload = function() {
         movePencil(e);
         
         ctxMask.beginPath();
-        // REDUCED BRUSH SIZE so they have to scribble more!
         ctxMask.lineWidth = canvasMask.width * 0.12; 
         ctxMask.lineCap = 'round';
         ctxMask.lineJoin = 'round';
@@ -339,7 +331,6 @@ window.onload = function() {
         ctxMask.lineTo(x + 0.1, y);
         ctxMask.stroke();
 
-        // Start checking their progress constantly while drawing
         if (!checkInterval) {
             checkInterval = setInterval(checkFillProgress, 400); 
         }
@@ -375,7 +366,7 @@ window.onload = function() {
         ctxMask.beginPath();
         clearInterval(checkInterval);
         checkInterval = null;
-        checkFillProgress(); // Run one final check when they lift their finger
+        checkFillProgress(); 
     }
 
     canvasMask.addEventListener('mousedown', startColoring);
@@ -436,8 +427,12 @@ window.onload = function() {
         const cw = canvasMask.width;
         const ch = canvasMask.height;
         const fontSize = cw * 0.8;
+        
+        const mobileSafeFonts = `900 ${fontSize}px 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif`;
+        
         ctxMask.globalCompositeOperation = 'source-over';
         ctxMask.fillStyle = currentColor;
+        ctxMask.font = mobileSafeFonts;
         ctxMask.fillText(letter, cw/2, ch/2 + (fontSize * 0.05));
 
         setTimeout(() => handleSuccess(allLetters[currentLetterIndex]), 500);
@@ -489,7 +484,7 @@ window.onload = function() {
                 
                 currentLetterIndex++;
                 if (currentLetterIndex >= allLetters.length) {
-                    currentLetterIndex = 0; // Loop back to A
+                    currentLetterIndex = 0; 
                 }
                 
                 if (roundsPlayedThisSession >= ROUNDS_BEFORE_RELOAD) {
