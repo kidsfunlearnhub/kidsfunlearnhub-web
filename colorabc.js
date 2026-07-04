@@ -268,7 +268,7 @@ window.onload = function() {
         const percentageFilled = coloredPixels / totalTargetPixels;
 
         // Set to 90% so they have to color thoroughly, but not frustratingly exact
-        if (percentageFilled > 0.90) {
+        if (percentageFilled > 0.98) {
             clearInterval(checkInterval);
             finishColoring();
         }
@@ -309,7 +309,7 @@ window.onload = function() {
         movePencil(e);
         
         ctxMask.beginPath();
-        ctxMask.lineWidth = canvasMask.width * 0.15; // Healthy brush size
+        ctxMask.lineWidth = canvasMask.width * 0.08; // Healthy brush size
         ctxMask.lineCap = 'round';
         ctxMask.lineJoin = 'round';
         ctxMask.strokeStyle = currentColor;
