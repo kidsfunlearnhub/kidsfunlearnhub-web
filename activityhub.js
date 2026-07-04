@@ -8,7 +8,8 @@ window.onload = function() {
         { id: "finding", name: "Finding", icon: "🔍", color: "color-orange", desc: "Find the hidden items!", targetVocab: "general" },
         { id: "shadow", name: "Shadow Matching", icon: "👥", color: "color-blue", desc: "Match the shapes!", targetVocab: "general" },
         { id: "joining", name: "Joining Image", icon: "🧩", color: "color-green", desc: "Put the pieces together!", targetVocab: "general" },
-        { id: "tapping", name: "Tapping", icon: "👆", color: "color-pink", desc: "Tap as fast as you can!", targetVocab: "tapping" }
+        { id: "tapping", name: "Tapping", icon: "👆", color: "color-pink", desc: "Tap as fast as you can!", targetVocab: "tapping" },
+        { id: "coloring", name: "Coloring", icon: "🎨", color: "color-purple", desc: "Pick a color and paint!", targetVocab: "coloring" }
     ];
 
     const generalSubCategories = [
@@ -35,10 +36,19 @@ window.onload = function() {
 
     const tappingSubCategories = [
         { id: "alphabets", name: "Alphabets", icon: "🔤" },
-        { id: "small_alphabets", name: "Big & Small Alphabets", icon: "🔡" },
+        { id: "small_alphabets", name: "Small Alphabets", icon: "🔡" },
          { id: "hindi", name: "Hindi & Marathi (अ आ इ)", icon: "अ" },
         { id: "numbers", name: "Numbers", icon: "🔢" },
         { id: "colours", name: "Colours", icon: "🎨" },
+        { id: "shapes", name: "Shapes", icon: "⭐" }
+       
+    ];
+
+    const coloringSubCategories = [
+        { id: "alphabets", name: "Alphabets", icon: "🔤" },
+        { id: "small_alphabets", name: "Small Alphabets", icon: "🔡" },
+         { id: "hindi", name: "Hindi & Marathi (अ आ इ)", icon: "अ" },
+        { id: "numbers", name: "Numbers", icon: "🔢" },
         { id: "shapes", name: "Shapes", icon: "⭐" }
        
     ];
@@ -119,7 +129,9 @@ window.onload = function() {
         "tapping_numbers": "tapnumbers.html",
         "tapping_hindi": "tapvarnmala.html",
         "tapping_colours": "tapcolors.html",
-        "tapping_shapes": "tapshapes.html"
+        "tapping_shapes": "tapshapes.html",
+
+        "coloring_alphabets": "colorabc.html"
     };
 
     // --- 2. STATE MANAGEMENT ---
@@ -191,7 +203,7 @@ window.onload = function() {
             renderMainView();
         };
 
-        const listToRender = (vocabType === "tapping") ? tappingSubCategories : generalSubCategories;
+        const listToRender = (vocabType === "tapping") ? tappingSubCategories : (vocabType === "coloring") ? coloringSubCategories : generalSubCategories;
 
         listToRender.forEach(sub => {
 

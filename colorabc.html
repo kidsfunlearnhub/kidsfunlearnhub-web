@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>Color The Alphabet | KidsFunLearnHub</title>
+    <meta name="title" content="Color The Alphabet | KidsFunLearnHub">
+    <meta name="description" content="Play the free Color The Alphabet game on KidsFunLearnHub! A fun, interactive coloring and phonetic recognition game for toddlers to learn ABCs sequentially.">
+    <meta name="keywords" content="color the alphabet, kids abc game, toddler coloring games, alphabet recognition, preschool activities, KidsFunLearnHub, learn abc">
+    <meta name="author" content="KidsFunLearnHub">
+    
+    <link rel="canonical" href="https://kidsfunlearnhub.com/colorabc.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kidsfunlearnhub.com/colorabc.html">
+    <meta property="og:title" content="Color The Alphabet | KidsFunLearnHub">
+    <meta property="og:description" content="A fun, interactive coloring game for toddlers to learn English alphabets in order. Play for free!">
+    <meta property="og:image" content="https://kidsfunlearnhub.com/images/color-abc-preview.jpg">
+
+    <link rel="stylesheet" href="colorabc.css?v=2.3">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+</head>
+<body>
+
+    <main class="game-container">
+        
+        <header class="header-row">
+            <h1 id="game-title">🎨 Color The Alphabet!</h1>
+            <div class="score-board" aria-live="polite">
+                <span id="score-label">Score:</span> 
+                <span id="score">0</span>
+            </div>
+        </header>
+
+        <nav class="language-container" aria-label="Language Selection">
+            <div class="language-selector">
+                <button class="lang-btn active" data-lang="en" aria-label="Switch to English">English</button>
+            </div>
+        </nav>
+
+        <section class="progress-container" aria-hidden="true">
+            <div class="progress-track" id="progress-track">
+                <div class="line-track-overlay">
+                    <div class="progress-line-base"></div> 
+                    <div class="progress-line-fill" id="progress-line"></div> 
+                </div>
+                <div class="dots-container" id="dots-container"></div>
+                <div class="runner-track-overlay">
+                    <div id="runner-icon" class="runner-icon">
+                        <span id="runner-emoji" class="face-right">🖍️</span>
+                    </div>
+                </div>
+                <div id="target-icon" class="target-icon">🍎</div>
+            </div>
+        </section>
+
+        <section id="promptBox" class="prompt-box" role="button" tabindex="0" aria-label="Play instruction audio">
+            <div class="speaker-icon" aria-hidden="true">🔊</div>
+            <div>
+                <h2 id="instruction">Color the letter...</h2>
+                <div id="target-letter-name" class="target-text">???</div>
+            </div>
+        </section>
+
+        <section class="coloring-area" id="coloringArea">
+            <canvas id="canvasMask"></canvas>
+            <canvas id="canvasOutline"></canvas>
+            
+            <div id="pencilCursor" class="pencil-cursor">
+                <svg width="60" height="60" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path id="pencilSVG" d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z" fill="#FF5722" stroke="#333" stroke-width="1"/>
+                </svg>
+            </div>
+        </section>
+
+        <section id="colorPalette" class="color-palette" role="group" aria-label="Color Palette"></section>
+
+        <nav class="bottom-actions">
+            <button id="backBtn" class="action-btn" aria-label="Go back">⬅ Back</button>
+        </nav>
+    </main>
+
+    <section class="seo-description-container">
+        <h2>About The Color The Alphabet Game</h2>
+        <p>Welcome to KidsFunLearnHub's Color The Alphabet Game! This interactive, sequential learning activity guides toddlers through the ABCs. By picking a color and painting the giant alphabet, children actively engage their fine motor skills while learning letter shapes and phonetic sounds.</p>
+        <p><strong>Learning Outcomes:</strong> Sequential alphabet memorization, color choice, fine motor engagement, and phonetic vocabulary building.</p>
+
+        <details class="seo-accordion">
+            <summary>
+                <span class="read-more-btn"></span>
+            </summary>
+            
+            <div class="seo-content-wrapper">
+                <h3>How to Play & Educational Benefits</h3>
+                <p>Learning the alphabet in order (A to Z) is the foundation of early literacy. In this game, kids are presented with a giant, uncolored letter. By picking a color and scribbling with their digital pencil, they physically trace the letter's structure.</p>
+                
+                <p>Once fully colored, the game reinforces the letter by sounding out its phonetic anchor (e.g., "A for Apple") and displaying the matching vocabulary image. This powerful multi-sensory feedback loop cements the letter's shape, sound, and sequence in their memory.</p>
+            </div>
+        </details>
+    </section>
+    
+    <div id="feedback" class="feedback-overlay hidden" role="alert">
+        <div class="feedback-content">
+            <img id="feedback-img" src="" alt="Vocabulary Word" class="hidden">
+            <h2 id="feedback-text"></h2>
+            <h3 id="feedback-score" class="score-text"></h3>
+            <div style="font-size: 80px; animation: popIn 0.5s;">⭐</div>
+        </div>
+    </div>
+
+    <script src="colorabc.js?v=2.5"></script>
+</body>
+</html>
