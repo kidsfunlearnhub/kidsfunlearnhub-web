@@ -159,10 +159,8 @@ window.onload = function() {
         
         const targetLetterKey = allLetters[currentLetterIndex];
         
-        // Prepare the saved vocabulary MP3 (e.g., "A for Apple")
         let vocabAudio = new Audio(`sounds/${currentLang}/abc/${targetLetterKey}.mp3`);
         
-        // Helper to trigger the vocabulary sound
         const triggerPhaseTwo = () => {
             vocabAudio.play().then(() => {
                 vocabAudio.onended = () => { isAudioPlaying = false; };
@@ -172,14 +170,11 @@ window.onload = function() {
             });
         };
 
-        // If you have a custom "color_the_letter.mp3", it will play that first!
         let instructionAudio = new Audio(`sounds/${currentLang}/color_the_letter.mp3`);
         
         instructionAudio.play().then(() => {
             instructionAudio.onended = triggerPhaseTwo;
         }).catch(() => {
-            // FALLBACK: If there's no custom MP3, the computer speaks the instruction, 
-            // then perfectly hands it off to your saved vocabulary MP3!
             let msg = new SpeechSynthesisUtterance(uiDict["instruction"][currentLang]);
             msg.rate = 0.85; 
             msg.pitch = 1.2;
@@ -205,6 +200,7 @@ window.onload = function() {
     let currentColor = colorSwatches[0];
     let isDrawing = false;
     
+    // Pixel Tracking Variables
     let totalTargetPixels = 0;
     let checkInterval = null;
 
@@ -232,6 +228,7 @@ window.onload = function() {
         const ch = canvasMask.height;
         const fontSize = cw * 0.8; 
 
+        // 1. Draw the initial solid white letter
         ctxMask.globalCompositeOperation = 'source-over';
         ctxMask.clearRect(0, 0, cw, ch);
         ctxMask.font = `900 ${fontSize}px 'Comic Sans MS', sans-serif`;
@@ -240,26 +237,37 @@ window.onload = function() {
         ctxMask.fillStyle = '#ffffff'; 
         ctxMask.fillText(letter, cw/2, ch/2 + (fontSize * 0.05)); 
         
+        // 2. Count exactly how many pixels make up the letter body!
         const imgData = ctxMask.getImageData(0, 0, cw, ch);
         const data = imgData.data;
         totalTargetPixels = 0;
         for (let i = 0; i < data.length; i += 4) {
+            // Count pixels that are solid (alpha > 50)
             if (data[i + 3] > 50) {
                 totalTargetPixels++;
             }
         }
         
+        // 3. Set to atop so they can only paint over the white pixels
         ctxMask.globalCompositeOperation = 'source-atop'; 
 
+        // Draw the thick black outline on the layer above
         ctxOutline.clearRect(0, 0, cw, ch);
         ctxOutline.font = `900 ${fontSize}px 'Comic Sans MS', sans-serif`;
         ctxOutline.textAlign = 'center';
         ctxOutline.textBaseline = 'middle';
-        ctxOutline.lineWidth = cw * 0.03; 
+        
+        // FIX FOR THE SPIKY 'B' GLITCH!
+        ctxOutline.lineJoin = 'round';
+        ctxOutline.lineCap = 'round';
+        ctxOutline.miterLimit = 2;
+        
+        ctxOutline.lineWidth = cw * 0.04; // Slightly thicker, smoother outline
         ctxOutline.strokeStyle = '#333333';
         ctxOutline.strokeText(letter, cw/2, ch/2 + (fontSize * 0.05));
     }
 
+    // --- PROGRESS CHECKER ---
     function checkFillProgress() {
         if (!isPlaying || totalTargetPixels === 0) return;
 
@@ -267,8 +275,11 @@ window.onload = function() {
         const data = imgData.data;
         let coloredPixels = 0;
 
+        // Loop through all pixels
         for (let i = 0; i < data.length; i += 4) {
+            // If the pixel is part of the letter (alpha > 50)
             if (data[i + 3] > 50) {
+                // If it is NO LONGER pure white, it means the kid colored it!
                 if (data[i] < 240 || data[i + 1] < 240 || data[i + 2] < 240) {
                     coloredPixels++;
                 }
@@ -277,7 +288,8 @@ window.onload = function() {
 
         const percentageFilled = coloredPixels / totalTargetPixels;
 
-        if (percentageFilled > 0.90) {
+        // Increased to 95% so they have to color almost the whole thing!
+        if (percentageFilled > 0.95) {
             clearInterval(checkInterval);
             finishColoring();
         }
@@ -318,7 +330,8 @@ window.onload = function() {
         movePencil(e);
         
         ctxMask.beginPath();
-        ctxMask.lineWidth = canvasMask.width * 0.25; 
+        // REDUCED BRUSH SIZE so they have to scribble more!
+        ctxMask.lineWidth = canvasMask.width * 0.12; 
         ctxMask.lineCap = 'round';
         ctxMask.lineJoin = 'round';
         ctxMask.strokeStyle = currentColor;
@@ -326,6 +339,7 @@ window.onload = function() {
         ctxMask.lineTo(x + 0.1, y);
         ctxMask.stroke();
 
+        // Start checking their progress constantly while drawing
         if (!checkInterval) {
             checkInterval = setInterval(checkFillProgress, 400); 
         }
@@ -361,7 +375,7 @@ window.onload = function() {
         ctxMask.beginPath();
         clearInterval(checkInterval);
         checkInterval = null;
-        checkFillProgress(); 
+        checkFillProgress(); // Run one final check when they lift their finger
     }
 
     canvasMask.addEventListener('mousedown', startColoring);
@@ -417,6 +431,7 @@ window.onload = function() {
         clearInterval(checkInterval);
         checkInterval = null;
 
+        // Auto-fill perfectly to make it look completely clean
         const letter = allLetters[currentLetterIndex].toUpperCase();
         const cw = canvasMask.width;
         const ch = canvasMask.height;
@@ -474,7 +489,7 @@ window.onload = function() {
                 
                 currentLetterIndex++;
                 if (currentLetterIndex >= allLetters.length) {
-                    currentLetterIndex = 0; 
+                    currentLetterIndex = 0; // Loop back to A
                 }
                 
                 if (roundsPlayedThisSession >= ROUNDS_BEFORE_RELOAD) {
