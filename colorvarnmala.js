@@ -200,13 +200,18 @@ window.onload = function() {
         instructionAudio.play().then(() => {
             instructionAudio.onended = triggerPhaseTwo;
         }).catch(() => {
-            let msg = new SpeechSynthesisUtterance(uiDict["instruction"][currentLang] + " " + devanagariChar);
-            msg.rate = 0.85; msg.pitch = 1.2;
-            msg.onend = triggerPhaseTwo;
-            window.speechSynthesis.speak(msg);
+            // NEW LOGIC: If Marathi is selected, skip the robotic voice entirely!
+            if (currentLang === 'mr') {
+                triggerPhaseTwo(); // Jumps straight to the letter sound (e.g., 'Ka')
+            } else {
+                // For other languages, still use the fallback robotic voice if MP3 is missing
+                let msg = new SpeechSynthesisUtterance(uiDict["instruction"][currentLang] + " " + devanagariChar);
+                msg.rate = 0.85; msg.pitch = 1.2;
+                msg.onend = triggerPhaseTwo;
+                window.speechSynthesis.speak(msg);
+            }
         });
     }
-
     document.getElementById("promptBox").addEventListener("click", playCustomAudio);
 
 
