@@ -7,15 +7,15 @@ window.onload = function() {
         { runner: '🚀', target: '⭐' }  
     ];
     
-    let themeIndex = parseInt(sessionStorage.getItem('colorBigSmallThemeIndex')) || 0;
+    let themeIndex = parseInt(sessionStorage.getItem('colorNumberThemeIndex')) || 0;
     const currentTheme = themes[themeIndex];
 
     document.getElementById("runner-emoji").innerText = currentTheme.runner;
     document.getElementById("target-icon").innerText = currentTheme.target;
 
     let currentLang = sessionStorage.getItem('findAbcLang') || 'en'; 
-    let score = parseInt(sessionStorage.getItem('colorBigSmallScore')) || 0;
-    let currentLetterIndex = parseInt(sessionStorage.getItem('colorBigSmallLetterIdx')) || 0;
+    let score = parseInt(sessionStorage.getItem('colorNumberScore')) || 0;
+    let currentNumberIndex = parseInt(sessionStorage.getItem('colorNumberIdx')) || 0;
     
     let isPlaying = false;
     let isAudioPlaying = false; 
@@ -42,46 +42,82 @@ window.onload = function() {
     }
 
     const uiDict = {
-        "game-title": { en: "🎨 Color Big & Small!", hi: "🎨 बड़े और छोटे अक्षर रंगें!", mr: "🎨 मोठी आणि लहान अक्षरे रंगवा!" },
+        "game-title": { en: "🎨 Color Numbers!", hi: "🎨 नंबर रंगें!", mr: "🎨 क्रमांक रंगवा!" },
         "score-label": { en: "Score:", hi: "स्कोर:", mr: "गुण:" },
-        "instruction": { en: "Color the letters...", hi: "अक्षरों को रंगें...", mr: "अक्षरे रंगवा..." },
+        "instruction": { en: "Color the number...", hi: "नंबर को रंगें...", mr: "क्रमांक रंगवा..." },
         "backBtn": { en: "⬅ Back", hi: "⬅ पीछे", mr: "⬅ मागे" },
         "correct": { en: "Great Job! 🎉", hi: "बहुत अच्छे! 🎉", mr: "खूप छान! 🎉" },
         "total-score": { en: "Total Score: ", hi: "कुल स्कोर: ", mr: "एकूण गुण: " },
-        "page-title": { en: "Color Big & Small ABC | KidsFunLearnHub", hi: "बड़े और छोटे अक्षर रंगें | KidsFunLearnHub", mr: "मोठी आणि लहान अक्षरे रंगवा | KidsFunLearnHub" }
+        "page-title": { en: "Color Numbers Game | KidsFunLearnHub", hi: "नंबर रंगें खेल | KidsFunLearnHub", mr: "क्रमांक रंगवा खेळ | KidsFunLearnHub" }
     };
 
-    const abcDict = {
-        "a": { en: "A for Apple", hi: "A - सेब", mr: "A - सफरचंद" },
-        "b": { en: "B for Ball", hi: "B - गेंद", mr: "B - चेंडू" },
-        "c": { en: "C for Cat", hi: "C - बिल्ली", mr: "C - मांजर" },
-        "d": { en: "D for Dog", hi: "D - कुत्ता", mr: "D - कुत्रा" },
-        "e": { en: "E for Elephant", hi: "E - हाथी", mr: "E - हत्ती" },
-        "f": { en: "F for Fish", hi: "F - मछली", mr: "F - मासा" },
-        "g": { en: "G for Grapes", hi: "G - अंगूर", mr: "G - द्राक्षे" },
-        "h": { en: "H for Horse", hi: "H - घोड़ा", mr: "H - घोडा" },
-        "i": { en: "I for Ice Cream", hi: "I - आइसक्रीम", mr: "I - आईस्क्रीम" },
-        "j": { en: "J for Jug", hi: "J - जग", mr: "J - जग" },
-        "k": { en: "K for Kite", hi: "K - पतंग", mr: "K - पतंग" },
-        "l": { en: "L for Lion", hi: "L - शेर", mr: "L - सिंह" },
-        "m": { en: "M for Monkey", hi: "M - बंदर", mr: "M - माकड" },
-        "n": { en: "N for Nest", hi: "N - घोंसला", mr: "N - घरटे" },
-        "o": { en: "O for Orange", hi: "O - संतरा", mr: "O - संत्री" },
-        "p": { en: "P for Parrot", hi: "P - तोता", mr: "P - पोपट" },
-        "q": { en: "Q for Queen", hi: "Q - रानी", mr: "Q - राणी" },
-        "r": { en: "R for Rabbit", hi: "R - खरगोश", mr: "R - ससा" },
-        "s": { en: "S for Sun", hi: "S - सूरज", mr: "S - सूर्य" },
-        "t": { en: "T for Tiger", hi: "T - बाघ", mr: "T - वाघ" },
-        "u": { en: "U for Umbrella", hi: "U - छाता", mr: "U - छत्री" },
-        "v": { en: "V for Van", hi: "V - वैन", mr: "V - व्हॅन" },
-        "w": { en: "W for Watch", hi: "W - घड़ी", mr: "W - घड्याळ" },
-        "x": { en: "X for X-ray", hi: "X - एक्स-रे", mr: "X - एक्स-रे" },
-        "y": { en: "Y for Yak", hi: "Y - याक", mr: "Y - याक" },
-        "z": { en: "Z for Zebra", hi: "Z - ज़ेबरा", mr: "Z - झेब्रा" }
+    const numbersDict = {
+        "1": { en: "One", hi: "एक", mr: "एक" },
+        "2": { en: "Two", hi: "दो", mr: "दोन" },
+        "3": { en: "Three", hi: "तीन", mr: "तीन" },
+        "4": { en: "Four", hi: "चार", mr: "चार" },
+        "5": { en: "Five", hi: "पांच", mr: "पाच" },
+        "6": { en: "Six", hi: "छह", mr: "सहा" },
+        "7": { en: "Seven", hi: "सात", mr: "सात" },
+        "8": { en: "Eight", hi: "आठ", mr: "आठ" },
+        "9": { en: "Nine", hi: "नौ", mr: "नऊ" },
+        "10": { en: "Ten", hi: "दस", mr: "दहा" },
+        "11": { en: "Eleven", hi: "ग्यारह", mr: "अकरा" },
+        "12": { en: "Twelve", hi: "बारह", mr: "बारा" },
+        "13": { en: "Thirteen", hi: "तेरह", mr: "तेरा" },
+        "14": { en: "Fourteen", hi: "चौदह", mr: "चौदा" },
+        "15": { en: "Fifteen", hi: "पंद्रह", mr: "पंधरा" },
+        "16": { en: "Sixteen", hi: "सोलह", mr: "सोळा" },
+        "17": { en: "Seventeen", hi: "सत्रह", mr: "सतरा" },
+        "18": { en: "Eighteen", hi: "अठारह", mr: "अठरा" },
+        "19": { en: "Nineteen", hi: "उन्नीस", mr: "एकोणीस" },
+        "20": { en: "Twenty", hi: "बीस", mr: "वीस" },
+        "21": { en: "Twenty-one", hi: "इक्कीस", mr: "एकवीस" },
+        "22": { en: "Twenty-two", hi: "बाईस", mr: "बावीस" },
+        "23": { en: "Twenty-three", hi: "तेईस", mr: "तेवीस" },
+        "24": { en: "Twenty-four", hi: "चौबीस", mr: "चोवीस" },
+        "25": { en: "Twenty-five", hi: "पच्चीस", mr: "पंचवीस" },
+        "26": { en: "Twenty-six", hi: "छब्बीस", mr: "सव्वीस" },
+        "27": { en: "Twenty-seven", hi: "सत्ताईस", mr: "सत्तावीस" },
+        "28": { en: "Twenty-eight", hi: "अट्ठाईस", mr: "अठ्ठावीस" },
+        "29": { en: "Twenty-nine", hi: "उन्तीस", mr: "एकोणतीस" },
+        "30": { en: "Thirty", hi: "तीस", mr: "तीस" },
+        "31": { en: "Thirty-one", hi: "इकतीस", mr: "एकतीस" },
+        "32": { en: "Thirty-two", hi: "बत्तीस", mr: "बत्तीस" },
+        "33": { en: "Thirty-three", hi: "तैंतीस", mr: "तेहतीस" },
+        "34": { en: "Thirty-four", hi: "चौंतीस", mr: "चौतीस" },
+        "35": { en: "Thirty-five", hi: "पैंतीस", mr: "पस्तीस" },
+        "36": { en: "Thirty-six", hi: "छत्तीस", mr: "छत्तीस" },
+        "37": { en: "Thirty-seven", hi: "सैंतीस", mr: "सदतीस" },
+        "38": { en: "Thirty-eight", hi: "अड़तीस", mr: "अडतीस" },
+        "39": { en: "Thirty-nine", hi: "उनतालीस", mr: "एकोणचाळीस" },
+        "40": { en: "Forty", hi: "चालीस", mr: "चाळीस" }
     };
 
-    const allLetters = Object.keys(abcDict);
+    const allNumbers = Object.keys(numbersDict);
     const colorSwatches = ["#FF5722", "#4CAF50", "#2196F3", "#FFEB3B", "#9C27B0", "#E91E63"];
+
+    const availableImages = [
+      "images/numberscount/sparrow.webp", "images/numberscount/tiger.webp", "images/numberscount/lion.webp",
+      "images/numberscount/elephant.webp", "images/numberscount/dog.webp", "images/numberscount/ant.webp",
+      "images/numberscount/butterfly.webp", "images/numberscount/t1.webp", "images/numberscount/capsicum.webp",
+      "images/numberscount/cat.webp", "images/numberscount/17.webp", "images/numberscount/parrot.webp",
+      "images/numberscount/pigeon.webp", "images/numberscount/cow.webp", "images/numberscount/guava.webp",
+      "images/numberscount/housefly.webp", "images/numberscount/ladybug.webp", "images/numberscount/lotus.webp",
+      "images/numberscount/monkey.webp", "images/numberscount/8.webp", "images/numberscount/onion.webp",
+      "images/numberscount/panda.webp", "images/numberscount/potato.webp", "images/numberscount/rabbit.webp",
+      "images/numberscount/rose.webp", "images/numberscount/beetroot.webp", "images/numberscount/okra.webp",
+      "images/numberscount/9.webp", "images/numberscount/10.webp", "images/numberscount/13.webp",
+      "images/numberscount/14.webp", "images/numberscount/18.webp", "images/numberscount/22.webp",
+      "images/numberscount/23.webp", "images/numberscount/24.webp", "images/numberscount/star.webp",
+      "images/numberscount/sunflower.webp", "images/numberscount/th2.webp", "images/numberscount/zinnia.webp"
+    ];
+
+    const numberImages = {};
+    for (let i = 1; i <= 40; i++) {
+      let index = (i - 1) % availableImages.length;
+      numberImages[String(i)] = availableImages[index];
+    }
 
     document.getElementById("score").innerText = score;
 
@@ -113,6 +149,12 @@ window.onload = function() {
         }
     }
 
+    function getDisplayNumber(numStr, lang) {
+        if (lang === 'en') return numStr;
+        const devanagariDigits = {'0':'०','1':'१','2':'२','3':'३','4':'४','5':'५','6':'६','7':'७','8':'८','9':'९'};
+        return numStr.split('').map(char => devanagariDigits[char] || char).join('');
+    }
+
     function updateLanguage(lang) {
         currentLang = lang;
         sessionStorage.setItem('findAbcLang', lang); 
@@ -129,15 +171,26 @@ window.onload = function() {
         document.getElementById("instruction").innerText = uiDict["instruction"][currentLang];
         document.getElementById("backBtn").innerText = uiDict["backBtn"][currentLang];
         
-        const targetLetterKey = allLetters[currentLetterIndex];
-        if (targetLetterKey) {
-            document.getElementById("target-letter-name").innerText = targetLetterKey.toUpperCase() + " " + targetLetterKey.toLowerCase();
+        const targetNumberKey = allNumbers[currentNumberIndex];
+        if (targetNumberKey) {
+            document.getElementById("target-letter-name").innerText = getDisplayNumber(targetNumberKey, currentLang);
         }
     }
 
+    // ==========================================
+    // INSTANT CANVAS REDRAW ON LANGUAGE SWITCH
+    // ==========================================
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
-            updateLanguage(e.target.dataset.lang);
+            const selectedLang = e.target.dataset.lang;
+            if (currentLang === selectedLang) return; // Prevent unnecessary redraws
+            
+            updateLanguage(selectedLang);
+            
+            if (isPlaying) {
+                // Instantly wipe and redraw the canvas with the new language shape!
+                renderNumberCanvas();
+            }
             playCustomAudio();
         });
     });
@@ -147,10 +200,9 @@ window.onload = function() {
         isAudioPlaying = true;
         
         window.speechSynthesis.cancel();
-        const targetLetterKey = allLetters[currentLetterIndex];
+        const targetNumberKey = allNumbers[currentNumberIndex];
         
-        // Use the combined "Aa.mp3" file for Big and Small letters
-        let vocabAudio = new Audio(`sounds/${currentLang}/abc big-small/${targetLetterKey.toUpperCase()}${targetLetterKey.toLowerCase()}.mp3`);
+        let vocabAudio = new Audio(`sounds/${currentLang}/numbers/${targetNumberKey}.mp3`);
         
         const triggerPhaseTwo = () => {
             vocabAudio.play().then(() => {
@@ -158,14 +210,19 @@ window.onload = function() {
             }).catch(e => { isAudioPlaying = false; });
         };
 
-        let instructionAudio = new Audio(`sounds/${currentLang}/color_the_letters.mp3`);
+        let instructionAudio = new Audio(`sounds/${currentLang}/color_the_number.mp3`);
         instructionAudio.play().then(() => {
             instructionAudio.onended = triggerPhaseTwo;
         }).catch(() => {
-            let msg = new SpeechSynthesisUtterance(uiDict["instruction"][currentLang] + " " + targetLetterKey.toUpperCase() + " " + targetLetterKey.toLowerCase());
-            msg.rate = 0.85; msg.pitch = 1.2;
-            msg.onend = triggerPhaseTwo;
-            window.speechSynthesis.speak(msg);
+            if (currentLang === 'mr') {
+                triggerPhaseTwo();
+            } else {
+                const spokenText = getDisplayNumber(targetNumberKey, currentLang);
+                let msg = new SpeechSynthesisUtterance(uiDict["instruction"][currentLang] + " " + spokenText);
+                msg.rate = 0.85; msg.pitch = 1.2;
+                msg.onend = triggerPhaseTwo;
+                window.speechSynthesis.speak(msg);
+            }
         });
     }
 
@@ -173,7 +230,7 @@ window.onload = function() {
 
 
     // ==========================================
-    // 4. THE LAYERED DILATION ENGINE
+    // 4. THE EXACT COLORABC LOGIC (NO HIDDEN CANVASES)
     // ==========================================
     const canvasOutline = document.getElementById('canvasOutline');
     const ctxOutline = canvasOutline.getContext('2d', { willReadFrequently: true });
@@ -195,7 +252,7 @@ window.onload = function() {
         canvasMask.height = rect.height;
         canvasOutline.width = rect.width;
         canvasOutline.height = rect.height;
-        renderLetterCanvas();
+        renderNumberCanvas();
         centerPencil();
     }
 
@@ -207,66 +264,43 @@ window.onload = function() {
         pencilCursor.style.top = (rect.top + rect.height / 2) + 'px';
     }
 
-    function renderLetterCanvas() {
-        const bigLetter = allLetters[currentLetterIndex].toUpperCase();
-        const smallLetter = allLetters[currentLetterIndex].toLowerCase();
+    function renderNumberCanvas() {
+        const targetNumberKey = allNumbers[currentNumberIndex];
+        const displayNum = getDisplayNumber(targetNumberKey, currentLang);
         
         const cw = canvasMask.width;
         const ch = canvasMask.height;
         
-        // Font sizes adjusted to fit BOTH letters comfortably side-by-side
-        const bigFontSize = cw * 0.55; 
-        const smallFontSize = cw * 0.45;
-        const mobileSafeFonts = `'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif`;
+        const isDoubleDigit = displayNum.length > 1;
+        const fontSize = isDoubleDigit ? cw * 0.65 : cw * 0.8; 
+        const mobileSafeFonts = `900 ${fontSize}px 'Noto Sans Devanagari', 'Comic Sans MS', sans-serif`;
 
-        // Function to draw the text strings in the correct positions
-        const drawLetters = (ctx, isOutline) => {
-            // Big Letter
-            ctx.font = `900 ${bigFontSize}px ${mobileSafeFonts}`;
-            if(isOutline) {
-                const outlineThickness = cw * 0.025; 
-                for(let i = 0; i < 32; i++) {
-                    const angle = (i / 32) * Math.PI * 2;
-                    const dx = Math.cos(angle) * outlineThickness;
-                    const dy = Math.sin(angle) * outlineThickness;
-                    ctx.fillText(bigLetter, cw * 0.35 + dx, ch/2 + (bigFontSize * 0.05) + dy);
-                }
-            } else {
-                ctx.fillText(bigLetter, cw * 0.35, ch/2 + (bigFontSize * 0.05));
-            }
-
-            // Small Letter
-            ctx.font = `900 ${smallFontSize}px ${mobileSafeFonts}`;
-            if(isOutline) {
-                const outlineThickness = cw * 0.025; 
-                for(let i = 0; i < 32; i++) {
-                    const angle = (i / 32) * Math.PI * 2;
-                    const dx = Math.cos(angle) * outlineThickness;
-                    const dy = Math.sin(angle) * outlineThickness;
-                    ctx.fillText(smallLetter, cw * 0.70 + dx, ch/2 + (smallFontSize * 0.05) + dy);
-                }
-            } else {
-                ctx.fillText(smallLetter, cw * 0.70, ch/2 + (smallFontSize * 0.05));
-            }
-        };
-
-        // 1. Draw the Bottom Layer: The Fat Black Shadow (Bypasses Android Stroke Bug!)
+        // 1. Draw the Bottom Layer
         ctxOutline.globalCompositeOperation = 'source-over';
         ctxOutline.clearRect(0, 0, cw, ch);
+        ctxOutline.font = mobileSafeFonts;
         ctxOutline.textAlign = 'center';
         ctxOutline.textBaseline = 'middle';
         ctxOutline.fillStyle = '#333333';
-        drawLetters(ctxOutline, true);
         
-        // 2. Draw the Top Layer: The White Paint Trap
+        const outlineThickness = cw * 0.025; 
+        for(let i = 0; i < 32; i++) {
+            const angle = (i / 32) * Math.PI * 2;
+            const dx = Math.cos(angle) * outlineThickness;
+            const dy = Math.sin(angle) * outlineThickness;
+            ctxOutline.fillText(displayNum, cw/2 + dx, ch/2 + (fontSize * 0.05) + dy);
+        }
+
+        // 2. Draw the Top Layer
         ctxMask.globalCompositeOperation = 'source-over';
         ctxMask.clearRect(0, 0, cw, ch);
+        ctxMask.font = mobileSafeFonts;
         ctxMask.textAlign = 'center';
         ctxMask.textBaseline = 'middle';
         ctxMask.fillStyle = '#ffffff'; 
-        drawLetters(ctxMask, false);
+        ctxMask.fillText(displayNum, cw/2, ch/2 + (fontSize * 0.05)); 
         
-        // Count Target Pixels
+        // 3. Count Target Pixels directly from the mask
         const imgData = ctxMask.getImageData(0, 0, cw, ch);
         const data = imgData.data;
         totalTargetPixels = 0;
@@ -274,7 +308,7 @@ window.onload = function() {
             if (data[i + 3] > 50) totalTargetPixels++;
         }
         
-        // Lock the paint so it only draws over the white letter!
+        // Lock the paint so it only draws over the white number
         ctxMask.globalCompositeOperation = 'source-atop'; 
     }
 
@@ -295,7 +329,6 @@ window.onload = function() {
 
         const percentageFilled = coloredPixels / totalTargetPixels;
 
-        // Strict 98% threshold to ensure they really color it!
         if (percentageFilled > 0.98) {
             clearInterval(checkInterval);
             finishColoring();
@@ -337,7 +370,7 @@ window.onload = function() {
         movePencil(e);
         
         ctxMask.beginPath();
-        ctxMask.lineWidth = canvasMask.width * 0.08; // Healthy brush size
+        ctxMask.lineWidth = canvasMask.width * 0.08; 
         ctxMask.lineCap = 'round';
         ctxMask.lineJoin = 'round';
         ctxMask.strokeStyle = currentColor;
@@ -383,12 +416,13 @@ window.onload = function() {
         checkFillProgress(); 
     }
 
-    canvasMask.addEventListener('mousedown', startColoring);
-    canvasMask.addEventListener('mousemove', handlePointerMove);
+    const coloringArea = document.getElementById('coloringArea');
+    coloringArea.addEventListener('mousedown', startColoring);
+    coloringArea.addEventListener('mousemove', handlePointerMove);
     window.addEventListener('mouseup', stopColoring);
     
-    canvasMask.addEventListener('touchstart', startColoring, {passive: false});
-    canvasMask.addEventListener('touchmove', handlePointerMove, {passive: false});
+    coloringArea.addEventListener('touchstart', startColoring, {passive: false});
+    coloringArea.addEventListener('touchmove', handlePointerMove, {passive: false});
     window.addEventListener('touchend', stopColoring);
 
 
@@ -401,8 +435,8 @@ window.onload = function() {
         checkInterval = null;
         updateProgressTrack(false, roundsPlayedThisSession);
 
-        const targetLetterKey = allLetters[currentLetterIndex];
-        document.getElementById("target-letter-name").innerText = targetLetterKey.toUpperCase() + " " + targetLetterKey.toLowerCase();
+        const targetNumberKey = allNumbers[currentNumberIndex];
+        document.getElementById("target-letter-name").innerText = getDisplayNumber(targetNumberKey, currentLang);
 
         resizeCanvas(); 
 
@@ -436,106 +470,26 @@ window.onload = function() {
         clearInterval(checkInterval);
         checkInterval = null;
 
-        // Auto-fill everything perfectly
-        const bigLetter = allLetters[currentLetterIndex].toUpperCase();
-        const smallLetter = allLetters[currentLetterIndex].toLowerCase();
+        const targetNumberKey = allNumbers[currentNumberIndex];
+        const displayNum = getDisplayNumber(targetNumberKey, currentLang);
         const cw = canvasMask.width;
         const ch = canvasMask.height;
-        const bigFontSize = cw * 0.6; 
-        const smallFontSize = cw * 0.45;
-        const mobileSafeFonts = `'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif`;
+        const isDoubleDigit = displayNum.length > 1;
+        const fontSize = isDoubleDigit ? cw * 0.65 : cw * 0.8; 
+        const mobileSafeFonts = `900 ${fontSize}px 'Noto Sans Devanagari', 'Comic Sans MS', sans-serif`;
         
         ctxMask.globalCompositeOperation = 'source-over';
         ctxMask.fillStyle = currentColor;
-        ctxMask.textAlign = 'center';
-        ctxMask.textBaseline = 'middle';
-        
-        ctxMask.font = `900 ${bigFontSize}px ${mobileSafeFonts}`;
-        ctxMask.fillText(bigLetter, cw * 0.35, ch/2 + (bigFontSize * 0.05));
-        
-        ctxMask.font = `900 ${smallFontSize}px ${mobileSafeFonts}`;
-        ctxMask.fillText(smallLetter, cw * 0.70, ch/2 + (smallFontSize * 0.05));
+        ctxMask.font = mobileSafeFonts;
+        ctxMask.fillText(displayNum, cw/2, ch/2 + (fontSize * 0.05));
 
-        setTimeout(() => handleSuccess(allLetters[currentLetterIndex]), 500);
+        setTimeout(() => handleSuccess(allNumbers[currentNumberIndex]), 500);
     }
 
-    // function handleSuccess(targetLetterKey) {
-    //     const feedback = document.getElementById("feedback");
-    //     const feedbackText = document.getElementById("feedback-text");
-    //     const feedbackImg = document.getElementById("feedback-img");
-    //     const feedbackScore = document.getElementById("feedback-score");
-
-    //     score += 10;
-    //     document.getElementById("score").innerText = score;
-    //     updateProgressTrack(true, roundsPlayedThisSession + 1);
-
-    //     feedbackScore.innerText = uiDict["total-score"][currentLang] + score;
-    //     feedbackScore.classList.remove("hidden");
-
-    //     feedbackText.innerText = uiDict["correct"][currentLang];
-    //     feedbackText.className = "correct-text";
-    //     feedbackImg.classList.add("hidden"); 
-    //     feedback.classList.remove("hidden");
-    //     feedback.onclick = null; 
-
-    //     if (typeof confetti === "function") {
-    //         confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 }, zIndex: 9999 });
-    //     }
-
-    //     let greatJobAudio = new Audio(`sounds/${currentLang}/great_job.mp3`);
-        
-    //     const triggerPhaseTwo = () => {
-    //         feedbackText.innerText = abcDict[targetLetterKey][currentLang];
-    //         feedbackImg.src = `images/abc/words/${targetLetterKey}.webp`;
-    //         feedbackImg.classList.remove("hidden"); 
-
-    //         let letterAudio = new Audio(`sounds/${currentLang}/abc big-small/${targetLetterKey.toUpperCase()}${targetLetterKey.toLowerCase()}.mp3`);
-    //         let hasAdvanced = false;
-    //         let autoTimer;
-
-    //         const advanceToNext = () => {
-    //             if (hasAdvanced) return; 
-    //             hasAdvanced = true;
-    //             clearTimeout(autoTimer); 
-    //             letterAudio.pause(); 
-    //             feedback.onclick = null; 
-    //             feedback.classList.add("hidden");
-                
-    //             roundsPlayedThisSession++; 
-    //             currentLetterIndex++;
-    //             if (currentLetterIndex >= allLetters.length) currentLetterIndex = 0; 
-                
-    //             if (roundsPlayedThisSession >= ROUNDS_BEFORE_RELOAD) {
-    //                 sessionStorage.setItem('colorBigSmallScore', score);
-    //                 sessionStorage.setItem('findAbcLang', currentLang);
-    //                 sessionStorage.setItem('colorBigSmallLetterIdx', currentLetterIndex); 
-    //                 sessionStorage.setItem('colorBigSmallThemeIndex', (themeIndex + 1) % themes.length);
-    //                 window.location.reload();
-    //             } else {
-    //                 startNewRound();
-    //             }
-    //         };
-
-    //         setTimeout(() => { feedback.onclick = advanceToNext; }, 500);
-
-    //         letterAudio.play().then(() => {
-    //             letterAudio.onended = () => { autoTimer = setTimeout(advanceToNext, 1600); };
-    //         }).catch(e => {
-    //             autoTimer = setTimeout(advanceToNext, 2000);
-    //         });
-    //     };
-
-    //     greatJobAudio.play().then(() => {
-    //         greatJobAudio.onended = triggerPhaseTwo;
-    //     }).catch(() => {
-    //         setTimeout(triggerPhaseTwo, 1500); 
-    //     });
-    // }
-
-    function handleSuccess(targetLetterKey) {
+    function handleSuccess(targetNumberKey) {
         const feedback = document.getElementById("feedback");
         const feedbackText = document.getElementById("feedback-text");
-        const feedbackImg = document.getElementById("feedback-img");
+        const feedbackObjects = document.getElementById("feedback-objects");
         const feedbackScore = document.getElementById("feedback-score");
 
         score += 10;
@@ -547,7 +501,6 @@ window.onload = function() {
 
         feedbackText.innerText = uiDict["correct"][currentLang];
         feedbackText.className = "correct-text";
-        feedbackImg.classList.add("hidden"); 
         feedback.classList.remove("hidden");
         feedback.onclick = null; 
 
@@ -555,20 +508,29 @@ window.onload = function() {
             confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 }, zIndex: 9999 });
         }
 
-        // AUDIO 1: "Great Job!"
         let greatJobAudio = new Audio(`sounds/${currentLang}/great_job.mp3`);
         
         const triggerPhaseTwo = () => {
-            feedbackText.innerText = abcDict[targetLetterKey][currentLang];
-            feedbackImg.src = `images/abc/words/${targetLetterKey}.webp`;
-            feedbackImg.classList.remove("hidden"); 
+            feedbackText.innerText = numbersDict[targetNumberKey][currentLang];
+            
+            const limit = parseInt(targetNumberKey);
+            const isMobile = window.innerWidth <= 500;
+            let dynamicSize = 100;
+            if (limit <= 4) { dynamicSize = isMobile ? 80 : 100; } 
+            else if (limit <= 9) { dynamicSize = isMobile ? 60 : 70; } 
+            else if (limit <= 16) { dynamicSize = isMobile ? 45 : 55; } 
+            else if (limit <= 25) { dynamicSize = isMobile ? 35 : 45; } 
+            else { dynamicSize = isMobile ? 30 : 38; }
 
-            // AUDIO 2: "Big A, Small a"
-            let bigSmallAudio = new Audio(`sounds/${currentLang}/abc big-small/${targetLetterKey.toUpperCase()}${targetLetterKey.toLowerCase()}.mp3`);
-            
-            // AUDIO 3: "A for Apple"
-            let vocabAudio = new Audio(`sounds/${currentLang}/abc/${targetLetterKey}.mp3`);
-            
+            let imagesHtml = '';
+            const imgSrc = numberImages[targetNumberKey]; 
+            for(let i = 0; i < limit; i++) {
+                imagesHtml += `<img src="${imgSrc}" style="width: ${dynamicSize}px; height: ${dynamicSize}px; object-fit: contain; pointer-events: none; margin: 2px;" alt="Object">`;
+            }
+            feedbackObjects.innerHTML = imagesHtml;
+            feedbackObjects.classList.remove("hidden");
+
+            let numberAudio = new Audio(`sounds/${currentLang}/numbers/${targetNumberKey}.mp3`);
             let hasAdvanced = false;
             let autoTimer;
 
@@ -576,23 +538,21 @@ window.onload = function() {
                 if (hasAdvanced) return; 
                 hasAdvanced = true;
                 clearTimeout(autoTimer); 
-                
-                // Stop any audio if the user taps to skip early
-                bigSmallAudio.pause(); 
-                vocabAudio.pause();
+                numberAudio.pause(); 
                 
                 feedback.onclick = null; 
                 feedback.classList.add("hidden");
+                feedbackObjects.classList.add("hidden");
                 
                 roundsPlayedThisSession++; 
-                currentLetterIndex++;
-                if (currentLetterIndex >= allLetters.length) currentLetterIndex = 0; 
+                currentNumberIndex++;
+                if (currentNumberIndex >= allNumbers.length) currentNumberIndex = 0; 
                 
                 if (roundsPlayedThisSession >= ROUNDS_BEFORE_RELOAD) {
-                    sessionStorage.setItem('colorBigSmallScore', score);
+                    sessionStorage.setItem('colorNumberScore', score);
                     sessionStorage.setItem('findAbcLang', currentLang);
-                    sessionStorage.setItem('colorBigSmallLetterIdx', currentLetterIndex); 
-                    sessionStorage.setItem('colorBigSmallThemeIndex', (themeIndex + 1) % themes.length);
+                    sessionStorage.setItem('colorNumberIdx', currentNumberIndex); 
+                    sessionStorage.setItem('colorNumberThemeIndex', (themeIndex + 1) % themes.length);
                     window.location.reload();
                 } else {
                     startNewRound();
@@ -601,26 +561,13 @@ window.onload = function() {
 
             setTimeout(() => { feedback.onclick = advanceToNext; }, 500);
 
-            // SEQUENCE CHAINING:
-            // Play Audio 2 -> When Audio 2 ends -> Play Audio 3 -> When Audio 3 ends -> Advance
-            bigSmallAudio.play().then(() => {
-                bigSmallAudio.onended = () => {
-                    vocabAudio.play().then(() => {
-                        vocabAudio.onended = () => {
-                            autoTimer = setTimeout(advanceToNext, 1600);
-                        };
-                    }).catch(e => {
-                        // Fallback if vocab audio is missing
-                        autoTimer = setTimeout(advanceToNext, 1600);
-                    });
-                };
+            numberAudio.play().then(() => {
+                numberAudio.onended = () => { autoTimer = setTimeout(advanceToNext, 1600); };
             }).catch(e => {
-                // Fallback if big-small audio is missing
                 autoTimer = setTimeout(advanceToNext, 2000);
             });
         };
 
-        // Start the sequence with Audio 1
         greatJobAudio.play().then(() => {
             greatJobAudio.onended = triggerPhaseTwo;
         }).catch(() => {
@@ -629,10 +576,10 @@ window.onload = function() {
     }
 
     document.getElementById("backBtn").addEventListener("click", () => {
-        sessionStorage.removeItem('colorBigSmallScore'); 
-        sessionStorage.removeItem('colorBigSmallThemeIndex');
-        sessionStorage.removeItem('colorBigSmallLetterIdx'); 
-        const returnUrl = sessionStorage.getItem('hubReturnUrl') || "activityhub.html?topic=small_alphabets";
+        sessionStorage.removeItem('colorNumberScore'); 
+        sessionStorage.removeItem('colorNumberThemeIndex');
+        sessionStorage.removeItem('colorNumberIdx'); 
+        const returnUrl = sessionStorage.getItem('hubReturnUrl') || "activityhub.html?topic=numbers";
         window.location.href = returnUrl; 
     });
 
@@ -642,14 +589,14 @@ window.onload = function() {
         if (checkInterval) { clearInterval(checkInterval); checkInterval = null; }
         window.speechSynthesis.cancel();
         document.getElementById("feedback").classList.add("hidden");
+        document.getElementById("feedback-objects").classList.add("hidden");
         
-        // Go back, handle wrap-around from A to Z
+        // Go back, handle wrap-around from 1 to 40
         roundsPlayedThisSession = Math.max(0, roundsPlayedThisSession - 1);
-        currentLetterIndex = (currentLetterIndex - 1 + allLetters.length) % allLetters.length;
+        currentNumberIndex = (currentNumberIndex - 1 + allNumbers.length) % allNumbers.length;
         
         startNewRound();
     });
-    
     
     document.getElementById("skipBtn").addEventListener("click", () => {
         isPlaying = false;
@@ -657,16 +604,17 @@ window.onload = function() {
         if (checkInterval) { clearInterval(checkInterval); checkInterval = null; }
         window.speechSynthesis.cancel();
         document.getElementById("feedback").classList.add("hidden");
+        document.getElementById("feedback-objects").classList.add("hidden");
         
         roundsPlayedThisSession++; 
-        currentLetterIndex++;
-        if (currentLetterIndex >= allLetters.length) currentLetterIndex = 0; 
+        currentNumberIndex++;
+        if (currentNumberIndex >= allNumbers.length) currentNumberIndex = 0; 
         
         if (roundsPlayedThisSession >= ROUNDS_BEFORE_RELOAD) {
-            sessionStorage.setItem('colorBigSmallScore', score);
+            sessionStorage.setItem('colorNumberScore', score);
             sessionStorage.setItem('findAbcLang', currentLang);
-            sessionStorage.setItem('colorBigSmallLetterIdx', currentLetterIndex); 
-            sessionStorage.setItem('colorBigSmallThemeIndex', (themeIndex + 1) % themes.length);
+            sessionStorage.setItem('colorNumberIdx', currentNumberIndex); 
+            sessionStorage.setItem('colorNumberThemeIndex', (themeIndex + 1) % themes.length);
             window.location.reload();
         } else {
             startNewRound();

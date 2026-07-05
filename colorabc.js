@@ -505,6 +505,45 @@ window.onload = function() {
         window.location.href = returnUrl; 
     });
 
+    document.getElementById("prevBtn").addEventListener("click", () => {
+        isPlaying = false;
+        isDrawing = false;
+        if (checkInterval) { clearInterval(checkInterval); checkInterval = null; }
+        window.speechSynthesis.cancel();
+        document.getElementById("feedback").classList.add("hidden");
+        
+        // Go back, handle wrap-around from A to Z
+        roundsPlayedThisSession = Math.max(0, roundsPlayedThisSession - 1);
+        currentLetterIndex = (currentLetterIndex - 1 + allLetters.length) % allLetters.length;
+        
+        startNewRound();
+    });
+    
+    
+    
+    document.getElementById("skipBtn").addEventListener("click", () => {
+        isPlaying = false;
+        isDrawing = false;
+        if (checkInterval) { clearInterval(checkInterval); checkInterval = null; }
+        window.speechSynthesis.cancel();
+        document.getElementById("feedback").classList.add("hidden");
+        
+        roundsPlayedThisSession++; 
+        currentLetterIndex++;
+        if (currentLetterIndex >= allLetters.length) currentLetterIndex = 0; 
+        
+        if (roundsPlayedThisSession >= ROUNDS_BEFORE_RELOAD) {
+            sessionStorage.setItem('colorAbcScore', score);
+            sessionStorage.setItem('findAbcLang', currentLang);
+            sessionStorage.setItem('colorAbcLetterIdx', currentLetterIndex); 
+            sessionStorage.setItem('colorAbcThemeIndex', (themeIndex + 1) % themes.length);
+            window.location.reload();
+        } else {
+            startNewRound();
+        }
+    });
+
+
     initProgressTrack();
     updateLanguage(currentLang);
     startNewRound();

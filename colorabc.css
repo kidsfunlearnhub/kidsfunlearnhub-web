@@ -89,9 +89,43 @@ body {
 .color-swatch.active { border-color: #333; transform: scale(1.1); box-shadow: 0 8px 15px rgba(0,0,0,0.3); }
 
 /* --- ACTIONS AT BOTTOM --- */
-.bottom-actions { margin-top: clamp(10px, 1vh, 15px); }
-.action-btn { background: #9c27b0; color: white; border: none; padding: clamp(10px, 1.5vh, 15px) 30px; font-size: clamp(16px, 2.5vh, 20px); font-family: inherit; font-weight: bold; border-radius: 50px; cursor: pointer; box-shadow: 0 6px 0 #7b1fa2; transition: transform 0.1s; }
+.bottom-actions { 
+    margin-top: clamp(15px, 2vh, 25px); 
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px; 
+    width: 100%;
+}
+
+.action-row { 
+    display: flex; 
+    justify-content: center; 
+    gap: 15px; 
+}
+
+.action-btn { 
+    background: #9c27b0; 
+    color: white; 
+    border: none; 
+    padding: clamp(10px, 1.5vh, 15px) 25px; 
+    font-size: clamp(16px, 2.5vh, 20px); 
+    font-family: inherit; 
+    font-weight: bold; 
+    border-radius: 50px; 
+    cursor: pointer; 
+    box-shadow: 0 6px 0 #7b1fa2; 
+    transition: transform 0.1s; 
+    flex: 1; /* Makes Prev/Next buttons equal width */
+    max-width: 150px;
+}
+
+.back-btn { background: #7b1fa2; box-shadow: 0 6px 0 #9e14d9; flex: 0 1 auto; min-width: 120px; }
+.prev-btn { background: #2196F3; box-shadow: 0 6px 0 #1976D2; }
+.skip-btn { background: #ff9800; box-shadow: 0 6px 0 #f57c00; }
+
 .action-btn:active { transform: translateY(6px); box-shadow: none; }
+
+
 
 /* Feedback Overlay */
 .feedback-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.9); display: flex; justify-content: center; align-items: center; z-index: 999; }

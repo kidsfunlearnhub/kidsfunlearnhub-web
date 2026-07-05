@@ -18,7 +18,7 @@
     <meta property="og:description" content="A fun, interactive coloring game for toddlers to learn English alphabets in order. Play for free!">
     <meta property="og:image" content="https://kidsfunlearnhub.com/images/color-abc-preview.jpg">
 
-    <link rel="stylesheet" href="colorabc.css?v=4">
+    <link rel="stylesheet" href="colorabc.css?v=4.3">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
 </head>
 <body>
@@ -76,9 +76,17 @@
 
         <section id="colorPalette" class="color-palette" role="group" aria-label="Color Palette"></section>
 
+    
         <nav class="bottom-actions">
-            <button id="backBtn" class="action-btn" aria-label="Go back">⬅ Back</button>
+            <div class="action-row">
+                <button id="prevBtn" class="action-btn prev-btn" aria-label="Previous">⬅ Prev</button>
+                <button id="skipBtn" class="action-btn skip-btn" aria-label="Skip to next">Next ➡</button>
+            </div>
+            <div class="action-row">
+                <button id="backBtn" class="action-btn back-btn" aria-label="Go back">🏠 Back</button>
+            </div>
         </nav>
+
     </main>
 
     <section class="seo-description-container">
@@ -109,6 +117,6 @@
         </div>
     </div>
 
-    <script src="colorabc.js?v=4.4"></script>
+    <script src="colorabc.js?v=4.6"></script>
 </body>
 </html>

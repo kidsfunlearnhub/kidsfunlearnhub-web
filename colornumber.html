@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <title>Color Varnamala | KidsFunLearnHub</title>
-    <meta name="title" content="Color Varnamala | KidsFunLearnHub">
-    <meta name="description" content="Play the free Color Varnamala game on KidsFunLearnHub! A fun, interactive coloring and phonetic recognition game for toddlers to learn Devanagari script.">
-    <meta name="keywords" content="color varnamala, kids hindi game, toddler coloring games, alphabet recognition, preschool activities, KidsFunLearnHub, learn marathi">
+    <title>Color Numbers | KidsFunLearnHub</title>
+    <meta name="title" content="Color Numbers | KidsFunLearnHub">
+    <meta name="description" content="Play the free Color Numbers game on KidsFunLearnHub! A fun, interactive coloring and counting game for toddlers to learn numbers 1 to 40.">
+    <meta name="keywords" content="color numbers, kids math game, toddler coloring games, number recognition, preschool activities, KidsFunLearnHub, learn counting">
     <meta name="author" content="KidsFunLearnHub">
     
-    <link rel="canonical" href="https://kidsfunlearnhub.com/colorvarnmala.html">
+    <link rel="canonical" href="https://kidsfunlearnhub.com/colornumber.html">
 
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kidsfunlearnhub.com/colorvarnmala.html">
-    <meta property="og:title" content="Color Varnamala | KidsFunLearnHub">
-    <meta property="og:description" content="A fun, interactive coloring game for toddlers to learn Hindi and Marathi Varnamala. Play for free!">
-    <meta property="og:image" content="https://kidsfunlearnhub.com/images/color-varnmala-preview.jpg">
+    <meta property="og:url" content="https://kidsfunlearnhub.com/colornumber.html">
+    <meta property="og:title" content="Color Numbers | KidsFunLearnHub">
+    <meta property="og:description" content="A fun, interactive coloring game for toddlers to learn numbers and counting. Play for free!">
+    <meta property="og:image" content="https://kidsfunlearnhub.com/images/color-number-preview.jpg">
 
-    <link rel="stylesheet" href="colorvarnmala.css?v=1.3">
+    <link rel="stylesheet" href="colornumber.css?v=1.1">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
 </head>
 <body>
@@ -26,7 +26,7 @@
     <main class="game-container">
         
         <header class="header-row">
-            <h1 id="game-title">🎨 Color Varnamala!</h1>
+            <h1 id="game-title">🎨 Color Numbers!</h1>
             <div class="score-board" aria-live="polite">
                 <span id="score-label">Score:</span> 
                 <span id="score">0</span>
@@ -35,6 +35,7 @@
 
         <nav class="language-container" aria-label="Language Selection">
             <div class="language-selector">
+                <button class="lang-btn active" data-lang="en" aria-label="Switch to English">English</button>
                 <button class="lang-btn" data-lang="hi" aria-label="Switch to Hindi">हिंदी</button>
                 <button class="lang-btn" data-lang="mr" aria-label="Switch to Marathi">मराठी</button>
             </div>
@@ -59,7 +60,7 @@
         <section id="promptBox" class="prompt-box" role="button" tabindex="0" aria-label="Play instruction audio">
             <div class="speaker-icon" aria-hidden="true">🔊</div>
             <div>
-                <h2 id="instruction">Color the letter...</h2>
+                <h2 id="instruction">Color the number...</h2>
                 <div id="target-letter-name" class="target-text">???</div>
             </div>
         </section>
@@ -89,9 +90,9 @@
     </main>
 
     <section class="seo-description-container">
-        <h2>About The Color Varnamala Game</h2>
-        <p>Welcome to KidsFunLearnHub's Color Varnamala Game! This interactive, sequential learning activity guides toddlers through the Devanagari script. By picking a color and painting the giant letters, children actively engage their fine motor skills while learning Hindi and Marathi letter shapes and phonetic sounds.</p>
-        <p><strong>Learning Outcomes:</strong> Sequential varnamala memorization, Devanagari character recognition, fine motor engagement, and phonetic vocabulary building.</p>
+        <h2>About The Color Numbers Game</h2>
+        <p>Welcome to KidsFunLearnHub's Color Numbers Game! This interactive learning activity guides toddlers through numbers 1 to 40. By picking a color and painting the giant digit, children actively engage their fine motor skills while learning number shapes in English, Hindi, and Marathi.</p>
+        <p><strong>Learning Outcomes:</strong> Number recognition, 1-to-1 counting correspondence, fine motor engagement, and multilingual math readiness.</p>
 
         <details class="seo-accordion">
             <summary>
@@ -100,21 +101,22 @@
             
             <div class="seo-content-wrapper">
                 <h3>How to Play & Educational Benefits</h3>
-                <p>Learning the Varnamala is the foundation of early literacy in Hindi and Marathi. In this game, kids are presented with a giant, uncolored Devanagari letter. By picking a color and scribbling with their digital pencil, they physically trace the letter's unique curves and top-lines (Shirekha).</p>
-                <p>Once fully colored, the game reinforces the letter by sounding out its native pronunciation and displaying the matching vocabulary image. This powerful multi-sensory feedback loop cements the letter's shape, sound, and sequence in their memory.</p>
+                <p>Understanding that the symbol "3" actually represents three physical items is a massive cognitive leap for a toddler. In this game, kids physically trace the number's structure with a digital pencil.</p>
+                <p>Once fully colored, the game reinforces the number by instantly popping up the exact quantity of fun, countable objects. This engaging cause-and-effect mechanic effectively bridges the gap between abstract numbers and real visual quantities!</p>
             </div>
         </details>
     </section>
     
     <div id="feedback" class="feedback-overlay hidden" role="alert">
         <div class="feedback-content">
-            <img id="feedback-img" src="" alt="Vocabulary Word" class="hidden">
+            <div id="feedback-objects" class="feedback-objects-grid hidden"></div>
+            
             <h2 id="feedback-text"></h2>
             <h3 id="feedback-score" class="score-text"></h3>
             <div style="font-size: 80px; animation: popIn 0.5s;">⭐</div>
         </div>
     </div>
 
-    <script src="colorvarnmala.js?v=1.5"></script>
+    <script src="colornumber.js?v=1.4"></script>
 </body>
 </html>

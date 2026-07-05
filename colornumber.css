@@ -41,8 +41,8 @@ body {
 .speaker-icon { background: #2196f3; color: white; font-size: clamp(24px, 4vh, 32px); width: clamp(50px, 7vh, 60px); height: clamp(50px, 7vh, 60px); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 0 #1976d2; }
 #instruction { font-size: clamp(16px, 2.5vh, 20px); margin: 0 0 2px 0; color: #555; }
 
-/* Dedicated Hindi/Marathi styling */
-.target-text { font-family: 'Noto Sans Devanagari', 'Mangal', sans-serif; font-size: clamp(24px, 4vh, 42px); color: #d32f2f; font-weight: bold; }
+/* Font styling to properly display Devanagari numbers and Western numbers */
+.target-text { font-family: 'Noto Sans Devanagari', 'Comic Sans MS', sans-serif; font-size: clamp(24px, 4vh, 42px); color: #d32f2f; font-weight: bold; }
 
 /* --- THE STACKED CANVAS COLORING AREA --- */
 .coloring-area {
@@ -129,11 +129,14 @@ body {
 .action-btn:active { transform: translateY(6px); box-shadow: none; }
 
 /* Feedback Overlay */
-.feedback-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.9); display: flex; justify-content: center; align-items: center; z-index: 999; }
+.feedback-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.95); display: flex; justify-content: center; align-items: center; z-index: 999; }
 .hidden { display: none !important; }
-.feedback-content { display: flex; flex-direction: column; align-items: center; gap: 20px; }
-#feedback-img { max-height: clamp(180px, 35vh, 280px); border-radius: 20px; border: 8px solid white; box-shadow: 0 10px 25px rgba(0,0,0,0.2); animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); background-color: #f1f8e9; padding: 15px; }
-.feedback-content h2 { font-size: clamp(40px, 8vw, 90px); margin: 0; font-family: 'Noto Sans Devanagari', 'Mangal', sans-serif; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.feedback-content { display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%; max-width: 600px; padding: 0 15px; }
+
+/* New Grid for repeating countable objects */
+.feedback-objects-grid { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 5px; background: #f1f8e9; padding: 15px; border-radius: 20px; border: 5px dashed #8bc34a; max-height: 40vh; overflow-y: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.1); animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
+.feedback-content h2 { font-size: clamp(40px, 8vw, 90px); margin: 0; font-family: 'Noto Sans Devanagari', 'Comic Sans MS', sans-serif; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 .correct-text { color: #4caf50; }
 .score-text { font-size: clamp(28px, 6vw, 45px); color: #ff9800; margin: -10px 0 10px 0; font-weight: bold; text-shadow: 2px 2px 0px #ffe0b2; animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 @keyframes popIn { 0% { transform: scale(0.1); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
