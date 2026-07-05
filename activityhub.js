@@ -46,8 +46,8 @@ window.onload = function() {
 
     const coloringSubCategories = [
         { id: "alphabets", name: "Alphabets", icon: "🔤" },
-        { id: "bigsmall_alphabets", name: "Big & Small Alphabets", icon: "🔡" }
-        //  { id: "hindi", name: "Hindi & Marathi (अ आ इ)", icon: "अ" },
+        { id: "bigsmall_alphabets", name: "Big & Small Alphabets", icon: "🔡" },
+        { id: "hindi", name: "Hindi & Marathi (अ आ इ)", icon: "अ" },
         // { id: "numbers", name: "Numbers", icon: "🔢" },
         // { id: "shapes", name: "Shapes", icon: "⭐" }
        
@@ -132,7 +132,8 @@ window.onload = function() {
         "tapping_shapes": "tapshapes.html",
 
         "coloring_alphabets": "colorabc.html",
-        "coloring_bigsmall_alphabets": "colorbigsmallabc.html"
+        "coloring_bigsmall_alphabets": "colorbigsmallabc.html",
+        "coloring_hindi": "colorvarnmala.html"
     };
 
     // --- 2. STATE MANAGEMENT ---
