@@ -169,13 +169,32 @@ window.onload = function() {
             updateProgressTrack(true); 
 
             // Locked directly to English audio track
-            let matchAudio = new Audio(`sounds/en/abc/${selectedLetterKey}.mp3`);
-            matchAudio.play().catch(e => console.log("Audio not found"));
+            // let matchAudio = new Audio(`sounds/en/abc/${selectedLetterKey}.mp3`);
+            // matchAudio.play().catch(e => console.log("Audio not found"));
 
+            // selectedLetterCard = null; 
+
+            // if (matchesFound === 3) {
+            //     setTimeout(showRoundComplete, 800);
+            // }
+
+            let matchAudio = new Audio(`sounds/en/abc/${selectedLetterKey}.mp3`);
             selectedLetterCard = null; 
 
             if (matchesFound === 3) {
-                setTimeout(showRoundComplete, 800);
+                // If it's the last match, wait for the letter audio to finish before showing "Great Job"
+                matchAudio.onended = () => {
+                    showRoundComplete();
+                };
+                
+                matchAudio.play().catch(e => {
+                    console.log("Audio not found");
+                    // Fallback timer just in case the audio file is missing
+                    setTimeout(showRoundComplete, 800); 
+                });
+            } else {
+                // If it's not the last match, just play the audio normally
+                matchAudio.play().catch(e => console.log("Audio not found"));
             }
 
         } else {

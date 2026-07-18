@@ -132,7 +132,7 @@ window.onload = function() {
         let part1, part2;
 
         if (currentLang === 'en') {
-            part1 = new Audio(`sounds/en/where_is.mp3`);
+            part1 = new Audio(`sounds/en/where_is_the.mp3`);
             part2 = new Audio(`sounds/en/colours/${targetColourKey}.mp3`);
         } else if (currentLang === 'hi') {
             part1 = new Audio(`sounds/hi/colours/${targetColourKey}.mp3`);
