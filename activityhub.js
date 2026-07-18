@@ -212,6 +212,7 @@ window.onload = function() {
 
             // ---> ADD THIS LINE: Completely skip "Colours" if we are in "Shadow Matching"
             if (categoryId === "shadow" && sub.id === "colours") return;
+            
 
             const urlKey = `${categoryId}_${sub.id}`;
             const isLive = liveUrls[urlKey] !== undefined;
@@ -295,6 +296,9 @@ window.onload = function() {
 
             const urlKey = `${mainCat.id}_${topicId}`;
             const isLive = liveUrls[urlKey] !== undefined;
+
+            // ---> ADD THIS NEW LINE: Skip the card if it's 'coloring' and not live yet
+            if (mainCat.id === "coloring" && !isLive) return;
 
             const card = document.createElement("div");
             card.className = `activity-card ${mainCat.color}`;
