@@ -45,7 +45,7 @@ body {
 
 .title {
     font-size: clamp(2rem, 4vw, 3.2rem);
-    color:#ec51d8;
+    color: #ec51d8;
     margin: 5px 20px 15px 20px;
     text-shadow: 3px 3px 0 #0d1204, 9px 9px 15px rgba(0,0,0,0.2);
     letter-spacing: 2px;
@@ -63,7 +63,8 @@ body {
 
 .ad-space {
     background: rgba(255, 255, 255, 0.35); 
-    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border: 3px dashed rgba(255, 152, 0, 0.7); 
     border-radius: 15px; width: 100%; max-width: 728px; min-height: 90px; 
     display: flex; align-items: center; justify-content: center;
@@ -94,45 +95,59 @@ body {
 
 .worksheets-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; padding: 10px; margin: 0 auto 30px auto; max-width: 1100px; }
 
-/* MODIFIED: Made taller to fit two buttons */
 .worksheet-card {
-    width: 220px; flex-grow: 0; flex-shrink: 0; background: white;
-    border-radius: 25px; padding: 15px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    width: 235px; flex-grow: 0; flex-shrink: 0; background: white;
+    border-radius: 25px; padding: 15px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     box-shadow: 0 8px 15px rgba(0,0,0,0.1); border-bottom: 8px solid rgba(0,0,0,0.1);
     display: flex; flex-direction: column; align-items: center; position: relative;
+    box-sizing: border-box;
 }
-.worksheet-card:hover { transform: translateY(-8px) scale(1.05); box-shadow: 0 12px 20px rgba(0,0,0,0.2); border-bottom-color: #2196f3; }
+.worksheet-card:hover { transform: translateY(-8px) scale(1.05); box-shadow: 0 12px 20px rgba(0,0,0,0.2); border-bottom-color: #4caf50; }
 
 .card-thumbnail-wrapper {
-    background: #f1f8e9; width: 100%; height: 150px; border-radius: 15px;
-    display: flex; justify-content: center; align-items: center; margin-bottom: 15px; position: relative;
+    background: #f1f8e9; width: 100%; height: 140px; border-radius: 15px;
+    display: flex; justify-content: center; align-items: center; margin-bottom: 12px; position: relative;
 }
-.card-thumbnail-wrapper img { max-width: 130px; max-height: 130px; object-fit: contain; border-radius: 8px; transition: transform 0.3s ease; }
+.card-thumbnail-wrapper img { max-width: 120px; max-height: 120px; object-fit: contain; border-radius: 8px; transition: transform 0.3s ease; }
 .worksheet-card:hover img { transform: rotate(3deg) scale(1.05); }
 
-.lang-badge { position: absolute; top: -8px; right: -8px; background: #ff5722; color: white; font-size: 0.8rem; font-weight: bold; padding: 4px 10px; border-radius: 20px; border: 2px solid white; box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
-
-.worksheet-card h2 { font-size: 1.1rem; font-weight: bold; color: #333; margin: 0 0 15px 0; line-height: 1.3; flex-grow: 1; }
-
-/* NEW: Dual Download Buttons Logic */
-.download-group { width: 100%; display: flex; flex-direction: column; gap: 8px; }
-.download-btn {
-    width: 100%; border: none; padding: 10px 0; font-size: 1.05rem;
-    font-family: inherit; font-weight: bold; border-radius: 50px;
-    text-decoration: none; cursor: pointer; transition: all 0.1s; display: block;
+.price-tag {
+    position: absolute; top: -10px; right: -10px;
+    background: #ffc107; color: #222; font-size: 1.05rem;
+    font-weight: 900; padding: 6px 12px; border-radius: 20px;
+    border: 3px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 10;
 }
-.color-btn { background: #e91e63; color: white; box-shadow: 0 4px 0 #c2185b; }
-.eco-btn { background: #4caf50; color: white; box-shadow: 0 4px 0 #388e3c; }
-.download-btn:active { transform: translateY(4px); box-shadow: none; }
 
-@media (max-width: 500px) {
-    .worksheet-card { width: 160px; padding: 10px; }
-    .card-thumbnail-wrapper { height: 120px; }
-    .card-thumbnail-wrapper img { max-width: 100px; max-height: 100px; }
-    .worksheet-card h2 { font-size: 1rem; }
-    .download-btn { font-size: 0.95rem; padding: 8px 0; }
-    .worksheets-grid { gap: 15px; } 
-    .filter-btn { font-size: 0.95rem; padding: 8px 15px; }
+.lang-badge {
+    position: absolute; top: 8px; left: 8px;
+    background: #ff5722; color: white; font-size: 0.75rem; font-weight: bold;
+    padding: 4px 8px; border-radius: 16px; border: 2px solid white; box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+
+.worksheet-card h2 { font-size: 1.05rem; font-weight: bold; color: #333; margin: 0 0 4px 0; line-height: 1.3; }
+.card-subtitle { font-size: 0.85rem; color: #666; margin: 0 0 14px 0; line-height: 1.25; flex-grow: 1; }
+
+.buy-group { width: 100%; display: flex; flex-direction: column; gap: 8px; margin-top: auto; }
+.buy-btn {
+    width: 100%; border: none; padding: 11px 0; font-size: 1.05rem;
+    font-family: inherit; font-weight: bold; border-radius: 50px;
+    text-decoration: none; cursor: pointer; transition: all 0.15s ease; display: block;
+    background: #4caf50; color: white; box-shadow: 0 4px 0 #2e7d32; box-sizing: border-box;
+}
+.buy-btn:hover { background: #43a047; }
+.buy-btn:active { transform: translateY(4px); box-shadow: none; }
+
+@media (max-width: 520px) {
+    .worksheet-card { width: 165px; padding: 10px; }
+    .card-thumbnail-wrapper { height: 115px; }
+    .card-thumbnail-wrapper img { max-width: 90px; max-height: 90px; }
+    .worksheet-card h2 { font-size: 0.95rem; }
+    .card-subtitle { font-size: 0.78rem; margin-bottom: 10px; }
+    .price-tag { font-size: 0.9rem; padding: 4px 8px; top: -8px; right: -8px; }
+    .buy-btn { font-size: 0.95rem; padding: 9px 0; }
+    .worksheets-grid { gap: 12px; } 
+    .filter-btn { font-size: 0.95rem; padding: 8px 14px; }
 }
 
 .no-results { text-align: center; padding: 40px 20px; width: 100%; }
@@ -147,90 +162,43 @@ body {
 .action-btn:hover { transform: scale(1.05); background: #8e24aa; }
 .action-btn:active { transform: translateY(6px); box-shadow: none; }
 
-/* .seo-intro-box { max-width: 900px; margin: 10px auto 30px auto; padding: 20px 30px; background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 2px solid rgba(255, 255, 255, 0.6); border-radius: 20px; font-size: clamp(0.95rem, 1.2vw, 1.1rem); color: #222; line-height: 1.6; box-shadow: 0 8px 32px rgba(0,0,0,0.1); position: relative; z-index: 30; } */
-
-
-/* --- SEO TEXT CONTAINER STYLING --- */
 .seo-description-container {
     max-width: 900px; margin: 10px auto 30px auto; padding: 20px 30px; 
     background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
     border: 2px solid rgba(255, 255, 255, 0.6); border-radius: 20px;
     font-size: clamp(0.95rem, 1.2vw, 1.1rem); color: #222; line-height: 1.6;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.1); position: relative; z-index: 30; 
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1); position: relative; z-index: 30; text-align: left;
 }
-/* .seo-description-container h2 { color: #9c27b0; font-size: 20px; margin-top: 0; } */
-/* .seo-description-container {text-align: justify; } */
-
-/* --- SEO Accordion Styles --- */
 .seo-description-container h2 {
-    color: #9c27b0;
-    font-size: clamp(18px, 3vw, 22px);
-    margin-top: 0;
-    margin-bottom: 10px;
+    color: #9c27b0; font-size: clamp(18px, 3vw, 22px);
+    margin-top: 0; margin-bottom: 10px;
 }
 
 details.seo-accordion > summary {
-    list-style: none; /* Removes default triangle */
-    cursor: pointer;
-    outline: none;
-    margin-top: 15px;
-    display: inline-block; /* Makes the clickable area only as wide as the button */
+    list-style: none; cursor: pointer; outline: none; margin-top: 15px; display: inline-block;
 }
-
-details.seo-accordion > summary::-webkit-details-marker {
-    display: none; /* Removes default triangle in Chrome/Safari */
-}
+details.seo-accordion > summary::-webkit-details-marker { display: none; }
 
 .read-more-btn {
-    font-size: 14px;
-    background: #ff5722;
-    color: white;
-    padding: 8px 20px;
-    border-radius: 20px;
-    font-weight: bold;
-    transition: background 0.3s;
-    display: inline-block;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    font-size: 14px; background: #ff5722; color: white; padding: 8px 20px;
+    border-radius: 20px; font-weight: bold; transition: background 0.3s;
+    display: inline-block; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
-
-/* Text changing magic */
-details:not([open]) .read-more-btn::before {
-    content: "Read More ▼";
-}
-
-details[open] .read-more-btn {
-    background: #757575;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-}
-
-details[open] .read-more-btn::before {
-    content: "Close ✖";
-}
+details:not([open]) .read-more-btn::before { content: "Read More ▼"; }
+details[open] .read-more-btn { background: #757575; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); }
+details[open] .read-more-btn::before { content: "Close ✖"; }
 
 .seo-content-wrapper {
-    margin-top: 20px;
-    border-top: 2px dashed #ccc;
-    padding-top: 15px;
-    animation: slideDown 0.4s ease-out;
+    margin-top: 20px; border-top: 2px dashed #ccc; padding-top: 15px; animation: slideDown 0.4s ease-out;
 }
-
-.seo-content-wrapper h3 {
-    color: #00bcd4;
-    font-size: 18px;
-    margin-top: 15px;
-    margin-bottom: 5px;
-}
+.seo-content-wrapper h3 { color: #00bcd4; font-size: 18px; margin-top: 15px; margin-bottom: 5px; }
 
 @keyframes slideDown {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-
-
-
-
-.footer { text-align: center; padding: 20px 15px; background: #2c3e50; color: white; margin-top: 20px; width: 100%; position: relative; z-index: 20; box-sizing: border-box;}
+.footer { text-align: center; padding: 20px 15px; background: #2c3e50; color: white; margin-top: 20px; width: 100%; position: relative; z-index: 20; box-sizing: border-box; }
 .footer a { color: #ffcc00; text-decoration: none; margin: 0 10px; display: inline-block; padding: 5px 0; font-size: 1rem; transition: color 0.2s; }
 .footer a:hover { color: #fff; text-decoration: underline; }
 .copyright { margin-top: 10px; font-size: 0.85rem; color: #aaa; }
