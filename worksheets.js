@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
             id: 1, 
             title: "Hindi Varnamala & Numbers Master Pack", 
             subtitle: "50+ Pages Swar, Vyanjan & Numbers (Color & Eco)", 
-            price: "₹99",
+            price: "₹49",
             categories: ["tracing", "language", "math"], 
             badge: "Hindi", 
             thumbnail: "images/thumbnails/4line-varnmala.png", 
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
             id: 2, 
             title: "Marathi Aksharmala & Anka Practice Pack", 
             subtitle: "Structured 4-Line Tracing & Math Practice", 
-            price: "₹99",
+            price: "₹49",
             categories: ["tracing", "language", "math"], 
             badge: "Marathi", 
             thumbnail: "images/thumbnails/circle-varnmala.png", 
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
             id: 3, 
             title: "English Alphabet Master Tracing Pack", 
             subtitle: "Capital & Small Letters (A-Z, a-z) 4-Line Guide", 
-            price: "₹79",
+            price: "₹49",
             categories: ["tracing", "language"], 
             badge: "English", 
             thumbnail: "images/thumbnails/4line-big-abc.png", 
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
             id: 4, 
             title: "Early Math & Number Recognition (1 to 50)", 
             subtitle: "Counting, Find-and-Circle & Number Tracing", 
-            price: "₹89",
+            price: "₹49",
             categories: ["math", "cognitive", "tracing"], 
             badge: "Math", 
             thumbnail: "images/thumbnails/4line-numbers.png", 
@@ -53,24 +53,24 @@ document.addEventListener("DOMContentLoaded", function() {
             id: 5, 
             title: "Pre-Writing Strokes & Line Patterns", 
             subtitle: "Straight, Slanted, Zigzag & Curved Motor Training", 
-            price: "₹69",
+            price: "₹21",
             categories: ["tracing", "cognitive"], 
             badge: "Fine Motor", 
             thumbnail: "images/thumbnails/tracing-lines.png", 
             checkoutUrl: "https://www.instamojo.com/@kidsfunlearnhub/pre-writing-bundle",
             keywords: ["lines", "strokes", "patterns", "fine motor", "toddler", "pencil grip"]
         },
-        {
-            id: 6, 
-            title: "Trilingual Coloring & Vocabulary Workbook", 
-            subtitle: "Animals, Fruits & Shapes in English, Hindi & Marathi", 
-            price: "₹129",
-            categories: ["coloring", "language", "cognitive"], 
-            badge: "Trilingual", 
-            thumbnail: "images/thumbnails/color-shapes.png", 
-            checkoutUrl: "https://www.instamojo.com/@kidsfunlearnhub/trilingual-coloring-bundle",
-            keywords: ["coloring", "bilingual", "trilingual", "hindi", "marathi", "english", "shapes", "animals"]
-        }
+        // {
+        //     id: 6, 
+        //     title: "Trilingual Coloring & Vocabulary Workbook", 
+        //     subtitle: "Animals, Fruits & Shapes in English, Hindi & Marathi", 
+        //     price: "₹129",
+        //     categories: ["coloring", "language", "cognitive"], 
+        //     badge: "Trilingual", 
+        //     thumbnail: "images/thumbnails/color-shapes.png", 
+        //     checkoutUrl: "https://www.instamojo.com/@kidsfunlearnhub/trilingual-coloring-bundle",
+        //     keywords: ["coloring", "bilingual", "trilingual", "hindi", "marathi", "english", "shapes", "animals"]
+        // }
     ];
 
     const worksheetsGrid = document.getElementById("worksheetsGrid");
