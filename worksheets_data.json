@@ -1,261 +1,41 @@
 [
     {
-        "title": "4Line AllPatterns",
+        "file_id": "English_BigSmallAlphabetsNumbers",
+        "title": "English Alphabets & Numbers Master Pack",
+        "subtitle": "Capital & Small Letters (A-Z, a-z) + Numbers",
+        "badge": "English",
+        "price": "\u20b921",
         "categories": [
-            "cognitive"
+            "languages",
+            "tracing"
         ],
-        "badge": "New \u2728",
-        "keywords": [
-            "4line",
-            "allpatterns"
-        ],
-        "pdfEco": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_4Line_AllPatterns_EcoPrint.pdf",
-        "pdfColor": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_4Line_AllPatterns_FullColor.pdf",
+        "buy_link": "https://links.instamojo.com/your-english-link",
         "id": 1
     },
     {
-        "title": "4Line BigAlphabets",
+        "file_id": "HindiMarathi_VarnamalaNumber",
+        "title": "Hindi & Marathi Varnamala + Numbers",
+        "subtitle": "Complete Tracing for Bilingual Learning",
+        "badge": "Bilingual",
+        "price": "\u20b921",
         "categories": [
-            "cognitive"
+            "languages",
+            "tracing"
         ],
-        "badge": "New \u2728",
-        "keywords": [
-            "4line",
-            "bigalphabets"
-        ],
-        "pdfEco": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_4Line_BigAlphabets_EcoPrint.pdf",
-        "pdfColor": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_4Line_BigAlphabets_FullColor.pdf",
+        "buy_link": "https://links.instamojo.com/your-hindi-link",
         "id": 2
     },
     {
-        "title": "4Line HindiNumbers 1to20",
+        "file_id": "LinesAllPatternsShapes",
+        "title": "Lines, Patterns & Shapes Pre-writing",
+        "subtitle": "Perfect foundational pack for beginners & toddlers",
+        "badge": "Basics",
+        "price": "\u20b911",
         "categories": [
-            "cognitive"
+            "cognitive",
+            "tracing"
         ],
-        "badge": "New \u2728",
-        "keywords": [
-            "4line",
-            "hindinumbers",
-            "1to20"
-        ],
-        "pdfEco": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_4Line_HindiNumbers_1to20_EcoPrint.pdf",
-        "pdfColor": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_4Line_HindiNumbers_1to20_FullColor.pdf",
+        "buy_link": "https://links.instamojo.com/your-patterns-link",
         "id": 3
-    },
-    {
-        "title": "4Line HindiVarnmala",
-        "categories": [
-            "cognitive"
-        ],
-        "badge": "New \u2728",
-        "keywords": [
-            "4line",
-            "hindivarnmala"
-        ],
-        "pdfEco": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_4Line_HindiVarnmala_EcoPrint.pdf",
-        "pdfColor": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_4Line_HindiVarnmala_FullColor.pdf",
-        "id": 4
-    },
-    {
-        "title": "4Line Numbers 1to20",
-        "categories": [
-            "cognitive"
-        ],
-        "badge": "New \u2728",
-        "keywords": [
-            "4line",
-            "numbers",
-            "1to20"
-        ],
-        "pdfEco": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_4Line_Numbers_1to20_EcoPrint.pdf",
-        "pdfColor": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_4Line_Numbers_1to20_FullColor.pdf",
-        "id": 5
-    },
-    {
-        "title": "Circle The Alphabet",
-        "categories": [
-            "language"
-        ],
-        "badge": "New \u2728",
-        "keywords": [
-            "circle",
-            "the",
-            "alphabet"
-        ],
-        "pdfEco": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_Circle_The_Alphabet_EcoPrint.pdf",
-        "pdfColor": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_Circle_The_Alphabet_FullColor.pdf",
-        "id": 6
-    },
-    {
-        "title": "Circle The Hindi Number",
-        "categories": [
-            "math",
-            "language"
-        ],
-        "badge": "New \u2728",
-        "keywords": [
-            "circle",
-            "the",
-            "hindi",
-            "number"
-        ],
-        "pdfEco": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_Circle_The_Hindi_Number_EcoPrint.pdf",
-        "pdfColor": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_Circle_The_Hindi_Number_FullColor.pdf",
-        "id": 7
-    },
-    {
-        "title": "Circle The Hindi Varnmala",
-        "categories": [
-            "language"
-        ],
-        "badge": "New \u2728",
-        "keywords": [
-            "circle",
-            "the",
-            "hindi",
-            "varnmala"
-        ],
-        "pdfEco": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_Circle_The_Hindi_Varnmala_EcoPrint.pdf",
-        "pdfColor": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_Circle_The_Hindi_Varnmala_FullColor.pdf",
-        "id": 8
-    },
-    {
-        "title": "Circle The Number",
-        "categories": [
-            "math"
-        ],
-        "badge": "New \u2728",
-        "keywords": [
-            "circle",
-            "the",
-            "number"
-        ],
-        "pdfEco": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_Circle_The_Number_EcoPrint.pdf",
-        "pdfColor": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_Circle_The_Number_FullColor.pdf",
-        "id": 9
-    },
-    {
-        "title": "Circle The Small Alphabet",
-        "categories": [
-            "language"
-        ],
-        "badge": "New \u2728",
-        "keywords": [
-            "circle",
-            "the",
-            "small",
-            "alphabet"
-        ],
-        "pdfEco": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_Circle_The_Small_Alphabet_EcoPrint.pdf",
-        "pdfColor": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_Circle_The_Small_Alphabet_FullColor.pdf",
-        "id": 10
-    },
-    {
-        "title": "Color The Alphabet",
-        "categories": [
-            "coloring",
-            "language"
-        ],
-        "badge": "New \u2728",
-        "keywords": [
-            "color",
-            "the",
-            "alphabet"
-        ],
-        "pdfEco": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_Color_The_Alphabet_EcoPrint.pdf",
-        "pdfColor": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_Color_The_Alphabet_FullColor.pdf",
-        "id": 11
-    },
-    {
-        "title": "Color The HindiNumbers 1to20",
-        "categories": [
-            "coloring"
-        ],
-        "badge": "New \u2728",
-        "keywords": [
-            "color",
-            "the",
-            "hindinumbers",
-            "1to20"
-        ],
-        "pdfEco": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_Color_The_HindiNumbers_1to20_EcoPrint.pdf",
-        "pdfColor": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_Color_The_HindiNumbers_1to20_FullColor.pdf",
-        "id": 12
-    },
-    {
-        "title": "Color The HindiVarnmala Bilingual",
-        "categories": [
-            "coloring"
-        ],
-        "badge": "New \u2728",
-        "keywords": [
-            "color",
-            "the",
-            "hindivarnmala",
-            "bilingual"
-        ],
-        "pdfEco": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_Color_The_HindiVarnmala_Bilingual_EcoPrint.pdf",
-        "pdfColor": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_Color_The_HindiVarnmala_Bilingual_FullColor.pdf",
-        "id": 13
-    },
-    {
-        "title": "Color The Numbers 1to20",
-        "categories": [
-            "coloring"
-        ],
-        "badge": "New \u2728",
-        "keywords": [
-            "color",
-            "the",
-            "numbers",
-            "1to20"
-        ],
-        "pdfEco": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_Color_The_Numbers_1to20_EcoPrint.pdf",
-        "pdfColor": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_Color_The_Numbers_1to20_FullColor.pdf",
-        "id": 14
-    },
-    {
-        "title": "Color The Shapes",
-        "categories": [
-            "coloring"
-        ],
-        "badge": "New \u2728",
-        "keywords": [
-            "color",
-            "the",
-            "shapes"
-        ],
-        "pdfEco": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_Color_The_Shapes_EcoPrint.pdf",
-        "pdfColor": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_Color_The_Shapes_FullColor.pdf",
-        "id": 15
-    },
-    {
-        "title": "Color The SmallAlphabet",
-        "categories": [
-            "coloring"
-        ],
-        "badge": "New \u2728",
-        "keywords": [
-            "color",
-            "the",
-            "smallalphabet"
-        ],
-        "pdfEco": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_Color_The_SmallAlphabet_EcoPrint.pdf",
-        "pdfColor": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_Color_The_SmallAlphabet_FullColor.pdf",
-        "id": 16
-    },
-    {
-        "title": "Tracing Lines",
-        "categories": [
-            "cognitive"
-        ],
-        "badge": "New \u2728",
-        "keywords": [
-            "tracing",
-            "lines"
-        ],
-        "pdfEco": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_Tracing_Lines_EcoPrint.pdf",
-        "pdfColor": "https://www.kidsfunlearnhub.com/KidsFunLearnHub_Worksheets/KidsFunLearnHub_Tracing_Lines_FullColor.pdf",
-        "id": 17
     }
 ]
