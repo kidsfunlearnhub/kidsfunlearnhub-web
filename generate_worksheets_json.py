@@ -1,33 +1,50 @@
 import os
 import json
 
-# --- CONFIGURATION ---
 PDF_DIR = "KidsFunLearnHub_Worksheets"
 JSON_FILE = "worksheets_data.json"
 
-# 🌟 THE UI CATALOG 🌟
-# Keys must exactly match the first part of your filename (before "_KidsFunLearnHub_")
+# 🌟 THE UI CATALOG (Updated with images array) 🌟
 UI_CATALOG = {
     "English_BigSmallAlphabetsNumbers": {
         "title": "English Alphabets & Numbers Master Pack",
         "subtitle": "Capital & Small Letters (A-Z, a-z) + Numbers",
         "badge": "English",
         "categories": ["languages", "tracing"],
-        "buy_link": "https://links.instamojo.com/your-english-link" # REPLACE THIS
+        "buy_link": "https://links.instamojo.com/your-english-link",
+        # NAYA ADDITION: Apni images ke paths yahan dalein
+        "images": [
+            "preview_images/eng_1.jpg",
+            "preview_images/eng_2.jpg",
+            "preview_images/eng_3.jpg",
+            "preview_images/eng_4.jpg",
+            "preview_images/eng_5.jpg",
+            "preview_images/eng_6.jpg",
+            "preview_images/eng_7.jpg",
+            "preview_images/eng_8.jpg"
+        ]
     },
     "HindiMarathi_VarnamalaNumber": {
         "title": "Hindi & Marathi Varnamala + Numbers",
         "subtitle": "Complete Tracing for Bilingual Learning",
         "badge": "Bilingual",
         "categories": ["languages", "tracing"],
-        "buy_link": "https://links.instamojo.com/your-hindi-link" # REPLACE THIS
+        "buy_link": "https://links.instamojo.com/your-hindi-link",
+        "images": [
+            "preview_images/hindi_1.jpg",
+            "preview_images/hindi_2.jpg"
+        ]
     },
     "LinesAllPatternsShapes": {
         "title": "Lines, Patterns & Shapes Pre-writing",
         "subtitle": "Perfect foundational pack for beginners & toddlers",
         "badge": "Basics",
         "categories": ["cognitive", "tracing"],
-        "buy_link": "https://links.instamojo.com/your-patterns-link" # REPLACE THIS
+        "buy_link": "https://links.instamojo.com/your-patterns-link",
+        "images": [
+            "preview_images/pattern_1.jpg",
+            "preview_images/pattern_2.jpg"
+        ]
     }
 }
 
@@ -42,44 +59,35 @@ def main():
         if not filename.endswith(".pdf"):
             continue
 
-        # Parse filename: English_BigSmallAlphabetsNumbers_KidsFunLearnHub_FullColor_Pack_21.pdf
         try:
-            # 1. Extract Base Name (file_id)
             parts = filename.split("_KidsFunLearnHub_")
             if len(parts) < 2: continue
-            
             base_name = parts[0]
-            
-            # 2. Extract Price (e.g., "FullColor_Pack_21.pdf" -> "21")
-            price_part = parts[1].split("_Pack_")[1]
-            price = price_part.replace(".pdf", "")
-            
-        except Exception as e:
-            print(f"Skipping {filename}: Invalid format.")
+            price = parts[1].split("_Pack_")[1].replace(".pdf", "")
+        except Exception:
             continue
 
-        # Group by base_name so we only create ONE card per bundle (not two for Color/Eco)
         if base_name not in grouped_bundles:
-            # Fallback if catalog missing
             ui_data = UI_CATALOG.get(base_name, {
                 "title": base_name.replace("_", " "),
-                "subtitle": "Printable Worksheet Bundle (Color & Eco)",
+                "subtitle": "Printable Worksheet Bundle",
                 "badge": "New ✨",
                 "categories": ["cognitive"],
-                "buy_link": "#"
+                "buy_link": "#",
+                "images": [] # Fallback empty array
             })
 
             grouped_bundles[base_name] = {
-                "file_id": base_name, # Critical for App Deep Linking
+                "file_id": base_name, 
                 "title": ui_data["title"],
                 "subtitle": ui_data["subtitle"],
                 "badge": ui_data["badge"],
                 "price": f"₹{price}",
                 "categories": ui_data["categories"],
-                "buy_link": ui_data["buy_link"]
+                "buy_link": ui_data["buy_link"],
+                "images": ui_data["images"] # Pass images to JSON
             }
 
-    # Convert dictionary to list and assign IDs
     data_list = []
     for i, (base_name, data) in enumerate(grouped_bundles.items(), start=1):
         data["id"] = i
@@ -88,7 +96,7 @@ def main():
     with open(JSON_FILE, "w", encoding="utf-8") as f:
         json.dump(data_list, f, indent=4)
     
-    print(f"✅ Successfully generated {JSON_FILE} with {len(data_list)} bundles!")
+    print(f"✅ Successfully generated {JSON_FILE} with image carousels!")
 
 if __name__ == "__main__":
     main()

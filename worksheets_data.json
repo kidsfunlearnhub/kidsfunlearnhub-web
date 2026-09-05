@@ -10,6 +10,16 @@
             "tracing"
         ],
         "buy_link": "https://links.instamojo.com/your-english-link",
+        "images": [
+            "preview_images/eng_1.jpg",
+            "preview_images/eng_2.jpg",
+            "preview_images/eng_3.jpg",
+            "preview_images/eng_4.jpg",
+            "preview_images/eng_5.jpg",
+            "preview_images/eng_6.jpg",
+            "preview_images/eng_7.jpg",
+            "preview_images/eng_8.jpg"
+        ],
         "id": 1
     },
     {
@@ -23,6 +33,10 @@
             "tracing"
         ],
         "buy_link": "https://links.instamojo.com/your-hindi-link",
+        "images": [
+            "preview_images/hindi_1.jpg",
+            "preview_images/hindi_2.jpg"
+        ],
         "id": 2
     },
     {
@@ -36,6 +50,10 @@
             "tracing"
         ],
         "buy_link": "https://links.instamojo.com/your-patterns-link",
+        "images": [
+            "preview_images/pattern_1.jpg",
+            "preview_images/pattern_2.jpg"
+        ],
         "id": 3
     }
 ]

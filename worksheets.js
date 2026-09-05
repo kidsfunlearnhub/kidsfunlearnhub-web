@@ -42,14 +42,27 @@ document.addEventListener("DOMContentLoaded", function() {
                 card.className = "worksheet-card";
                 card.id = sheet.file_id; // Deep link anchor ID (e.g., "English_BigSmallAlphabetsNumbers")
                 
-                card.innerHTML = `
-                    <div class="lang-badge">${sheet.badge}</div>
-                    <div class="price-badge">${sheet.price}</div>
-                    <div class="card-icon">📚</div>
-                    <h2>${sheet.title}</h2>
-                    <p class="card-subtitle">${sheet.subtitle}</p>
-                    <a href="${sheet.buy_link}" class="buy-btn" target="_blank">Buy Now</a>
-                `;
+                // Check if images exist, build the carousel HTML
+                let imagesHtml = '';
+                    if (sheet.images && sheet.images.length > 0) {
+                        imagesHtml = `<div class="carousel-container">`;
+                        sheet.images.forEach(img => {
+                        imagesHtml += `<img src="${img}" class="carousel-img" loading="lazy" alt="Preview">`;
+                        });
+                        imagesHtml += `</div><div class="swipe-hint">Swipe to see inside 👉</div>`;
+                    } else {
+                        imagesHtml = `<div class="card-icon">📚</div>`; // Fallback agar image na ho
+                    }
+
+                    card.innerHTML = `
+                        <div class="lang-badge">${sheet.badge}</div>
+                        <div class="price-badge">${sheet.price}</div>
+                        ${imagesHtml}
+                        <h2>${sheet.title}</h2>
+                        <p class="card-subtitle">${sheet.subtitle}</p>
+                        <a href="${sheet.buy_link}" class="buy-btn" target="_blank">Buy Now</a>
+                    `;
+
                 worksheetsGrid.appendChild(card);
             });
         }

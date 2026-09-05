@@ -78,3 +78,44 @@ body {
 
 .hidden { display: none !important; }
 .footer { background: #2c3e50; padding: 20px; color: white; margin-top: 40px; }
+
+
+/* =========================================
+   IMAGE CAROUSEL (SWIPEABLE GALLERY) STYLES
+   ========================================= */
+.carousel-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory; /* Makes images snap perfectly to center */
+    gap: 10px;
+    width: 100%;
+    height: 220px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    /* Hide scrollbar for cleaner look */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+}
+
+.carousel-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+}
+
+.carousel-img {
+    scroll-snap-align: center;
+    flex: 0 0 100%; /* Each image takes 100% width of container */
+    height: 100%;
+    object-fit: contain; /* Prevents image from cropping */
+    background: #f8f9fa; /* Light grey background for empty spaces */
+    border-radius: 12px;
+    border: 1px solid #eee;
+}
+
+.swipe-hint {
+    font-size: 11px;
+    color: #b2bec3;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
