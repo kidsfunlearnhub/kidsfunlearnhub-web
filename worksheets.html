@@ -8,7 +8,7 @@
     <meta name="description" content="Download our premium, high-quality printable PDF worksheet bundles for toddlers, preschool, and kindergarten.">
     
     <link rel="canonical" href="https://www.kidsfunlearnhub.com/worksheets.html">
-    <link rel="stylesheet" href="worksheets.css?v=5.2">
+    <link rel="stylesheet" href="worksheets.css?v=5.4">
 </head>
 <body>
     <div class="site-branding">
@@ -56,6 +56,35 @@
         <p class="copyright">© 2026 KidsFunLearnHub. All rights reserved.</p>
     </footer>
 
-    <script src="worksheets.js?v=5.3"></script>
+    <!-- 1. Product Detail Modal -->
+    <div id="productModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button id="closeModal" class="close-btn">✖</button>
+            <div class="modal-body">
+                <!-- Carousel Section -->
+                <div class="modal-carousel-wrapper">
+                    <button id="prevSlide" class="carousel-arrow left-arrow">❮</button>
+                    <div id="modalCarousel" class="modal-carousel"></div>
+                    <button id="nextSlide" class="carousel-arrow right-arrow">❯</button>
+                </div>
+                <!-- Details Section -->
+                <div class="modal-info">
+                    <div id="modalBadge" class="lang-badge" style="position:relative; display:inline-block; top:0; left:0; margin-bottom:10px;"></div>
+                    <h2 id="modalTitle"></h2>
+                    <h3 id="modalPrice" class="modal-price"></h3>
+                    <p id="modalDesc" class="modal-description"></p>
+                    <a href="#" id="modalBuyBtn" class="buy-btn" target="_blank">Buy Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Fullscreen Image Zoom (Lightbox) -->
+    <div id="zoomModal" class="zoom-overlay hidden">
+        <button id="closeZoom" class="close-btn" style="color: white; right: 30px; top: 30px; font-size: 40px;">✖</button>
+        <img id="zoomImg" src="" alt="Zoomed Preview">
+    </div>
+
+    <script src="worksheets.js?v=5.4"></script>
 </body>
 </html>
