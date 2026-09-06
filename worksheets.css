@@ -1,8 +1,10 @@
 :root {
-    --bg-gradient: linear-gradient(to right, #e0f7fa, #ffe0b2);
-    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --bg-gradient: linear-gradient(to right,
+#e0f7fa, #ffe0b2);
+    --font-main: 'Segoe UI', Tahoma, Geneva,
+Verdana, sans-serif;
 }
-
+ 
 body {
     margin: 0;
     font-family: var(--font-main);
@@ -12,24 +14,38 @@ body {
     display: flex;
     flex-direction: column;
 }
-
+ 
 .site-branding { padding: 15px 0; }
-.site-branding a { font-size: 2rem; font-weight: 900; text-decoration: none; color: #ff00cc; }
+.site-branding a { font-size: 2rem; font-weight: 900;
+text-decoration: none; color: #ff00cc; }
 .title { font-size: 2.5rem; color:#ec51d8; margin: 10px 0; }
-.home-nav { display: flex; justify-content: center; margin-bottom: 20px; }
-.home-btn { padding: 10px 20px; border-radius: 40px; background: #2196f3; color: white; text-decoration: none; font-weight: bold; }
-
-.page-wrapper { flex: 1; width: 100%; max-width: 1200px; margin: auto; padding: 0 20px; box-sizing: border-box; }
-.search-box-container { position: relative; max-width: 600px; margin: 0 auto 30px auto; }
-#worksheetSearch { width: 100%; padding: 15px 20px 15px 50px; font-size: 1.1rem; border-radius: 40px; border: 3px solid white; outline: none; }
-.search-icon { position: absolute; left: 20px; top: 15px; font-size: 20px; }
-
-.category-nav { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
-.filter-btn { padding: 10px 20px; border-radius: 30px; border: none; background: white; font-weight: bold; cursor: pointer; transition: 0.3s; }
-.filter-btn.active { background: var(--btn-color); color: white; }
-
-.worksheets-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
-
+.home-nav { display: flex; justify-content: center;
+margin-bottom: 20px; }
+.home-btn { padding: 10px 20px; border-radius: 40px;
+background: #2196f3; color: white; text-decoration: none; font-weight: bold; }
+ 
+.page-wrapper { flex: 1; width: 100%; max-width: 1200px;
+margin: auto; padding: 0 20px; box-sizing: border-box; }
+.search-box-container { position: relative; max-width:
+600px; margin: 0 auto 30px auto; }
+#worksheetSearch { width: 100%; padding: 15px 20px 15px
+50px; font-size: 1.1rem; border-radius: 40px; border: 3px solid white; outline:
+none; }
+.search-icon { position: absolute; left: 20px; top: 15px;
+font-size: 20px; }
+ 
+.category-nav { display: flex; justify-content: center; gap:
+10px; flex-wrap: wrap; margin-bottom: 30px; }
+.filter-btn { padding: 10px 20px; border-radius: 30px;
+border: none; background: white; font-weight: bold; cursor: pointer;
+transition: 0.3s; }
+.filter-btn.active { background: var(--btn-color); color:
+white; }
+ 
+.worksheets-grid { display: grid; grid-template-columns:
+repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; max-width: 1100px; margin: 0
+auto; }
+ 
 /* UPGRADED CARD STYLING FOR PRICING */
 .worksheet-card {
     background: white;
@@ -41,147 +57,176 @@ body {
     flex-direction: column;
     align-items: center;
     transition: transform 0.3s;
-    cursor: pointer;
 }
-
+ 
 .worksheet-card:hover { transform: translateY(-5px); }
-
+ 
 .lang-badge {
     position: absolute; top: 15px; left: 15px;
-    background: #ff7675; color: white; padding: 5px 12px;
-    border-radius: 20px; font-size: 12px; font-weight: bold;
+    background: #ff7675; color: white; padding:
+5px 12px;
+    border-radius: 20px; font-size: 12px;
+font-weight: bold;
 }
-
+ 
 .price-badge {
     position: absolute; top: -15px; right: 15px;
-    background: #fdcb6e; color: #2d3436; padding: 8px 15px;
-    border-radius: 20px; font-size: 18px; font-weight: bold;
+    background: #fdcb6e; color: #2d3436; padding:
+8px 15px;
+    border-radius: 20px; font-size: 18px;
+font-weight: bold;
     border: 3px solid white;
 }
-
+ 
 .card-icon { font-size: 45px; margin-bottom: 15px; }
-.worksheet-card h2 { font-size: 18px; font-weight: 700; color: #2d3436; margin: 10px 0; }
-.card-subtitle { font-size: 13px; color: #636e72; margin-bottom: 20px; flex-grow: 1; }
-
+.worksheet-card h2 { font-size: 18px; font-weight: 700;
+color: #2d3436; margin: 10px 0; }
+.card-subtitle { font-size: 13px; color: #636e72;
+margin-bottom: 20px; flex-grow: 1; }
+ 
 .buy-btn {
-    width: 100%; display: block; background: #55efc4; color: #00b894;
-    text-decoration: none; padding: 12px; border-radius: 12px;
-    font-weight: bold; font-size: 16px; transition: 0.3s; box-sizing: border-box;
-    pointer-events: none; /* User clicks the card to open modal */
+    width: 100%; display: block; background:
+#55efc4; color: #00b894;
+    text-decoration: none; padding: 12px;
+border-radius: 12px;
+    font-weight: bold; font-size: 16px;
+transition: 0.3s; box-sizing: border-box;
 }
 .buy-btn:hover { background: #00b894; color: white; }
-
-/* Deep Linking Animation */
+ 
+/* Deep Linking Animation from Mobile App */
 @keyframes highlight-glow {
-    0% { box-shadow: 0 0 0 6px #ffeaa7; transform: scale(1.02); }
-    100% { box-shadow: 0 10px 20px rgba(0,0,0,0.08); transform: scale(1); }
+    0% { box-shadow: 0 0 0 6px #ffeaa7; transform:
+scale(1.02); }
+    100% { box-shadow: 0 10px 20px
+rgba(0,0,0,0.08); transform: scale(1); }
 }
 .highlight-card { animation: highlight-glow 2s ease-out; }
-
+ 
 .hidden { display: none !important; }
-.footer { background: #2c3e50; padding: 20px; color: white; margin-top: 40px; }
-
-
+.footer { background: #2c3e50; padding: 20px; color: white;
+margin-top: 40px; }
+ 
 /* =========================================
-   MODAL & LIGHTBOX STYLES (RESPONSIVE)
+   IMAGE CAROUSEL (SWIPEABLE GALLERY) STYLES
    ========================================= */
+.carousel-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory; /* Makes images
+snap perfectly to center */
+    gap: 10px;
+    width: 100%;
+    height: 220px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    /* Hide scrollbar for cleaner look */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge
+*/
+}
+ 
+.carousel-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+}
+ 
+.carousel-img {
+    scroll-snap-align: center;
+    flex: 0 0 100%; /* Each image takes 100% width
+of container */
+    height: 100%;
+    object-fit: contain; /* Prevents image from
+cropping */
+    background: #f8f9fa; /* Light grey background
+for empty spaces */
+    border-radius: 12px;
+    border: 1px solid #eee;
+}
+ 
+.swipe-hint {
+    font-size: 11px;
+    color: #b2bec3;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+/* --- MODAL & LIGHTBOX STYLES --- */
 .modal-overlay, .zoom-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.75); z-index: 1000;
-    display: flex; justify-content: center; align-items: center;
+    position: fixed; top: 0; left: 0; width: 100%;
+height: 100%;
+    background: rgba(0, 0, 0, 0.7); z-index: 1000;
+    display: flex; justify-content: center;
+align-items: center;
     backdrop-filter: blur(5px);
 }
-.modal-overlay.hidden, .zoom-overlay.hidden { display: none !important; }
-
+.modal-overlay.hidden, .zoom-overlay.hidden { display: none
+!important; }
+ 
 .modal-content {
-    background: white; 
-    width: 92%; 
-    max-width: 900px; 
-    border-radius: 20px; 
-    position: relative; 
-    padding: 30px;
+    background: white; width: 90%; max-width:
+900px;
+    border-radius: 20px; position: relative;
+padding: 30px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-    max-height: 90vh; 
-    overflow-y: auto;
-    box-sizing: border-box; 
+    max-height: 90vh; overflow-y: auto;
 }
-
 .close-btn {
-    position: absolute; top: 15px; right: 15px;
-    background: rgba(255, 255, 255, 0.9); border: none; font-size: 20px;
+    position: absolute; top: 15px; right: 20px;
+    background: none; border: none; font-size:
+24px;
     cursor: pointer; color: #636e72; z-index: 10;
-    width: 35px; height: 35px; border-radius: 50%;
-    display: flex; justify-content: center; align-items: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
-.close-btn:hover { color: #d63031; background: #fff; }
-
-/* Desktop Default Layout (Side by Side) */
+.close-btn:hover { color: #d63031; }
+ 
 .modal-body { display: flex; flex-wrap: wrap; gap: 30px; }
-.modal-carousel-wrapper { flex: 1; min-width: 300px; position: relative; }
-.modal-info { flex: 1; min-width: 300px; display: flex; flex-direction: column; } 
-
-#modalBadge { align-self: flex-start; margin-bottom: 15px; }
-
+.modal-carousel-wrapper { flex: 1; min-width: 300px;
+position: relative; }
+.modal-info { flex: 1; min-width: 300px; display: flex;
+flex-direction: column; }
+ 
 /* Arrows & Modal Carousel */
 .modal-carousel {
-    display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
-    gap: 10px; border-radius: 15px; scrollbar-width: none;
-    height: 350px; scroll-behavior: smooth; width: 100%;
+    display: flex; overflow-x: auto;
+scroll-snap-type: x mandatory;
+    gap: 10px; border-radius: 15px;
+scrollbar-width: none;
+    height: 350px; scroll-behavior: smooth;
 }
 .modal-carousel::-webkit-scrollbar { display: none; }
 .modal-carousel img {
-    scroll-snap-align: center; flex: 0 0 100%; height: 100%;
-    object-fit: contain; background: #f8f9fa; border: 1px solid #ddd;
-    border-radius: 15px; cursor: zoom-in; box-sizing: border-box;
+    scroll-snap-align: center; flex: 0 0 100%;
+height: 100%;
+    object-fit: contain; background: #f8f9fa;
+border: 1px solid #ddd;
+    border-radius: 15px; cursor: zoom-in;
 }
-
+ 
 .carousel-arrow {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.9); border: none; width: 40px; height: 40px;
-    border-radius: 50%; font-size: 20px; cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 5; transition: 0.2s;
-    display: flex; justify-content: center; align-items: center;
+    position: absolute; top: 50%; transform:
+translateY(-50%);
+    background: white; border: none; width: 40px;
+height: 40px;
+    border-radius: 50%; font-size: 20px; cursor:
+pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+z-index: 5; transition: 0.2s;
 }
 .carousel-arrow:hover { background: #55efc4; color: white; }
-.left-arrow { left: 10px; } 
-.right-arrow { right: 10px; }
-
-.modal-price { color: #e17055; font-size: 28px; margin: 0 0 15px 0; }
-.modal-description { color: #2d3436; line-height: 1.6; font-size: 15px; flex-grow: 1; margin-bottom: 25px; }
-#modalBuyBtn { pointer-events: auto; } /* Ensure buy button works inside modal */
-
+.left-arrow { left: -15px; }
+.right-arrow { right: -15px; }
+ 
+.modal-price { color: #e17055; font-size: 28px; margin: 10px
+0; }
+.modal-description { color: #2d3436; line-height: 1.6;
+font-size: 15px; flex-grow: 1; }
+ 
 /* Zoom Lightbox */
-.zoom-overlay img { max-width: 95%; max-height: 90%; object-fit: contain; border-radius: 10px; }
-#closeZoom { top: 20px; right: 20px; background: rgba(0,0,0,0.5); color: white; font-size: 28px; }
-
-
-/* =========================================
-   MOBILE SPECIFIC ADJUSTMENTS (RESPONSIVENESS)
-   ========================================= */
-@media (max-width: 768px) {
-    .modal-content { 
-        padding: 20px 15px; 
-    }
-    .modal-body { 
-        gap: 15px; 
-        flex-direction: column; /* Mobile par upar-neeche stack honge */
-    }
-    .modal-carousel-wrapper, .modal-info {
-        flex: 1 1 100%; /* Mobile par full width lenge */
-        min-width: 100%;
-    }
-    .modal-carousel { 
-        height: 250px; 
-    }
-    .modal-price { 
-        font-size: 24px; 
-    }
-    .close-btn { 
-        top: 10px; right: 10px; 
-        width: 30px; height: 30px; font-size: 16px;
-    }
-    .carousel-arrow {
-        width: 35px; height: 35px; font-size: 16px;
-    }
-}
+.zoom-overlay img { max-width: 95%; max-height: 90%;
+object-fit: contain; border-radius: 10px; }
+ 
+/* Make the main card clickable */
+.worksheet-card { cursor: pointer; }
+.worksheet-card .buy-btn { pointer-events: none; } /* User
+clicks the card to open modal, clicks buy inside modal */
+ 
