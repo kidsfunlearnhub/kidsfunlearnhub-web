@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(data => {
             worksheetsData = data;
             renderWorksheets();
+            handleAppDeepLinking(); // YAHAN DEEP LINKING FUNCTION CALL WAPAS ADD KIYA HAI
         });
 
     function renderWorksheets() {
@@ -67,7 +68,6 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("modalBadge").innerText = sheet.badge;
         document.getElementById("modalTitle").innerText = sheet.title;
         document.getElementById("modalPrice").innerText = sheet.price;
-        // Use full description if available, else fallback to subtitle
         document.getElementById("modalDesc").innerText = sheet.description || sheet.subtitle; 
         document.getElementById("modalBuyBtn").href = sheet.buy_link;
         
@@ -118,4 +118,27 @@ document.addEventListener("DOMContentLoaded", function() {
             renderWorksheets();
         });
     });
+
+    // DEEP LINKING LOGIC WAPAS ADD KIYA
+    function handleAppDeepLinking() {
+        if (window.location.hash) {
+            const targetId = window.location.hash.substring(1);
+            const targetCard = document.getElementById(targetId);
+            
+            if (targetCard) {
+                // 1. Scroll to the specific card smoothly
+                targetCard.scrollIntoView({ behavior: "smooth", block: "center" });
+                
+                // 2. Add a temporary highlight glow
+                targetCard.classList.add("highlight-card");
+                setTimeout(() => targetCard.classList.remove("highlight-card"), 2000);
+                
+                // 3. NAYA FEATURE: Automatically us bundle ka bada Modal open kar do
+                const sheetData = worksheetsData.find(s => s.file_id === targetId);
+                if (sheetData) {
+                    setTimeout(() => openModal(sheetData), 600); // Thoda delay taaki pehle scroll ho jaye fir modal open ho
+                }
+            }
+        }
+    }
 });
