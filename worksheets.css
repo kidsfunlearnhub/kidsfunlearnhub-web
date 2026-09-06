@@ -41,6 +41,7 @@ body {
     flex-direction: column;
     align-items: center;
     transition: transform 0.3s;
+    cursor: pointer;
 }
 
 .worksheet-card:hover { transform: translateY(-5px); }
@@ -66,10 +67,11 @@ body {
     width: 100%; display: block; background: #55efc4; color: #00b894;
     text-decoration: none; padding: 12px; border-radius: 12px;
     font-weight: bold; font-size: 16px; transition: 0.3s; box-sizing: border-box;
+    pointer-events: none; /* User clicks the card to open modal */
 }
 .buy-btn:hover { background: #00b894; color: white; }
 
-/* Deep Linking Animation from Mobile App */
+/* Deep Linking Animation */
 @keyframes highlight-glow {
     0% { box-shadow: 0 0 0 6px #ffeaa7; transform: scale(1.02); }
     100% { box-shadow: 0 10px 20px rgba(0,0,0,0.08); transform: scale(1); }
@@ -81,46 +83,8 @@ body {
 
 
 /* =========================================
-   IMAGE CAROUSEL (SWIPEABLE GALLERY) STYLES
+   MODAL & LIGHTBOX STYLES (RESPONSIVE)
    ========================================= */
-.carousel-container {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory; /* Makes images snap perfectly to center */
-    gap: 10px;
-    width: 100%;
-    height: 220px;
-    margin-top: 25px;
-    margin-bottom: 15px;
-    border-radius: 12px;
-    /* Hide scrollbar for cleaner look */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* IE and Edge */
-}
-
-.carousel-container::-webkit-scrollbar {
-    display: none; /* Chrome, Safari and Opera */
-}
-
-.carousel-img {
-    scroll-snap-align: center;
-    flex: 0 0 100%; /* Each image takes 100% width of container */
-    height: 100%;
-    object-fit: contain; /* Prevents image from cropping */
-    background: #f8f9fa; /* Light grey background for empty spaces */
-    border-radius: 12px;
-    border: 1px solid #eee;
-}
-
-.swipe-hint {
-    font-size: 11px;
-    color: #b2bec3;
-    margin-top: -10px;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-/* --- MODAL & LIGHTBOX STYLES (UPDATED FOR MOBILE RESPONSIVENESS) --- */
 .modal-overlay, .zoom-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.75); z-index: 1000;
@@ -139,10 +103,9 @@ body {
     box-shadow: 0 20px 40px rgba(0,0,0,0.2);
     max-height: 90vh; 
     overflow-y: auto;
-    box-sizing: border-box; /* Yeh line width overflow rokti hai */
+    box-sizing: border-box; 
 }
 
-/* Close Button ko thoda design kiya taaki image ke upar dikhe */
 .close-btn {
     position: absolute; top: 15px; right: 15px;
     background: rgba(255, 255, 255, 0.9); border: none; font-size: 20px;
@@ -153,13 +116,11 @@ body {
 }
 .close-btn:hover { color: #d63031; background: #fff; }
 
+/* Desktop Default Layout (Side by Side) */
 .modal-body { display: flex; flex-wrap: wrap; gap: 30px; }
+.modal-carousel-wrapper { flex: 1; min-width: 300px; position: relative; }
+.modal-info { flex: 1; min-width: 300px; display: flex; flex-direction: column; } 
 
-/* Flexbox fix: mobile par 100% width lene ke liye */
-.modal-carousel-wrapper { flex: 1 1 100%; position: relative; } 
-.modal-info { flex: 1 1 100%; display: flex; flex-direction: column; } 
-
-/* Fix: Badge ko stretch hone se rokna */
 #modalBadge { align-self: flex-start; margin-bottom: 15px; }
 
 /* Arrows & Modal Carousel */
@@ -175,7 +136,6 @@ body {
     border-radius: 15px; cursor: zoom-in; box-sizing: border-box;
 }
 
-/* Fix: Arrows ko image ke ANDAR rakha hai taaki bahar overflow na ho */
 .carousel-arrow {
     position: absolute; top: 50%; transform: translateY(-50%);
     background: rgba(255, 255, 255, 0.9); border: none; width: 40px; height: 40px;
@@ -189,26 +149,30 @@ body {
 
 .modal-price { color: #e17055; font-size: 28px; margin: 0 0 15px 0; }
 .modal-description { color: #2d3436; line-height: 1.6; font-size: 15px; flex-grow: 1; margin-bottom: 25px; }
+#modalBuyBtn { pointer-events: auto; } /* Ensure buy button works inside modal */
 
 /* Zoom Lightbox */
 .zoom-overlay img { max-width: 95%; max-height: 90%; object-fit: contain; border-radius: 10px; }
 #closeZoom { top: 20px; right: 20px; background: rgba(0,0,0,0.5); color: white; font-size: 28px; }
 
-.worksheet-card { cursor: pointer; }
-.worksheet-card .buy-btn { pointer-events: none; }
 
 /* =========================================
    MOBILE SPECIFIC ADJUSTMENTS (RESPONSIVENESS)
    ========================================= */
 @media (max-width: 768px) {
     .modal-content { 
-        padding: 20px 15px; /* Mobile par padding kam ki hai */
+        padding: 20px 15px; 
     }
     .modal-body { 
         gap: 15px; 
+        flex-direction: column; /* Mobile par upar-neeche stack honge */
+    }
+    .modal-carousel-wrapper, .modal-info {
+        flex: 1 1 100%; /* Mobile par full width lenge */
+        min-width: 100%;
     }
     .modal-carousel { 
-        height: 250px; /* Mobile par image preview ki height kam ki hai */
+        height: 250px; 
     }
     .modal-price { 
         font-size: 24px; 
