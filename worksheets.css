@@ -11,6 +11,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden; /* GLOBAL FIX: Left-Right Scroll Band */
 }
 
 .site-branding { padding: 15px 0; }
@@ -30,7 +31,6 @@ body {
 
 .worksheets-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
 
-/* UPGRADED CARD STYLING FOR PRICING */
 .worksheet-card {
     background: white;
     border-radius: 20px;
@@ -41,7 +41,7 @@ body {
     flex-direction: column;
     align-items: center;
     transition: transform 0.3s;
-    cursor: pointer; /* User click highlight */
+    cursor: pointer;
 }
 
 .worksheet-card:hover { transform: translateY(-5px); }
@@ -67,11 +67,10 @@ body {
     width: 100%; display: block; background: #55efc4; color: #00b894;
     text-decoration: none; padding: 12px; border-radius: 12px;
     font-weight: bold; font-size: 16px; transition: 0.3s; box-sizing: border-box;
-    pointer-events: none; /* Stops card click interference */
+    pointer-events: none;
 }
 .buy-btn:hover { background: #00b894; color: white; }
 
-/* Deep Linking Animation from Mobile App */
 @keyframes highlight-glow {
     0% { box-shadow: 0 0 0 6px #ffeaa7; transform: scale(1.02); }
     100% { box-shadow: 0 10px 20px rgba(0,0,0,0.08); transform: scale(1); }
@@ -83,28 +82,30 @@ body {
 
 
 /* =========================================
-   MODAL & LIGHTBOX STYLES (PERFECTED FOR MOBILE)
+   MODAL & LIGHTBOX STYLES (NO HORIZONTAL SCROLL)
    ========================================= */
 .modal-overlay, .zoom-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     background: rgba(0, 0, 0, 0.75); z-index: 1000;
     display: flex; justify-content: center; align-items: center;
     backdrop-filter: blur(5px);
+    padding: 15px; /* STRICT: Yahan padding lagayi taaki box screen ke bahar na nikle */
+    box-sizing: border-box;
 }
-.modal-overlay.hidden, .zoom-overlay.hidden { display: none !important; }
 
 .modal-content {
     background: white; 
-    width: 90%; 
+    width: 100%; /* Overlay ki padding ke andar 100% space lega */
     max-width: 900px;
     border-radius: 20px; 
     position: relative; 
-    padding: 30px;
+    padding: 25px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.2);
     max-height: 90vh; 
     overflow-y: auto; 
-    overflow-x: hidden; /* STRICT RULE: Horizontal scroll totally disabled */
+    overflow-x: hidden; 
     box-sizing: border-box;
+    margin: 0 auto;
 }
 
 .close-btn {
@@ -117,7 +118,6 @@ body {
 }
 .close-btn:hover { color: white; background: #e84118; }
 
-/* Desktop Default: Side-by-Side */
 .modal-body { 
     display: flex; 
     flex-direction: row; 
@@ -140,13 +140,11 @@ body {
     box-sizing: border-box; 
 }
 
-/* Modal Internal Elements */
-#modalTitle { font-size: 22px; margin-top: 0; margin-bottom: 10px; color: #2d3436; }
+#modalTitle { font-size: 22px; margin-top: 0; margin-bottom: 10px; color: #2d3436; word-wrap: break-word; }
 .modal-price { color: #e17055; font-size: 28px; margin: 0 0 15px 0; }
 .modal-description { color: #2d3436; line-height: 1.6; font-size: 15px; margin-bottom: 25px; word-wrap: break-word; }
-#modalBuyBtn { pointer-events: auto; text-align: center; } /* Active buy button inside modal */
+#modalBuyBtn { pointer-events: auto; text-align: center; display: block; width: 100%; box-sizing: border-box; }
 
-/* Modal Carousel & Arrows */
 .modal-carousel {
     display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
     gap: 10px; border-radius: 15px; scrollbar-width: none;
@@ -171,42 +169,35 @@ body {
 .left-arrow { left: 8px; } 
 .right-arrow { right: 8px; }
 
-/* Zoom Lightbox */
 .zoom-overlay img { max-width: 95%; max-height: 90%; object-fit: contain; border-radius: 10px; }
 #closeZoom { top: 20px; right: 20px; background: rgba(0,0,0,0.5); color: white; font-size: 28px; }
 
-
 /* =========================================
-   MOBILE RESPONSIVENESS (THE FIX)
+   MOBILE RESPONSIVENESS
    ========================================= */
 @media (max-width: 768px) {
+    .modal-overlay { padding: 10px; }
+    
     .modal-content { 
-        width: 95%; /* Mobile par modal aur bada dikhega */
         padding: 20px 15px; 
     }
     
     .modal-body { 
-        flex-direction: column; /* STRICT: Image upar, text neeche */
+        flex-direction: column;
         gap: 15px; 
     }
     
     .modal-carousel-wrapper, .modal-info {
-        width: 100%; /* STRICT: Dono 100% space lenge mobile par */
+        width: 100%;
         min-width: 100%;
         max-width: 100%;
     }
     
-    .modal-carousel { 
-        height: 260px; /* Mobile par image ki height theek ki */
-    }
-    
+    .modal-carousel { height: 260px; }
     #modalTitle { font-size: 20px; }
     .modal-price { font-size: 24px; }
     
-    /* Mobile ke liye arrows ko thoda sa chota kiya */
-    .carousel-arrow {
-        width: 32px; height: 32px; font-size: 16px;
-    }
+    .carousel-arrow { width: 32px; height: 32px; font-size: 16px; }
     .left-arrow { left: 5px; } 
     .right-arrow { right: 5px; }
 }

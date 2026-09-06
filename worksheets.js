@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(data => {
             worksheetsData = data;
             renderWorksheets();
-            handleAppDeepLinking(); // YAHAN DEEP LINKING FUNCTION CALL WAPAS ADD KIYA HAI
+            handleAppDeepLinking();
         });
 
     function renderWorksheets() {
@@ -45,7 +45,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 card.className = "worksheet-card";
                 card.id = sheet.file_id;
                 
-                // Set the card cover image (first image in array)
                 const coverImg = (sheet.images && sheet.images.length > 0) ? sheet.images[0] : '';
                 
                 card.innerHTML = `
@@ -57,13 +56,13 @@ document.addEventListener("DOMContentLoaded", function() {
                     <button class="buy-btn" style="pointer-events:none;">View Details</button>
                 `;
                 
-                // Open Modal on Click
                 card.addEventListener('click', () => openModal(sheet));
                 worksheetsGrid.appendChild(card);
             });
         }
     }
 
+    // --- MODAL & BACK BUTTON LOGIC ---
     function openModal(sheet) {
         document.getElementById("modalBadge").innerText = sheet.badge;
         document.getElementById("modalTitle").innerText = sheet.title;
@@ -84,24 +83,39 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         
         productModal.classList.remove("hidden");
+        document.body.style.overflow = "hidden"; // Background scroll lock kiya
+        
+        // Browser ko bataya ki ek naya "page" (modal) khula hai
+        window.history.pushState({ modalOpen: "product" }, "");
     }
 
     function openZoom(src) {
         zoomImg.src = src;
         zoomModal.classList.remove("hidden");
+        window.history.pushState({ modalOpen: "zoom" }, "");
     }
 
-    // Modal Close Buttons
-    document.getElementById("closeModal").addEventListener('click', () => productModal.classList.add("hidden"));
-    document.getElementById("closeZoom").addEventListener('click', () => zoomModal.classList.add("hidden"));
-    
-    // Close on outside click
-    window.addEventListener('click', (e) => {
-        if (e.target === productModal) productModal.classList.add("hidden");
-        if (e.target === zoomModal) zoomModal.classList.add("hidden");
+    // Mobile Back Button Press Event
+    window.addEventListener("popstate", function(event) {
+        if (!zoomModal.classList.contains("hidden")) {
+            zoomModal.classList.add("hidden");
+        } else if (!productModal.classList.contains("hidden")) {
+            productModal.classList.add("hidden");
+            document.body.style.overflow = ""; // Background scroll wapas chalu kiya
+        }
     });
 
-    // Arrow Navigation Logic
+    // X Button aur Bahar Click karne par 'history.back()' call kiya taaki mobile back jaisa hi behave kare
+    document.getElementById("closeModal").addEventListener('click', () => window.history.back());
+    document.getElementById("closeZoom").addEventListener('click', () => window.history.back());
+    
+    window.addEventListener('click', (e) => {
+        if (e.target === productModal || e.target === zoomModal) {
+            window.history.back();
+        }
+    });
+
+    // Arrow Navigation
     document.getElementById("nextSlide").addEventListener('click', () => {
         modalCarousel.scrollBy({ left: modalCarousel.clientWidth, behavior: 'smooth' });
     });
@@ -119,25 +133,17 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // DEEP LINKING LOGIC WAPAS ADD KIYA
     function handleAppDeepLinking() {
         if (window.location.hash) {
             const targetId = window.location.hash.substring(1);
             const targetCard = document.getElementById(targetId);
-            
             if (targetCard) {
-                // 1. Scroll to the specific card smoothly
                 targetCard.scrollIntoView({ behavior: "smooth", block: "center" });
-                
-                // 2. Add a temporary highlight glow
                 targetCard.classList.add("highlight-card");
                 setTimeout(() => targetCard.classList.remove("highlight-card"), 2000);
                 
-                // 3. NAYA FEATURE: Automatically us bundle ka bada Modal open kar do
                 const sheetData = worksheetsData.find(s => s.file_id === targetId);
-                if (sheetData) {
-                    setTimeout(() => openModal(sheetData), 600); // Thoda delay taaki pehle scroll ho jaye fir modal open ho
-                }
+                if (sheetData) setTimeout(() => openModal(sheetData), 600);
             }
         }
     }
