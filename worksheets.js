@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const filterButtons = document.querySelectorAll(".filter-btn");
     const noResults = document.getElementById("noResults");
     
-    // Modal Elements
     const productModal = document.getElementById("productModal");
     const modalCarousel = document.getElementById("modalCarousel");
     const zoomModal = document.getElementById("zoomModal");
@@ -62,7 +61,10 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // --- MODAL & BACK BUTTON LOGIC ---
+    // ==========================================
+    // BULLETPROOF MOBILE BACK BUTTON LOGIC
+    // ==========================================
+
     function openModal(sheet) {
         document.getElementById("modalBadge").innerText = sheet.badge;
         document.getElementById("modalTitle").innerText = sheet.title;
@@ -85,37 +87,50 @@ document.addEventListener("DOMContentLoaded", function() {
         productModal.classList.remove("hidden");
         document.body.style.overflow = "hidden"; // Background scroll lock kiya
         
-        // Browser ko bataya ki ek naya "page" (modal) khula hai
-        window.history.pushState({ modalOpen: "product" }, "");
+        // Push Hash to URL so Mobile Back Button works perfectly
+        window.location.hash = "modal"; 
     }
 
     function openZoom(src) {
         zoomImg.src = src;
         zoomModal.classList.remove("hidden");
-        window.history.pushState({ modalOpen: "zoom" }, "");
+        window.location.hash = "zoom"; 
     }
 
-    // Mobile Back Button Press Event
-    window.addEventListener("popstate", function(event) {
-        if (!zoomModal.classList.contains("hidden")) {
-            zoomModal.classList.add("hidden");
-        } else if (!productModal.classList.contains("hidden")) {
-            productModal.classList.add("hidden");
-            document.body.style.overflow = ""; // Background scroll wapas chalu kiya
+    // Listen for URL changes (which happens when Mobile Back button is pressed)
+    window.addEventListener('hashchange', function() {
+        const currentHash = window.location.hash;
+        
+        if (currentHash === "#modal") {
+            // Hum zoom se wapas modal pe aaye hain
+            if (!zoomModal.classList.contains("hidden")) {
+                zoomModal.classList.add("hidden");
+            }
+        } 
+        else if (currentHash === "" || (!currentHash.includes("modal") && !currentHash.includes("zoom"))) {
+            // Hum modal se wapas main page par aaye hain
+            if (!zoomModal.classList.contains("hidden")) {
+                zoomModal.classList.add("hidden");
+            }
+            if (!productModal.classList.contains("hidden")) {
+                productModal.classList.add("hidden");
+                document.body.style.overflow = ""; // Background scroll wapas chalu kiya
+            }
         }
     });
 
-    // X Button aur Bahar Click karne par 'history.back()' call kiya taaki mobile back jaisa hi behave kare
+    // Modal Close Buttons (Calling browser back to trigger the logic above)
     document.getElementById("closeModal").addEventListener('click', () => window.history.back());
     document.getElementById("closeZoom").addEventListener('click', () => window.history.back());
     
+    // Click outside modal to close
     window.addEventListener('click', (e) => {
         if (e.target === productModal || e.target === zoomModal) {
             window.history.back();
         }
     });
 
-    // Arrow Navigation
+    // Arrow Navigation inside Modal
     document.getElementById("nextSlide").addEventListener('click', () => {
         modalCarousel.scrollBy({ left: modalCarousel.clientWidth, behavior: 'smooth' });
     });
@@ -134,16 +149,20 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     function handleAppDeepLinking() {
-        if (window.location.hash) {
+        // Sirf tab trigger hoga jab URL app se aaya ho (e.g., #English_Bundle)
+        if (window.location.hash && !window.location.hash.includes("modal") && !window.location.hash.includes("zoom")) {
             const targetId = window.location.hash.substring(1);
             const targetCard = document.getElementById(targetId);
+            
             if (targetCard) {
                 targetCard.scrollIntoView({ behavior: "smooth", block: "center" });
                 targetCard.classList.add("highlight-card");
                 setTimeout(() => targetCard.classList.remove("highlight-card"), 2000);
                 
                 const sheetData = worksheetsData.find(s => s.file_id === targetId);
-                if (sheetData) setTimeout(() => openModal(sheetData), 600);
+                if (sheetData) {
+                    setTimeout(() => openModal(sheetData), 600);
+                }
             }
         }
     }

@@ -1,17 +1,30 @@
+/* =========================================
+   GLOBAL FIX: SCROLL LOCK
+   ========================================= */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden; /* STRICT: Left-Right Scroll Band */
+    margin: 0;
+    padding: 0;
+}
+
 :root {
     --bg-gradient: linear-gradient(to right, #e0f7fa, #ffe0b2);
     --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    margin: 0;
     font-family: var(--font-main);
     background: var(--bg-gradient);
     text-align: center;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow-x: hidden; /* GLOBAL FIX: Left-Right Scroll Band */
 }
 
 .site-branding { padding: 15px 0; }
@@ -20,8 +33,8 @@ body {
 .home-nav { display: flex; justify-content: center; margin-bottom: 20px; }
 .home-btn { padding: 10px 20px; border-radius: 40px; background: #2196f3; color: white; text-decoration: none; font-weight: bold; }
 
-.page-wrapper { flex: 1; width: 100%; max-width: 1200px; margin: auto; padding: 0 20px; box-sizing: border-box; }
-.search-box-container { position: relative; max-width: 600px; margin: 0 auto 30px auto; }
+.page-wrapper { flex: 1; width: 100%; max-width: 1200px; margin: auto; padding: 0 20px; }
+.search-box-container { position: relative; max-width: 600px; margin: 0 auto 30px auto; width: 100%; }
 #worksheetSearch { width: 100%; padding: 15px 20px 15px 50px; font-size: 1.1rem; border-radius: 40px; border: 3px solid white; outline: none; }
 .search-icon { position: absolute; left: 20px; top: 15px; font-size: 20px; }
 
@@ -42,6 +55,7 @@ body {
     align-items: center;
     transition: transform 0.3s;
     cursor: pointer;
+    width: 100%;
 }
 
 .worksheet-card:hover { transform: translateY(-5px); }
@@ -66,7 +80,7 @@ body {
 .buy-btn {
     width: 100%; display: block; background: #55efc4; color: #00b894;
     text-decoration: none; padding: 12px; border-radius: 12px;
-    font-weight: bold; font-size: 16px; transition: 0.3s; box-sizing: border-box;
+    font-weight: bold; font-size: 16px; transition: 0.3s;
     pointer-events: none;
 }
 .buy-btn:hover { background: #00b894; color: white; }
@@ -78,24 +92,23 @@ body {
 .highlight-card { animation: highlight-glow 2s ease-out; }
 
 .hidden { display: none !important; }
-.footer { background: #2c3e50; padding: 20px; color: white; margin-top: 40px; }
-
+.footer { background: #2c3e50; padding: 20px; color: white; margin-top: 40px; width: 100%; }
 
 /* =========================================
-   MODAL & LIGHTBOX STYLES (NO HORIZONTAL SCROLL)
+   MODAL & LIGHTBOX STYLES (MOBILE PERFECTED)
    ========================================= */
 .modal-overlay, .zoom-overlay {
-    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.75); z-index: 1000;
     display: flex; justify-content: center; align-items: center;
     backdrop-filter: blur(5px);
-    padding: 15px; /* STRICT: Yahan padding lagayi taaki box screen ke bahar na nikle */
-    box-sizing: border-box;
+    padding: 15px;
 }
 
 .modal-content {
     background: white; 
-    width: 100%; /* Overlay ki padding ke andar 100% space lega */
+    width: 100%; 
     max-width: 900px;
     border-radius: 20px; 
     position: relative; 
@@ -104,7 +117,6 @@ body {
     max-height: 90vh; 
     overflow-y: auto; 
     overflow-x: hidden; 
-    box-sizing: border-box;
     margin: 0 auto;
 }
 
@@ -118,43 +130,26 @@ body {
 }
 .close-btn:hover { color: white; background: #e84118; }
 
-.modal-body { 
-    display: flex; 
-    flex-direction: row; 
-    gap: 25px; 
-    box-sizing: border-box; 
-    width: 100%;
-}
+.modal-body { display: flex; flex-direction: row; gap: 25px; width: 100%; }
 
-.modal-carousel-wrapper { 
-    flex: 1; 
-    width: 50%; 
-    position: relative; 
-    box-sizing: border-box; 
-}
-.modal-info { 
-    flex: 1; 
-    width: 50%; 
-    display: flex; 
-    flex-direction: column; 
-    box-sizing: border-box; 
-}
+.modal-carousel-wrapper { flex: 1; width: 50%; position: relative; }
+.modal-info { flex: 1; width: 50%; display: flex; flex-direction: column; text-align: left; }
 
 #modalTitle { font-size: 22px; margin-top: 0; margin-bottom: 10px; color: #2d3436; word-wrap: break-word; }
 .modal-price { color: #e17055; font-size: 28px; margin: 0 0 15px 0; }
 .modal-description { color: #2d3436; line-height: 1.6; font-size: 15px; margin-bottom: 25px; word-wrap: break-word; }
-#modalBuyBtn { pointer-events: auto; text-align: center; display: block; width: 100%; box-sizing: border-box; }
+#modalBuyBtn { pointer-events: auto; text-align: center; display: block; width: 100%; }
 
 .modal-carousel {
     display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
     gap: 10px; border-radius: 15px; scrollbar-width: none;
-    height: 350px; scroll-behavior: smooth; width: 100%; box-sizing: border-box;
+    height: 350px; scroll-behavior: smooth; width: 100%;
 }
 .modal-carousel::-webkit-scrollbar { display: none; }
 .modal-carousel img {
     scroll-snap-align: center; flex: 0 0 100%; height: 100%;
     object-fit: contain; background: #f8f9fa; border: 1px solid #ddd;
-    border-radius: 15px; cursor: zoom-in; box-sizing: border-box;
+    border-radius: 15px; cursor: zoom-in;
 }
 
 .carousel-arrow {
@@ -180,6 +175,7 @@ body {
     
     .modal-content { 
         padding: 20px 15px; 
+        width: 100%;
     }
     
     .modal-body { 
@@ -189,13 +185,13 @@ body {
     
     .modal-carousel-wrapper, .modal-info {
         width: 100%;
-        min-width: 100%;
-        max-width: 100%;
     }
     
     .modal-carousel { height: 260px; }
-    #modalTitle { font-size: 20px; }
-    .modal-price { font-size: 24px; }
+    #modalTitle { font-size: 20px; text-align: center; }
+    .modal-price { font-size: 24px; text-align: center; }
+    .modal-description { text-align: center; }
+    #modalBadge { align-self: center; margin-bottom: 15px; }
     
     .carousel-arrow { width: 32px; height: 32px; font-size: 16px; }
     .left-arrow { left: 5px; } 
