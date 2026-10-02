@@ -37,7 +37,11 @@ def main():
                 "badge": row.get('badge', '').strip(),
                 "price": row.get('price', '').strip(),
                 "categories": categories,
-                "buy_link": row.get('buy_link', '').strip(),
+                "buy_link": row.get('buy_link', '').strip(),           # Website ke liye
+                "productId": row.get('productId', '').strip(),         # App IAP ke liye
+                "supabase_path": row.get('supabase_path', '').strip(), # App Secure Download ke liye
+                "supabase_path_color": row.get('supabase_path_color', '').strip(), # Naya field
+                "supabase_path_bw": row.get('supabase_path_bw', '').strip(),       # Naya field
                 "images": images
             }
             data_list.append(card_data)
