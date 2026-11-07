@@ -197,3 +197,110 @@ body {
     .left-arrow { left: 5px; } 
     .right-arrow { right: 5px; }
 }
+
+/* =========================================
+   APP PROMO BANNER (COMPACT VERSION)
+   ========================================= */
+.app-promo-banner {
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    max-width: 750px;
+    margin: 15px auto 35px auto;
+    padding: 15px 25px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 8px 20px rgba(0, 114, 255, 0.25);
+    border: 3px solid white;
+    color: white;
+    text-align: left;
+    position: relative;
+    z-index: 30;
+    box-sizing: border-box;
+}
+
+.promo-icon {
+    font-size: 2.8rem;
+    margin-right: 15px;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+.promo-content {
+    flex: 1;
+}
+
+.promo-content h2 {
+    margin: 0 0 5px 0;
+    font-size: 1.3rem;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.15);
+}
+
+.promo-content p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.3;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.play-store-btn {
+    background: #ffffff;
+    color: #000000;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 0.95rem; /* Font thoda compact kiya hai taaki fit aaye */
+    text-decoration: none;
+    margin-left: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: transform 0.2s, background 0.2s;
+    /* white-space: nowrap; yahan se hata diya gaya hai */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 250px; /* Width fix ki hai taaki text 2 lines me wrap ho */
+}
+
+.play-store-btn:hover {
+    background: #f1f2f6;
+    transform: scale(1.05);
+}
+
+/* Naye elements ke liye CSS taaki icon aur text perfect lage */
+.play-store-btn svg {
+    flex-shrink: 0; /* Text lamba hone par icon chota nahi hoga */
+}
+
+.play-store-btn span {
+    line-height: 1.3;
+    text-align: left; /* Wrap hone par text left align rahega */
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .app-promo-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+        max-width: 90%;
+    }
+    
+    .promo-icon {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .play-store-btn {
+        margin-left: 0;
+        margin-top: 15px;
+        width: 100%;
+        max-width: none; /* Mobile par width limit hata di hai */
+        box-sizing: border-box;
+        justify-content: center;
+    }
+}
