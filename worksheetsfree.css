@@ -199,18 +199,18 @@ body {
 }
 
 /* =========================================
-   APP PROMO BANNER (COMPACT VERSION)
+   APP PROMO BANNER (CUSTOM COLORS)
    ========================================= */
 .app-promo-banner {
-    background: linear-gradient(135deg, #00c6ff, #0072ff);
-    max-width: 750px;
+    background: linear-gradient(135deg, #7ab1e7, #72e7eb);
+    max-width: 750px; 
     margin: 15px auto 35px auto;
-    padding: 15px 25px;
+    padding: 15px 25px; 
     border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 8px 20px rgba(0, 114, 255, 0.25);
+    box-shadow: 0 8px 25px rgba(81, 160, 39, 0.3);
     border: 3px solid white;
     color: white;
     text-align: left;
@@ -239,8 +239,23 @@ body {
 .promo-content p {
     margin: 0;
     font-size: 0.95rem;
-    line-height: 1.3;
+    font-weight: 600;
+    line-height: 1.4;
     color: rgba(255, 255, 255, 0.95);
+}
+
+.highlight-app-name {
+    background: linear-gradient(45deg, #060603, #ff00cc, #4c00ff, #d13d47);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 900; 
+    font-size: 1.05rem;
+    animation: gradientMove 3s ease infinite;
+    display: inline-block;
+    padding: 0 2px;
+    filter: drop-shadow(0px 0px 4px rgba(239, 220, 49, 0.89)); 
 }
 
 .play-store-btn {
@@ -249,16 +264,15 @@ body {
     padding: 10px 20px;
     border-radius: 25px;
     font-weight: bold;
-    font-size: 0.95rem; /* Font thoda compact kiya hai taaki fit aaye */
+    font-size: 0.95rem;
     text-decoration: none;
     margin-left: 20px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     transition: transform 0.2s, background 0.2s;
-    /* white-space: nowrap; yahan se hata diya gaya hai */
+    white-space: nowrap; 
     display: flex;
     align-items: center;
-    gap: 12px;
-    max-width: 250px; /* Width fix ki hai taaki text 2 lines me wrap ho */
+    gap: 8px;
 }
 
 .play-store-btn:hover {
@@ -266,19 +280,35 @@ body {
     transform: scale(1.05);
 }
 
-/* Naye elements ke liye CSS taaki icon aur text perfect lage */
 .play-store-btn svg {
-    flex-shrink: 0; /* Text lamba hone par icon chota nahi hoga */
+    flex-shrink: 0;
 }
 
+/* Button Text Bouncing Animation */
 .play-store-btn span {
     line-height: 1.3;
-    text-align: left; /* Wrap hone par text left align rahega */
+    display: inline-block;
+    animation: textBounce 2.5s infinite ease-in-out;
+}
+
+@keyframes textBounce {
+    0%, 100% { 
+        transform: translateY(0); 
+    }
+    50% { 
+        transform: translateY(-4px); 
+    }
 }
 
 @keyframes bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 /* Mobile Responsive */
@@ -299,7 +329,6 @@ body {
         margin-left: 0;
         margin-top: 15px;
         width: 100%;
-        max-width: none; /* Mobile par width limit hata di hai */
         box-sizing: border-box;
         justify-content: center;
     }
