@@ -1,0 +1,147 @@
+"use strict";
+
+document.addEventListener("DOMContentLoaded", function() {
+    const worksheetsGrid = document.getElementById("worksheetsGrid");
+    const searchInput = document.getElementById("worksheetSearch");
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const noResults = document.getElementById("noResults");
+    
+    const productModal = document.getElementById("productModal");
+    const modalCarousel = document.getElementById("modalCarousel");
+    const zoomModal = document.getElementById("zoomModal");
+    const zoomImg = document.getElementById("zoomImg");
+    
+    let worksheetsData = [];
+    let currentCategory = "all";
+    let searchQuery = "";
+
+    // 🔥 Points to FREE data JSON
+    fetch("worksheets_free_data.json?v=" + new Date().getTime())
+        .then(res => res.json())
+        .then(data => {
+            worksheetsData = data;
+            renderWorksheets();
+            handleAppDeepLinking();
+        });
+
+    function renderWorksheets() {
+        worksheetsGrid.innerHTML = "";
+        const filteredList = worksheetsData.filter(item => {
+            const matchesCat = (currentCategory === "all" || item.categories.includes(currentCategory));
+            const matchesSearch = item.title.toLowerCase().includes(searchQuery) || item.subtitle.toLowerCase().includes(searchQuery);
+            return matchesCat && matchesSearch;
+        });
+
+        if (filteredList.length === 0) {
+            noResults.classList.remove("hidden");
+            worksheetsGrid.style.display = "none";
+        } else {
+            noResults.classList.add("hidden");
+            worksheetsGrid.style.display = "grid";
+            
+            filteredList.forEach(sheet => {
+                const card = document.createElement("div");
+                card.className = "worksheet-card";
+                card.id = sheet.file_id;
+                
+                const coverImg = (sheet.images && sheet.images.length > 0) ? sheet.images[0] : '';
+                
+                card.innerHTML = `
+                    <div class="lang-badge" style="background:#00b894;">FREE</div>
+                    ${coverImg ? `<img src="${coverImg}" style="width:100%; height:180px; object-fit:contain; margin-bottom:15px; border-radius:10px;">` : `<div class="card-icon">🎁</div>`}
+                    <h2>${sheet.title}</h2>
+                    <p class="card-subtitle">${sheet.subtitle}</p>
+                    <button class="buy-btn" style="pointer-events:none; background:#e0f7fa; color:#00b894;">Get For Free</button>
+                `;
+                
+                card.addEventListener('click', () => openModal(sheet));
+                worksheetsGrid.appendChild(card);
+            });
+        }
+    }
+
+    function openModal(sheet) {
+        document.getElementById("modalTitle").innerText = sheet.title;
+        document.getElementById("modalDesc").innerText = sheet.description || sheet.subtitle; 
+        
+        // Modal button direct Google Drive / Public link par bhejega
+        document.getElementById("modalBuyBtn").href = sheet.buy_link; 
+        
+        modalCarousel.innerHTML = "";
+        if (sheet.images && sheet.images.length > 0) {
+            sheet.images.forEach(imgSrc => {
+                const img = document.createElement("img");
+                img.src = imgSrc;
+                img.addEventListener('click', () => openZoom(imgSrc));
+                modalCarousel.appendChild(img);
+            });
+        } else {
+            modalCarousel.innerHTML = `<div style="display:flex; justify-content:center; align-items:center; width:100%; height:100%; background:#f8f9fa; font-size:60px;">🎁</div>`;
+        }
+        
+        productModal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+        window.location.hash = "modal"; 
+    }
+
+    function openZoom(src) {
+        zoomImg.src = src;
+        zoomModal.classList.remove("hidden");
+        window.location.hash = "zoom"; 
+    }
+
+    window.addEventListener('hashchange', function() {
+        const currentHash = window.location.hash;
+        if (currentHash === "#modal") {
+            if (!zoomModal.classList.contains("hidden")) { zoomModal.classList.add("hidden"); }
+        } 
+        else if (currentHash === "" || (!currentHash.includes("modal") && !currentHash.includes("zoom"))) {
+            if (!zoomModal.classList.contains("hidden")) { zoomModal.classList.add("hidden"); }
+            if (!productModal.classList.contains("hidden")) {
+                productModal.classList.add("hidden");
+                document.body.style.overflow = ""; 
+            }
+        }
+    });
+
+    document.getElementById("closeModal").addEventListener('click', () => window.history.back());
+    document.getElementById("closeZoom").addEventListener('click', () => window.history.back());
+    
+    window.addEventListener('click', (e) => {
+        if (e.target === productModal || e.target === zoomModal) { window.history.back(); }
+    });
+
+    document.getElementById("nextSlide").addEventListener('click', () => {
+        modalCarousel.scrollBy({ left: modalCarousel.clientWidth, behavior: 'smooth' });
+    });
+    document.getElementById("prevSlide").addEventListener('click', () => {
+        modalCarousel.scrollBy({ left: -modalCarousel.clientWidth, behavior: 'smooth' });
+    });
+
+    searchInput.addEventListener("input", e => { searchQuery = e.target.value.toLowerCase().trim(); renderWorksheets(); });
+    filterButtons.forEach(btn => {
+        btn.addEventListener("click", function() {
+            filterButtons.forEach(b => b.classList.remove("active"));
+            this.classList.add("active");
+            currentCategory = this.dataset.category;
+            renderWorksheets();
+        });
+    });
+
+    function handleAppDeepLinking() {
+        if (window.location.hash && !window.location.hash.includes("modal") && !window.location.hash.includes("zoom")) {
+            const targetId = window.location.hash.substring(1);
+            const targetCard = document.getElementById(targetId);
+            if (targetCard) {
+                targetCard.scrollIntoView({ behavior: "smooth", block: "center" });
+                targetCard.classList.add("highlight-card");
+                setTimeout(() => targetCard.classList.remove("highlight-card"), 2000);
+                
+                const sheetData = worksheetsData.find(s => s.file_id === targetId);
+                if (sheetData) {
+                    setTimeout(() => openModal(sheetData), 600);
+                }
+            }
+        }
+    }
+});

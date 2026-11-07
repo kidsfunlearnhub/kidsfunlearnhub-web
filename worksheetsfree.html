@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Worksheets | KidsFunLearnHub</title>
+    <meta name="title" content="Free Worksheets | KidsFunLearnHub">
+    <meta name="description" content="Download our free, high-quality printable PDF worksheets for toddlers and preschool.">
+    
+    <link rel="canonical" href="https://www.kidsfunlearnhub.com/worksheetsfree.html">
+    <!-- Reusing existing CSS to save code -->
+    <link rel="stylesheet" href="worksheetsfree.css?v=1.0">
+</head>
+<body>
+    <div class="site-branding">
+        <a href="index.html">🚀 KidsFunLearnHub</a>
+    </div>
+
+    <header>
+        <h1 class="title" id="page-title" style="color: #00b894;">🎁 Free Worksheets</h1>
+        <nav class="home-nav">
+          <a href="index.html" class="home-btn">🏠 Home</a>
+          <a href="worksheets.html" class="home-btn" style="background:#ec51d8; margin-left:10px;">📄 Premium Bundles</a>
+        </nav>
+    </header>
+
+    <main class="page-wrapper">
+        <section class="hero-search-section">
+            <div class="search-box-container">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="worksheetSearch" placeholder="Search free tracing, logic, math..." aria-label="Search free worksheets">
+            </div>
+        </section>
+
+        <nav class="category-nav" aria-label="Worksheet Categories">
+            <button class="filter-btn active" data-category="all" style="--btn-color: #9c27b0;">✨ All Freebies</button>
+            <button class="filter-btn" data-category="tracing" style="--btn-color: #ff5722;">✏️ Tracing</button>
+            <button class="filter-btn" data-category="math" style="--btn-color: #2196f3;">🔢 Math</button>
+            <button class="filter-btn" data-category="languages" style="--btn-color: #4caf50;">🔤 Languages</button>
+            <button class="filter-btn" data-category="coloring" style="--btn-color: #ffc107;">🎨 Coloring</button>
+            <button class="filter-btn" data-category="cognitive" style="--btn-color: #e91e63;">🧠 Logic</button>
+        </nav>
+
+        <div class="content-grid-container">
+            <section class="worksheets-grid" id="worksheetsGrid" aria-live="polite"></section>
+        </div>
+
+        <div id="noResults" class="no-results hidden">
+            <span class="no-results-emoji">🎈</span>
+            <h2>Oops! We couldn't find that one!</h2>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p class="copyright">© 2026 KidsFunLearnHub. All rights reserved.</p>
+    </footer>
+
+    <!-- Product Detail Modal -->
+    <div id="productModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button id="closeModal" class="close-btn">✖</button>
+            <div class="modal-body">
+                <div class="modal-carousel-wrapper">
+                    <button id="prevSlide" class="carousel-arrow left-arrow">❮</button>
+                    <div id="modalCarousel" class="modal-carousel"></div>
+                    <button id="nextSlide" class="carousel-arrow right-arrow">❯</button>
+                </div>
+                <div class="modal-info">
+                    <div id="modalBadge" class="lang-badge" style="position:relative; display:inline-block; top:0; left:0; margin-bottom:10px; background:#00b894;">FREE</div>
+                    <h2 id="modalTitle"></h2>
+                    <h3 id="modalPrice" class="modal-price" style="color:#00b894;">FREE</h3>
+                    <p id="modalDesc" class="modal-description"></p>
+                    <a href="#" id="modalBuyBtn" class="buy-btn" target="_blank" style="background:#0984e3; color:white;">⬇️ Download Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fullscreen Image Zoom -->
+    <div id="zoomModal" class="zoom-overlay hidden">
+        <button id="closeZoom" class="close-btn" style="color: white; right: 30px; top: 30px; font-size: 40px;">✖</button>
+        <img id="zoomImg" src="" alt="Zoomed Preview">
+    </div>
+
+    <!-- Link to new JS file -->
+    <script src="worksheetsfree.js?v=1.0"></script>
+</body>
+</html>
