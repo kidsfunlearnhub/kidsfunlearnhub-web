@@ -42,5 +42,32 @@
             "preview_images/free_002_01.jpg",
             "preview_images/free_002_02.jpg"
         ]
+    },
+    {
+        "id": 3,
+        "file_id": "KidsFunLearnHub_Brain_Booster",
+        "title": "Brain Booster & Logical Reasoning Workbook (16 Pages)",
+        "subtitle": "Trending screen-free pattern, shadow matching, odd one out & counting workboo",
+        "description": "Boost your child's logical thinking and visual focus with this 16-page Brain Booster Workbook! Packed with 4 trending preschool activities including Complete the Pattern, Odd One Out, Shadow Matching, and Count & Circle. Designed with clear instructions in English, Hindi, and Marathi, it is ideal for ages 3 to 6 (Nursery, LKG, UKG) for screen-free daily brain practice.",
+        "badge": "Trending",
+        "price": "Free",
+        "categories": [
+            "cognitive",
+            "logic",
+            "shapes",
+            "math",
+            "languages"
+        ],
+        "buy_link": "https://drive.google.com/file/d/1uh405N2e60ZDHtXWKUy3cxUd5IREKGeG/view?usp=drive_link",
+        "productId": "free_003",
+        "supabase_path_color": "KidsFunLearnHub_Brain_Booster_Color.pdf",
+        "supabase_path_bw": "KidsFunLearnHub_Brain_Booster_Color.pdf",
+        "images": [
+            "preview_images/free_003_01.jpg",
+            "preview_images/free_003_02.jpg",
+            "preview_images/free_003_03.jpg",
+            "preview_images/free_003_04.jpg",
+            "preview_images/free_003_05.jpg"
+        ]
     }
 ]
