@@ -19,5 +19,28 @@
         "images": [
             "preview_images/st_1.jpg"
         ]
+    },
+    {
+        "id": 2,
+        "file_id": "KidsFunLearnHub_Circle_The_Color",
+        "title": "Circle the Color Workbook (14 Pages)",
+        "subtitle": "Fun color recognition workbook in English, Hindi & Marathi",
+        "description": "Make learning colors exciting with this 14-page interactive workbook! Covering 14 vibrant colors—from basics like Red, Blue, and Yellow to shades like Teal, Lavender, and Turquoise. It is perfect for preschoolers and early learners to build color recognition, visual focus, and trilingual vocabulary.",
+        "badge": "Trilingual",
+        "price": "Free",
+        "categories": [
+            "colors",
+            "shapes",
+            "cognitive",
+            "languages"
+        ],
+        "buy_link": "https://drive.google.com/file/d/1eW5NHXduhqXIP7nvC4H81eo0JbXOtclq/view?usp=drive_link",
+        "productId": "free_002",
+        "supabase_path_color": "KidsFunLearnHub_Circle_The_Color.pdf",
+        "supabase_path_bw": "KidsFunLearnHub_Circle_The_Color.pdf",
+        "images": [
+            "preview_images/free_002_01",
+            "preview_images/free_002_02"
+        ]
     }
 ]
