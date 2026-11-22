@@ -34,7 +34,7 @@
             "cognitive",
             "languages"
         ],
-        "buy_link": "https://drive.google.com/file/d/1eW5NHXduhqXIP7nvC4H81eo0JbXOtclq/view?usp=drive_link",
+        "buy_link": "https://drive.google.com/file/d/1PYP8Kld_Ui4i1FZ9fYLJQ6WqJnrZkVv_/view?usp=drive_link",
         "productId": "free_002",
         "supabase_path_color": "KidsFunLearnHub_Circle_The_Color.pdf",
         "supabase_path_bw": "KidsFunLearnHub_Circle_The_Color.pdf",
@@ -58,7 +58,7 @@
             "math",
             "languages"
         ],
-        "buy_link": "https://drive.google.com/file/d/1uh405N2e60ZDHtXWKUy3cxUd5IREKGeG/view?usp=drive_link",
+        "buy_link": "https://drive.google.com/file/d/1GXp3u32OkolitNmMBKaYUdcGUs4QvoEL/view?usp=drive_link",
         "productId": "free_003",
         "supabase_path_color": "KidsFunLearnHub_Brain_Booster_Color.pdf",
         "supabase_path_bw": "KidsFunLearnHub_Brain_Booster_Color.pdf",
@@ -68,6 +68,55 @@
             "preview_images/free_003_03.jpg",
             "preview_images/free_003_04.jpg",
             "preview_images/free_003_05.jpg"
+        ]
+    },
+    {
+        "id": 4,
+        "file_id": "KidsFunLearnHub_Pencil_Control_Tracing",
+        "title": "Pre-Writing Pencil Control & Tracing Workbook (12 Pages)",
+        "subtitle": "Line tracing & shape tracing practice for Playgroup and Nursery kids",
+        "description": "Build strong fine motor skills and pencil grip with this 12-page Pre-Writing Tracing Workbook! Covers standing lines, sleeping lines, slanting lines, zig-zags, waves, castle steps, curves, and 8 big traceable shapes. Comes with simple instructions in English, Hindi, and Marathi, making it perfect for ages 2.5 to 5 before starting alphabet and number writing.",
+        "badge": "Bestseller",
+        "price": "Free",
+        "categories": [
+            "tracing",
+            "writing",
+            "shapes",
+            "motor-skills",
+            "languages"
+        ],
+        "buy_link": "https://drive.google.com/file/d/1V69aSzPiZY7UMly3_qBknlnA1XquBnOT/view?usp=drive_link",
+        "productId": "free_004",
+        "supabase_path_color": "KidsFunLearnHub_Pencil_Control_Tracing_Color.pdf",
+        "supabase_path_bw": "KidsFunLearnHub_Pencil_Control_Tracing_Color.pdf",
+        "images": [
+            "preview_images/free_004_01.jpg",
+            "preview_images/free_004_02.jpg"
+        ]
+    },
+    {
+        "id": 5,
+        "file_id": "KidsFunLearnHub_Mazes_Picture_Sudoku",
+        "title": "Fun Mazes & Picture Sudoku Workbook (12 Pages)",
+        "subtitle": "Progressive brain-teasing mazes & 4x4 shape sudoku puzzles for kids",
+        "description": "Sharpen problem-solving skills and concentration with this 12-page Fun Mazes & Picture Sudoku Workbook! Includes 6 progressive path-finding mazes from easy 5x5 grids to super-star 10x10 challenges, plus 6 engaging 4x4 Picture Sudoku puzzles using colorful shapes. Features trilingual instructions in English, Hindi, and Marathi for ages 4 to 7 (LKG, UKG, Grade 1).",
+        "badge": "Trending",
+        "price": "Free",
+        "categories": [
+            "puzzles",
+            "logic",
+            "cognitive",
+            "shapes",
+            "languages"
+        ],
+        "buy_link": "https://drive.google.com/file/d/16b-ySp2FEfkRYnl-Rg053Ilq7AkQ8Qlr/view?usp=drive_link",
+        "productId": "free_005",
+        "supabase_path_color": "KidsFunLearnHub_Mazes_Picture_Sudoku_Color.pdf",
+        "supabase_path_bw": "KidsFunLearnHub_Mazes_Picture_Sudoku_Color.pdf",
+        "images": [
+            "preview_images/free_005_01.jpg",
+            "preview_images/free_005_02.jpg",
+            "preview_images/free_005_03.jpg"
         ]
     }
 ]
