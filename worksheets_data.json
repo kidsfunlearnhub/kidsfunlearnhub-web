@@ -5,14 +5,18 @@
         "title": "English Alphabets & Numbers Master Pack",
         "subtitle": "Capital & Small Letters (A-Z, a-z) + Numbers (1 to 20) - (Both Color & Eco PDFs)",
         "description": "Give your child the perfect start with this comprehensive 181 page bundle. Includes guided 4-line tracing for capital and lowercase English letters, plus number tracing up to 20. Designed to improve handwriting, fine motor skills, and pencil control. (181 pages)",
-        "badge": "English",
+        "pages": "181 Pages",
+        "badge": "Bestseller",
         "price": "Rs.21",
+        "original_price": "Rs.99",
         "categories": [
             "languages",
             "tracing"
         ],
+        "sample_pdf": "https://drive.google.com/uc?export=download&id=1OJht-cVdtd80fpPRxvru1mm7B9g6ZmpY",
         "buy_link": "https://rzp.io/rzp/Y71i6ye",
         "productId": "b_001",
+        "supabase_path_sample": "KidsFunLearnHub_Tracing_A.pdf",
         "supabase_path_color": "English_BigSmallAlphabetsNumbers_KidsFunLearnHub_FullColor_Pack_21.pdf",
         "supabase_path_bw": "English_BigSmallAlphabetsNumbers_KidsFunLearnHub_EcoPrint_Pack_21.pdf",
         "images": [
@@ -32,14 +36,18 @@
         "title": "Hindi & Marathi Varnamala + Numbers (1 to 20)",
         "subtitle": "Complete Tracing for Bilingual Learning (Both Color & Eco PDFs)",
         "description": "A complete bilingual learning pack featuring guided tracing for Hindi/ Marathi varnamala (letters) and numbers. Carefully structured for early language development, vocabulary building, and foundational writing skills. (198 pages)",
-        "badge": "Bilingual",
+        "pages": "198 Pages",
+        "badge": "Bestseller",
         "price": "Rs.21",
+        "original_price": "Rs.99",
         "categories": [
             "languages",
             "tracing"
         ],
+        "sample_pdf": "https://drive.google.com/uc?export=download&id=1OJht-cVdtd80fpPRxvru1mm7B9g6ZmpY",
         "buy_link": "https://rzp.io/rzp/WLDhDQ1J",
         "productId": "b_002",
+        "supabase_path_sample": "KidsFunLearnHub_Tracing_A.pdf",
         "supabase_path_color": "HindiMarathi_VarnamalaNumber_KidsFunLearnHub_FullColor_Pack_21.pdf",
         "supabase_path_bw": "HindiMarathi_VarnamalaNumber_KidsFunLearnHub_EcoPrint_Pack_21.pdf",
         "images": [
@@ -58,14 +66,18 @@
         "title": "Lines, Patterns & Shapes Pre-writing",
         "subtitle": "Perfect foundational pack for beginners & toddlers (Both Color & Eco PDFs)",
         "description": "The perfect foundational pre-writing pack for beginners and toddlers. Includes step-by-step tracing for lines, curves, essential patterns, and basic shapes to build strong pencil control and cognitive skills. (22 pages)",
-        "badge": "Basics",
+        "pages": "22 Pages",
+        "badge": "Bestseller",
         "price": "Rs.11",
+        "original_price": "Rs.49",
         "categories": [
             "cognitive",
             "tracing"
         ],
+        "sample_pdf": "https://drive.google.com/uc?export=download&id=1OJht-cVdtd80fpPRxvru1mm7B9g6ZmpY",
         "buy_link": "https://rzp.io/rzp/PlvDO7x0",
         "productId": "b_003",
+        "supabase_path_sample": "KidsFunLearnHub_Tracing_A.pdf",
         "supabase_path_color": "LinesAllPatternsShapes_KidsFunLearnHub_FullColor_Pack_11.pdf",
         "supabase_path_bw": "LinesAllPatternsShapes_KidsFunLearnHub_EcoPrint_Pack_11.pdf",
         "images": [

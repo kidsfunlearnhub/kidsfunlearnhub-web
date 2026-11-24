@@ -3,52 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Worksheet Bundles | KidsFunLearnHub</title>
-    <meta name="title" content="Worksheet Bundles | KidsFunLearnHub">
-    <meta name="description" content="Download our premium, high-quality printable PDF worksheet bundles for toddlers, preschool, and kindergarten.">
-    
+    <title>Printable Worksheet Bundles | KidsFunLearnHub</title>
+    <meta name="title" content="Printable Worksheet Bundles | KidsFunLearnHub">
+    <meta name="description" content="Download 100% ad-free printable Color + Ink-Saving Eco A4 PDF worksheet bundles for toddlers, preschool, and kindergarten. Try free samples before buying.">
+
     <link rel="canonical" href="https://www.kidsfunlearnhub.com/worksheets.html">
-    <link rel="stylesheet" href="worksheets.css?v=6.4">
+    <link rel="stylesheet" href="worksheets.css?v=7.1">
 </head>
 <body>
     <div class="site-branding">
         <a href="index.html">🚀 KidsFunLearnHub</a>
     </div>
 
-    <header>
-        <h1 class="title" id="page-title">📄 Worksheet Bundles</h1>
+    <header class="top-header">
+        <h1 class="title" id="page-title">📄 Printable Worksheets</h1>
+        <p class="screen-subtitle">100% Ad-Free • Color + Ink-Saving Eco A4 PDFs</p>
         <nav class="home-nav">
-          <a href="index.html" class="home-btn">🏠 Home</a>
-          <a href="activityhub.html" class="home-btn" style="background:#ff9800; margin-left:10px;">🎮 Activity Hub</a>
+            <a href="index.html" class="home-btn">🏠 Home</a>
+            <a href="activityhub.html" class="home-btn home-btn-orange">🎮 Activity Hub</a>
         </nav>
     </header>
 
     <main class="page-wrapper">
+        <!-- Search Bar -->
         <section class="hero-search-section">
             <div class="search-box-container">
                 <span class="search-icon">🔍</span>
-                <input type="text" id="worksheetSearch" placeholder="Search tracing, english, hindi..." aria-label="Search worksheets">
+                <input
+                    type="text"
+                    id="worksheetSearch"
+                    placeholder="Search tracing, math, Hindi, Marathi..."
+                    aria-label="Search worksheets"
+                >
+                <button type="button" id="clearSearchBtn" class="clear-search-btn hidden" aria-label="Clear search">✕</button>
             </div>
         </section>
 
+        <!-- Category Chips -->
         <nav class="category-nav" aria-label="Worksheet Categories">
-            <button class="filter-btn active" data-category="all" style="--btn-color: #9c27b0;">✨ All Bundles</button>
-            <button class="filter-btn" data-category="tracing" style="--btn-color: #ff5722;">✏️ Tracing</button>
-            <button class="filter-btn" data-category="math" style="--btn-color: #2196f3;">🔢 Math</button>
-            <button class="filter-btn" data-category="languages" style="--btn-color: #4caf50;">🔤 Languages</button>
-            <button class="filter-btn" data-category="coloring" style="--btn-color: #ffc107;">🎨 Coloring</button>
-            <button class="filter-btn" data-category="cognitive" style="--btn-color: #e91e63;">🧠 Logic</button>
+            <button type="button" class="filter-btn active" data-category="all" style="--btn-color: #8e24aa;">✨ All</button>
+            <button type="button" class="filter-btn" data-category="tracing" style="--btn-color: #f4511e;">✏️ Tracing</button>
+            <button type="button" class="filter-btn" data-category="languages" style="--btn-color: #2e7d32;">🔤 Languages</button>
+            <button type="button" class="filter-btn" data-category="math" style="--btn-color: #1976d2;">🔢 Math</button>
+            <button type="button" class="filter-btn" data-category="coloring" style="--btn-color: #f59e0b;">🎨 Coloring</button>
+            <button type="button" class="filter-btn" data-category="cognitive" style="--btn-color: #e91e63;">🧠 Logic</button>
         </nav>
 
+        <!-- Loading State -->
+        <div id="loadingBox" class="loading-box">
+            <div class="spinner"></div>
+            <p class="loading-text">Loading worksheet bundles...</p>
+        </div>
+
+        <!-- Cards Grid -->
         <div class="content-grid-container">
-            <!-- JS will dynamically load cards here -->
             <section class="worksheets-grid" id="worksheetsGrid" aria-live="polite"></section>
         </div>
 
+        <!-- Empty State -->
         <div id="noResults" class="no-results hidden">
-            <span class="no-results-emoji">🎈</span>
-            <h2>Oops! We couldn't find that one!</h2>
-            <p>Try searching for words like "tracing", "numbers", or "hindi".</p>
+            <span class="no-results-emoji">🔎</span>
+            <h2>No worksheets found</h2>
+            <p>Koi aur keyword try karein ya filter reset karein.</p>
+            <button type="button" id="resetFiltersBtn" class="reset-filter-btn">Show All Worksheets</button>
         </div>
     </main>
 
@@ -57,23 +74,60 @@
     </footer>
 
     <!-- 1. Product Detail Modal -->
-    <div id="productModal" class="modal-overlay hidden">
+    <div id="productModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="modal-content">
-            <button id="closeModal" class="close-btn">✖</button>
+            <button type="button" id="closeModal" class="close-btn" aria-label="Close modal">✕</button>
+
             <div class="modal-body">
                 <!-- Carousel Section -->
                 <div class="modal-carousel-wrapper">
-                    <button id="prevSlide" class="carousel-arrow left-arrow">❮</button>
+                    <button type="button" id="prevSlide" class="carousel-arrow left-arrow" aria-label="Previous image">❮</button>
                     <div id="modalCarousel" class="modal-carousel"></div>
-                    <button id="nextSlide" class="carousel-arrow right-arrow">❯</button>
+                    <button type="button" id="nextSlide" class="carousel-arrow right-arrow" aria-label="Next image">❯</button>
+                    <div id="imageCounterPill" class="image-counter-pill hidden"></div>
                 </div>
-                <!-- Details Section -->
+
+                <!-- Details & CTA Section -->
                 <div class="modal-info">
-                    <div id="modalBadge" class="lang-badge" style="position:relative; display:inline-block; top:0; left:0; margin-bottom:10px;"></div>
+                    <div id="modalBadgeRow" class="modal-badge-row">
+                        <span id="modalBadge" class="modal-badge hidden"></span>
+                        <span id="modalPagesBadge" class="modal-badge modal-pages-badge hidden"></span>
+                    </div>
+
                     <h2 id="modalTitle"></h2>
-                    <h3 id="modalPrice" class="modal-price"></h3>
+
+                    <!-- Price Row -->
+                    <div class="modal-price-row">
+                        <span id="modalPrice" class="modal-price-big"></span>
+                        <span id="modalStrikePrice" class="modal-strike-price hidden"></span>
+                        <span class="one-time-pill">One-Time Payment</span>
+                    </div>
+
+                    <!-- Value Highlights -->
+                    <div class="highlights-row">
+                        <span class="highlight-chip">🎨 Color + B&amp;W Eco</span>
+                        <span class="highlight-chip">🖨️ A4 Print Ready</span>
+                        <span class="highlight-chip">⚡ Instant PDF</span>
+                    </div>
+
                     <p id="modalDesc" class="modal-description"></p>
-                    <a href="#" id="modalBuyBtn" class="buy-btn" target="_blank">Buy Now</a>
+
+                    <!-- Action Buttons -->
+                    <div class="modal-cta-stack">
+                        <!-- Free Sample Button (Google Drive link from JSON) -->
+                        <button type="button" id="modalSampleBtn" class="sample-cta-btn">
+                            <span class="sample-cta-title">📄 Download Free Sample PDF (8–10 Pages)</span>
+                            <span class="sample-cta-sub">Check print clarity &amp; quality before buying • 100% Free</span>
+                        </button>
+
+                        <!-- Primary Unlock / Buy Button (Existing buy_link) -->
+                        <a href="#" id="modalBuyBtn" class="primary-cta-btn" target="_blank" rel="noopener noreferrer">
+                            <span id="modalBuyTitle" class="primary-cta-text">🔓 Unlock Full Bundle</span>
+                            <span class="primary-cta-sub">Includes Both Color + Eco B&amp;W Printable PDFs</span>
+                        </a>
+
+                        <p class="trust-footer-text">🔒 Safe Instant Checkout • Instant Google Drive PDF Access</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -81,10 +135,10 @@
 
     <!-- 2. Fullscreen Image Zoom (Lightbox) -->
     <div id="zoomModal" class="zoom-overlay hidden">
-        <button id="closeZoom" class="close-btn" style="color: white; right: 30px; top: 30px; font-size: 40px;">✖</button>
+        <button type="button" id="closeZoom" class="zoom-close-btn" aria-label="Close zoom">✕</button>
         <img id="zoomImg" src="" alt="Zoomed Preview">
     </div>
 
-    <script src="worksheets.js?v=6.1"></script>
+    <script src="worksheets.js?v=7.1"></script>
 </body>
 </html>
